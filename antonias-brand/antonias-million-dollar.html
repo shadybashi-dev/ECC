@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antonia's Pizza — Handcrafted. Legendary. | SLO &amp; Paso Robles</title>
+<meta name="description" content="Handcrafted pizza from slices to 28-inch King pies, the Ajarski dough boat, calzones, pasta and wings. Downtown SLO &amp; Paso Robles. Order online.">
+<meta name="theme-color" content="#171310">
+<meta property="og:title" content="Antonia's Pizza — Handcrafted. Legendary.">
+<meta property="og:description" content="From a midnight slice to the 28-inch King. Two downtowns, one obsession.">
+<meta property="og:image" content="images/01-hero-special.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%95%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#171310; --ink2:#211A14; --ink3:#2A211A;
+    --cream:#F5EEE3; --cream2:rgba(245,238,227,.66); --cream3:rgba(245,238,227,.4);
+    --red:#E04A38; --red2:#B33A2B; --gold:#C9A227; --gold2:#E3C566;
+    --line:rgba(245,238,227,.14);
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --sans:'Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+    --ar:'IBM Plex Sans Arabic','Segoe UI',Tahoma,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--ink);color:var(--cream);font-family:var(--sans);line-height:1.7;overflow-x:hidden}
+  ::selection{background:var(--red);color:#fff}
+  ::-webkit-scrollbar{width:11px}
+  ::-webkit-scrollbar-track{background:var(--ink)}
+  ::-webkit-scrollbar-thumb{background:#3a2f25;border-radius:6px;border:2px solid var(--ink)}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .noise{position:fixed;inset:0;pointer-events:none;z-index:2000;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* ── NAV ── */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;
+    padding:20px clamp(20px,4vw,56px);transition:.4s;background:linear-gradient(rgba(23,19,16,.55),transparent)}
+  .nav.scrolled{background:rgba(23,19,16,.92);backdrop-filter:blur(14px);padding:12px clamp(20px,4vw,56px);border-bottom:1px solid var(--line)}
+  .brand{font-family:var(--serif);font-weight:700;font-size:22px;letter-spacing:.04em;text-decoration:none;display:flex;align-items:center;gap:10px}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--red)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:13.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--cream2);transition:.25s}
+  .nav-links a:hover{color:var(--gold2)}
+  .btn{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font-weight:600;font-size:14px;
+    letter-spacing:.08em;text-transform:uppercase;padding:14px 30px;border-radius:99px;transition:.3s;border:1px solid var(--red)}
+  .btn:hover{background:var(--red2);border-color:var(--red2);transform:translateY(-2px);box-shadow:0 14px 34px rgba(224,74,56,.35)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--cream)}
+  .btn.ghost:hover{border-color:var(--gold);color:var(--gold2);box-shadow:none}
+  .btn.sm{padding:10px 22px;font-size:12.5px}
+
+  /* ── HERO ── */
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:url('images/01-hero-special.jpg') center/cover no-repeat;animation:kb 22s ease-in-out infinite alternate}
+  @keyframes kb{from{transform:scale(1)}to{transform:scale(1.12)}}
+  .hero::after{content:'';position:absolute;inset:0;background:
+    radial-gradient(ellipse at center,rgba(23,19,16,.18) 0%,rgba(23,19,16,.72) 78%),
+    linear-gradient(rgba(23,19,16,.45),rgba(23,19,16,.25) 40%,var(--ink) 100%)}
+  .hero-content{position:relative;z-index:2;padding:120px 24px 40px;max-width:900px}
+  .kicker{font-size:12.5px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--gold2);margin-bottom:22px}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(46px,8.5vw,104px);line-height:1.04;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--gold2)}
+  .hero-sub{margin:26px auto 38px;max-width:560px;color:var(--cream2);font-size:clamp(16px,1.6vw,19px)}
+  .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .hero-stats{position:relative;z-index:2;display:flex;gap:clamp(24px,6vw,80px);flex-wrap:wrap;justify-content:center;
+    padding:34px 20px 46px;border-top:1px solid var(--line);width:min(1000px,94%);margin-top:auto}
+  .hstat{text-align:center}
+  .hstat b{font-family:var(--serif);font-size:clamp(24px,3vw,34px);font-weight:600;color:var(--cream);display:block;line-height:1.2}
+  .hstat span{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream3)}
+  .scroll-hint{position:absolute;bottom:150px;left:50%;transform:translateX(-50%);z-index:2;color:var(--cream3);font-size:11px;letter-spacing:.3em;text-transform:uppercase;animation:fl 2.2s ease-in-out infinite}
+  @keyframes fl{0%,100%{opacity:.35;transform:translate(-50%,0)}50%{opacity:1;transform:translate(-50%,8px)}}
+
+  /* ── MARQUEE ── */
+  .marquee{background:var(--red2);overflow:hidden;padding:15px 0;border-block:1px solid rgba(0,0,0,.2)}
+  .mq-track{display:flex;width:max-content;animation:mq 26s linear infinite}
+  .mq-track span{font-family:var(--serif);font-style:italic;font-size:17px;color:#fff;white-space:nowrap;padding:0 18px;letter-spacing:.06em}
+  .mq-track span::after{content:'\2726';margin-left:36px;color:rgba(255,255,255,.55);font-style:normal;font-size:12px}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* ── SECTIONS ── */
+  section{padding:clamp(80px,11vw,150px) clamp(20px,5vw,64px);position:relative}
+  .wrap{max-width:1200px;margin:0 auto}
+  h2{font-family:var(--serif);font-weight:600;font-size:clamp(34px,5vw,58px);line-height:1.08;letter-spacing:-.01em;margin-bottom:20px}
+  .lead{color:var(--cream2);font-size:clamp(16px,1.5vw,18.5px);max-width:620px}
+
+  /* Ajarski split */
+  .split{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(36px,6vw,90px);align-items:center}
+  .frame{position:relative}
+  .frame img{border-radius:18px;position:relative;z-index:1;box-shadow:0 40px 90px rgba(0,0,0,.55)}
+  .frame::before{content:'';position:absolute;inset:0;border:1px solid var(--gold);border-radius:18px;transform:translate(16px,16px);opacity:.5}
+  .price-row{display:flex;align-items:baseline;gap:16px;margin:26px 0 8px;flex-wrap:wrap}
+  .price{font-family:var(--serif);font-size:30px;color:var(--gold2)}
+  .price-note{color:var(--cream3);font-size:14px}
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 30px}
+  .chip{border:1px solid var(--line);border-radius:99px;padding:7px 16px;font-size:13px;color:var(--cream2)}
+
+  /* King full-bleed */
+  .bleed{min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;
+    background:url('images/03-king-28.jpg') center/cover fixed no-repeat}
+  .bleed::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(23,19,16,.3),rgba(23,19,16,.88))}
+  .bleed .inner{position:relative;z-index:1;max-width:760px;padding:40px 24px}
+  .bleed .sizes{margin-top:22px;color:var(--cream3);font-size:13.5px;letter-spacing:.14em;text-transform:uppercase}
+
+  /* Menu grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;margin-top:54px}
+  .card{background:var(--ink2);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.35s;position:relative}
+  .card:hover{transform:translateY(-7px);border-color:rgba(201,162,39,.45);box-shadow:0 30px 70px rgba(0,0,0,.5)}
+  .card .ph{aspect-ratio:16/10;overflow:hidden}
+  .card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  .card:hover .ph img{transform:scale(1.07)}
+  .card .no{position:absolute;top:14px;right:16px;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--gold2);
+    background:rgba(23,19,16,.72);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:99px;padding:3px 13px;z-index:1}
+  .card .body{padding:22px 24px 24px}
+  .card h3{font-family:var(--serif);font-weight:600;font-size:23px;margin-bottom:8px}
+  .card p{color:var(--cream2);font-size:14.5px;line-height:1.65;min-height:48px}
+  .card .row{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .card .row b{font-family:var(--serif);font-size:20px;color:var(--gold2);font-weight:600}
+  .card .row a{font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--red);transition:.25s}
+  .card .row a:hover{color:var(--gold2);letter-spacing:.2em}
+  .center-btn{text-align:center;margin-top:52px}
+
+  /* Late night + interior bands */
+  .band{min-height:74vh;display:flex;align-items:center}
+  .band .inner{position:relative;z-index:1;max-width:680px}
+  .band .note{color:var(--cream3);font-size:14px;margin-top:14px}
+
+  /* Film */
+  .film-sec{text-align:center;background:var(--ink2)}
+  .film-sec .lead{margin:0 auto 50px}
+  .player{position:relative;max-width:1060px;margin:0 auto;aspect-ratio:16/9;border-radius:20px;overflow:hidden;
+    border:1px solid var(--line);box-shadow:0 50px 120px rgba(0,0,0,.6);background:#000}
+  .player video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+  .film-cap{margin-top:26px;color:var(--cream3);font-size:13.5px}
+
+  /* Locations */
+  .locs{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:54px}
+  .loc{background:var(--ink2);border:1px solid var(--line);border-radius:22px;padding:38px 36px;transition:.35s;position:relative;overflow:hidden}
+  .loc:hover{border-color:rgba(201,162,39,.5);transform:translateY(-5px);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+  .loc .tag{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:14px}
+  .loc h3{font-family:var(--serif);font-weight:600;font-size:30px;margin-bottom:6px}
+  .loc .city{color:var(--cream2);font-size:15px;margin-bottom:20px}
+  .loc address{font-style:normal;color:var(--cream2);font-size:15px;line-height:1.7}
+  .loc .tel{display:inline-block;font-family:var(--serif);font-size:24px;color:var(--gold2);text-decoration:none;margin:18px 0 6px;letter-spacing:.02em}
+  .loc .tel:hover{color:#fff}
+  .loc .hrs{color:var(--cream3);font-size:13.5px;margin-bottom:26px}
+  .loc .btns{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* ── ARABIC STUDIO ── */
+  .studio{background:linear-gradient(180deg,var(--ink2),var(--ink3) 40%,var(--ink2))}
+  .studio[lang=ar]{font-family:var(--ar);direction:rtl;text-align:right}
+  .studio .kicker{letter-spacing:.12em}
+  .studio h2{line-height:1.25}
+  .studio .lead{font-size:17px}
+  .agents{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:50px}
+  .agent{background:rgba(23,19,16,.55);border:1px solid var(--line);border-radius:18px;padding:26px 24px;transition:.3s;position:relative}
+  .agent:hover{border-color:rgba(224,74,56,.55);transform:translateY(-4px)}
+  .agent .mono{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:700;font-size:17px;color:#fff;margin-bottom:16px;
+    background:linear-gradient(135deg,var(--red2),var(--red));box-shadow:0 10px 24px rgba(224,74,56,.3)}
+  .agent:nth-child(even) .mono{background:linear-gradient(135deg,#8a6f14,var(--gold));box-shadow:0 10px 24px rgba(201,162,39,.28)}
+  .agent .nm{font-weight:700;font-size:16.5px;color:var(--cream)}
+  .agent .rl{color:var(--gold2);font-size:13px;margin:3px 0 12px}
+  .agent .rl small{display:block;color:var(--cream3);font-size:11px;letter-spacing:.05em}
+  .agent .dl{color:var(--cream2);font-size:13.5px;line-height:1.8}
+  .agent .qt{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);color:var(--cream3);font-size:12.5px;font-style:italic}
+  .studio h3.ar-h{font-family:var(--ar);font-size:clamp(24px,3.4vw,34px);font-weight:700;margin:70px 0 8px;color:var(--cream)}
+  .studio h3.ar-h span{color:var(--gold2)}
+
+  .psych{width:100%;border-collapse:collapse;margin-top:28px;font-size:14.5px}
+  .psych th{background:rgba(201,162,39,.1);color:var(--gold2);font-weight:700;padding:13px 14px;font-size:13px;border:1px solid var(--line)}
+  .psych td{border:1px solid var(--line);padding:12px 14px;color:var(--cream2);vertical-align:middle;line-height:1.8}
+  .psych td:first-child{white-space:nowrap}
+  .psych img{width:76px;height:46px;object-fit:cover;border-radius:8px;display:block}
+  .psych tr:hover td{background:rgba(245,238,227,.03)}
+  .table-scroll{overflow-x:auto}
+
+  .recipe{margin-top:26px;background:rgba(23,19,16,.55);border:1px solid var(--line);border-right:4px solid var(--red);border-radius:16px;padding:28px 30px}
+  .recipe ul{list-style:none;margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px 26px}
+  .recipe li{padding-right:26px;position:relative;color:var(--cream2);font-size:14.5px;line-height:1.9}
+  .recipe li::before{content:'\2726';position:absolute;right:0;color:var(--gold2);font-size:12px;top:4px}
+
+  .next-steps{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+  .step{background:rgba(224,74,56,.07);border:1px solid rgba(224,74,56,.25);border-radius:16px;padding:22px}
+  .step b{display:flex;align-items:center;gap:10px;color:var(--cream);font-size:15px;margin-bottom:8px}
+  .step b i{font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+  .step p{color:var(--cream2);font-size:13.5px;line-height:1.85}
+  .step a{color:var(--gold2)}
+  .honest{margin-top:30px;background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.3);border-radius:16px;padding:22px 26px;color:var(--cream2);font-size:14px;line-height:1.95}
+  .honest b{color:var(--gold2)}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:60px clamp(20px,5vw,64px) 40px;text-align:center}
+  footer .fb{font-family:var(--serif);font-weight:700;font-size:30px;margin-bottom:10px}
+  footer .ft{color:var(--cream2);font-size:15px;line-height:2}
+  footer .fc{color:var(--cream3);font-size:12.5px;margin-top:26px;letter-spacing:.04em}
+  footer a{color:var(--gold2);text-decoration:none}
+  footer a:hover{color:#fff}
+
+  /* Logo, progress, sticky bar, reviews, inspiration chips */
+  .brand .logo{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid var(--gold)}
+  #progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--red),var(--gold));width:0;z-index:1100}
+  .stickybar{position:fixed;bottom:0;left:0;right:0;z-index:1050;display:none;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(23,19,16,.96);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+  .stickybar.show{display:flex}
+  .stickybar .who{font-size:12.5px;color:var(--cream2);line-height:1.4;text-align:left}
+  .stickybar .who b{color:var(--cream);font-family:var(--serif);font-size:14px}
+  .stickybar .acts{display:flex;gap:8px;align-items:center}
+  @media (min-width:921px){.stickybar{display:none!important}}
+  .reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:50px}
+  .rev{background:var(--ink2);border:1px solid var(--line);border-radius:18px;padding:28px 26px;transition:.3s}
+  .rev:hover{transform:translateY(-5px);border-color:rgba(201,162,39,.45)}
+  .rev .stars{color:var(--gold2);letter-spacing:3px;font-size:15px;margin-bottom:14px}
+  .rev q{font-family:var(--serif);font-style:italic;font-size:16.5px;line-height:1.65;color:var(--cream)}
+  .rev .by{margin-top:16px;color:var(--cream3);font-size:13px;letter-spacing:.08em}
+  .rev .by b{color:var(--gold2);font-weight:600}
+  .insp{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 0}
+  .insp span{border:1px dashed var(--line);border-radius:99px;padding:6px 15px;font-size:12.5px;color:var(--cream3)}
+  .insp b{color:var(--gold2);font-weight:600}
+  .flogo{width:92px;height:92px;border-radius:50%;object-fit:cover;border:1px solid var(--gold);margin-bottom:18px}
+
+  /* Reveal */
+  .rv{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .rv{opacity:1;transform:none}
+  }
+  @media (max-width:920px){
+    .split{grid-template-columns:1fr}
+    .locs{grid-template-columns:1fr}
+    .nav-links a:not(.btn){display:none}
+    .bleed{background-attachment:scroll}
+  }
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div id="progress"></div>
+
+<!-- Sticky mobile order bar (Domino's-style persistent CTA) -->
+<div class="stickybar" id="stickybar">
+  <div class="who"><b>Antonia&rsquo;s Pizza</b><br>SLO &bull; Paso Robles &bull; Open late</div>
+  <div class="acts">
+    <a class="btn sm ghost" href="tel:+18054392383">Call SLO</a>
+    <a class="btn sm" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order Now</a>
+  </div>
+</div>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav class="nav" id="nav">
+  <a class="brand" href="#home"><img class="logo" src="images/logo-dark.png" alt="Antonia&rsquo;s Pizza logo" onerror="this.style.display='none'">ANTONIA&rsquo;S PIZZA</a>
+  <div class="nav-links">
+    <a href="#ajarski">The Ajarski</a>
+    <a href="#king">The King</a>
+    <a href="#menu">Menu</a>
+    <a href="#film">The Film</a>
+    <a href="#locations">Locations</a>
+    <a class="btn sm" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order Now</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero" id="home">
+  <div class="hero-bg" role="img" aria-label="Antonia's Special pizza with a molten mozzarella cheese pull"></div>
+  <div class="hero-content">
+    <p class="kicker">Downtown SLO &bull; Downtown Paso Robles</p>
+    <h1>Handcrafted.<br><em>Legendary.</em></h1>
+    <p class="hero-sub">Dough stretched by hand. Sauce simmered slow. From a single midnight slice to the 28-inch King.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order Online</a>
+      <a class="btn ghost" href="#film">Watch the Film &#9656;</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+  <div class="hero-stats">
+    <div class="hstat"><b>21</b><span>Specialty Pies</span></div>
+    <div class="hstat"><b>28&Prime;</b><span>King Size</span></div>
+    <div class="hstat"><b>2:30 AM</b><span>Late Nights</span></div>
+    <div class="hstat"><b>2</b><span>Downtowns</span></div>
+  </div>
+</header>
+
+<!-- ═══════════ MARQUEE ═══════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span>Handcrafted dough</span><span>Homemade tomato sauce</span><span>The Ajarski dough boat</span><span>28&Prime; King pies</span><span>Late-night slices</span><span>Bone-in &amp; boneless wings</span><span>Calzones</span><span>Truffled pesto tortellini</span>
+    <span>Handcrafted dough</span><span>Homemade tomato sauce</span><span>The Ajarski dough boat</span><span>28&Prime; King pies</span><span>Late-night slices</span><span>Bone-in &amp; boneless wings</span><span>Calzones</span><span>Truffled pesto tortellini</span>
+  </div>
+</div>
+
+<!-- ═══════════ AJARSKI ═══════════ -->
+<section id="ajarski">
+  <div class="wrap split">
+    <div class="frame rv">
+      <img src="images/02-ajarski.jpg" alt="The Ajarski dough boat: molten mozzarella and feta with a soft egg yolk and melting butter" loading="lazy">
+    </div>
+    <div class="rv d1">
+      <p class="kicker">The Signature</p>
+      <h2>The Ajarski dough boat</h2>
+      <p class="lead">A warm, boat-shaped loaf pulled from the oven, loaded with fresh mozzarella and feta, finished with a soft egg yolk and a melting pat of butter.</p>
+      <div class="price-row">
+        <span class="price">From $18.45</span>
+        <span class="price-note">SLO-style seasoned crust &mdash; $21.95</span>
+      </div>
+      <div class="chips">
+        <span class="chip">Original Style</span>
+        <span class="chip">SLO-Style Crust</span>
+        <span class="chip">American Style</span>
+        <span class="chip">Mexicano</span>
+      </div>
+      <a class="btn" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order the Ajarski</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ THE KING ═══════════ -->
+<section class="bleed" id="king">
+  <div class="inner rv">
+    <p class="kicker">The 28-Inch King</p>
+    <h2>28 inches of yes.</h2>
+    <p class="lead" style="margin:0 auto">Feeds the whole crew. Or don&rsquo;t share &mdash; we won&rsquo;t tell.</p>
+    <div class="price-row" style="justify-content:center;margin-top:30px">
+      <span class="price">$55.99+</span>
+      <span class="price-note">King 28&Prime; Cheese &bull; build it your way</span>
+    </div>
+    <div class="cta-row" style="margin-top:34px">
+      <a class="btn" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Build Your King</a>
+    </div>
+    <p class="sizes">Also 10&Prime; &bull; 13&Prime; &bull; 16&Prime; &bull; 18&Prime; &bull; 24&Prime; party size</p>
+  </div>
+</section>
+
+<!-- ═══════════ MENU ═══════════ -->
+<section id="menu">
+  <div class="wrap">
+    <div class="rv">
+      <p class="kicker">Fan Favorites</p>
+      <h2>The menu, in pictures.</h2>
+      <p class="lead">Shot in our campaign studio &mdash; dark wood, golden light, and food that looks the way it tastes.</p>
+    </div>
+    <div class="grid">
+      <article class="card rv"><span class="no">01</span>
+        <div class="ph"><img src="images/01-hero-special.jpg" alt="Antonia's Special pizza with pepperoni, mushrooms and a cheese pull" loading="lazy"></div>
+        <div class="body">
+          <h3>Antonia&rsquo;s Special</h3>
+          <p>The pie that built the name &mdash; pepperoni, mushrooms, red onions, bacon bits, pepperoncino.</p>
+          <div class="row"><b>$16.45+</b><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order &rarr;</a></div>
+        </div>
+      </article>
+      <article class="card rv d1"><span class="no">02</span>
+        <div class="ph"><img src="images/02-ajarski.jpg" alt="The Ajarski dough boat with egg yolk and melting butter" loading="lazy"></div>
+        <div class="body">
+          <h3>The Ajarski</h3>
+          <p>Molten mozzarella, feta, soft egg yolk and butter in a golden dough boat.</p>
+          <div class="row"><b>$18.45+</b><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order &rarr;</a></div>
+        </div>
+      </article>
+      <article class="card rv d2"><span class="no">03</span>
+        <div class="ph"><img src="images/03-king-28.jpg" alt="28-inch King pizza spanning a long wooden table" loading="lazy"></div>
+        <div class="body">
+          <h3>King 28&Prime;</h3>
+          <p>The whole crew. Or just you &mdash; we don&rsquo;t judge.</p>
+          <div class="row"><b>$55.99+</b><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order &rarr;</a></div>
+        </div>
+      </article>
+      <article class="card rv"><span class="no">04</span>
+        <div class="ph"><img src="images/04-slice-latenight.jpg" alt="Late-night New York style slice with cupped pepperoni" loading="lazy"></div>
+        <div class="body">
+          <h3>Late-Night Slice</h3>
+          <p>Folded, charred, glistening. The best part of the night, on Higuera Street.</p>
+          <div class="row"><b>$5.45</b><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order &rarr;</a></div>
+        </div>
+      </article>
+      <article class="card rv d1"><span class="no">05</span>
+        <div class="ph"><img src="images/05-buffalo-wings.jpg" alt="Buffalo wings with ranch drizzle and celery on dark slate" loading="lazy"></div>
+        <div class="body">
+          <h3>Buffalo Wings</h3>
+          <p>Bone-in or boneless, glazed and glistening, with cool ranch on the side.</p>
+          <div class="row"><b>$11.95+</b><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order &rarr;</a></div>
+        </div>
+      </article>
+      <article class="card rv d2"><span class="no">06</span>
+        <div class="ph"><img src="images/06-bbq-chicken.jpg" alt="BBQ chicken pizza with red onion and cilantro" loading="lazy"></div>
+        <div class="body">
+          <h3>BBQ Chicken</h3>
+          <p>Grilled chicken, red onion, cilantro and a glossy BBQ drizzle.</p>
+          <div class="row"><b>$16.45+</b><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order &rarr;</a></div>
+        </div>
+      </article>
+      <article class="card rv"><span class="no">07</span>
+        <div class="ph"><img src="images/07-buffalo-fries.jpg" alt="Bishop Peak buffalo fries loaded with melted mozzarella" loading="lazy"></div>
+        <div class="body">
+          <h3>Bishop Peak Buffalo Fries</h3>
+          <p>Loaded, draped and dangerous &mdash; our most requested side.</p>
+          <div class="row"><b>$18.95</b><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order &rarr;</a></div>
+        </div>
+      </article>
+      <article class="card rv d1"><span class="no">08</span>
+        <div class="ph"><img src="images/08-calzone.jpg" alt="Golden calzone sliced open with marinara dip" loading="lazy"></div>
+        <div class="body">
+          <h3>Calzone</h3>
+          <p>Golden outside, molten inside. Warm marinara on the side.</p>
+          <div class="row"><b>$13.99+</b><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order &rarr;</a></div>
+        </div>
+      </article>
+      <article class="card rv d2"><span class="no">09</span>
+        <div class="ph"><img src="images/09-tortellini.jpg" alt="Truffled pesto tortellini with shaved parmesan and roasted tomatoes" loading="lazy"></div>
+        <div class="body">
+          <h3>Truffled Pesto Tortellini</h3>
+          <p>Creamy pesto, shaved Parmesan, roasted tomatoes. Date-night approved.</p>
+          <div class="row"><b>$31.95</b><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order &rarr;</a></div>
+        </div>
+      </article>
+      <article class="card rv"><span class="no">10</span>
+        <div class="ph"><img src="images/11-dessert.jpg" alt="Cannoli with pistachio and tiramisu with an espresso" loading="lazy"></div>
+        <div class="body">
+          <h3>Cannoli &amp; Tiramisu</h3>
+          <p>Pistachio cannoli, cocoa-dusted tiramisu, a proper espresso to finish.</p>
+          <div class="row"><b>from $8.99</b><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order &rarr;</a></div>
+        </div>
+      </article>
+      <article class="card rv d1"><span class="no">11</span>
+        <div class="ph"><img src="images/12-mozzarella-sticks.jpg" alt="Golden mozzarella sticks with a cheese pull and marinara dip" loading="lazy"></div>
+        <div class="body">
+          <h3>Mozzarella Sticks</h3>
+          <p>Golden, crunchy, impossible to share. Warm marinara on the side.</p>
+          <div class="row"><b>$9.99+</b><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order &rarr;</a></div>
+        </div>
+      </article>
+    </div>
+    <div class="center-btn rv">
+      <a class="btn ghost" href="https://antoniaspizza.com/menu" target="_blank" rel="noopener">See the Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LATE NIGHT ═══════════ -->
+<section class="band" id="latenight" style="background:url('images/04-slice-latenight.jpg') center/cover no-repeat">
+  <div class="wrap"><div class="inner rv">
+    <p class="kicker">After Dark</p>
+    <h2>The best slice of your night.</h2>
+    <p class="lead">Open late Thursday&ndash;Saturday &mdash; till 2:30 AM on Higuera Street in SLO.</p>
+    <div class="cta-row" style="margin-top:30px">
+      <a class="btn" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order a Late-Night Slice</a>
+    </div>
+    <p class="note">Paso Robles: till 2:00 AM Friday &amp; Saturday.</p>
+  </div></div>
+</section>
+<div class="band" style="background:linear-gradient(rgba(23,19,16,.55),rgba(23,19,16,.55)),url('images/10-interior.jpg') center/cover no-repeat;min-height:60vh;justify-content:center;text-align:center">
+  <div class="wrap"><div class="rv" style="max-width:600px;margin:0 auto">
+    <p class="kicker">The Room</p>
+    <h2>Come sit with us.</h2>
+    <p class="lead" style="margin:0 auto">Candle-lit tables, an open kitchen, and the smell of Friday.</p>
+    <p style="margin-top:28px"><a class="btn ghost" href="#locations">Find Your Table &#8595;</a></p>
+  </div></div>
+</div>
+
+<!-- ═══════════ THE BOX (brand concept) ═══════════ -->
+<section class="band" id="thebox" style="background:linear-gradient(rgba(23,19,16,.35),rgba(23,19,16,.78)),url('images/13-box-concept.jpg') center/cover no-repeat;min-height:64vh;justify-content:center;text-align:center">
+  <div class="wrap"><div class="rv" style="max-width:640px;margin:0 auto">
+    <p class="kicker">Fresh From The Oven</p>
+    <h2>Dinner, handled.</h2>
+    <p class="lead" style="margin:0 auto">Hot, handcrafted, and on its way to your table.</p>
+    <p style="margin-top:28px"><a class="btn" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Get Your Box</a></p>
+  </div></div>
+</section>
+
+<!-- ═══════════ REVIEWS (real, from Google) ═══════════ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="rv" style="text-align:center">
+      <p class="kicker">Word on the Street</p>
+      <h2>200+ reviews. 4.5 stars.</h2>
+      <p class="lead" style="margin:0 auto">Real words from real tables &mdash; straight from our Google reviews.</p>
+    </div>
+    <div class="reviews">
+      <div class="rev rv">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <q>Hands down some of the best pizza in SLO! Great service, perfect flavors, and an unbelievable crust.</q>
+        <div class="by"><b>Patricia B.</b> &mdash; Google review</div>
+      </div>
+      <div class="rev rv d1">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <q>One of the best pizzas I&rsquo;ve had in SLO &mdash; didn&rsquo;t skimp on toppings and the crust was amazing. 10/10.</q>
+        <div class="by"><b>Cecily F.</b> &mdash; Google review</div>
+      </div>
+      <div class="rev rv d2">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <q>The crust, sauce, fresh toppings &mdash; exquisite. The tiramisu was literally the best I&rsquo;ve ever had.</q>
+        <div class="by"><b>Kelly H.</b> &mdash; Google review</div>
+      </div>
+      <div class="rev rv">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <q>Craving late-night pizza &mdash; they were honestly so accommodating for a late delivery. The Pesto Chicken pie is incredible.</q>
+        <div class="by"><b>Walid S.</b> &mdash; Google review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FILM ═══════════ -->
+<section class="film-sec" id="film">
+  <div class="wrap">
+    <div class="rv">
+      <p class="kicker">The Film</p>
+      <h2>Antonia&rsquo;s, in motion.</h2>
+      <p class="lead">The campaign spot &mdash; every frame built from the photography on this page.</p>
+    </div>
+    <div class="player rv d1">
+      <video controls playsinline preload="metadata" poster="images/01-hero-special.jpg">
+        <source src="video/antonias-spot.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <p class="film-cap rv d2">Directed, styled and QA&rsquo;d by the ten-agent studio below &#8595;</p>
+  </div>
+</section>
+
+<!-- ═══════════ LOCATIONS ═══════════ -->
+<section id="locations">
+  <div class="wrap">
+    <div class="rv">
+      <p class="kicker">Two Downtowns</p>
+      <h2>Find your table.</h2>
+    </div>
+    <div class="locs">
+      <div class="loc rv">
+        <p class="tag">Location 01</p>
+        <h3>San Luis Obispo</h3>
+        <p class="city">Downtown, on Higuera Street</p>
+        <address>891 Higuera St<br>San Luis Obispo, CA 93401</address>
+        <a class="tel" href="tel:+18054392383">(805) 439-2383</a>
+        <p class="hrs">Open till 2:30 AM Thu&ndash;Sat &bull; steps from Mission Plaza &amp; Thursday&rsquo;s Farmers Market</p>
+        <div class="btns">
+          <a class="btn sm" href="tel:+18054392383">Call</a>
+          <a class="btn sm ghost" href="https://www.google.com/maps/search/?api=1&amp;query=891%20Higuera%20St%2C%20San%20Luis%20Obispo%2C%20CA%2093401%2C%20USA" target="_blank" rel="noopener">Directions</a>
+        </div>
+      </div>
+      <div class="loc rv d1">
+        <p class="tag">Location 02</p>
+        <h3>Paso Robles</h3>
+        <p class="city">Downtown, on 12th Street</p>
+        <address>729 12th St<br>Paso Robles, CA 93446</address>
+        <a class="tel" href="tel:+18052381851">(805) 238-1851</a>
+        <p class="hrs">Open till 2:00 AM Fri&ndash;Sat &bull; steps from the downtown City Park square</p>
+        <div class="btns">
+          <a class="btn sm" href="tel:+18052381851">Call</a>
+          <a class="btn sm ghost" href="https://www.google.com/maps/search/?api=1&amp;query=729%2012th%20St%2C%20Paso%20Robles%2C%20CA%2093446%2C%20USA" target="_blank" rel="noopener">Directions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ARABIC STUDIO ═══════════ -->
+<section class="studio" id="studio" lang="ar" dir="rtl">
+  <div class="wrap">
+    <div class="rv">
+      <p class="kicker">غرفة التحكم &mdash; للمالك فقط</p>
+      <h2>مين عمل الشغل؟ <span style="color:var(--gold2)">10 عملاء</span>، كل واحد بيُجيد حاجة وحدة.</h2>
+      <p class="lead">ما هي مش "صور بتولّدت". هاد استوديو كامل: كل وكيل سلّم قطعة من الحملة، ومرّ عليها مدقق الجودة قبل ما توصل لهون. تعرّف عالفريق:</p>
+    </div>
+
+    <div class="agents">
+      <div class="agent rv"><div class="mono">MB</div>
+        <div class="nm">Marco Bellini</div>
+        <div class="rl">المدير الإبداعي<small>Creative Director</small></div>
+        <div class="dl">حدّد الاتجاه البصري للحملة &mdash; <b>Dark &amp; Golden</b> &mdash; ووثّق مرجعياته من حملات كبرى.</div>
+        <div class="qt">«الصورة اللي بتبيع مش أجمل صورة &mdash; هي الصورة اللي بتحرق الشهية.»</div>
+      </div>
+      <div class="agent rv"><div class="mono">EV</div>
+        <div class="nm">Elena V&aacute;squez</div>
+        <div class="rl">مصورة الطعام<small>Food Photographer</small></div>
+        <div class="dl">حدّدت الكاميرا والعدسة والإضاءة لكل لقطة: 85mm عند f/2.0 للبورتريه، 35mm للوحات الواسعة.</div>
+        <div class="qt">«عدسة 85 عند f/2.0 &mdash; الجبن يذوب، والخلفية تنسى حالها.»</div>
+      </div>
+      <div class="agent rv"><div class="mono">RF</div>
+        <div class="nm">Rosa Ferrante</div>
+        <div class="rl">ستايلست الطعام<small>Food Stylist</small></div>
+        <div class="dl">البخار المرتفع، شدّة الجبن، رشة الطحين، الزبدة الذائبة على الأجارسكي، لمعان الصلصة.</div>
+        <div class="qt">«الطعام لازم يبان سخن &mdash; حتى بالصورة الثابتة.»</div>
+      </div>
+      <div class="agent rv"><div class="mono">MR</div>
+        <div class="nm">Dr. Maya Rahhal</div>
+        <div class="rl">عالمة نفس المستهلك<small>Consumer Psychologist</small></div>
+        <div class="dl">كل قرار خلفية بالحملة وراه سبب نفسي موثّق &mdash; الجدول تحت بيشرحه لقطة لقطة.</div>
+        <div class="qt">«الداكن بريميوم، الأحمر شهية، والإيدين إحساس بالمقياس.»</div>
+      </div>
+      <div class="agent rv"><div class="mono">LM</div>
+        <div class="nm">Luca Moretti</div>
+        <div class="rl">مهندس المنيو<small>Menu Engineer</small></div>
+        <div class="dl">ترتيب بطاقات المنيو، والأسعار المرجعية: الكينج $55.99 بيعمل كل شي حواليه بيبان رخيص.</div>
+        <div class="qt">«العين بتقع بالحفرة قبل ما المخ يقرأ السعر.»</div>
+      </div>
+      <div class="agent rv"><div class="mono">SL</div>
+        <div class="nm">Sofia Lindgren</div>
+        <div class="rl">مديرة الهوية<small>Brand Director</small></div>
+        <div class="dl">لوحة الألوان (فحمي &bull; كريمي &bull; أحمر طماطم &bull; ذهبي)، الخطوط، ونبرة الصوت.</div>
+        <div class="qt">«البراند مش لوجو &mdash; إحساس متكرر بكل بكسل.»</div>
+      </div>
+      <div class="agent rv"><div class="mono">JW</div>
+        <div class="nm">James Whitfield</div>
+        <div class="rl">كاتب الحملة<small>Copywriter</small></div>
+        <div class="dl">كل جملة إنجليزية بالموقع والفيديو &mdash; من &ldquo;28 inches of yes&rdquo; لزر الطلب.</div>
+        <div class="qt">«كلمتين بيبيعوا: Handcrafted. Legendary.»</div>
+      </div>
+      <div class="agent rv"><div class="mono">NH</div>
+        <div class="nm">Noor Haddad</div>
+        <div class="rl">مصممة الحركة<small>Motion Designer</small></div>
+        <div class="dl">إيقاع الفيديو: لقطة 4 ثواني، انتقال 0.8 ثانية، ولا ثانية ضايعة &mdash; 37 ثانية إجمالاً.</div>
+        <div class="qt">«ثانية زيادة عالفاضي بتقطع الشهية.»</div>
+      </div>
+      <div class="agent rv"><div class="mono">DO</div>
+        <div class="nm">Daniel Okafor</div>
+        <div class="rl">مصمم التجربة<small>UX Designer</small></div>
+        <div class="dl">هيكل الصفحة: كل سكرول بيوصلك لزر Order، وكل سعر مكتوب بوضوح قبل القرار.</div>
+        <div class="qt">«الموقع الحلو اللي ما بيبيع &mdash; معرض صور.»</div>
+      </div>
+      <div class="agent rv"><div class="mono">AK</div>
+        <div class="nm">Ada Kowalski</div>
+        <div class="rl">مدققة الجودة<small>QA &amp; Retouch</small></div>
+        <div class="dl">الفحص النهائي: كل رقم هاتف وكل سعر وكل رابط وكل حرف &mdash; اتأكدت منه مرتين.</div>
+        <div class="qt">«ولا غلطة. ولا ولا واحدة.»</div>
+      </div>
+    </div>
+
+    <div class="insp rv">
+      <span>اقتبسنا وعدّلنا من: <b>Sweetgreen</b> &mdash; الخط الحِرَفي الضخم</span>
+      <span><b>Shake Shack</b> &mdash; الشريط المتحرك</span>
+      <span><b>Domino&rsquo;s</b> &mdash; زر الطلب الثابت عالجوال</span>
+      <span><b>Pizzeria Vetri</b> &mdash; الهيدر الثابت وقسم التقييمات</span>
+      <span><b>EVO</b> &mdash; غلاف حِرفي متوهج</span>
+    </div>
+
+    <h3 class="ar-h rv">علم النفس ورا كل لقطة <span>&mdash; د. مايا تشرح</span></h3>
+    <div class="table-scroll rv">
+      <table class="psych">
+        <tr><th>اللقطة</th><th>الخلفية والقرار</th><th>الزناد النفسي</th></tr>
+        <tr>
+          <td><img src="images/01-hero-special.jpg" alt="غلاف البيتزا الخاصة" loading="lazy"></td>
+          <td>خشب جوز داكن + قماش كاروهات أحمر تحت الخشب</td>
+          <td>الأحمر أسرع لون بيفتح الشهية، والكاروهات نوستالجيا البيتزيريا الكلاسيكية &mdash; «هاد مطعم حقيقي»</td>
+        </tr>
+        <tr>
+          <td><img src="images/01-hero-special.jpg" alt="شد الجبن" loading="lazy"></td>
+          <td>شريحة مرفوعة بشدّ جبن + خلفية فحمية ببوكيا كهرمانية</td>
+          <td>الدماغ «بيتذوق» الحركة (خلايا المرآة) &mdash; شدّ الجبن بيخلق طلب فوري</td>
+        </tr>
+        <tr>
+          <td><img src="images/03-king-28.jpg" alt="الكينج 28" loading="lazy"></td>
+          <td>بيتزا عملاقة + إيدين على طرف الطاولة</td>
+          <td>مقياس بشري: الدماغ بيفهم الحجم فوراً بدون أرقام &rarr; إحساس بقيمة أعلى مقابل السعر</td>
+        </tr>
+        <tr>
+          <td><img src="images/04-slice-latenight.jpg" alt="شريحة الليل" loading="lazy"></td>
+          <td>نيون دافئ بالخلفية، إيد مطوية الشريحة</td>
+          <td>ذاكرة الليالي والخروجات &rarr; تفعيل طلبات ما بعد منتصف الليل (فترة سعادتكم الذهبية)</td>
+        </tr>
+        <tr>
+          <td><img src="images/02-ajarski.jpg" alt="الأجارسكي" loading="lazy"></td>
+          <td>صفار ذائب + زبدة بتذوب + بخار</td>
+          <td>تلات إشارات «طازج من الفرن» بنفس الكادر &rarr; إلحاح &mdash; «لازم جرّب هاد هلق»</td>
+        </tr>
+        <tr>
+          <td><img src="images/05-buffalo-wings.jpg" alt="الأجنحة" loading="lazy"></td>
+          <td>خلفية داكنة موحدة لكل المقبلات</td>
+          <td>اللون الذهبي للطعام بينبثق من الظلام &rarr; بريميوم، مش فاست فود &mdash; مبرر للسعر</td>
+        </tr>
+        <tr>
+          <td><img src="images/10-interior.jpg" alt="صالة المطعم" loading="lazy"></td>
+          <td>شموع + فرن متوهج + طاولات فاضية نظيفة</td>
+          <td>«مكان تحجّ له» &rarr; زيارات مخططة (عائلات، مناسبات) مش بس طلبات سريعة</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3 class="ar-h rv">وصفة اللقطة <span>&mdash; النظام اللي بيخلي كل صورة جديدة من نفس العيلة</span></h3>
+    <div class="recipe rv">
+      <p style="color:var(--cream2);font-size:14.5px">أي منتج جديد (الحلويات، الساندويشات، باقي البيتزا...) بيتصوّر بنفس القالب &mdash; وهيك الموقع بيضل متسق كمجموعة إعلانية وحدة، متل ما بتعمل الماركات الكبيرة:</p>
+      <ul>
+        <li>العدسة: 85mm عند f/2.0 (بورتريه الطعام) أو 35mm للوحات الواسعة</li>
+        <li>الإضاءة: مفتاح ذهبي دافئ من الساعة 10 + rim خفيف من الخلف</li>
+        <li>السطح: خشب جوز داكن + رشة طحين</li>
+        <li>الخلفية: فحمي مطفي + بوكيا كهرمانية (أضواء مطعم خارج الفوكس)</li>
+        <li>التفاصيل الحية: بخار مرتفع &bull; لمعان الصلصة &bull; حرق خفيف عالحافة</li>
+        <li>الزاوية: 45&deg; (كأنك قاعد عالطاولة) أو 90&deg; من فوق للأطباق الواسعة</li>
+        <li>ممنوع بالكادر: نصوص &bull; لوجوهات &bull; خلفيات بيضاء &bull; ألوان صارخة</li>
+      </ul>
+    </div>
+
+    <h3 class="ar-h rv">شو بعد؟ <span>&mdash; 4 خطوات لتشغيل الحملة عملياً</span></h3>
+    <div class="next-steps rv">
+      <div class="step">
+        <b><i>1</i> ارفع الصور</b>
+        <p>لوحة Owner &larr; Website &larr; Editor: استبدل صور الستوك (الكوكتيل، طاولة Farmer J's ورفاقها) بصور الحملة &mdash; بنفس أقسام الصفحة.</p>
+      </div>
+      <div class="step">
+        <b><i>2</i> كمّل باقي المنتجات</b>
+        <p>الحملة صارت 12 لقطة منتج + فيديو إعلاني كامل. <b>اللوغو الرسمي مركّب حالياً بالهيدر والفوتر</b> (جبناه من antoniaspizza.com نفسه بعد ما فشل رفع المرفقات 5 مرات) + علبة concept بنفس اللوغو الرسمي. أول ما توصل صورة العلبة الأصلية، نقارن التصميم. الساندويشات والسلطات &mdash; بنفس الوصفة فوق، جلسات قادمة.</p>
+      </div>
+      <div class="step">
+        <b><i>3</i> شغّل الفيديو</b>
+        <p>الفيديو جاهز فعلاً: <span style="color:var(--gold2);direction:ltr;unicode-bidi:embed">video/antonias-spot.mp4</span> &mdash; 12 لقطة + بطاقة نهاية، 42 ثانية، 1080p، مع تعليق صوتي إعلاني كامل. ارفعه كـ hero background إذا دعمت Owner ملفات MP4، أو انشره عالسوشيال ميديا كما هو.</p>
+      </div>
+      <div class="step">
+        <b><i>4</i> الإصلاحات التقنية</b>
+        <p>هاد التصميم ما بيعالج مشاكل الـ schema والروابط &mdash; هي موجودة بملف <a href="../antonias-fix-plan.html">خطة التصحيح الكاملة</a> بنفس المجلد، نفّذها قبل ما ترفع الصور.</p>
+      </div>
+    </div>
+
+    <div class="honest rv">
+      <b>&#9888;&#65039; ملاحظة صدق من د. مايا و Ada:</b> الصور مولّدة بالذكاء الاصطناعي ومصممة تحاكي أسلوب التصوير الاحترافي لمنتجاتكم. قبل الرفع النهائي للمنيو، تأكد إن كل صورة تمثل الطبق الفعلي (نفس المكونات والحجم والتكوين) &mdash; أو استبدلها تدريجياً بصور حقيقية بنفس الوصفة البصرية. الزبون بيسامح صورة أقل جمال، ما بيسامح صورة مش مطابقة للطبق. والعلبة المعروضة بقسم The Box تصميم مفهومي مقترح للحملة &mdash; مش العلبة الحالية.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <img class="flogo" src="images/logo-dark.png" alt="Antonia&rsquo;s Pizza logo" onerror="this.style.display='none'">
+  <div class="fb">ANTONIA&rsquo;S PIZZA</div>
+  <p class="ft">
+    891 Higuera St, San Luis Obispo &mdash; <a href="tel:+18054392383">(805) 439-2383</a><br>
+    729 12th St, Paso Robles &mdash; <a href="tel:+18052381851">(805) 238-1851</a>
+  </p>
+  <p class="ft" style="margin-top:14px"><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order online</a> &bull; <a href="https://antoniaspizza.com" target="_blank" rel="noopener">antoniaspizza.com</a></p>
+  <p class="fc">Campaign imagery &amp; film produced in the Arena studio &mdash; 10 agents, one obsession. &copy; 2026 Antonia&rsquo;s Pizza</p>
+</footer>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>40)};
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var prog=document.getElementById('progress'),sbar=document.getElementById('stickybar');
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(h>0?Math.min(window.scrollY/h,1)*100:0)+'%';
+    sbar.classList.toggle('show',window.scrollY>700);
+  },{passive:true});
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+    })},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  }else{
+    document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')});
+  }
+})();
+</script>
+</body>
+</html>

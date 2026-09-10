@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>خطة تصحيح Antonia's Pizza — حزمة التنفيذ الكاملة</title>
+<style>
+  :root{
+    --green:#1e4d2b; --green-d:#143720; --red:#c0392b; --amber:#b9770e; --blue:#1f618d;
+    --bg:#faf8f4; --card:#ffffff; --line:#e5e0d6; --ink:#232323; --mut:#6b6459;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Tahoma,"Noto Kufi Arabic",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px 80px}
+  header{background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff;padding:44px 20px 36px}
+  header .wrap{padding-bottom:0}
+  h1{margin:0 0 10px;font-size:30px;line-height:1.35}
+  .sub{opacity:.92;font-size:16px;margin:0}
+  .meta-badges{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+  .mb{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:99px;padding:4px 14px;font-size:13px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:28px 0 8px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .stat b{display:block;font-size:28px;color:var(--green);line-height:1.2}
+  .stat span{color:var(--mut);font-size:13.5px}
+  nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 6px}
+  nav.toc a{text-decoration:none;background:var(--card);border:1px solid var(--line);color:var(--green);border-radius:99px;padding:6px 14px;font-size:13.5px}
+  nav.toc a:hover{background:#eef4ef}
+  section.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px;margin-top:26px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  h2{margin:0 0 6px;font-size:22px;color:var(--green-d);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  h3{margin:26px 0 8px;font-size:17px;color:var(--green-d)}
+  .lead{color:var(--mut);margin:0 0 14px;font-size:15px}
+  .b{display:inline-block;border-radius:99px;padding:2px 12px;font-size:12.5px;font-weight:600;vertical-align:middle}
+  .b-crit{background:#fdecea;color:var(--red);border:1px solid #f5c6c0}
+  .b-high{background:#fdf3e0;color:var(--amber);border:1px solid #f0d9ab}
+  .b-med{background:#eaf2f9;color:var(--blue);border:1px solid #c4d8ea}
+  .b-ok{background:#e9f7ef;color:#1e8449;border:1px solid #bfe5cd}
+  .b-new{background:#f4ecfb;color:#7d3c98;border:1px solid #ddc9f0}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.5px}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:right;vertical-align:top}
+  th{background:#f3f0e9;font-size:13.5px;color:var(--green-d)}
+  tr:nth-child(even) td{background:#fcfbf8}
+  td.ltr,th.ltr{direction:ltr;text-align:left;font-family:Consolas,Menlo,monospace;font-size:13px}
+  .copybox{position:relative;background:#f6f4ef;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+  .copybox pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:Consolas,Menlo,monospace;font-size:13.5px;direction:ltr;text-align:left;color:#2c2c2c}
+  .copybtn{position:absolute;top:8px;left:8px;background:var(--green);color:#fff;border:none;border-radius:8px;padding:5px 14px;font-size:12.5px;cursor:pointer;font-family:inherit}
+  .copybtn:hover{background:var(--green-d)}
+  .copybtn.done{background:#1e8449}
+  .note{background:#f4f9f5;border:1px solid #cde5d4;border-right:4px solid var(--green);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:14.5px}
+  .warn{background:#fdf6e8;border:1px solid #f0ddb0;border-right:4px solid var(--amber);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:14.5px}
+  .danger{background:#fdf0ee;border:1px solid #f2c7c1;border-right:4px solid var(--red);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:14.5px}
+  .decide{background:#f9f1fb;border:1px solid #e3ccec;border-right:4px solid #7d3c98;border-radius:10px;padding:14px 18px;margin:14px 0}
+  .decide h4{margin:0 0 8px;color:#7d3c98;font-size:15.5px}
+  .decide ol{margin:6px 0;padding-right:20px}
+  code{background:#f0ede6;border-radius:5px;padding:1px 7px;font-size:13px;direction:ltr;display:inline-block}
+  .chk{list-style:none;padding:0;margin:10px 0}
+  .chk li{margin:8px 0}
+  .chk label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:15px}
+  .chk input{width:19px;height:19px;margin-top:4px;accent-color:var(--green);flex-shrink:0}
+  .path{background:#eef4ef;border-radius:8px;padding:2px 10px;font-weight:600;white-space:nowrap}
+  .small{font-size:13px;color:var(--mut)}
+  .num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;font-size:16px;flex-shrink:0}
+  footer{margin-top:40px;text-align:center;color:var(--mut);font-size:13.5px}
+  @media print{ .copybtn{display:none} body{background:#fff} section.card{box-shadow:none;break-inside:avoid-page} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>🍕 خطة تصحيح موقع Antonia's Pizza</h1>
+    <p class="sub">حزمة التنفيذ الكاملة — كل نص جاهز للنسخ، وكل خطوة بمكانها بلوحة تحكم Owner.com</p>
+    <div class="meta-badges">
+      <span class="mb">📅 فحص حي مؤكّد: 10 أيلول / سبتمبر 2026</span>
+      <span class="mb">🌐 antoniaspizza.com — فرعان: SLO و Paso Robles</span>
+      <span class="mb">✅ متابعة للفحص السابق (19 مشكلة)</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>3</b><span>إصلاحات حرجة (فوري أثرها على المبيعات)</span></div>
+      <div class="stat"><b>7</b><span>اكتشافات جديدة منذ الفحص السابق</span></div>
+      <div class="stat"><b>46</b><span>تصحيح منيو جاهز بجدول واحد</span></div>
+      <div class="stat"><b>5</b><span>صفحات بعناوين وأوصاف SEO جاهزة</span></div>
+    </div>
+    <nav class="toc">
+      <a href="#plan">خطة التنفيذ</a>
+      <a href="#s1">1. الهاتف</a>
+      <a href="#s2">2. الرابط والاسم</a>
+      <a href="#s3">3. العناوين SEO</a>
+      <a href="#s4">4. صفحة Paso</a>
+      <a href="#s5">5. المنيو</a>
+      <a href="#s6">6. الساعات</a>
+      <a href="#s7">7. الصور</a>
+      <a href="#s8">8. الأسئلة الشائعة</a>
+      <a href="#s9">9. إيميل الدعم</a>
+      <a href="#s10">10. التحقق النهائي</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ═══════════ الخطة ═══════════ -->
+<section class="card" id="plan">
+  <h2>🗺️ خطة التنفيذ — مرتّبة حسب العائد</h2>
+  <p class="lead">نفّذها بهالترتيب. الخطوات 1–3 بتاخد أقل من نص ساعة وأثرها الأكبر.</p>
+  <table>
+    <tr><th>#</th><th>الخطوة</th><th>وين بلوحة التحكم</th><th>الوقت</th><th>الأثر</th></tr>
+    <tr><td>1</td><td><a href="#s1">إضافة رقم هاتف Paso Robles</a></td><td><span class="path">Locations ← Paso Robles</span></td><td>5 دقائق</td><td><span class="b b-crit">حرج — فوري</span></td></tr>
+    <tr><td>2</td><td><a href="#s2">تصحيح اسم الموقع بالـ Schema + الرابط</a></td><td><span class="path">Locations</span> + إيميل دعم</td><td>5 دقائق + إيميل</td><td><span class="b b-crit">حرج — ظهور بغوغل</span></td></tr>
+    <tr><td>3</td><td><a href="#s3">تحديث عناوين وأوصاف الصفحات (5 صفحات)</a></td><td><span class="path">Website ← Pages ← SEO</span></td><td>20 دقيقة</td><td><span class="b b-high">عالٍ</span></td></tr>
+    <tr><td>4</td><td><a href="#s5">تصحيح أسماء المنيو (46 بند)</a></td><td><span class="path">Menu</span></td><td>ساعة–ساعتين</td><td><span class="b b-high">عالٍ — مصداقية</span></td></tr>
+    <tr><td>5</td><td><a href="#s4">بناء محتوى صفحة Paso Robles</a> (النصوص جاهزة)</td><td><span class="path">Website ← Pages</span></td><td>30 دقيقة</td><td><span class="b b-high">عالٍ</span></td></tr>
+    <tr><td>6</td><td><a href="#s6">توحيد ساعات العمل بكل الأنظمة</a></td><td>Owner + Toast + غوغل</td><td>30 دقيقة</td><td><span class="b b-high">عالٍ</span></td></tr>
+    <tr><td>7</td><td><a href="#s9">إرسال إيميل الدعم</a> (مكتوب وجاهز)</td><td>إيميل</td><td>5 دقائق</td><td><span class="b b-med">متوسط</span></td></tr>
+    <tr><td>8</td><td><a href="#s7">استبدال الصور</a> (قائمة تصوير جاهزة)</td><td><span class="path">Website ← Editor</span></td><td>تصوير + رفع</td><td><span class="b b-med">متوسط</span></td></tr>
+    <tr><td>9</td><td><a href="#s8">تحديث الأسئلة الشائعة</a></td><td>لوحة التحكم / دعم</td><td>15 دقيقة</td><td><span class="b b-med">متوسط</span></td></tr>
+    <tr><td>10</td><td><a href="#s10">قائمة التحقق النهائي</a></td><td>—</td><td>15 دقيقة</td><td><span class="b b-ok">إغلاق</span></td></tr>
+  </table>
+
+  <div class="decide">
+    <h4>⚠️ 6 قرارات لازم تاخدها أنت قبل التنفيذ (ما فيني أقرّرها مكانك)</h4>
+    <ol>
+      <li><b>الاسم الرسمي للبراند:</b> موقعك يستخدم <code>Antonia's Pizza</code> بينما نظام Toast مسجّل فيه <code>Antonia's Pizzeria &amp; Italian Kitchen</code>. وحّد الاسم بكل الأنظمة (الموقع، Toast، غوغل، Yelp). كل النصوص بهالخطة مكتوبة بصيغة <code>Antonia's Pizza</code> — عدّلها إذا اخترت الاسم الطويل.</li>
+      <li><b>صنف <code>Lemom</code> ($3.45 بالعلب):</b> شو هو فعلاً — Lemonade؟ صودا ليمون؟ (في Sprite بنفس القسم).</li>
+      <li><b>صنف <code>2L OTHER</code>:</b> احذفه ولا سمّيه بصنف حقيقي؟</li>
+      <li><b>Onion Rings مكرر بسعرين:</b> $7.99 و $9.95 بقسمين منفصلين — يا وحّدهم يا وضّح الفرق (حجمين؟).</li>
+      <li><b>ساعات Paso يوم الجمعة/السبت:</b> موقعك يقول حتى 2:00 ص، وخرائط Apple تقول حتى 2:30 ص — أيهما الصحيح؟</li>
+      <li><b>ساعات SLO:</b> فوتر موقعك يقول يغلق 12:15 ص (الأحد–الإثنين–الأربعاء–الخميس)، وصفحة الفرع نفسها تقول 11:59 مساءً، وYelp يقول يفتح 10:00 ص بينما موقعك يقول 11:00 ص. حدّد الجدول الرسمي النهائي.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════ 1. الهاتف ═══════════ -->
+<section class="card" id="s1">
+  <h2><span class="num">1</span> 📞 رقم هاتف Paso Robles <span class="b b-crit">حرج — ابدأ من هنا</span></h2>
+  <div class="danger">
+    <b>المشكلة (مؤكدة اليوم بالفحص الحي):</b> كرت فرع Paso Robles بكل صفحات الموقع <b>ما فيه رقم هاتف نهائياً</b> — قسم Contact فاضي فيه بس "Get directions". وزر الاتصال على مستوى الصفحة بيستخدم الرقم الوحيد المسجّل بالموقع، وهو رقم فرع SLO: <code>(805) 439-2383</code>. أي زبون بيدور على فرع Paso وبيضغط "Call" — بيتصل بفرع على بُعد 50 كم.
+  </div>
+  <div class="note">
+    <b>✅ الخبر الجيد:</b> رقم Paso Robles الحقيقي موجود جاهز عندكم بنظام Toast — تأكدنا منه من مصدرين مستقلين (ملف Apple Maps/Yelp الخاص بالفرع، ومن الـ Schema بموقع طلباتكم على Toast):
+  </div>
+  <table>
+    <tr><th>الفرع</th><th class="ltr">الهاتف</th><th>الحالة بالموقع</th></tr>
+    <tr><td>San Luis Obispo (891 Higuera St)</td><td class="ltr">(805) 439-2383</td><td><span class="b b-ok">سليم ✓</span></td></tr>
+    <tr><td><b>Paso Robles (729 12th St)</b></td><td class="ltr"><b>(805) 238-1851</b></td><td><span class="b b-crit">غير موجود — أضفه</span></td></tr>
+  </table>
+  <h3>خطوات التنفيذ بلوحة Owner</h3>
+  <ol>
+    <li>افتح لوحة التحكم: <span class="path">Locations</span> (أو <span class="path">Settings ← Locations</span> حسب نسخة لوحتك).</li>
+    <li>اختر فرع <b>Paso Robles</b> وافتح بياناته (Contact / Phone).</li>
+    <li>أدخل الرقم: <b>(805) 238-1851</b> بصيغة دولية <code>+18052381851</code> إذا طلب منك الحقل هيك.</li>
+    <li>احفظ، وافتح صفحة الفرع بمتصفح آخر (أو وضع التصفح الخفي) وتأكد أن: كرت الفرع صار فيه "Call (805) 238-1851" <b>و</b> زر الاتصال الرئيسي بالصفحة بيتصل بنفس الرقم.</li>
+  </ol>
+  <p class="small">💡 ملاحظة تقنية: غالباً نفس الحقل بيغذّي الـ Schema (حقل <code>telephone</code>) — إضافة الرقم هون بتصلّح الكرت وزر الاتصال والبيانات المهيكلة دفعة وحدة. إذا ما اتحقق هيك، أضفها لنقطة رقم 3 بإيميل الدعم (القسم 9).</p>
+</section>
+
+<!-- ═══════════ 2. الرابط والاسم ═══════════ -->
+<section class="card" id="s2">
+  <h2><span class="num">2</span> 🔗 رابط صفحة Paso Robles + اسم المطعم بالـ Schema <span class="b b-crit">حرج</span></h2>
+  <h3>أ) الرابط العشوائي</h3>
+  <div class="danger">
+    <b>مؤكد اليوم:</b> صفحة Paso Robles رابطها <code>/2bbfa47a-3c47-410e-b641-09c94f9b71fc</code> — وهاد بالضبط الرابط المُرسَل لغوغل بالـ sitemap. بينما الرابط المنطقي <code>/paso-robles</code> بيرجع <b>404</b> (تأكدنا منها الآن). النتيجة: الرابط شكله غير موثوق بنتائج البحث، ومستحيل حدا يحفظه أو يشاركه، وأي إشارة خارجية لـ <code>/paso-robles</code> بتروح هدر.
+  </div>
+  <p>التغيير نفسه غالباً بيدعم Owner بس (الـ slug للصفحات التلقائية) — جاهزلك الطلب بإيميل الدعم بالقسم 9: تغيير الرابط لـ <code>/paso-robles</code> مع <b>301 redirect</b> من الرابط القديم.</p>
+  <h3>ب) اسم المطعم بالبيانات المهيكلة (Schema)</h3>
+  <div class="danger">
+    <b>من الفحص السابق (بتصفح الصفحة):</b> بحقل <code>name</code> بيانات Restaurant المهيكلة لصفحة Paso Robles، غوغل بيقرأ اسم مطعمك على إنه <b>"Paso Robles"</b> — اسم المدينة، مش اسم البراند. فرع SLO مضبوط صح ("<code>Antonia's Pizza - San Luis Obispo</code>").</b>
+  </div>
+  <p><b>السبب الجذري المرجّح:</b> حقل "اسم الموقع/الفرع" بإعدادات فرع Paso بلوحة التحكم غالباً محطوط فيه <code>Paso Robles</code> بس. لما تفتح <span class="path">Locations ← Paso Robles</span> لإدخال الهاتف (خطوة 1)، راجع حقل الاسم وخليه:</p>
+  <div class="copybox"><button class="copybtn" data-copy="c-name">نسخ</button><pre id="c-name">Antonia's Pizza - Paso Robles</pre></div>
+  <p>لتطابق نمط فرع SLO تماماً. هاد بصلّح اسم المطعم بالـ Schema وبعنوان الصفحة الداخلي مع بعض. إذا حقل الاسم مش ظاهر عندك بالإعدادات، فهو ضمن نقاط إيميل الدعم.</p>
+</section>
+
+<!-- ═══════════ 3. العناوين ═══════════ -->
+<section class="card" id="s3">
+  <h2><span class="num">3</span> 🔍 عناوين الصفحات وأوصافها (SEO) <span class="b b-high">عالٍ</span></h2>
+  <p class="lead">العناوين الحالية محشوّة بكلمات مفتاحية وبطول يقصّه غوغل. هاد الوضع الحالي مقابل المقترح — انسخ والصق.</p>
+  <table>
+    <tr><th>الصفحة</th><th>العنوان الحالي (بطوله)</th></tr>
+    <tr><td>الرئيسية</td><td class="ltr">Antonia's Pizza | Best Italian Restaurant in California | Italian Restaurant near me (84)</td></tr>
+    <tr><td>المنيو</td><td class="ltr">Antonia's Pizza Online Menu | Best Italian Restaurant in California (67)</td></tr>
+    <tr><td>فرع SLO</td><td class="ltr">Antonia's Pizza | Best Italian Restaurant in San Luis Obispo, CA | Italian Restaurant near me (92)</td></tr>
+    <tr><td>فرع Paso</td><td class="ltr">Antonia's Pizza | Best Italian Restaurant in Paso Robles, CA | Italian Restaurant near me (88)</td></tr>
+    <tr><td>Catering</td><td class="ltr">Antonia's Pizza Catering in California (37)</td></tr>
+  </table>
+  <p class="small">كمان: وصف الصفحة الرئيسية النشيط بنتائج غوغل فيه نص قالب غير معدّل على نمط "...in California <b>and other locations</b>" — نفس النص المولّد اللي ظهر عند مطاعم تانية على المنصة. الأوصاف الجديدة تحت بتحله.</p>
+  <h3>العناوين الجديدة (كلها أقصر من 60 حرف)</h3>
+  <table>
+    <tr><th>الصفحة</th><th>العنوان الجديد</th><th>الطول</th></tr>
+    <tr><td>الرئيسية</td><td class="ltr">Antonia's Pizza | Pizza, Pasta &amp; Wings | SLO &amp; Paso Robles</td><td>58</td></tr>
+    <tr><td>المنيو</td><td class="ltr">Antonia's Pizza Menu | Pizza, Calzones, Pasta &amp; More</td><td>52</td></tr>
+    <tr><td>فرع SLO</td><td class="ltr">Antonia's Pizza San Luis Obispo | Downtown &amp; Late Night</td><td>55</td></tr>
+    <tr><td>فرع Paso</td><td class="ltr">Antonia's Pizza Paso Robles | Downtown on 12th St</td><td>49</td></tr>
+    <tr><td>Catering</td><td class="ltr">Pizza Catering | Antonia's Pizza — SLO &amp; Paso Robles</td><td>52</td></tr>
+  </table>
+  <h3>الأوصاف الجديدة (Meta Descriptions)</h3>
+  <p class="lead">وين: <span class="path">Website ← Pages</span> ← افتح الصفحة ← إعدادات SEO (أو أيقونة الترس) ← Title + Description.</p>
+  <h4>الرئيسية</h4>
+  <div class="copybox"><button class="copybtn" data-copy="c-d1">نسخ</button><pre id="c-d1">Handcrafted pizza from slices to 28-inch King pies, calzones, pasta, wings &amp; the Ajarski dough boat. Downtown SLO &amp; Paso Robles. Order online.</pre></div>
+  <h4>المنيو</h4>
+  <div class="copybox"><button class="copybtn" data-copy="c-d2">نسخ</button><pre id="c-d2">See our full menu: specialty pizzas, build-your-own pies up to 28 inches, calzones, pastas, wings, salads, desserts &amp; drinks. Order for pickup or delivery.</pre></div>
+  <h4>فرع SLO</h4>
+  <div class="copybox"><button class="copybtn" data-copy="c-d3">نسخ</button><pre id="c-d3">891 Higuera St, downtown San Luis Obispo. Slices &amp; specialty pies, open until 2:30 AM Thu–Sat. Call (805) 439-2383 or order online.</pre></div>
+  <h4>فرع Paso Robles</h4>
+  <div class="copybox"><button class="copybtn" data-copy="c-d4">نسخ</button><pre id="c-d4">729 12th St, downtown Paso Robles. Handcrafted pizza, pasta, wings &amp; the Ajarski dough boat. Call (805) 238-1851 or order online.</pre></div>
+  <h4>Catering</h4>
+  <div class="copybox"><button class="copybtn" data-copy="c-d5">نسخ</button><pre id="c-d5">Catering for events of any size — 24 hours' notice. Pizza, pasta, salads &amp; more from both our locations. Request a quote online or call us.</pre></div>
+  <div class="note"><b>ملاحظة:</b> بعد التعديل، ادخل Google Search Console (أو اطلب من Owner تفعيله إذا مش مربوط) واطلب إعادة فهرسة الصفحات الخمسة. النتيجة بتظهر خلال أيام، مش فوراً.</div>
+</section>
+
+<!-- ═══════════ 4. صفحة Paso ═══════════ -->
+<section class="card" id="s4">
+  <h2><span class="num">4</span> 🏗️ بناء صفحة Paso Robles <span class="b b-high">عالٍ</span></h2>
+  <div class="warn">
+    <b>مؤكد اليوم:</b> صفحة Paso Robles نسخة طبق الأصل من الصفحة الرئيسية (نفس الأقسام ونفس الصور ونفس المراجعات). والمصيبة: المراجعات المعروضة فيها بتقول حرفياً <b>"Antonia's is a SLO exclusive"</b> — يعني صفحة فرع Paso بتحكي لزباينه إن المطعم مش موجود بـ Paso! بينما صفحة فرع SLO مبنية صح: محتوى خاص فيها، معلومات الفرع، أقسام محلية. المطلوب: بناء صفحة Paso بنفس النمط. النصوص الجاهزة تحت.
+  </div>
+  <h3>النصوص المقترحة (إنجليزي — جاهزة للصق بمحرر الصفحة)</h3>
+  <h4>قسم الغلاف الأول (Hero 1)</h4>
+  <div class="copybox"><button class="copybtn" data-copy="c-p1">نسخ</button><pre id="c-p1">Title: Pizza in the heart of downtown Paso
+Body: On 12th Street, steps from the Paso Robles City Park square — hand-crafted dough, homemade tomato sauce, and pies from 10 to 28 inches. Wine country works up an appetite.
+Button: See our menu</pre></div>
+  <h4>قسم الغلاف الثاني (Hero 2)</h4>
+  <div class="copybox"><button class="copybtn" data-copy="c-p2">نسخ</button><pre id="c-p2">Title: Made for Paso appetites
+Body: Grab a slice, split a specialty pie, or take on the 28-inch King. Pasta, calzones, wings, and the famous Ajarski dough boat too.
+Button: Order online</pre></div>
+  <h4>قسم الغلاف الثالث (Hero 3)</h4>
+  <div class="copybox"><button class="copybtn" data-copy="c-p3">نسخ</button><pre id="c-p3">Title: Open late, Friday &amp; Saturday
+Body: Downtown Paso doesn't stop early and neither do we. Slices and whole pies until closing — check our hours.
+Button: Get directions</pre></div>
+  <div class="note"><b>مهم عند البناء:</b> (1) استخدم صور حقيقية من فرع Paso مش صور الرئيسية. (2) أزل مراجعات "SLO exclusive" من هالصفحة — خلي المراجعات عامة أو مراجعات زباين Paso. (3) بعد إضافة الهاتف (خطوة 1) بيظهر كرت الفرع تلقائياً بالمعلومات الصحيحة. (4) راجع جملة "until closing" إذا قررت ساعات الجمعة/السبت النهائية — تقدر تكتبها صريحة (مثلاً "until 2 AM").</div>
+</section>
+
+<!-- ═══════════ 5. المنيو ═══════════ -->
+<section class="card" id="s5">
+  <h2><span class="num">5</span> 🍕 تصحيحات المنيو — 46 بند <span class="b b-high">عالٍ</span></h2>
+  <p class="lead">كل الأسماء الحالية منسوخة حرفياً من المنيو المباشر (فحص اليوم). وين: <span class="path">Menu</span> ← القسم ← البند ← تعديل الاسم. ⭐ = خطأ إملائي صريح، ⚠️ = يحتاج قرارك.</p>
+  <table>
+    <tr><th>#</th><th>القسم</th><th class="ltr">الاسم الحالي</th><th class="ltr">الاسم المصحّح</th><th>ملاحظة</th></tr>
+    <tr><td>1</td><td>Specialty Pizza</td><td class="ltr">California Viggie</td><td class="ltr">California Veggie</td><td>⭐ خطأ إملائي</td></tr>
+    <tr><td>2</td><td>Specialty Pizza</td><td class="ltr">Chicken pesto</td><td class="ltr">Chicken Pesto</td><td>توحيد الأحرف</td></tr>
+    <tr><td>3</td><td>Specialty Pizza</td><td class="ltr">Spinach lovers</td><td class="ltr">Spinach Lovers</td><td>توحيد الأحرف</td></tr>
+    <tr><td>4</td><td>Specialty Pizza</td><td class="ltr">Sausage lovers</td><td class="ltr">Sausage Lovers</td><td>توحيد الأحرف</td></tr>
+    <tr><td>5</td><td>Specialty Pizza</td><td class="ltr">Mediterranean (الوصف)</td><td class="ltr">Aromatic basil pesto base generously topped…</td><td>الوصف يبدأ بحرف صغير — كبّر أول حرف</td></tr>
+    <tr><td>6</td><td>Specialty Pizza</td><td class="ltr">Philly Cheese Steak (الوصف)</td><td class="ltr">Sliced steak and melty mozzarella with sautéed onions and green peppers on our original crust and homemade tomato sauce.</td><td>الصنف الوحيد بالقسم بدون وصف — وصف مقترح، <b>تحقق من المكونات قبل النشر</b></td></tr>
+    <tr><td>7</td><td>Pizza by the slice</td><td class="ltr">Slice Cheese</td><td class="ltr">Cheese Slice</td><td>⭐ صياغة</td></tr>
+    <tr><td>8</td><td>Pizza by the slice</td><td class="ltr">Slice one or 2 Topp</td><td class="ltr">Slice with 1 or 2 Toppings</td><td>⭐ اختصار غير مفهوم</td></tr>
+    <tr><td>9</td><td>Build your own</td><td class="ltr">Grande Milano Slice</td><td class="ltr">(انقله لقسم Pizza by the slice)</td><td>موضوع بمكان غلط — شريحة جاهزة مش بيتزا تبنيها</td></tr>
+    <tr><td>10</td><td>Build your own</td><td class="ltr">Small 10" cheese</td><td class="ltr">Small 10" Cheese</td><td>توحيد الأحرف</td></tr>
+    <tr><td>11</td><td>Build your own</td><td class="ltr">Large 16"</td><td class="ltr">Large 16" Cheese</td><td>كلمة Cheese ناقصة مقارنة بالباقي</td></tr>
+    <tr><td>12</td><td>Build your own</td><td class="ltr">party size 24 in cheese</td><td class="ltr">Party Size 24" Cheese</td><td>⭐ أحرف + صياغة</td></tr>
+    <tr><td>13</td><td>Build your own</td><td class="ltr">king 28 in cheese</td><td class="ltr">King Size 28" Cheese</td><td>⭐ أحرف + صياغة</td></tr>
+    <tr><td>14</td><td>Calzone</td><td class="ltr">Speciality Calzone</td><td class="ltr">Specialty Calzone</td><td>⭐ تهجئة بريطانية غير متسقة مع قسم Specialty Pizza</td></tr>
+    <tr><td>15</td><td>Wings</td><td class="ltr">Bone in 6 pc</td><td class="ltr">Bone-In Wings (6 pc)</td><td>توحيد الصياغة</td></tr>
+    <tr><td>16</td><td>Wings</td><td class="ltr">Bone in 8 pc</td><td class="ltr">Bone-In Wings (8 pc)</td><td>—</td></tr>
+    <tr><td>17</td><td>Wings</td><td class="ltr">Bone in12 pc</td><td class="ltr">Bone-In Wings (12 pc)</td><td>⭐ مسافة ناقصة</td></tr>
+    <tr><td>18</td><td>Wings</td><td class="ltr">Bone in24 pc</td><td class="ltr">Bone-In Wings (24 pc)</td><td>⭐ مسافة ناقصة</td></tr>
+    <tr><td>19</td><td>Wings</td><td class="ltr">Bonless 6</td><td class="ltr">Boneless Wings (6 pc)</td><td>⭐ خطأ إملائي</td></tr>
+    <tr><td>20</td><td>Wings</td><td class="ltr">Bonless 8</td><td class="ltr">Boneless Wings (8 pc)</td><td>⭐ خطأ إملائي</td></tr>
+    <tr><td>21</td><td>Wings</td><td class="ltr">Bonless 12</td><td class="ltr">Boneless Wings (12 pc)</td><td>⭐ خطأ إملائي</td></tr>
+    <tr><td>22</td><td>Wings</td><td class="ltr">Bonless 24</td><td class="ltr">Boneless Wings (24 pc)</td><td>⭐ خطأ إملائي</td></tr>
+    <tr><td>23</td><td>Chicken Tender</td><td class="ltr">القسم: Chicken Tender / العناصر: 4 pc، 6 pc</td><td class="ltr">القسم: Chicken Tenders / العناصر: Chicken Tenders (4 pc)، (6 pc)</td><td>أسماء عناصر مجردة ما بتفهم إلا بسياق</td></tr>
+    <tr><td>24</td><td>Sweet Potato</td><td class="ltr">Sweet Potato</td><td class="ltr">Sweet Potato Fries</td><td>إيضاح الصنف</td></tr>
+    <tr><td>25</td><td>Side</td><td class="ltr">Cheesy bread</td><td class="ltr">Cheesy Bread</td><td>توحيد الأحرف</td></tr>
+    <tr><td>26</td><td>قسمان منفصلان!</td><td class="ltr">Onion rings $7.99 + Onion Rings $9.95</td><td class="ltr">وحّدهما بصنف واحد</td><td>⚠️ صنف مكرر بسعرين مختلفين — زبون بيشوف نفس الاسم مرتين بسعرين</td></tr>
+    <tr><td>27</td><td>Jalapeno poppers</td><td class="ltr">Jalapeno poppers / 8 pc</td><td class="ltr">Jalapeño Poppers (8 pc)</td><td>⭐ تهجئة + تسمية العنصر</td></tr>
+    <tr><td>28</td><td>Drinks</td><td class="ltr">Redbull</td><td class="ltr">Red Bull</td><td>⭐ اسم تجاري</td></tr>
+    <tr><td>29</td><td>Drinks</td><td class="ltr">Ice Tea</td><td class="ltr">Iced Tea</td><td>⭐ تهجئة</td></tr>
+    <tr><td>30</td><td>Drinks</td><td class="ltr">Can San Pelle</td><td class="ltr">San Pellegrino (Can)</td><td>⭐ اختصار</td></tr>
+    <tr><td>31</td><td>Drinks</td><td class="ltr">San pell Sparkling water 500</td><td class="ltr">San Pellegrino Sparkling Water 500 ml</td><td>⭐ اختصار + أحرف</td></tr>
+    <tr><td>32</td><td>Drinks</td><td class="ltr">Glass Coke 1/2 LT</td><td class="ltr">Glass Coke ½ Liter</td><td>صياغة</td></tr>
+    <tr><td>33</td><td>2L soda</td><td class="ltr">2L RootBeer</td><td class="ltr">2L Root Beer</td><td>⭐ مسافة</td></tr>
+    <tr><td>34</td><td>2L soda</td><td class="ltr">2L Orang</td><td class="ltr">2L Orange Fanta</td><td>⭐ كلمة مقطوعة — وللمعلومية عندكم "Orange Fanta" بالعلب، فضل التوحيد</td></tr>
+    <tr><td>35</td><td>2L soda</td><td class="ltr">2L OTHER</td><td class="ltr">(احذفه أو سمّه بصنف حقيقي)</td><td>⚠️ placeholder ظاهر للزباين</td></tr>
+    <tr><td>36</td><td>Can Soda</td><td class="ltr">Lemom</td><td class="ltr">Lemonade / Lemon Soda — <b>تأكد شو هو فعلاً</b></td><td>⚠️ خطأ إملائي + غموض (في Sprite بنفس القسم)</td></tr>
+    <tr><td>37</td><td>Can Soda</td><td class="ltr">RootBeer</td><td class="ltr">Root Beer</td><td>⭐ مسافة</td></tr>
+    <tr><td>38</td><td>Salads</td><td class="ltr">Antipasto salad</td><td class="ltr">Antipasto Salad</td><td>توحيد الأحرف</td></tr>
+    <tr><td>39</td><td>Salads</td><td class="ltr">Greek salad</td><td class="ltr">Greek Salad</td><td>توحيد الأحرف</td></tr>
+    <tr><td>40</td><td>Salads</td><td class="ltr">House salad</td><td class="ltr">House Salad</td><td>توحيد الأحرف</td></tr>
+    <tr><td>41</td><td>Salads</td><td class="ltr">Caprese salad</td><td class="ltr">Caprese Salad</td><td>توحيد الأحرف</td></tr>
+    <tr><td>42</td><td>Dessert</td><td class="ltr">Baklawa 6 pc</td><td class="ltr">Baklava (6 pc)</td><td>⭐ تهجئة عربية تسربت للإنجليزي</td></tr>
+    <tr><td>43</td><td>Dessert</td><td class="ltr">Big O Cheesecake Factory</td><td class="ltr">Big O Cheesecake</td><td>⚠️ "The Cheesecake Factory" علامة تجارية مسجّلة لسلسلة مطاعم تانية — الأفضل تغييرها</td></tr>
+    <tr><td>44</td><td>Ajarski</td><td class="ltr">Ajarski W/ SLO style Crust</td><td class="ltr">Ajarski with SLO-Style Crust</td><td>صياغة + أصلح نهاية الوصف المبتورة: "…a melting slice of butter <b>and a sprinkle of</b> oregano."</td></tr>
+    <tr><td>45</td><td>Ajarski</td><td class="ltr">American Style (بدون وصف)</td><td class="ltr">American Style Ajarski + أضف وصفاً</td><td>تمييز الاسم + الصنف الوحيد بالقسم بدون وصف</td></tr>
+    <tr><td>46</td><td>الإضافات (Toppings)</td><td class="ltr">Mashrom</td><td class="ltr">Mushroom</td><td>⭐ من الفحص السابق — بت قائمة الإضافات/المُعدِّلات، تحقق منها بمحرر المنيو</td></tr>
+  </table>
+  <div class="note"><b>قاعدة ذهبية بعد التعديل:</b> امشي على المنيو مرة أخيرة بعين الزبون: كل اسم صنف لازم يبدأ بحرف كبير، وكل قسم بنمط موحّد (مثلاً "Wings – 6 pc"). المنيو هو وجه المطعم على الإنترنت — 46 غلطة إملائية بتكلف مصداقية ما بتتقدّر بفلوس.</div>
+</section>
+
+<!-- ═══════════ 6. الساعات ═══════════ -->
+<section class="card" id="s6">
+  <h2><span class="num">6</span> 🕐 توحيد ساعات العمل <span class="b b-high">عالٍ</span> <span class="b b-new">اكتشاف جديد</span></h2>
+  <p class="lead">ساعات العمل حالياً مختلفة بين 5 مصادر — وغوغل بيقرأ منها كلها. هاد الجدول اللي جمعناه اليوم:</p>
+  <table>
+    <tr><th>المصدر</th><th>SLO</th><th>Paso Robles</th><th>الحالة</th></tr>
+    <tr><td>كرت الفوتر بموقعك (كل الصفحات)</td><td>أحد–أربع: 11 ص – 12:15 ص (الثلاثاء 12:00 ص) / خميس–سبت: حتى 2:30 ص</td><td>أحد–خميس: 11 ص – 12 ص / جمعة–سبت: حتى 2:00 ص</td><td>المرجع داخل Owner</td></tr>
+    <tr><td>صفحة /san-luis-obispo</td><td>أحد–أربع: 11 ص – 11:59 م / خميس–سبت: حتى 2:30 ص</td><td>—</td><td><span class="b b-crit">يناقض الفوتر</span></td></tr>
+    <tr><td>خرائط Apple (ملف Paso)</td><td>—</td><td>أحد–خميس: 11 ص – 12 ص / جمعة–سبت: حتى <b>2:30 ص</b></td><td><span class="b b-high">فرق 30 دقيقة مع موقعك</span></td></tr>
+    <tr><td>Yelp (ملف SLO)</td><td>يفتح <b>10:00 ص</b></td><td>—</td><td><span class="b b-high">فرق ساعة مع موقعك</span></td></tr>
+    <tr><td>موقع Toast (الـ Schema)</td><td>يومياً 08:00 – 03:59</td><td>يومياً <b>23:00 – 00:00</b></td><td><span class="b b-crit">غلط واضح — غالباً 11 مساءً دُخلت بدل 11 صباحاً</span></td></tr>
+  </table>
+  <h3>خطوات التنفيذ</h3>
+  <ol>
+    <li><b>حدّد الجدول الرسمي النهائي</b> لكل فرع (القرار 5 و6 بقائمة القرارات فوق).</li>
+    <li>طبّقه بـ <b>Owner</b>: <span class="path">Locations</span> ← ساعات كل فرع (بيتحدث الفوتر وصفحة الفرع معاً إذا عدّلتها من مكان الإعدادات الموحّد).</li>
+    <li>طبّقه بـ <b>Toast</b>: من back office (أو عبر ممثل Toast) — الأرقام الحالية بالـ Schema غلط كلياً وغوغل بياخد ساعات موقع الطلبات بعين الاعتبار.</li>
+    <li>طبّقه بـ <b>Google Business Profile</b> للفرعين — هاد المصدر الأهم لظهور "Open now" بنتائج البحث والخرائط.</li>
+    <li>صحّح Yelp وApple Maps من حسابات المداومة.</li>
+  </ol>
+</section>
+
+<!-- ═══════════ 7. الصور ═══════════ -->
+<section class="card" id="s7">
+  <h2><span class="num">7</span> 📸 الصور <span class="b b-med">متوسط</span> <span class="b b-new">اكتشاف جديد</span></h2>
+  <div class="warn">
+    <b>المشكلة (مؤكدة اليوم من نصوص Alt):</b> أغلب صور الموقع ستوك، وبعضها أصلاً من مطاعم تانية — والـ Alt text بيفضحها قدام غوغل:
+  </div>
+  <table>
+    <tr><th>الصورة (ملاحظة الملف)</th><th>وين مستخدمة</th><th class="ltr">نص Alt الحالي (المخزي)</th></tr>
+    <tr><td class="ltr">2d273cc4…</td><td>غلاف قسم "The Ajarski dough boat" بالرئيسية + معرض SLO</td><td class="ltr">"A clear cocktail with a lime wedge…"</td></tr>
+    <tr><td class="ltr">33d91b05…</td><td>غلاف "Pies from 10&quot; to 28&quot;" + غلاف صفحة SLO</td><td class="ltr">"A table at Farmer J's restaurant with fried chicken…"</td></tr>
+    <tr><td class="ltr">acec08fb…</td><td>معرض "From the kitchen" + غلاف "SLO's favorite pizza" بصفحة SLO</td><td class="ltr">"…on the counter of Johnny's Lunch food truck"</td></tr>
+    <tr><td class="ltr">bc063f34… / ece063b4…</td><td>معرض المطبخ</td><td class="ltr">"Steak, pasta, wine…" / "Grilled steak…"</td></tr>
+  </table>
+  <p><b>النتيجة:</b> زائر الصفحة الرئيسية ما بشوف ولا بيتزا بغلاف الموقع — بييشوف كوكتيل وطاولة مطعم تاني. والمفارقة: عندكم بيتزا حقيقية أسطورية (المراجعات بتشهد).</p>
+  <h3>قائمة تصوير مقترحة (5 صور بتغطي كل شي)</h3>
+  <ol>
+    <li>لقطة cheese pull على Antonia's Special (الغلاف الرئيسي الجديد).</li>
+    <li>الأجارسكي طازج من الفرن على لوح خشب (غلاف قسم الأجارسكي).</li>
+    <li>الـ King 28" مع يد لمقياس الحجم (غلاف "Pies from 10 to 28").</li>
+    <li>طاولة مضبوطة: wings + fries + calzone (معرض المطبخ).</li>
+    <li>واجهة كل فرع من الشارع (صفحتا الفرعين).</li>
+  </ol>
+  <p class="small">صور موبايل بإضاءة نهارية كافية — المهم تكون طعامكم الحقيقي. وعدّل نص Alt لكل صورة لوصف حقيقي (مثال: <code>Fresh Antonia's Special pizza with pepperoni and mushrooms</code>).</p>
+</section>
+
+<!-- ═══════════ 8. FAQ ═══════════ -->
+<section class="card" id="s8">
+  <h2><span class="num">8</span> ❓ الأسئلة الشائعة <span class="b b-med">متوسط</span></h2>
+  <div class="warn">
+    <b>مؤكد اليوم:</b> إجابة "What are you known for?" حالياً قائمة روابط بأكثر من 30 وسماً (tag dump)، وإجابة "What areas do you serve?" بتخدم مناطق شبه مهجورة (Goldtree, Chorro, Thyle, Tiber, Miles, Henry…) — هاد كله نص مولّد تلقائياً ما بيعطي زبون ولا معلومة مفيدة، وبيشتت غوغل عن منطقة خدمتك الحقيقية.
+  </div>
+  <p>الإجابات الجديدة تحت (إنجليزي جاهز). إذا محرر الـ FAQ مش متاح بلوحتك — إضافة لحاجة لإيميل الدعم (موجودة بالقسم 9):</p>
+  <div class="copybox"><button class="copybtn" data-copy="c-faq">نسخ الكل</button><pre id="c-faq">Q: What are you known for?
+A: Hand-crafted pizza from individual slices up to our 28-inch King pie, plus the Ajarski dough boat, calzones, pastas, and wings — all on our homemade tomato sauce and SLO-style seasoned crust.
+
+Q: What meals do you serve?
+A: Lunch and dinner, seven days a week — and late night on weekends.
+
+Q: Do you offer delivery or takeout?
+A: Yes, both. Order online for pickup or delivery, or call us: San Luis Obispo (805) 439-2383, Paso Robles (805) 238-1851.
+
+Q: What areas do you serve?
+A: San Luis Obispo, Paso Robles, Cal Poly, Templeton, Atascadero, Avila Beach, Santa Margarita, and surrounding neighborhoods.
+
+Q: Anything else?
+A: We're family friendly, catering is available with 24 hours' notice, and vegan cheese is available on request.</pre></div>
+  <p class="small">ملاحظة: تأكد من توفر جبن الـ vegan قبل نشره (ذكره أحد المراجعات، فغالباً متوفر). أضف أو احذف حسب الواقع.</p>
+</section>
+
+<!-- ═══════════ 9. إيميل الدعم ═══════════ -->
+<section class="card" id="s9">
+  <h2><span class="num">9</span> ✉️ إيميل جاهز لدعم Owner.com <span class="b b-med">متوسط</span></h2>
+  <p class="lead">أرسله من الإيميل المسجّل به حساب Owner عندك. يغطي الأشياء اللي ما بتوصلها من لوحة التحكم:</p>
+  <div class="copybox"><button class="copybtn" data-copy="c-mail">نسخ</button><pre id="c-mail">Subject: Paso Robles location page — URL slug, schema name, phone &amp; FAQ
+
+Hi Owner.com team,
+
+I run antoniaspizza.com (two locations: San Luis Obispo and Paso Robles). I'd like help with four items on the Paso Robles location page:
+
+1. URL slug: The Paso Robles location page currently lives at /2bbfa47a-3c47-410e-b641-09c94f9b71fc, and that UUID URL is what's in our sitemap. Please change the slug to /paso-robles and set up a 301 redirect from the old URL (right now /paso-robles returns a 404).
+
+2. Structured data: In the Restaurant JSON-LD on that page, the "name" field currently reads "Paso Robles" (the city) instead of our business name. It should be "Antonia's Pizza - Paso Robles" to match our San Luis Obispo page, which is set up correctly.
+
+3. Phone number: The Paso Robles location has no phone number on file, so its call button and location card fall back to the San Luis Obispo number. Please set the Paso Robles location phone to (805) 238-1851 so the call button, location card, and schema telephone field all use it. (If this is self-service in the dashboard, just point me to the setting.)
+
+4. FAQ: The auto-generated FAQ answers are long tag lists (e.g. "What are you known for?" lists 30+ tags), and the "areas we serve" list includes places we don't target. How can we edit or replace these answers?
+
+Happy to provide anything else you need.
+
+Thanks,
+[اسمك]
+Antonia's Pizza — antoniaspizza.com</pre></div>
+  <h3>وبعد الرد — رسالة قصيرة لدعم Toast (لساعات العمل الغلط)</h3>
+  <div class="copybox"><button class="copybtn" data-copy="c-toast">نسخ</button><pre id="c-toast">Hi Toast team,
+
+The opening hours in our location settings appear to be entered incorrectly and are being published in our site's structured data:
+
+- Paso Robles (729 12th St): shows opens 23:00 / closes 00:00 every day — should be 11:00 AM to 12:00 AM (Sun–Thu) and 11:00 AM to 2:00 AM (Fri–Sat). [عدّل حسب القرار النهائي]
+- San Luis Obispo (891 Higuera St): shows 08:00 to 03:59 every day — should be 11:00 AM to 12:15 AM (Sun, Mon, Wed, Thu), 11:00 AM to 12:00 AM (Tue), and 11:00 AM to 2:30 AM (Fri–Sat). [عدّل حسب القرار النهائي]
+
+Could you confirm where to fix these, or correct them on our behalf?
+
+Thanks,
+[اسمك]
+Antonia's Pizza</pre></div>
+</section>
+
+<!-- ═══════════ 10. التحقق ═══════════ -->
+<section class="card" id="s10">
+  <h2><span class="num">10</span> ✅ قائمة التحقق النهائي</h2>
+  <p class="lead">علّم عليها بعد التنفيذ — وإذا بدك، ارجعلي وأنا أعيد الفحص الحي كامل للتأكد.</p>
+  <ul class="chk">
+    <li><label><input type="checkbox"><span>اتصلت من صفحة Paso Robles (متصفح خفي) — طلع <b>(805) 238-1851</b> مش رقم SLO</span></label></li>
+    <li><label><input type="checkbox"><span>كرت Paso Robles بالفوتر صار فيه زر Call برقمه</span></label></li>
+    <li><label><input type="checkbox"><span><code>/paso-robles</code> بيفتح صفحة الفرع، والرابط القديم بيعمل تحويل 301</span></label></li>
+    <li><label><input type="checkbox"><span><code>sitemap.xml</code> صار فيه <code>/paso-robles</code> بدل الـ UUID</span></label></li>
+    <li><label><input type="checkbox"><span>اختبرت الصفحتين بأداة Google Rich Results — اسم المطعم ظاهر صح بحقل name والهاتف صح</span></label></li>
+    <li><label><input type="checkbox"><span>العناوين الجديدة ظاهرة بتبويب المتصفح لكل صفحة من الخمسة</span></label></li>
+    <li><label><input type="checkbox"><span>طلبت إعادة فهرسة الصفحات من Google Search Console</span></label></li>
+    <li><label><input type="checkbox"><span>حدّثت رابط الموقع بملف Google Business Profile للفرعين (خصوصاً Paso بعد تغيير الرابط)</span></label></li>
+    <li><label><input type="checkbox"><span>مريت على المنيو كامل — ما بقي ولا خطأ إملائي، وOnion Rings ما عاد مكرر</span></label></li>
+    <li><label><input type="checkbox"><span>صفحة Paso صار فيها محتوى خاص فيها — وما عادت تعرض مراجعة "SLO exclusive"</span></label></li>
+    <li><label><input type="checkbox"><span>الساعات متطابقة: Owner + Toast + Google + Yelp + Apple Maps</span></label></li>
+    <li><label><input type="checkbox"><span>الصور الستوك البديعة (الكوكتيل وطاولة Farmer J's) انحذفت وحلّت محلها صور طعامكم الحقيقي</span></label></li>
+  </ul>
+</section>
+
+<footer>
+  أُعدّت هذه الخطة بناءً على فحص حي مباشر للموقع بتاريخ 10 سبتمبر 2026 (الصفحة الرئيسية، المنيو، صفحتا الفرعين، الـ sitemap، صفحة الـ 404، صفحة الـ catering، وبيانات Schema منصة Toast) + نتائج الفحص السابق. — Antonia's Pizza Fix Package
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.copybtn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var target = document.getElementById(btn.getAttribute('data-copy'));
+    if(!target) return;
+    var txt = target.innerText;
+    function done(){ btn.textContent = 'تم النسخ ✓'; btn.classList.add('done');
+      setTimeout(function(){ btn.textContent = 'نسخ'; btn.classList.remove('done'); }, 2000); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done);
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = txt; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); done(); }catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
+});
+</script>
+</body>
+</html>
