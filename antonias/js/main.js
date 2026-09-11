@@ -231,7 +231,7 @@
   $$("[data-wheel]").forEach((wheel) => {
     const rotor = $(".pie-rotor", wheel);
     const slices = $$(".slice", rotor);
-    const nameEls = [ $("[data-dish-name]", wheel), $("[data-dish-name-out]") ].filter(Boolean);
+    const nameEls = [ $("[data-dish-name]", wheel), $("[data-side-name]", document) ].filter(Boolean);
     const cravingEls = [ $("[data-craving-out]") ].filter(Boolean);
     const section = wheel.closest("section");
     const N = slices.length;
