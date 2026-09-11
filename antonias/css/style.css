@@ -202,7 +202,7 @@ body.nav-open .nav-toggle span::after{transform:translateY(-7px) rotate(-45deg)}
 }
 .hero-bg{
   position:absolute;inset:0;
-  background-image:url("https://antoniaspizza.com/pluto-images/33d91b05-a35c-406f-af29-5630df3e800f?w=1800&h=1100&fit=cover");
+  background-image:url("../assets/img/pies-1.jpg");
   background-size:cover;background-position:center;
   opacity:.34;transform:scale(1.12);will-change:transform;
   animation:heroZoom 2.2s var(--ease-out) both;
