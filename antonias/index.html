@@ -214,11 +214,11 @@
         <span>Antonia's</span>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="#story">Our Story</a>
-        <a href="#signature">Signature</a>
+        <a href="#story">About</a>
+        <a href="#signature">The Wheel</a>
         <a href="#ajarski">The Ajarski</a>
-        <a href="#deals">Deals</a>
-        <a href="menu.html">Menu</a>
+        <a href="index.html#deals">Deals</a>
+        <a href="menu.html">Food Menu</a>
         <a href="#locations">Locations</a>
       </nav>
       <div class="header-cta">
@@ -230,41 +230,52 @@
   </header>
 
   <main id="main">
-    <!-- ============ HERO ============ -->
+    <!-- ============ HERO (pinza-style: statement + real photo) ============ -->
     <section class="hero" aria-label="Welcome to Antonia's Pizza">
-      <div class="hero-bg" role="img" aria-label="Freshly baked Antonia's pizza pies"></div>
-
-      <div class="hero-badge" aria-hidden="true">
-        <svg viewBox="0 0 100 100">
-          <defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
-          <text font-size="10.2" fill="#e8a33d" font-family="Sora, sans-serif" font-weight="700" letter-spacing="2.5">
-            <textPath href="#circ">SAN LUIS OBISPO • OPEN TILL 2AM • SINCE DAY ONE • </textPath>
+      <a class="order-badge" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener" aria-label="Order now">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <defs><path id="circOrder" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs>
+          <circle cx="50" cy="50" r="49" fill="#ffd23f"/>
+          <text font-size="11.5" fill="#0e3a52" font-family="Baloo 2, sans-serif" font-weight="800" letter-spacing="3">
+            <textPath href="#circOrder">ORDER NOW • ORDER NOW • ORDER NOW • </textPath>
           </text>
         </svg>
-        <div class="badge-center"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M12 2 L21 20 Q12 24 3 20 Z" fill="#c8361b"/><circle cx="12" cy="9" r="1.6" fill="#f6eedd"/><circle cx="9" cy="15" r="1.6" fill="#f6eedd"/><circle cx="15" cy="16" r="1.6" fill="#40632f"/></svg></div>
-      </div>
+        <span class="ob-center">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0e3a52" stroke-width="3"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
 
       <div class="hero-inner">
-        <span class="eyebrow">San Luis Obispo · Paso Robles</span>
-        <h1 class="display h-xl hero-title">
-          <span class="line"><span>Real Dough.</span></span>
-          <span class="line"><span class="text-outline" style="-webkit-text-stroke-color:var(--cream)">Real Fire.</span></span>
-          <span class="line"><span>Real <em style="color:var(--gold);font-style:normal">Antonia's.</em></span></span>
-        </h1>
-        <p class="hero-sub lead">Hand-crafted pies from 10&quot; to a giant 28&quot;, home-made tomato sauce and SLO-style seasoned crust — plus the one-and-only <strong>Ajarski</strong> dough boat. This is the Central Coast's pizza icon.</p>
-        <div class="hero-actions">
-          <a class="btn" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order Now
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="btn btn--ghost" href="menu.html">See the Menu
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
+        <div>
+          <span class="eyebrow">San Luis Obispo · Paso Robles</span>
+          <h1 class="display h-xl hero-title">
+            <span class="line"><span>WE ARE</span></span>
+            <span class="line"><span><span class="hl">FAMOUS FOR</span></span></span>
+            <span class="line"><span>OUR DOUGH!</span></span>
+          </h1>
+          <p class="hero-sub lead">Hand-crafted pies from <strong>10&quot; to a giant 28&quot;</strong>, home-made tomato sauce and SLO-style seasoned crust — plus the one-and-only <strong>Ajarski</strong> dough boat. Open till 2AM on weekends. 🌙</p>
+          <div class="hero-actions">
+            <a class="btn" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order Now
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="menu.html">See the Menu
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+          <div class="hero-meta">
+            <div><strong data-count="28" data-suffix="&quot;">28&quot;</strong>Biggest pie in town</div>
+            <div><strong data-count="2">2</strong>Downtown locations</div>
+            <div><strong>2AM</strong>Open late Thu–Sat</div>
+          </div>
         </div>
-        <div class="hero-meta">
-          <div><strong data-count="28" data-suffix="&quot;">28&quot;</strong>Biggest pie in town</div>
-          <div><strong data-count="2">2</strong>Downtown locations</div>
-          <div><strong data-count="5.0" data-suffix="★">5.0★</strong>Guest rating</div>
-          <div><strong>2AM</strong>Open late Thu–Sat</div>
+        <div class="hero-photo">
+          <span class="sticker">🔥 Famous dough</span>
+          <div class="ph-main">
+            <img src="assets/img/hero-sauce.jpg" alt="Home-made tomato sauce being ladled onto hand-crafted dough at Antonia's Pizza" width="900" height="990">
+          </div>
+          <div class="ph-back">
+            <img src="assets/img/ajarski-2.jpg" alt="The Ajarski dough boat with mozzarella, feta, egg and butter" width="500" height="500">
+          </div>
         </div>
       </div>
       <div class="scroll-hint" aria-hidden="true">Scroll</div>
@@ -273,7 +284,7 @@
     <!-- ============ MARQUEE ============ -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>Best Pizza in SLO</span><span>Ajarski Dough Boat</span><span>Pies 10&quot;–28&quot;</span><span>Open Till 2AM</span><span>Wings · Pasta · Calzones</span>
+        <span>Time to bag that pizza</span><span>Famous for our dough</span><span>Pies 10&quot;–28&quot;</span><span>Open till 2AM</span><span>The one &amp; only Ajarski</span>
       </div>
     </div>
 
@@ -306,42 +317,42 @@
     <section class="section wheel-section" id="signature">
       <div class="container">
         <div class="wheel-head reveal">
-          <span class="eyebrow">Famous for our dough</span>
-          <h2 class="display h-lg">I'm craving <span class="craving-word" data-craving-out>PIES</span></h2>
+          <span class="eyebrow">Take it for a spin</span>
+          <h2 class="display h-lg" style="text-transform:none">i'm craving <span class="craving-word" data-craving-out>pies</span></h2>
           <p class="lead">Spin the wheel — eight reasons the Central Coast calls this the best pizza in SLO. Tap a slice to bring it front &amp; center.</p>
         </div>
 
         <div class="pie-wheel" data-wheel>
           <div class="pie-rotor" role="listbox" aria-label="Rotating menu wheel — drag, click or use arrows">
-            <div class="slice" style="transform:rotate(0deg)" role="option" data-name="Hand-Tossed Pies" data-craving="PIES" aria-label="Hand-Tossed Pies">
+            <div class="slice" style="transform:rotate(0deg)" role="option" data-name="Hand-Tossed Pies" data-craving="pies" aria-label="Hand-Tossed Pies">
               <img style="--r:0deg" src="assets/img/pies-1.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">Hand-Tossed Pies</span>
             </div>
-            <div class="slice" style="transform:rotate(45deg)" role="option" data-name="The Cheese Slice" data-craving="CHEESE" aria-label="The Cheese Slice">
+            <div class="slice" style="transform:rotate(45deg)" role="option" data-name="The Cheese Slice" data-craving="cheese" aria-label="The Cheese Slice">
               <img style="--r:-45deg" src="assets/img/pies-2.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">The Cheese Slice</span>
             </div>
-            <div class="slice" style="transform:rotate(90deg)" role="option" data-name="Slice &amp; A Coke" data-craving="COMBOS" aria-label="Slice and a Coke">
+            <div class="slice" style="transform:rotate(90deg)" role="option" data-name="Slice &amp; A Coke" data-craving="combos" aria-label="Slice and a Coke">
               <img style="--r:-90deg" src="assets/img/slice-coke.webp" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">Slice &amp; A Coke</span>
             </div>
-            <div class="slice" style="transform:rotate(135deg)" role="option" data-name="The Ajarski" data-craving="AJARSKI" aria-label="The Ajarski">
+            <div class="slice" style="transform:rotate(135deg)" role="option" data-name="The Ajarski" data-craving="ajarski" aria-label="The Ajarski">
               <img style="--r:-135deg" src="assets/img/ajarski-2.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">The Ajarski</span>
             </div>
-            <div class="slice" style="transform:rotate(180deg)" role="option" data-name="Ajarski 4 Ways" data-craving="DOUGH BOATS" aria-label="Ajarski four ways">
+            <div class="slice" style="transform:rotate(180deg)" role="option" data-name="Ajarski 4 Ways" data-craving="dough boats" aria-label="Ajarski four ways">
               <img style="--r:-180deg" src="assets/img/ajarski-2.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">Ajarski 4 Ways</span>
             </div>
-            <div class="slice" style="transform:rotate(225deg)" role="option" data-name="Pasta &amp; Steak" data-craving="PASTA" aria-label="Pasta and Steak">
+            <div class="slice" style="transform:rotate(225deg)" role="option" data-name="Pasta &amp; Steak" data-craving="pasta" aria-label="Pasta and Steak">
               <img style="--r:-225deg" src="assets/img/cozy-table.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">Pasta &amp; Steak</span>
             </div>
-            <div class="slice" style="transform:rotate(270deg)" role="option" data-name="From The Grill" data-craving="STEAK" aria-label="From the Grill">
+            <div class="slice" style="transform:rotate(270deg)" role="option" data-name="From The Grill" data-craving="steak" aria-label="From the Grill">
               <img style="--r:-270deg" src="assets/img/grill.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">From The Grill</span>
             </div>
-            <div class="slice" style="transform:rotate(315deg)" role="option" data-name="Deli &amp; Espresso" data-craving="DELI" aria-label="Deli and Espresso">
+            <div class="slice" style="transform:rotate(315deg)" role="option" data-name="Deli &amp; Espresso" data-craving="deli" aria-label="Deli and Espresso">
               <img style="--r:-315deg" src="assets/img/deli.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">Deli &amp; Espresso</span>
             </div>
@@ -373,30 +384,34 @@
       </div>
     </section>
 
-    <!-- ============ AJARSKI FEATURE ============ -->
-    <section class="section section--red" id="ajarski">
-      <div class="container ajarski-grid">
-        <div class="ajarski-media reveal reveal-left">
-          <div class="main">
-            <img src="assets/img/ajarski-2.jpg" alt="The Ajarski — a warm fluffy dough boat loaded with fresh mozzarella, feta, egg and butter" loading="lazy" width="1000" height="1150">
-          </div>
-          <span class="float-chip a">Fresh mozzarella</span>
-          <span class="float-chip b">Egg &amp; butter</span>
+    <!-- ============ AJARSKI FEATURE (pinzafied-style) ============ -->
+    <section class="section feature-paper" id="ajarski">
+      <div class="container">
+        <div class="reveal" style="text-align:center;margin-bottom:clamp(2rem,4vw,3rem)">
+          <span class="eyebrow">It's not a calzone</span>
+          <h2 class="display h-lg">It's not a calzone.<br>It's the <span class="under-sun">AJARSKI.</span></h2>
         </div>
-        <div class="reveal reveal-right">
-          <span class="eyebrow" style="color:var(--gold)">Only on Higuera Street</span>
-          <h2 class="display h-lg" style="margin:1rem 0 1.2rem">The one. The only.<br>The <span style="color:var(--char)">Ajarski.</span></h2>
-          <p class="lead">A warm, fluffy bread boat loaded with fresh mozzarella, feta, egg and butter — a Georgian-inspired original that's entirely its own thing. There's nowhere else in San Luis Obispo you'll find this. Come hungry.</p>
-          <ul class="version-list">
-            <li>Ajarski Original <small>the classic build</small></li>
-            <li>Ajarski American <small>the all-american</small></li>
-            <li>Ajarski Mexicano <small>with a kick</small></li>
-            <li>Ajarski SLO Style <small>our town's twist</small></li>
-          </ul>
-          <div style="margin-top:2rem">
-            <a class="btn btn--light" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Try The Ajarski
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
+        <div class="ajarski-grid">
+          <div class="ajarski-media reveal reveal-left" style="position:relative">
+            <div class="main" style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-card);transform:rotate(-2deg);border:10px solid var(--sky)">
+              <img src="assets/img/ajarski-2.jpg" alt="The Ajarski — warm fluffy dough boat with fresh mozzarella, feta, egg and butter" loading="lazy" width="1000" height="1150" style="transition:transform 1s var(--ease-out)">
+            </div>
+            <span class="sticker" style="top:6%;right:-4%;animation:floaty 4.5s ease-in-out infinite">Only on Higuera St</span>
+          </div>
+          <div class="reveal reveal-right">
+            <span class="eyebrow">Four ways to order it</span>
+            <p class="lead" style="margin:1.2rem 0 .6rem">A warm, fluffy bread boat loaded with fresh mozzarella, feta, egg and butter — a Georgian-inspired original that's entirely its own thing. There's nowhere else in San Luis Obispo you'll find this. <strong>Come hungry.</strong></p>
+            <ul class="version-list">
+              <li>Ajarski Original <span class="price-chip">the classic</span></li>
+              <li>Ajarski American <span class="price-chip">all-american</span></li>
+              <li>Ajarski Mexicano <span class="price-chip">with a kick</span></li>
+              <li>Ajarski SLO Style <span class="price-chip">our twist</span></li>
+            </ul>
+            <div style="margin-top:2rem">
+              <a class="btn" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order The Ajarski
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -406,7 +421,7 @@
     <section class="section" id="deals">
       <div class="container deal-wrap">
         <div class="reveal reveal-left">
-          <span class="eyebrow">Current deals</span>
+          <span class="eyebrow">Offers &amp; bundles</span>
           <h2 class="display h-lg" style="margin:1rem 0 1.2rem">Big pies.<br><span class="text-outline">Bigger value.</span></h2>
           <p class="lead">Feeding the whole crew? Our deals keep it simple: real food, real value — no fine print, just more pizza on the table.</p>
           <div style="margin-top:2rem">
@@ -458,7 +473,7 @@
         <div class="section-head">
           <div class="reveal">
             <span class="eyebrow" style="color:var(--gold)">Word on Higuera</span>
-            <h2 class="display h-lg">SLO has <span class="text-outline">spoken</span></h2>
+            <h2 class="display h-lg" style="text-transform:none">slo has <span class="text-outline">spoken</span></h2>
           </div>
           <div class="google-note reveal"><b>5.0★</b> consistent five-star reviews</div>
         </div>
@@ -610,7 +625,7 @@
           <ul>
             <li><a href="menu.html">Full Menu</a></li>
             <li><a href="#ajarski">The Ajarski</a></li>
-            <li><a href="#deals">Deals</a></li>
+            <li><a href="index.html#deals">Deals</a></li>
             <li><a href="#reviews">Reviews</a></li>
           </ul>
         </div>
