@@ -1,0 +1,72 @@
+name: Fetch Antonia's original assets
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: arena/01a0928c-ecc
+
+      - name: Download original assets from antoniaspizza.com
+        run: |
+          mkdir -p antonias/assets/img/orig
+          cd antonias/assets/img/orig
+
+          # Logo (transparent PNG, contained)
+          curl -fsSL --retry 3 -o logo.png "https://antoniaspizza.com/pluto-images/2a9a42a1-f01a-4a6b-a6d3-4a633b8001bd.png?w=800&h=800&fit=contain" || echo "logo failed"
+
+          # Hero / slider images
+          curl -fsSL --retry 3 -o ajarski-boat.png     "https://antoniaspizza.com/pluto-images/a40ea15c-28bc-47de-848b-095fd1e6e01d?w=1100&h=1300&fit=cover" || true
+          curl -fsSL --retry 3 -o ajarski-four.png     "https://antoniaspizza.com/pluto-images/2d273cc4-ddbb-49ae-a0c4-56108f6a7e86?w=1100&h=1300&fit=cover" || true
+          curl -fsSL --retry 3 -o ajarski-higuera.png  "https://antoniaspizza.com/pluto-images/9d2ed301-d3e3-4da5-b65a-91cf3c28b5dc?w=1100&h=1300&fit=cover" || true
+          curl -fsSL --retry 3 -o pies-10-28.png       "https://antoniaspizza.com/pluto-images/33d91b05-a35c-406f-af29-5630df3e800f?w=1400&h=1000&fit=cover" || true
+          curl -fsSL --retry 3 -o deals-xl.png         "https://antoniaspizza.com/pluto-images/e387718f-b419-46c0-b1c3-0d7bd4e49653?w=1200&h=900&fit=cover" || true
+          curl -fsSL --retry 3 -o slice-coke.png       "https://antoniaspizza.com/pluto-images/f3455223-d638-445f-8611-4473945efb9d?w=1100&h=900&fit=cover" || true
+          curl -fsSL --retry 3 -o more-than-pizza.png  "https://antoniaspizza.com/pluto-images/083bec4a-2d1d-4287-b901-c2a14f90c689?w=1400&h=900&fit=cover" || true
+          curl -fsSL --retry 3 -o cheese-board.png     "https://antoniaspizza.com/pluto-images/962cf92a-cbad-4425-bea5-24a23c132eca?w=1200&h=900&fit=cover" || true
+
+          # Kitchen / atmosphere
+          curl -fsSL --retry 3 -o chef-dough.png       "https://antoniaspizza.com/pluto-images/5eda752e-64dd-43c6-90b3-8aee3bd082f4?w=1100&h=1300&fit=cover" || true
+          curl -fsSL --retry 3 -o dinner-table.png     "https://antoniaspizza.com/pluto-images/bc063f34-fec1-40d2-9166-5f570a84f713?w=1000&h=1000&fit=cover" || true
+          curl -fsSL --retry 3 -o grill-steak.png      "https://antoniaspizza.com/pluto-images/ece063b4-c86d-4761-a860-ca7ff99b250b?w=1000&h=1000&fit=cover" || true
+          curl -fsSL --retry 3 -o deli-sandwich.png    "https://antoniaspizza.com/pluto-images/b3222d38-5746-48f4-9452-ccb85a3e5e19?w=1000&h=1000&fit=cover" || true
+          curl -fsSL --retry 3 -o food-truck.png       "https://antoniaspizza.com/pluto-images/acec08fb-fe6a-4514-b615-7608578090af?w=1000&h=1000&fit=cover" || true
+          curl -fsSL --retry 3 -o lamb-plate.png       "https://antoniaspizza.com/pluto-images/235db9ef-0586-451e-b008-76142db1885d?w=1000&h=1000&fit=cover" || true
+
+          # Static maps (SLO + Paso Robles)
+          curl -fsSL --retry 3 -o map-slo.png   "https://antoniaspizza.com/static-maps/map.jpg?lat=35.279991&lon=-120.6618261&styleKey=202504&width=1200&height=700&zoomLevel=15" || true
+          curl -fsSL --retry 3 -o map-paso.png  "https://antoniaspizza.com/static-maps/map.jpg?lat=35.6269594&lon=-120.6906368&styleKey=202504&width=1200&height=700&zoomLevel=15" || true
+
+          echo "=== downloaded ==="
+          ls -la
+          # sanity: no zero-byte files
+          find . -name "*.png" -size 0 -delete
+          echo "=== after cleanup ==="
+          ls -la
+
+      - name: Upload artifact (backup)
+        uses: actions/upload-artifact@v4
+        with:
+          name: antonias-original-assets
+          path: antonias/assets/img/orig/
+          retention-days: 7
+
+      - name: Commit and push
+        run: |
+          git config user.name "assets-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add antonias/assets/img/orig
+          if git diff --cached --quiet; then
+            echo "Nothing new"
+          else
+            git commit -m "chore: fetch original Antonia's assets from antoniaspizza.com"
+            git push
+          fi
