@@ -223,3 +223,123 @@
   /* ---------- Footer year ---------- */
   $$("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 })();
+
+  /* ============================================================
+     PIE WHEEL — pinza.com-style rotating slice carousel
+     auto-rotate · click-to-focus · drag-to-spin · synced labels
+     ============================================================ */
+  $$("[data-wheel]").forEach((wheel) => {
+    const rotor = $(".pie-rotor", wheel);
+    const slices = $$(".slice", rotor);
+    const nameEls = [ $("[data-dish-name]", wheel), $("[data-dish-name-out]") ].filter(Boolean);
+    const cravingEls = [ $("[data-craving-out]") ].filter(Boolean);
+    const section = wheel.closest("section");
+    const N = slices.length;
+    const STEP = 360 / N;
+    let rot = 0, current = -1, timer = null, started = false;
+    const reduced = prefersReduced;
+
+    const mod = (n, m) => ((n % m) + m) % m;
+
+    function render(animate = true) {
+      rotor.style.transition = animate && !reduced ? "transform .9s cubic-bezier(.22,1,.36,1)" : "none";
+      rotor.style.transform = `rotate(${rot}deg)`;
+      const idx = mod(Math.round(-rot / STEP), N);
+      if (idx !== current) {
+        current = idx;
+        slices.forEach((s, i) => s.classList.toggle("active", i === idx));
+        const s = slices[idx];
+        nameEls.forEach((el) => {
+          el.classList.remove("swap");
+          void el.offsetWidth; // restart animation
+          el.textContent = s.dataset.name;
+          el.classList.add("swap");
+        });
+        cravingEls.forEach((el) => {
+          el.classList.remove("swap");
+          void el.offsetWidth;
+          el.textContent = s.dataset.craving;
+          el.classList.add("swap");
+        });
+      }
+    }
+
+    function goTo(i) { rot = -STEP * i; render(); }
+    function next() { goTo(mod(current + 1, N)); }
+    function prev() { goTo(mod(current - 1, N)); }
+
+    function play() {
+      if (reduced) return;
+      stop();
+      timer = setInterval(next, 4200);
+    }
+    function stop() { if (timer) clearInterval(timer); timer = null; }
+
+    /* spin-in when the section first scrolls into view */
+    const spinIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !started) {
+          started = true;
+          rot = -STEP * 2;           // start offset
+          render(false);
+          requestAnimationFrame(() => { rot = 0; render(true); });
+          setTimeout(play, 1400);
+          spinIO.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+    if (section) spinIO.observe(section); else { started = true; render(false); play(); }
+
+    /* slice click */
+    let pressed = false, moved = false, a0 = 0, rot0 = 0;
+    slices.forEach((s, i) => {
+      s.addEventListener("click", () => {
+        if (moved) return;
+        goTo(i); play();
+      });
+    });
+
+    /* drag to spin (mouse + touch) */
+    const centerOf = (el) => {
+      const r = el.getBoundingClientRect();
+      return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    };
+    rotor.addEventListener("pointerdown", (e) => {
+      pressed = true; moved = false;
+      const c = centerOf(rotor);
+      a0 = Math.atan2(e.clientY - c.y, e.clientX - c.x) * 180 / Math.PI;
+      rot0 = rot;
+      stop();
+      rotor.setPointerCapture(e.pointerId);
+    });
+    rotor.addEventListener("pointermove", (e) => {
+      if (!pressed) return;
+      const c = centerOf(rotor);
+      const a = Math.atan2(e.clientY - c.y, e.clientX - c.x) * 180 / Math.PI;
+      let d = a - a0;
+      if (d > 180) d -= 360;
+      if (d < -180) d += 360;
+      if (Math.abs(d) > 6) moved = true;
+      rot = rot0 + d;
+      render(false);
+    });
+    function release() {
+      if (!pressed) return;
+      pressed = false;
+      rot = Math.round(rot / STEP) * STEP; // snap
+      render(true);
+      play();
+    }
+    rotor.addEventListener("pointerup", release);
+    rotor.addEventListener("pointercancel", release);
+
+    /* arrows */
+    $("[data-wheel-next]", wheel.closest(".container") || document)?.addEventListener("click", () => { next(); play(); });
+    $("[data-wheel-prev]", wheel.closest(".container") || document)?.addEventListener("click", () => { prev(); play(); });
+
+    /* pause on hover (desktop) */
+    wheel.addEventListener("pointerenter", () => { if (!pressed) stop(); });
+    wheel.addEventListener("pointerleave", () => { if (!pressed) play(); });
+
+    render(false);
+  });

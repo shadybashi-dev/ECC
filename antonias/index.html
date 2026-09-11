@@ -305,46 +305,73 @@
       </div>
     </section>
 
-    <!-- ============ SIGNATURE DISHES ============ -->
-    <section class="section section--dark" id="signature">
+    <!-- ============ SIGNATURE PIE WHEEL (pinza.com-style) ============ -->
+    <section class="section wheel-section" id="signature">
       <div class="container">
-        <div class="section-head">
-          <div class="reveal">
-            <span class="eyebrow" style="color:var(--gold)">Crowd favorites</span>
-            <h2 class="display h-lg">Signature <span class="text-outline">moves</span></h2>
+        <div class="wheel-head reveal">
+          <span class="eyebrow">Famous for our dough</span>
+          <h2 class="display h-lg">I'm craving <span class="craving-word" data-craving-out>PIES</span></h2>
+          <p class="lead">Spin the wheel — eight reasons the Central Coast calls this the best pizza in SLO. Tap a slice to bring it front &amp; center.</p>
+        </div>
+
+        <div class="pie-wheel" data-wheel>
+          <div class="pie-rotor" role="listbox" aria-label="Rotating menu wheel — drag, click or use arrows">
+            <div class="slice" role="option" data-name="Hand-Tossed Pies" data-craving="PIES" aria-label="Hand-Tossed Pies">
+              <img src="https://antoniaspizza.com/pluto-images/33d91b05-a35c-406f-af29-5630df3e800f?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+              <span class="slice-label">Hand-Tossed Pies</span>
+            </div>
+            <div class="slice" role="option" data-name="The Cheese Slice" data-craving="CHEESE" aria-label="The Cheese Slice">
+              <img src="https://antoniaspizza.com/pluto-images/962cf92a-cbad-4425-bea5-24a23c132eca?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+              <span class="slice-label">The Cheese Slice</span>
+            </div>
+            <div class="slice" role="option" data-name="Slice &amp; A Coke" data-craving="COMBOS" aria-label="Slice and a Coke">
+              <img src="https://antoniaspizza.com/pluto-images/f3455223-d638-445f-8611-4473945efb9d?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+              <span class="slice-label">Slice &amp; A Coke</span>
+            </div>
+            <div class="slice" role="option" data-name="The Ajarski" data-craving="AJARSKI" aria-label="The Ajarski">
+              <img src="https://antoniaspizza.com/pluto-images/a40ea15c-28bc-47de-848b-095fd1e6e01d?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+              <span class="slice-label">The Ajarski</span>
+            </div>
+            <div class="slice" role="option" data-name="Ajarski 4 Ways" data-craving="DOUGH BOATS" aria-label="Ajarski four ways">
+              <img src="https://antoniaspizza.com/pluto-images/2d273cc4-ddbb-49ae-a0c4-56108f6a7e86?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+              <span class="slice-label">Ajarski 4 Ways</span>
+            </div>
+            <div class="slice" role="option" data-name="Pasta &amp; Steak" data-craving="PASTA" aria-label="Pasta and Steak">
+              <img src="https://antoniaspizza.com/pluto-images/bc063f34-fec1-40d2-9166-5f570a84f713?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+              <span class="slice-label">Pasta &amp; Steak</span>
+            </div>
+            <div class="slice" role="option" data-name="From The Grill" data-craving="STEAK" aria-label="From the Grill">
+              <img src="https://antoniaspizza.com/pluto-images/ece063b4-c86d-4761-a860-ca7ff99b250b?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+              <span class="slice-label">From The Grill</span>
+            </div>
+            <div class="slice" role="option" data-name="Deli &amp; Espresso" data-craving="DELI" aria-label="Deli and Espresso">
+              <img src="https://antoniaspizza.com/pluto-images/b3222d38-5746-48f4-9452-ccb85a3e5e19?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+              <span class="slice-label">Deli &amp; Espresso</span>
+            </div>
           </div>
-          <a class="btn btn--ghost reveal" href="menu.html">Full Menu
+          <div class="pie-center">
+            <div>
+              <span class="kicker">Fresh from the oven</span>
+              <div class="dish-name" data-dish-name>Hand-Tossed Pies</div>
+              <a class="btn btn--sm" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener">Order it</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="wheel-nav">
+          <button class="wheel-btn" data-wheel-prev aria-label="Previous dish">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="wheel-btn" data-wheel-next aria-label="Next dish">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <p class="wheel-hint">Drag it · Click it · Watch it spin</p>
+
+        <div style="text-align:center;margin-top:1.6rem">
+          <a class="btn" style="--btn-bg:var(--char);--btn-fg:var(--cream)" href="menu.html">Full Menu
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-        </div>
-        <div class="dish-grid stagger">
-          <article class="dish-card">
-            <img src="https://antoniaspizza.com/pluto-images/33d91b05-a35c-406f-af29-5630df3e800f?w=800&amp;h=1000&amp;fit=cover" alt="Hand-crafted Antonia's pizza pies from 10 to 28 inches" loading="lazy" width="800" height="1000">
-            <span class="price-tag">28&quot;</span>
-            <div class="dish-body">
-              <span class="tag">The Classic</span>
-              <h3>Pies 10&quot;–28&quot;</h3>
-              <p>Hand-crafted dough, home-made tomato sauce, SLO-style seasoned crust — big enough for the whole crew.</p>
-            </div>
-          </article>
-          <article class="dish-card">
-            <img src="https://antoniaspizza.com/pluto-images/083bec4a-2d1d-4287-b901-c2a14f90c689?w=800&amp;h=1000&amp;fit=cover" alt="Pizza, pasta, wings and more at Antonia's Pizza" loading="lazy" width="800" height="1000">
-            <span class="price-tag">★</span>
-            <div class="dish-body">
-              <span class="tag">Beyond Pizza</span>
-              <h3>Pasta · Wings · Calzones</h3>
-              <p>Spaghetti, ravioli, classic wings and more — all made with the same care as our pies.</p>
-            </div>
-          </article>
-          <article class="dish-card">
-            <img src="https://antoniaspizza.com/pluto-images/e387718f-b419-46c0-b1c3-0d7bd4e49653?w=800&amp;h=1000&amp;fit=cover" alt="Current deals at Antonia's Pizza — two XL two-topping pizzas" loading="lazy" width="800" height="1000">
-            <span class="price-tag">$39</span>
-            <div class="dish-body">
-              <span class="tag">Real Value</span>
-              <h3>Current Deals</h3>
-              <p>Two XL two-topping pizzas for $39.99. Large Specialty Combo for $36.99. Real food, real value.</p>
-            </div>
-          </article>
         </div>
       </div>
     </section>
