@@ -30,11 +30,8 @@
 
   <!-- ============ ICONS / FONTS ============ -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="apple-touch-icon" href="https://antoniaspizza.com/pluto-images/2a9a42a1-f01a-4a6b-a6d3-4a633b8001bd.png?w=180&amp;h=180&amp;fit=contain">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="apple-touch-icon" href="assets/img/logo.png.png?w=180&amp;h=180&amp;fit=contain">
   <link rel="preconnect" href="https://antoniaspizza.com">
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 
   <!-- ============ STRUCTURED DATA (JSON-LD) ============ -->
@@ -47,8 +44,8 @@
         "@id": "https://antoniaspizza.com/#restaurant",
         "name": "Antonia's Pizza",
         "url": "https://antoniaspizza.com/",
-        "image": "https://antoniaspizza.com/pluto-images/33d91b05-a35c-406f-af29-5630df3e800f?w=1200&h=630&fit=cover",
-        "logo": "https://antoniaspizza.com/pluto-images/2a9a42a1-f01a-4a6b-a6d3-4a633b8001bd.png",
+        "image": "assets/img/pies-1.jpg",
+        "logo": "assets/img/logo.png.png",
         "servesCuisine": ["Pizza", "Italian", "Pasta", "Wings"],
         "priceRange": "$$",
         "acceptsReservations": "False",
@@ -199,7 +196,7 @@
 
   <!-- ============ PRELOADER ============ -->
   <div class="preloader" aria-hidden="true">
-    <img src="https://antoniaspizza.com/pluto-images/2a9a42a1-f01a-4a6b-a6d3-4a633b8001bd.png?w=160&amp;h=160&amp;fit=contain" alt="">
+    <img src="assets/img/logo.png.png?w=160&amp;h=160&amp;fit=contain" alt="">
     <div class="pl-word"><span>Antonia's Pizza</span></div>
     <div class="pl-bar"><i></i></div>
     <div class="pl-count">000%</div>
@@ -213,7 +210,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Antonia's Pizza — home">
-        <img src="https://antoniaspizza.com/pluto-images/2a9a42a1-f01a-4a6b-a6d3-4a633b8001bd.png?w=120&amp;h=120&amp;fit=contain" alt="Antonia's Pizza logo" width="52" height="52">
+        <img src="assets/img/logo.png.png?w=120&amp;h=120&amp;fit=contain" alt="Antonia's Pizza logo" width="52" height="52">
         <span>Antonia's</span>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
@@ -244,7 +241,7 @@
             <textPath href="#circ">SAN LUIS OBISPO • OPEN TILL 2AM • SINCE DAY ONE • </textPath>
           </text>
         </svg>
-        <div class="badge-center">🍕</div>
+        <div class="badge-center"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M12 2 L21 20 Q12 24 3 20 Z" fill="#c8361b"/><circle cx="12" cy="9" r="1.6" fill="#f6eedd"/><circle cx="9" cy="15" r="1.6" fill="#f6eedd"/><circle cx="15" cy="16" r="1.6" fill="#40632f"/></svg></div>
       </div>
 
       <div class="hero-inner">
@@ -285,10 +282,10 @@
       <div class="container story-grid">
         <div class="story-media reveal reveal-left">
           <div class="frame">
-            <img src="https://antoniaspizza.com/pluto-images/5eda752e-64dd-43c6-90b3-8aee3bd082f4?w=900&amp;h=1050&amp;fit=cover" alt="Chef in a red apron kneading fresh pizza dough on a floured counter at Antonia's Pizza" loading="lazy" width="900" height="1050">
+            <img src="assets/img/chef-main.jpg" alt="Chef in a red apron kneading fresh pizza dough on a floured counter at Antonia's Pizza" loading="lazy" width="900" height="1050">
           </div>
           <div class="frame--back">
-            <img src="https://antoniaspizza.com/pluto-images/962cf92a-cbad-4425-bea5-24a23c132eca?w=700&amp;h=520&amp;fit=cover" alt="Large slice of cheese pizza on a wooden board with basil and olive oil" loading="lazy" width="700" height="520">
+            <img src="assets/img/pies-2.jpg" alt="Large slice of cheese pizza on a wooden board with basil and olive oil" loading="lazy" width="700" height="520">
           </div>
         </div>
         <div class="reveal reveal-right">
@@ -316,36 +313,36 @@
 
         <div class="pie-wheel" data-wheel>
           <div class="pie-rotor" role="listbox" aria-label="Rotating menu wheel — drag, click or use arrows">
-            <div class="slice" role="option" data-name="Hand-Tossed Pies" data-craving="PIES" aria-label="Hand-Tossed Pies">
-              <img src="https://antoniaspizza.com/pluto-images/33d91b05-a35c-406f-af29-5630df3e800f?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+            <div class="slice" style="transform:rotate(0deg)" role="option" data-name="Hand-Tossed Pies" data-craving="PIES" aria-label="Hand-Tossed Pies">
+              <img style="--r:0deg" src="assets/img/pies-1.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">Hand-Tossed Pies</span>
             </div>
-            <div class="slice" role="option" data-name="The Cheese Slice" data-craving="CHEESE" aria-label="The Cheese Slice">
-              <img src="https://antoniaspizza.com/pluto-images/962cf92a-cbad-4425-bea5-24a23c132eca?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+            <div class="slice" style="transform:rotate(45deg)" role="option" data-name="The Cheese Slice" data-craving="CHEESE" aria-label="The Cheese Slice">
+              <img style="--r:-45deg" src="assets/img/pies-2.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">The Cheese Slice</span>
             </div>
-            <div class="slice" role="option" data-name="Slice &amp; A Coke" data-craving="COMBOS" aria-label="Slice and a Coke">
-              <img src="https://antoniaspizza.com/pluto-images/f3455223-d638-445f-8611-4473945efb9d?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+            <div class="slice" style="transform:rotate(90deg)" role="option" data-name="Slice &amp; A Coke" data-craving="COMBOS" aria-label="Slice and a Coke">
+              <img style="--r:-90deg" src="assets/img/slice-coke.webp" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">Slice &amp; A Coke</span>
             </div>
-            <div class="slice" role="option" data-name="The Ajarski" data-craving="AJARSKI" aria-label="The Ajarski">
-              <img src="https://antoniaspizza.com/pluto-images/a40ea15c-28bc-47de-848b-095fd1e6e01d?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+            <div class="slice" style="transform:rotate(135deg)" role="option" data-name="The Ajarski" data-craving="AJARSKI" aria-label="The Ajarski">
+              <img style="--r:-135deg" src="assets/img/ajarski-2.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">The Ajarski</span>
             </div>
-            <div class="slice" role="option" data-name="Ajarski 4 Ways" data-craving="DOUGH BOATS" aria-label="Ajarski four ways">
-              <img src="https://antoniaspizza.com/pluto-images/2d273cc4-ddbb-49ae-a0c4-56108f6a7e86?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+            <div class="slice" style="transform:rotate(180deg)" role="option" data-name="Ajarski 4 Ways" data-craving="DOUGH BOATS" aria-label="Ajarski four ways">
+              <img style="--r:-180deg" src="assets/img/ajarski-2.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">Ajarski 4 Ways</span>
             </div>
-            <div class="slice" role="option" data-name="Pasta &amp; Steak" data-craving="PASTA" aria-label="Pasta and Steak">
-              <img src="https://antoniaspizza.com/pluto-images/bc063f34-fec1-40d2-9166-5f570a84f713?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+            <div class="slice" style="transform:rotate(225deg)" role="option" data-name="Pasta &amp; Steak" data-craving="PASTA" aria-label="Pasta and Steak">
+              <img style="--r:-225deg" src="assets/img/cozy-table.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">Pasta &amp; Steak</span>
             </div>
-            <div class="slice" role="option" data-name="From The Grill" data-craving="STEAK" aria-label="From the Grill">
-              <img src="https://antoniaspizza.com/pluto-images/ece063b4-c86d-4761-a860-ca7ff99b250b?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+            <div class="slice" style="transform:rotate(270deg)" role="option" data-name="From The Grill" data-craving="STEAK" aria-label="From the Grill">
+              <img style="--r:-270deg" src="assets/img/grill.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">From The Grill</span>
             </div>
-            <div class="slice" role="option" data-name="Deli &amp; Espresso" data-craving="DELI" aria-label="Deli and Espresso">
-              <img src="https://antoniaspizza.com/pluto-images/b3222d38-5746-48f4-9452-ccb85a3e5e19?w=800&amp;h=800&amp;fit=cover" alt="" loading="lazy" width="800" height="800">
+            <div class="slice" style="transform:rotate(315deg)" role="option" data-name="Deli &amp; Espresso" data-craving="DELI" aria-label="Deli and Espresso">
+              <img style="--r:-315deg" src="assets/img/deli.jpg" alt="" loading="lazy" width="800" height="800">
               <span class="slice-label">Deli &amp; Espresso</span>
             </div>
           </div>
@@ -381,10 +378,10 @@
       <div class="container ajarski-grid">
         <div class="ajarski-media reveal reveal-left">
           <div class="main">
-            <img src="https://antoniaspizza.com/pluto-images/a40ea15c-28bc-47de-848b-095fd1e6e01d?w=1000&amp;h=1150&amp;fit=cover" alt="The Ajarski — a warm fluffy dough boat loaded with fresh mozzarella, feta, egg and butter" loading="lazy" width="1000" height="1150">
+            <img src="assets/img/ajarski-2.jpg" alt="The Ajarski — a warm fluffy dough boat loaded with fresh mozzarella, feta, egg and butter" loading="lazy" width="1000" height="1150">
           </div>
-          <span class="float-chip a">🧀 Fresh mozzarella</span>
-          <span class="float-chip b">🥚 Egg &amp; butter</span>
+          <span class="float-chip a">Fresh mozzarella</span>
+          <span class="float-chip b">Egg &amp; butter</span>
         </div>
         <div class="reveal reveal-right">
           <span class="eyebrow" style="color:var(--gold)">Only on Higuera Street</span>
@@ -420,7 +417,7 @@
         </div>
         <div class="reveal reveal-right">
           <article class="deal-card">
-            <img src="https://antoniaspizza.com/pluto-images/e387718f-b419-46c0-b1c3-0d7bd4e49653?w=900&amp;h=560&amp;fit=cover" alt="Two extra-large two-topping pizzas deal" loading="lazy" width="900" height="560">
+            <img src="assets/img/feast.jpg" alt="Two extra-large two-topping pizzas deal" loading="lazy" width="900" height="560">
             <div class="deal-body">
               <span class="deal-badge">Most popular</span>
               <h3 style="font-family:var(--font-display);text-transform:uppercase;font-size:1.4rem">2 XL Two-Topping Pizzas</h3>
@@ -428,7 +425,7 @@
             </div>
           </article>
           <article class="deal-card" style="margin-top:1.4rem;transform:rotate(2deg)">
-            <img src="https://antoniaspizza.com/pluto-images/f3455223-d638-445f-8611-4473945efb9d?w=900&amp;h=560&amp;fit=cover" alt="Large specialty pizza combo deal" loading="lazy" width="900" height="560">
+            <img src="assets/img/slice-coke.webp" alt="Large specialty pizza combo deal" loading="lazy" width="900" height="560">
             <div class="deal-body">
               <span class="deal-badge">Combo</span>
               <h3 style="font-family:var(--font-display);text-transform:uppercase;font-size:1.4rem">Large Specialty Combo</h3>
@@ -446,12 +443,12 @@
         <h2 class="display h-md" style="margin-top:.8rem">The feed that makes you hungry</h2>
       </div>
       <div class="gallery-track">
-        <figure><img src="https://antoniaspizza.com/pluto-images/bc063f34-fec1-40d2-9166-5f570a84f713?w=600&amp;h=750&amp;fit=cover" alt="Rustic table set with steak, pasta, wine and roasted potatoes" loading="lazy" width="600" height="750"><figcaption>Dinner done right</figcaption></figure>
-        <figure><img src="https://antoniaspizza.com/pluto-images/b3222d38-5746-48f4-9452-ccb85a3e5e19?w=600&amp;h=750&amp;fit=cover" alt="Sandwich with meat, cheese, egg and vegetables next to a latte" loading="lazy" width="600" height="750"><figcaption>Deli &amp; espresso</figcaption></figure>
-        <figure><img src="https://antoniaspizza.com/pluto-images/acec08fb-fe6a-4514-b615-7608578090af?w=600&amp;h=750&amp;fit=cover" alt="Food on the counter at the Johnny's Lunch food truck" loading="lazy" width="600" height="750"><figcaption>Johnny's Lunch truck</figcaption></figure>
-        <figure><img src="https://antoniaspizza.com/pluto-images/ece063b4-c86d-4761-a860-ca7ff99b250b?w=600&amp;h=750&amp;fit=cover" alt="Grilled steak with side salad on a white plate" loading="lazy" width="600" height="750"><figcaption>From the grill</figcaption></figure>
-        <figure><img src="https://antoniaspizza.com/pluto-images/235db9ef-0586-451e-b008-76142db1885d?w=600&amp;h=750&amp;fit=cover" alt="Braised lamb shank with roasted vegetables on a wooden table" loading="lazy" width="600" height="750"><figcaption>Chef's specials</figcaption></figure>
-        <figure><img src="https://antoniaspizza.com/pluto-images/2d273cc4-ddbb-49ae-a0c4-56108f6a7e86?w=600&amp;h=750&amp;fit=cover" alt="The Ajarski dough boat, four ways to order" loading="lazy" width="600" height="750"><figcaption>The Ajarski</figcaption></figure>
+        <figure><img src="assets/img/cozy-table.jpg" alt="Rustic table set with steak, pasta, wine and roasted potatoes" loading="lazy" width="600" height="750"><figcaption>Dinner done right</figcaption></figure>
+        <figure><img src="assets/img/deli.jpg" alt="Sandwich with meat, cheese, egg and vegetables next to a latte" loading="lazy" width="600" height="750"><figcaption>Deli &amp; espresso</figcaption></figure>
+        <figure><img src="assets/img/storefront.jpg" alt="Food on the counter at the Johnny's Lunch food truck" loading="lazy" width="600" height="750"><figcaption>Downtown SLO</figcaption></figure>
+        <figure><img src="assets/img/grill.jpg" alt="Grilled steak with side salad on a white plate" loading="lazy" width="600" height="750"><figcaption>From the grill</figcaption></figure>
+        <figure><img src="assets/img/chef-hands.jpg" alt="Braised lamb shank with roasted vegetables on a wooden table" loading="lazy" width="600" height="750"><figcaption>Hand-made daily</figcaption></figure>
+        <figure><img src="assets/img/ajarski-2.jpg" alt="The Ajarski dough boat, four ways to order" loading="lazy" width="600" height="750"><figcaption>The Ajarski</figcaption></figure>
       </div>
     </section>
 
@@ -525,7 +522,7 @@
             </div>
           </div>
           <a class="loc-map" href="https://www.google.com/maps/search/?api=1&amp;query=891%20Higuera%20St%2C%20San%20Luis%20Obispo%2C%20CA%2093401" target="_blank" rel="noopener" aria-label="Open Antonia's Pizza San Luis Obispo in Google Maps">
-            <img src="https://antoniaspizza.com/static-maps/map.jpg?lat=35.279991&amp;lon=-120.6618261&amp;styleKey=202504&amp;width=600&amp;height=400&amp;zoomLevel=15" alt="Map showing Antonia's Pizza at 891 Higuera St, San Luis Obispo" loading="lazy" width="600" height="400">
+            <div class="map-fallback" role="img" aria-label="Map pin"><span class="pin"><svg viewBox="0 0 24 24" fill="#c8361b"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><b>Antonia's Pizza</b><small>Tap to open in Google Maps</small></div>
           </a>
         </div>
 
@@ -549,7 +546,7 @@
             </div>
           </div>
           <a class="loc-map" href="https://www.google.com/maps/search/?api=1&amp;query=729%2012th%20St%2C%20Paso%20Robles%2C%20CA%2093446" target="_blank" rel="noopener" aria-label="Open Antonia's Pizza Paso Robles in Google Maps">
-            <img src="https://antoniaspizza.com/static-maps/map.jpg?lat=35.6269594&amp;lon=-120.6906368&amp;styleKey=202504&amp;width=600&amp;height=400&amp;zoomLevel=15" alt="Map showing Antonia's Pizza at 729 12th St, Paso Robles" loading="lazy" width="600" height="400">
+            <div class="map-fallback" role="img" aria-label="Map pin"><span class="pin"><svg viewBox="0 0 24 24" fill="#c8361b"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><b>Antonia's Pizza</b><small>Tap to open in Google Maps</small></div>
           </a>
         </div>
       </div>
@@ -605,7 +602,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="https://antoniaspizza.com/pluto-images/2a9a42a1-f01a-4a6b-a6d3-4a633b8001bd.png?w=200&amp;h=200&amp;fit=contain" alt="Antonia's Pizza logo">
+          <img src="assets/img/logo.png.png?w=200&amp;h=200&amp;fit=contain" alt="Antonia's Pizza logo">
           <p style="opacity:.8;font-size:.95rem;max-width:34ch">Hand-crafted pizza, pasta and wings from downtown San Luis Obispo &amp; Paso Robles. Real food, real value — since day one.</p>
         </div>
         <div>

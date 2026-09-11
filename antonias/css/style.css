@@ -1,3 +1,9 @@
+/* ---------- Self-hosted fonts (no external dependency) ---------- */
+@font-face{font-family:"Anton";font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/anton-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Sora";font-style:normal;font-weight:400;font-display:swap;src:url("../assets/fonts/sora-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Sora";font-style:normal;font-weight:600;font-display:swap;src:url("../assets/fonts/sora-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Sora";font-style:normal;font-weight:700;font-display:swap;src:url("../assets/fonts/sora-latin-700-normal.woff2") format("woff2")}
+
 /* ============================================================
    ANTONIA'S PIZZA — Design System & Animations
    Inspired by award-winning pizzeria experiences (Pinza-style
@@ -239,7 +245,7 @@ body.nav-open .nav-toggle span::after{transform:translateY(-7px) rotate(-45deg)}
 .marquee-track{display:inline-flex;gap:3rem;animation:marquee 26s linear infinite;will-change:transform}
 .marquee:hover .marquee-track{animation-play-state:paused}
 .marquee-track span{font-family:var(--font-display);font-size:clamp(1.4rem,2.6vw,2.1rem);text-transform:uppercase;letter-spacing:.05em;display:inline-flex;align-items:center;gap:3rem}
-.marquee-track span::after{content:"🍕";font-size:1.2em}
+.marquee-track span::after{content:"\2022";font-size:1.2em}
 @keyframes marquee{to{transform:translateX(-50%)}}
 
 /* ---------- Reveal on scroll ---------- */
@@ -513,10 +519,10 @@ body.nav-open .nav-toggle span::after{transform:translateY(-7px) rotate(-45deg)}
 .slice img{
   width:100%;height:100%;object-fit:cover;
   filter:brightness(.68) saturate(.85);
-  transform:scale(1.02);
+  transform:rotate(var(--r,0deg)) scale(1.02);
   transition:filter .5s, transform .7s var(--ease-out);
 }
-.slice.active img{filter:brightness(1.02) saturate(1.05);transform:scale(1.09)}
+.slice.active img{filter:brightness(1.02) saturate(1.05);transform:rotate(var(--r,0deg)) scale(1.09)}
 .slice:focus-visible img{filter:brightness(.95)}
 .slice .slice-label{
   position:absolute;left:50%;top:12%;transform:translateX(-50%);
@@ -529,7 +535,7 @@ body.nav-open .nav-toggle span::after{transform:translateY(-7px) rotate(-45deg)}
 .pie-center{
   position:absolute;left:50%;top:50%;z-index:5;
   transform:translate(-50%,-50%);
-  width:57%;aspect-ratio:1;border-radius:50%;
+  width:44%;aspect-ratio:1;border-radius:50%;
   background:var(--cream);color:var(--ink);
   display:grid;place-items:center;text-align:center;
   box-shadow:0 24px 60px -18px rgba(23,18,16,.55), inset 0 0 0 6px var(--char);
@@ -560,3 +566,29 @@ body.nav-open .nav-toggle span::after{transform:translateY(-7px) rotate(-45deg)}
   .pie-center .kicker{display:none}
   .slice .slice-label{font-size:.7rem}
 }
+
+/* ---------- Local map fallback (no external tile dependency) ---------- */
+.map-fallback{
+  width:100%;aspect-ratio:16/7;display:grid;place-items:center;text-align:center;gap:.4rem;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(232,163,61,.14) 0 22%, transparent 23%),
+    radial-gradient(circle at 72% 65%, rgba(200,54,27,.12) 0 18%, transparent 19%),
+    repeating-linear-gradient(0deg, transparent 0 46px, rgba(246,238,221,.06) 46px 47px),
+    repeating-linear-gradient(90deg, transparent 0 46px, rgba(246,238,221,.06) 46px 47px),
+    var(--char-2);
+  color:var(--cream);
+}
+.map-fallback .pin svg{width:52px;height:52px;animation:floaty 3.5s ease-in-out infinite}
+.map-fallback b{font-family:var(--font-display);text-transform:uppercase;font-size:1.15rem;letter-spacing:.04em;display:block}
+.map-fallback small{opacity:.7;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem}
+.on-light .map-fallback{
+  background:
+    radial-gradient(circle at 30% 40%, rgba(232,163,61,.16) 0 22%, transparent 23%),
+    radial-gradient(circle at 72% 65%, rgba(200,54,27,.12) 0 18%, transparent 19%),
+    repeating-linear-gradient(0deg, transparent 0 46px, rgba(36,26,18,.05) 46px 47px),
+    repeating-linear-gradient(90deg, transparent 0 46px, rgba(36,26,18,.05) 46px 47px),
+    var(--cream-2);
+  color:var(--ink);
+}
+
+@media (min-width:960px){.sticky-order{display:none}}
