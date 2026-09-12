@@ -474,7 +474,9 @@
     "build:opencode": "node scripts/build-opencode.js",
     "prepack": "npm run build:opencode",
     "dashboard": "python3 ./ecc_dashboard.py",
-    "dashboard:web": "node scripts/dashboard-web.js"
+    "dashboard:web": "node scripts/dashboard-web.js",
+    "tokensaver": "node claude-token-saver/bin/cts.js",
+    "tokensaver:test": "node --test \"claude-token-saver/test/*.test.js\""
   },
   "dependencies": {
     "@iarna/toml": "2.2.5",

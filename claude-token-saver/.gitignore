@@ -1,0 +1,11 @@
+# Local secrets — never commit
+.env
+.env.local
+.env.*.local
+
+# Local cache (when CTS_CACHE_DIR points inside the repo)
+.cts-cache/
+
+# Install artifacts
+node_modules/
+*.tgz

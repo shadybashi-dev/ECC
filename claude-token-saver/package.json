@@ -1,0 +1,46 @@
+{
+  "name": "claude-token-saver",
+  "version": "1.0.0",
+  "description": "Super Node.js toolkit to cut Claude token usage and cost — estimator, prompt optimizer, context-budget auditor, secret scanner, secure cached API client. Zero dependencies.",
+  "keywords": [
+    "claude",
+    "anthropic",
+    "tokens",
+    "token-saver",
+    "prompt-caching",
+    "cost-optimization",
+    "security",
+    "secret-scanning",
+    "cli"
+  ],
+  "author": "ECC community",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shadybashi-dev/ECC.git",
+    "directory": "claude-token-saver"
+  },
+  "homepage": "https://github.com/shadybashi-dev/ECC/tree/arena/01a09496-ecc/claude-token-saver",
+  "bugs": {
+    "url": "https://github.com/shadybashi-dev/ECC/issues"
+  },
+  "bin": {
+    "cts": "bin/cts.js"
+  },
+  "main": "lib/index.js",
+  "files": [
+    "bin/",
+    "lib/",
+    "README.md",
+    "SECURITY.md",
+    ".env.example"
+  ],
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "smoke": "node bin/cts.js --help && node bin/cts.js prices"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}
