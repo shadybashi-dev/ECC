@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "count": 20,
+  "restaurant": "Pietra Pizza - 729 12th St, Paso Robles, CA",
+  "items": [
+    {
+      "id": "quarry-combination",
+      "name": "The Quarry Combination",
+      "name_ar": "",
+      "description": "Our signature house pizza with vine-ripened tomato sauce, whole milk mozzarella, pepperoni, Italian sausage, mushrooms, bell peppers, red onions, and black olives. A refined classic with generous flavor in every slice.",
+      "category": "Pizza",
+      "price": "19.95 | 31.95",
+      "prompt_subject": "artisan stone-baked pizza The Quarry Combination with pepperoni, Italian sausage, mushrooms, bell peppers, red onions, black olives, melted whole milk mozzarella, wood-fired crust with charred edge, sliced into 8, on a matte black ceramic pizza plate",
+      "notes": "10\" $19.95 | 16\" $31.95"
+    },
+    {
+      "id": "ember-reserve-meat-lovers",
+      "name": "The Ember Reserve Meat Lovers",
+      "name_ar": "",
+      "description": "A rich, indulgent selection of pepperoni, Italian sausage, smoked bacon, and Canadian bacon over bubbling mozzarella and our house tomato sauce.",
+      "category": "Pizza",
+      "price": "20.95 | 32.95",
+      "prompt_subject": "artisan stone-baked meat lovers pizza with pepperoni, Italian sausage, smoked bacon, Canadian bacon, bubbling mozzarella, rich tomato sauce, wood-fired crust with leopard spotting",
+      "notes": "10\" $20.95 | 16\" $32.95"
+    },
+    {
+      "id": "pietra-margherita",
+      "name": "Pietra Margherita",
+      "name_ar": "",
+      "description": "A timeless expression of simplicity—our tomato sauce, melted mozzarella, fresh basil, extra virgin olive oil, and a delicate finish of parmesan.",
+      "category": "Pizza",
+      "price": "18.95 | 29.95",
+      "prompt_subject": "elegant artisan Margherita pizza with vine-ripened tomato sauce, melted fresh mozzarella, fresh basil leaves, extra virgin olive oil drizzle, parmesan finish, stone-baked crust",
+      "notes": "10\" $18.95 | 16\" $29.95"
+    },
+    {
+      "id": "vineyard-garden",
+      "name": "The Vineyard Garden",
+      "name_ar": "",
+      "description": "A vibrant vegetable-forward pizza with mozzarella, mushrooms, bell peppers, red onions, black olives, Roma tomatoes, and artichoke hearts.",
+      "category": "Pizza",
+      "price": "19.95 | 31.95",
+      "prompt_subject": "vibrant vegetable artisan pizza with mozzarella, mushrooms, bell peppers, red onions, black olives, Roma tomatoes, artichoke hearts, colorful fresh vegetables, stone-baked crust",
+      "notes": "10\" $19.95 | 16\" $31.95"
+    },
+    {
+      "id": "build-your-own-10-one-topping",
+      "name": "10\" Personal Pizza - One Topping",
+      "name_ar": "",
+      "description": "Build your own personal pizza with one topping of choice",
+      "category": "Pizza",
+      "price": "16.95",
+      "prompt_subject": "personal 10 inch build-your-own pizza with one topping pepperoni, melted mozzarella, stone-baked crust, on black plate",
+      "notes": ""
+    },
+    {
+      "id": "build-your-own-10-two-toppings",
+      "name": "10\" Personal Pizza - Two Toppings",
+      "name_ar": "",
+      "description": "Build your own personal pizza with two toppings",
+      "category": "Pizza",
+      "price": "18.95",
+      "prompt_subject": "personal 10 inch build-your-own pizza with pepperoni and mushrooms, melted mozzarella, stone-baked crust",
+      "notes": ""
+    },
+    {
+      "id": "build-your-own-10-three-toppings",
+      "name": "10\" Personal Pizza - Three Toppings",
+      "name_ar": "",
+      "description": "Build your own personal pizza with three toppings",
+      "category": "Pizza",
+      "price": "20.95",
+      "prompt_subject": "personal 10 inch pizza with three toppings pepperoni, mushrooms, bell peppers, stone-baked crust",
+      "notes": ""
+    },
+    {
+      "id": "build-your-own-16-one-topping",
+      "name": "16\" Large Pizza - One Topping",
+      "name_ar": "",
+      "description": "Build your own large pizza with one topping",
+      "category": "Pizza",
+      "price": "25.95",
+      "prompt_subject": "large 16 inch build-your-own pizza with one topping, melted mozzarella, stone-baked crust, generous size",
+      "notes": ""
+    },
+    {
+      "id": "build-your-own-16-two-toppings",
+      "name": "16\" Large Pizza - Two Toppings",
+      "name_ar": "",
+      "description": "Build your own large pizza with two toppings",
+      "category": "Pizza",
+      "price": "28.95",
+      "prompt_subject": "large 16 inch pizza with two toppings sausage and bell peppers, melted cheese, stone-baked",
+      "notes": ""
+    },
+    {
+      "id": "build-your-own-16-three-toppings",
+      "name": "16\" Large Pizza - Three Toppings",
+      "name_ar": "",
+      "description": "Build your own large pizza with three toppings",
+      "category": "Pizza",
+      "price": "31.95",
+      "prompt_subject": "large 16 inch pizza with three toppings pepperoni, sausage, mushrooms, stone-baked crust",
+      "notes": ""
+    },
+    {
+      "id": "wings-6-piece",
+      "name": "6 Piece Wings",
+      "name_ar": "",
+      "description": "Crisp, juicy wings tossed in your choice of sauce. Served with celery, carrots, and one dipping sauce.",
+      "category": "Wings",
+      "price": "13.95",
+      "prompt_subject": "6 piece crispy golden chicken wings tossed in buffalo sauce, served on matte black plate with celery sticks and carrot sticks and a small cup of buttermilk ranch dip",
+      "notes": "Sauces: Buffalo, BBQ, Garlic Parmesan, Honey Garlic, Sweet Chili, Spicy BBQ, Garlic Buffalo, Plain"
+    },
+    {
+      "id": "wings-12-piece",
+      "name": "12 Piece Wings",
+      "name_ar": "",
+      "description": "A generous portion ideal for sharing. Served with celery, carrots, and two dipping sauces.",
+      "category": "Wings",
+      "price": "24.95",
+      "prompt_subject": "12 piece crispy chicken wings tossed in BBQ sauce, generous sharing platter on matte black plate with celery, carrots, two ranch dips",
+      "notes": ""
+    },
+    {
+      "id": "mozzarella-sticks-6",
+      "name": "Golden Mozzarella Sticks - 6 Piece",
+      "name_ar": "",
+      "description": "Crisp, golden-breaded mozzarella sticks with a warm, melty center. Served with house marinara.",
+      "category": "Starters",
+      "price": "11.95",
+      "prompt_subject": "6 piece golden breaded mozzarella sticks with melty cheese pull, crispy coating, served with small cup of house marinara sauce on matte black plate",
+      "notes": ""
+    },
+    {
+      "id": "can-soda",
+      "name": "Can Soda",
+      "name_ar": "",
+      "description": "Coke, Sprite, Fanta Orange, Dr Pepper",
+      "category": "Drinks",
+      "price": "2.95",
+      "prompt_subject": "cold can of cola soda with condensation droplets, on dark slate surface, no logo text visible, generic red can",
+      "notes": "Options: Coke, Sprite, Fanta Orange, Dr Pepper - use generic can for compliance (no text)"
+    },
+    {
+      "id": "house-marinara-side",
+      "name": "House Marinara",
+      "name_ar": "",
+      "description": "Side sauce",
+      "category": "Sauces",
+      "price": "1.25",
+      "prompt_subject": "small black ramekin of house marinara sauce with herbs, rich red tomato sauce",
+      "notes": ""
+    },
+    {
+      "id": "buttermilk-ranch-side",
+      "name": "Buttermilk Ranch",
+      "name_ar": "",
+      "description": "Side dip",
+      "category": "Sauces",
+      "price": "1.25",
+      "prompt_subject": "small black ramekin of creamy buttermilk ranch dressing with herbs",
+      "notes": ""
+    },
+    {
+      "id": "spicy-ranch-side",
+      "name": "Spicy Ranch",
+      "name_ar": "",
+      "description": "Side dip",
+      "category": "Sauces",
+      "price": "1.25",
+      "prompt_subject": "small black ramekin of spicy ranch dip with red pepper flakes",
+      "notes": ""
+    },
+    {
+      "id": "garlic-parmesan-dip-side",
+      "name": "Garlic Parmesan Dip",
+      "name_ar": "",
+      "description": "Side dip",
+      "category": "Sauces",
+      "price": "1.25",
+      "prompt_subject": "small black ramekin of creamy garlic parmesan dip",
+      "notes": ""
+    },
+    {
+      "id": "buffalo-dip-side",
+      "name": "Buffalo Dip",
+      "name_ar": "",
+      "description": "Side dip",
+      "category": "Sauces",
+      "price": "1.25",
+      "prompt_subject": "small black ramekin of orange buffalo sauce dip",
+      "notes": ""
+    },
+    {
+      "id": "bbq-dip-side",
+      "name": "BBQ Dip",
+      "name_ar": "",
+      "description": "Side dip",
+      "category": "Sauces",
+      "price": "1.25",
+      "prompt_subject": "small black ramekin of smoky BBQ sauce",
+      "notes": ""
+    }
+  ]
+}
