@@ -1,0 +1,83 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# menu-photo-studio — style preset "door-dash-pro-v2" — WEIRD BUT DOORDASH COMPLIANT
+# Same vibe for all products, but background is now more unusual:
+# quarry basalt with cracked texture + ember glow seeping from fissures + mist
+# Still a REAL natural stone surface, simple, non-distracting — so DoorDash accepts it.
+# DoorDash rejects: white, transparent, neon, CGI, creative/artificial, props.
+# This stays inside: dark natural stone, real texture, subtle glow (not neon).
+# ─────────────────────────────────────────────────────────────────────────────
+name: door-dash-pro-v2-weird-quarry
+
+# DoorDash: landscape 16:9, minimum 1400x800. 1536x864 keeps SDXL latents on
+# multiples of 8 and sits above the minimum.
+canvas:
+  width: 1536
+  height: 864
+
+style:
+  base: >-
+    professional restaurant menu food photography, editorial delivery-app
+    quality, realistic natural colors, appetizing, exactly as served,
+    ultra-detailed, photorealistic
+  camera: >-
+    shot on 85mm lens at f/2.8, shallow depth of field, tack-sharp focus on
+    the dish, slight 30-degree elevated angle, centered composition
+  lighting: >-
+    one large soft directional key light from the upper left, gentle warm rim
+    light on the right edge of the plate, rich clean shadows, faint wisps of
+    steam where hot, no blown highlights, no harsh flash, subtle ember glow
+    reflecting on the plate edge
+  # WEIRD BUT COMPLIANT: quarry basalt, cracked, ember glow seeping, mist
+  # - Still natural stone (DoorDash requires natural/simple)
+  # - Weird because: cracked basalt, copper mineral veins, ember glow from fissures, light mist, quarry atmosphere
+  # - NOT weird in rejected way: no neon, no CGI, no white, no transparent, no props
+  background: >-
+    dark quarry basalt stone surface with dramatic natural cracked texture and
+    subtle copper mineral veins, faint warm amber ember glow seeping from deep
+    fissures at the far edge, very light natural mist haze, moody artisan quarry
+    atmosphere with deep soft vignette, still a real simple natural stone surface,
+    non-distracting, no props, realistic
+  composition: >-
+    single dish perfectly centered on a matte black ceramic plate, the dish
+    fills about 60 percent of the frame, entire dish visible with an even
+    margin on all sides, nothing else in frame, clean and minimal
+  grade: >-
+    rich natural color grade, high dynamic range, warm shadows, no oversaturation,
+    cinematic but realistic, subtle film grain
+
+  # Everything below is banned (also mirrored into the negative prompt).
+  banned:
+    - "text, watermark, logo, signature, border, frame, letterbox, collage"
+    - "hands, people, faces, plastic utensils, cutlery clutter, spoons, forks"
+    - "second dish, extra food not part of the item, multiple plates"
+    - "white background, transparent background, light background, bright background"
+    - "neon colors, surreal glow, cgi look, 3d render look, plastic look, fake food"
+    - "cartoon, illustration, clip art, stock photo look, painting, drawing"
+    - "blurry, pixelated, stretched, distorted, out of focus, deformed"
+    - "wooden table, wood background, fabric, props, decorations"
+
+# Per-category subject enrichers so each dish type reads correctly.
+categories:
+  grill: "char-grilled marks, glistening juices, freshly off the grill"
+  shawarma: "glistening marinated slices, fresh garlic toum, pickles on the side"
+  burger: "stacked layers visible, fresh vegetables, toasted sesame brioche bun"
+  pizza: "wood-fired char on the crust edge, melted cheese bubbles, fresh herbs, leopard spotting on crust, artisan stone-baked"
+  salad: "crisp fresh leaves, vibrant vegetables, light dressing sheen"
+  dessert: "glistening syrup, fine pistachio crumble, delicate plating"
+  drink: "condensation droplets on the glass, fresh garnish, clear ice, cold"
+  sandwich: "clean cross-section showing the fresh fillings, wrapped neatly"
+  falafel: "crisp golden crust, fluffy green interior, sesame hint"
+  wings: "crispy golden skin, juicy, tossed in sauce, glistening"
+  starters: "crispy golden breading, melty cheese, appetizing"
+  sauces: "small matte black ramekin, creamy texture, rich color, smooth"
+  default: "exactly as served in the restaurant, honest realistic portion, appetizing"
+
+negative_prompt: >-
+  text, watermark, logo, signature, border, frame, letterbox, collage, hands,
+  people, faces, plastic utensils, cutlery clutter, spoons, forks, second dish,
+  extra food, multiple plates, white background, transparent background, light
+  background, bright background, wooden table, wood background, fabric, props,
+  decorations, neon colors, surreal glow, cgi, 3d render, plastic look, fake food,
+  cartoon, illustration, clip art, stock photo look, painting, drawing, blurry,
+  pixelated, stretched, distorted, out of focus, deformed food, deformed, ugly,
+  duplicate, extra limbs, extra fingers, bad anatomy
