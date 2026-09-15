@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add("js");</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Not Found | Antonia's Pizza — San Luis Obispo &amp; Paso Robles</title>
+  <meta name="description" content="That slice is gone. Head back to Antonia's Pizza for the menu, the Ajarski dough boat, and two downtown locations in San Luis Obispo and Paso Robles.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="preload" as="image" href="assets/img/seo/classic-margherita-pizza-fresh-basil-san-luis-obispo.webp" fetchpriority="high">
+  <link rel="canonical" href="https://antoniaspizza.com/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 404 stands alone: no header, no preloader, nothing to wait for. */
+    .nf{min-height:100svh;display:grid;place-items:center;background:var(--navy-2);color:var(--paper);text-align:center;padding:2rem 1.25rem}
+    .nf .code{font-family:var(--font-display);font-weight:800;font-size:clamp(5rem,22vw,11rem);line-height:.9;color:var(--sun)}
+    .nf h1{font-family:var(--font-display);font-size:clamp(1.6rem,5vw,2.6rem);margin:.6rem 0 1rem}
+    .nf p{max-width:46ch;margin:0 auto 2rem;opacity:.85;line-height:1.6}
+    .nf nav{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+  </style>
+  <!-- 2026 strongest — Speculation Rules API prefetch on hover/idle — progressive enhancement — prefetch menu, slo, paso, order, faq -->
+  <script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        "source": "document",
+        "where": {
+          "and": [
+            {"href_matches": "/*"},
+            {"not": {"href_matches": "/assets/*"}},
+            {"not": {"href_matches": "/*.jpg"}},
+            {"not": {"href_matches": "/*.webp"}},
+            {"not": {"href_matches": "/*.avif"}},
+            {"not": {"href_matches": "/*.png"}},
+            {"not": {"href_matches": "https://antoniaspizza.toast.site/*"}}
+          ]
+        },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+  <!-- Plausible 1KB 45x smaller than GA4 — privacy-first cookieless no banner GDPR EU — owner to uncomment after providing domain -->
+  <!-- <script defer data-domain="antoniaspizza.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Web Vitals RUM 2026 — 4-layer: Lighthouse CI, CrUX source truth, RUM web-vitals.js, synthetic — behind ANALYTICS_ENABLED flag in main.js sendBeacon /api/vitals -->
+</head>
+<body>
+  <main class="nf">
+    <div>
+      <p class="code" aria-hidden="true">404</p>
+      <h1>This slice already got eaten.</h1>
+      <p>The page you wanted is not on the menu. The dough is still in the oven, though — here is where everything actually lives.</p>
+      <nav aria-label="Recovery links">
+        <a class="btn" href="index.html">Back to home</a>
+        <a class="btn btn--ghost" href="menu.html">See the menu</a>
+        <a class="btn btn--ghost" href="san-luis-obispo.html">San Luis Obispo</a>
+        <a class="btn btn--ghost" href="paso-robles.html">Paso Robles</a>
+      </nav>
+    </div>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Mobile primary navigation">
+    <div class="bottom-nav__inner">
+      <a class="bottom-nav__item" href="/" data-page="home" aria-current="page" aria-label="Home">
+        <span class="bn-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <span class="bn-label">Home</span>
+      </a>
+      <a class="bottom-nav__item" href="/menu" data-page="menu" aria-label="Menu">
+        <span class="bn-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </span>
+        <span class="bn-label">Menu</span>
+      </a>
+      <a class="bottom-nav__item bottom-nav__item--order" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer" data-page="order" aria-label="Order online">
+        <span class="bn-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </span>
+        <span class="bn-label">Order</span>
+      </a>
+      <a class="bottom-nav__item" href="/#locations" data-page="locations" aria-label="Locations">
+        <span class="bn-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </span>
+        <span class="bn-label">Locations</span>
+      </a>
+    </div>
+  </nav>
+
+</body>
+</html>

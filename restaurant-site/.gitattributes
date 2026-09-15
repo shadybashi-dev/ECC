@@ -1,0 +1,13 @@
+# The site under antonias/ is vendored from the owner's own repository
+# (github.com/shadybashi-dev/antonias). Its files use CRLF line endings.
+# Normalising them would rewrite every line and make any diff against the
+# owner's repo show the whole file as changed, hiding real edits.
+# Treat these as binary-exact: preserve bytes on checkout and commit.
+antonias/** -text
+
+# Our own tooling and docs stay normalised.
+tools/** text eol=lf
+reference/** text eol=lf
+docs/** text eol=lf
+*.md text eol=lf
+*.py text eol=lf

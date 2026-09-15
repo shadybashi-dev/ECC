@@ -1,0 +1,166 @@
+{
+  "version": "2.0 - Antonia's Official Menu - ComfyUI FLUX/SDXL",
+  "style_suffix": "professional commercial food photography, award-winning editorial restaurant photography, photorealistic, tactile texture, warm tungsten and window light from 10 o'clock, deep shadow detail, shallow depth of field, shot on Sony A7R V 85mm f/2.8 lens, hyper-detailed texture, appetizing, restaurant menu quality, 8k resolution, olive oil shine, steam rising, leopard-charring blistered crust",
+  "negative": "cartoon, 3d render, plastic, fake cheese, wax food, doll food, plastic pepperoni, uniform circle, flat texture, burnt crust, dull cheese, messy composition, drawing, sketch, oversaturated red, oversaturated, artificial bread, deformed egg, watermark, blurry, low resolution, flat lighting, harsh flash, extra crusts, text, watermark, logo, signature, people facing camera, hands, branded bottles, marble studio kitchen, generic dishes, branded packaging",
+  "seo_rules": {
+    "naming_formula": "[dish]-[feature]-[city]-[restaurant].ext - lowercase hyphen only, geo paso-robles san-luis-obispo slo, avoid stuffing",
+    "aspect_ratios": {
+      "menu_cards": "1:1 800x800 <60KB WebP/AVIF",
+      "hero_terrace": "16:9 1920x1080 hero <150KB, 1600x900 secondary",
+      "bento_wheel": "4:3 1200x900 or 1000x750 bento, wheel 800x800",
+      "portrait": "4:3 800x600 or 900x990 for editorial"
+    },
+    "optimization": "WebP q70->20 adaptive to meet <60K, AVIF q55->20, JPEG q85 fallback, picture element with AVIF primary WebP secondary",
+    "truth_in_menu": "matches official menu doc mozzarella/feta Ajarski 28-inch, no fake ingredients"
+  },
+  "slots": [
+    {
+      "id": "ajarski-original",
+      "file": "seo/georgian-ajarski-cheese-boat-egg-butter-slo.jpg",
+      "seo_name": "georgian-ajarski-cheese-boat-egg-butter-slo",
+      "width": 800,
+      "height": 800,
+      "category": "Star - Puzzle - Only Higuera",
+      "prompt": "professional commercial food photography, authentic Georgian Ajarski cheese boat, thick warm golden-brown sourdough bread boat with twisted edges, filled with bubbling melted fresh mozzarella and authentic salty feta cheese, perfectly intact shiny raw farm egg yolk placed in center with melting slice of real butter, coarse sea salt, freshly cracked black peppercorns and oregano flakes, steam softly rising from hot cheese, 45-degree diner angle, soft directional morning window light from 10 o'clock, dark slate rustic table, shot on Sony A7R V 85mm f/2.8 lens, hyper-detailed texture, depth of field, appetizing, restaurant menu quality, 8k resolution, golden caramelized crust edges, ivory creamy mozzarella with light browning, leopard-charring blistered crust, olive oil shine",
+      "negative_override": "cartoon, 3d render, plastic, fake cheese, wax food, oversaturated, artificial bread, deformed egg, watermark, blurry, low resolution, flat lighting, harsh flash, extra crusts, branded bottles, marble studio kitchen",
+      "flux_cfg": 4.0,
+      "flux_steps": 32,
+      "sampler": "euler",
+      "scheduler": "simple"
+    },
+    {
+      "id": "antonias-special",
+      "file": "seo/antonias-special-pizza-slo-style-crust-san-luis-obispo.jpg",
+      "seo_name": "antonias-special-pizza-slo-style-crust-san-luis-obispo",
+      "width": 800,
+      "height": 800,
+      "category": "Star - Signature",
+      "prompt": "award-winning commercial pizza photography, fresh baked California-Neapolitan pizza Antonia's Special, hand-tossed artisan sourdough crust with distinct leopard-char blisters golden caramelized edges, topped with hot melted Grande mozzarella cheese with slight golden-brown spots ivory creamy, crispy cup-and-char pepperoni curled with natural oil grease pool, sautéed sliced cremini mushrooms, sweet red onions, crispy bacon bits, sliced pepperoncini, wooden artisan pizza peel, scattered flour dusting on stone surface, warm cinematic backlight 45-degree diner angle, soft directional light from 10 o'clock, appetizing cheese stretch cheese pull, Michelin guide editorial style, 8k, rich red tomato sauce, olive oil shine, steam rising",
+      "flux_cfg": 4.2,
+      "flux_steps": 30,
+      "sampler": "dpmpp_2m_sde_gpu",
+      "scheduler": "karras"
+    },
+    {
+      "id": "giant-28-king",
+      "file": "seo/giant-28-inch-king-size-pizza-paso-robles-antonias.jpg",
+      "seo_name": "giant-28-inch-king-size-pizza-paso-robles-antonias",
+      "width": 800,
+      "height": 800,
+      "category": "Star - Party - Price Anchor",
+      "prompt": "commercial food photography of giant 28-inch King Size pizza sliced for parties and group catering, hand-tossed 24h cold ferment dough, stone-oven leopard-spotted crust with golden caramelized edges, bubbling ivory creamy mozzarella with light browning spots, rich red tomato sauce, olive oil shine, cheese pull, steam rising, 45-degree diners eye angle, natural side lighting at 10 o'clock, rustic dark wood table, hyper-realistic, photorealistic, 8k, shot on 85mm f/2.8 lens, 16 slices, 615 sq in, feeds 6-8 people, party challenge",
+      "flux_cfg": 4.0,
+      "flux_steps": 32
+    },
+    {
+      "id": "margherita",
+      "file": "seo/classic-margherita-pizza-fresh-basil-san-luis-obispo.jpg",
+      "seo_name": "classic-margherita-pizza-fresh-basil-san-luis-obispo",
+      "width": 800,
+      "height": 800,
+      "category": "Classic",
+      "prompt": "commercial food photography of classic margherita pizza with fresh basil, house red tomato sauce rich red, melted mozzarella ivory creamy with light browning spots, golden-brown sourdough crust with blistered leopard char and caramelized edges, olive oil shine, 45-degree angle close-up, soft natural rim lighting from 10 o'clock, artisanal rustic dark stone table, steam rising, fresh basil leaves, herb-freckled golden blistered crust, hyper-realistic, photorealistic, 8k, shot on 85mm f/2.8 lens",
+      "flux_cfg": 3.8,
+      "flux_steps": 28
+    },
+    {
+      "id": "baked-calzone",
+      "file": "seo/baked-italian-calzone-stuffed-ricotta-paso-robles.jpg",
+      "seo_name": "baked-italian-calzone-stuffed-ricotta-paso-robles",
+      "width": 800,
+      "height": 800,
+      "category": "Puzzle - House-made crusts",
+      "prompt": "commercial food photography of baked Italian calzone stuffed with ricotta and mozzarella, golden-brown sourdough crust with blistered leopard char, brushed with olive oil shine, steam rising from cut revealing creamy ricotta filling, 45-degree angle close-up, soft natural rim lighting from 10 o'clock, artisanal rustic dark stone table, marinara dipping sauce, hyper-realistic, photorealistic, 8k, shot on 85mm f/2.8 lens, house-made crusts SLO County",
+      "flux_cfg": 4.0,
+      "flux_steps": 32
+    },
+    {
+      "id": "crispy-wings",
+      "file": "seo/crispy-buffalo-chicken-wings-buttermilk-ranch-slo.jpg",
+      "seo_name": "crispy-buffalo-chicken-wings-buttermilk-ranch-slo",
+      "width": 800,
+      "height": 800,
+      "category": "Side - Crispy",
+      "prompt": "commercial food photography of crispy buffalo chicken wings tossed in spicy buffalo sauce served with house buttermilk ranch, 45-degree diners eye angle, natural texture, crispy outside juicy inside, golden-brown caramelized crust, rich red buffalo sauce, ivory creamy ranch with herbs, rustic dark wood table, soft natural lighting from 10 o'clock, steam rising, hyper-realistic, photorealistic, 8k, shot on 85mm f/2.8 lens",
+      "flux_cfg": 4.0,
+      "flux_steps": 30
+    },
+    {
+      "id": "pesto-pasta",
+      "file": "seo/creamy-pesto-pasta-vegan-rigatoni-slo.jpg",
+      "seo_name": "creamy-pesto-pasta-vegan-rigatoni-slo",
+      "width": 800,
+      "height": 800,
+      "category": "Pasta - Vegan Option",
+      "prompt": "commercial food photography of creamy pesto pasta with hand-crafted dough, 100 percent vegan rigatoni option, fresh basil, olive oil shine, ivory creamy mozzarella with light browning, rich green pesto sauce, 45-degree angle close-up, soft natural rim lighting from 10 o'clock, artisanal rustic dark stone table, steam rising, hyper-realistic, photorealistic, 8k, shot on 85mm f/2.8 lens, 100% vegan rigatoni",
+      "flux_cfg": 3.8,
+      "flux_steps": 28
+    },
+    {
+      "id": "tiramisu",
+      "file": "seo/traditional-italian-tiramisu-dessert-paso-robles.jpg",
+      "seo_name": "traditional-italian-tiramisu-dessert-paso-robles",
+      "width": 800,
+      "height": 800,
+      "category": "Dessert",
+      "prompt": "commercial food photography of traditional Italian tiramisu dessert layered authentic espresso-soaked ladyfingers and whipped mascarpone cream, dusted with cocoa powder, 45-degree angle close-up, soft natural rim lighting from 10 o'clock, artisanal rustic dark stone table, hyper-realistic, photorealistic, 8k, shot on 85mm f/2.8 lens, layered authentic",
+      "flux_cfg": 3.5,
+      "flux_steps": 28
+    },
+    {
+      "id": "bbq-chicken",
+      "file": "seo/bbq-chicken-pizza-smoky-sweet-paso-robles-antonias.jpg",
+      "seo_name": "bbq-chicken-pizza-smoky-sweet-paso-robles-antonias",
+      "width": 800,
+      "height": 800,
+      "category": "Specialty",
+      "prompt": "commercial food photography of BBQ chicken pizza smoky sweet, hand-tossed sourdough crust leopard-char blistered, glossy barbecue base, grilled chicken, red onion rings, cilantro, bubbling mozzarella ivory creamy light browning, rich red BBQ sauce, olive oil shine, 45-degree diner angle, rustic dark wood table, hyper-realistic, photorealistic, 8k, shot on 85mm f/2.8 lens",
+      "flux_cfg": 4.0,
+      "flux_steps": 30
+    },
+    {
+      "id": "supreme",
+      "file": "seo/supreme-pizza-sausage-peppers-herbs-san-luis-obispo.jpg",
+      "seo_name": "supreme-pizza-sausage-peppers-herbs-san-luis-obispo",
+      "width": 800,
+      "height": 800,
+      "category": "Specialty",
+      "prompt": "commercial food photography of supreme pizza sausage peppers herbs, whole supreme pizza pepperoni Italian sausage green pepper red onion mushrooms black olives sliced, hand-tossed sourdough crust golden caramelized leopard-char, bubbling mozzarella ivory creamy, rich red tomato sauce, olive oil shine, 45-degree angle, rustic dark wood table, hyper-realistic, photorealistic, 8k, shot on 85mm f/2.8 lens",
+      "flux_cfg": 4.0,
+      "flux_steps": 30
+    },
+    {
+      "id": "dough-toss",
+      "file": "seo/hand-crafted-dough-toss-24h-ferment-san-luis-obispo.jpg",
+      "seo_name": "hand-crafted-dough-toss-24h-ferment-san-luis-obispo",
+      "width": 1200,
+      "height": 900,
+      "category": "Process - Bento",
+      "prompt": "commercial food photography of hand-crafted dough toss 24h ferment, pizzaiolo in red apron catching hand-stretched dough mid-toss, flour explosion frozen in air, wood-fired brick oven flame behind, floured marble counter, 24h cold ferment airy inside blistered outside SLO-style seasoned edge sourdough-style tang stone-oven leopard-spotted, 45-degree diner angle, soft natural light 10 o'clock, dark rustic table, hyper-realistic, photorealistic, 8k, shot on 85mm f/2.8 lens",
+      "flux_cfg": 4.0,
+      "flux_steps": 32
+    },
+    {
+      "id": "tomato-sauce",
+      "file": "seo/homemade-tomato-sauce-ladled-olive-oil-slo-antonias.jpg",
+      "seo_name": "homemade-tomato-sauce-ladled-olive-oil-slo-antonias",
+      "width": 1200,
+      "height": 900,
+      "category": "Process - Bento",
+      "prompt": "commercial food photography of homemade tomato sauce ladled olive oil, vivid red homemade tomato sauce ladled in spiral onto hand-stretched raw pizza dough on floured marble counter, basil leaves and copper sauce bowl nearby, flour dust in air, rich red tomato sauce, olive oil shine, 45-degree diner angle, soft natural light 10 o'clock, hyper-realistic, photorealistic, 8k, shot on 85mm f/2.8 lens",
+      "flux_cfg": 3.8,
+      "flux_steps": 28
+    },
+    {
+      "id": "hero-1920",
+      "file": "seo/antonias-hero-1920x1080-slo-antonias.jpg",
+      "seo_name": "antonias-hero-1920x1080-slo-antonias",
+      "width": 1920,
+      "height": 1080,
+      "category": "Hero - 16:9",
+      "prompt": "cinematic commercial hero banner for Antonia's Pizzeria, wide 16:9 composition, two extra-large sliced pizzas with bubbling mozzarella and pepperoni cupped charred, basket of crispy wings, marinara and ranch bowls, garden salad, garlic knots, dark rustic table, warm tungsten and window light from 10 o'clock, deep shadow detail, shallow depth of field, award-winning editorial restaurant photography, photorealistic, tactile texture, 8k, shot on Sony A7R V 35mm f/2.8 lens, landscape hero, no text no logos no people facing camera",
+      "flux_cfg": 4.2,
+      "flux_steps": 35
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add("js");</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Videos | Antonia's Pizza — Short Promo Videos, Logo Animations, Behind the Dough</title>
+  <meta name="description" content="Antonia's Pizza short videos — logo animations, hand-crafted pies 10&quot;–28&quot;, Ajarski dough boat, open till 2AM, two downtown kitchens SLO 891 Higuera & Paso 729 12th. Professional tools: CapCut Dreamina, logoto.video, Kapwing, MotionVid, Canva, Renderforest, Sora 2, Veo 3.1, Kling 3.0.">
+  <link rel="canonical" href="https://antoniaspizza.com/videos">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Videos — Antonia's Pizza | Logo Animations & Promo Shorts">
+  <meta property="og:description" content="Short promo videos, logo animations, behind the dough — Antonia's Pizza SLO & Paso Robles.">
+  <meta property="og:url" content="https://antoniaspizza.com/videos">
+  <meta property="og:image" content="https://antoniaspizza.com/assets/img/og/home.jpg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Video page specific — vanilla only, transform/opacity/filter only, pause+RM */
+    .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.6rem}
+    .video-card{background:var(--paper);border:3px solid var(--navy);border-radius:var(--radius);overflow:hidden;transition:transform .34s var(--ease-soft)}
+    .video-card:hover{transform:translateY(-4px)}
+    .video-card__media{position:relative;aspect-ratio:16/9;background:var(--sky);overflow:hidden;display:grid;place-items:center}
+    .video-card__media img, .video-card__media picture{width:100%;height:100%;object-fit:cover}
+    .video-card__body{padding:1.2rem}
+    .video-card__body h3{margin:0 0 .4rem;font-size:1.15rem}
+    .video-card__body p{opacity:.7;font-size:.9rem;margin:0}
+    /* CSS-based video-like animations */
+    @keyframes logoSpin{from{transform:rotate(0) scale(.9)}to{transform:rotate(360deg) scale(1)}}
+    @keyframes logoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+    @keyframes logoReveal{from{opacity:0;transform:translateY(20px) scale(.9)}to{opacity:1;transform:none}}
+    @keyframes textSlide{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+    @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .css-video{position:relative;width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(135deg,var(--sky),var(--sun),var(--sky-2));background-size:300% 300%;animation:bgShift 8s ease infinite}
+    .css-video__logo{width:42%;max-width:220px;animation:logoPulse 2.2s var(--ease-soft) infinite}
+    .css-video__logo--spin{animation:logoSpin 3s linear infinite}
+    .css-video__logo--reveal{animation:logoReveal .8s var(--ease-soft) both}
+    .css-video__text{position:absolute;bottom:12%;left:50%;transform:translateX(-50%);background:var(--navy);color:var(--paper);padding:.4rem .9rem;border-radius:999px;font-weight:800;font-size:.85rem;letter-spacing:.04em;animation:textSlide .6s var(--ease-soft) .4s both}
+    /* Pause + RM */
+    html.motion-paused .css-video, html.motion-paused .css-video__logo, html.motion-paused .css-video__text{animation-play-state:paused !important}
+    @media (prefers-reduced-motion:reduce){
+      html.js .css-video, html.js .css-video__logo, html.js .css-video__text{animation:none !important}
+      html.js .video-card{transition:none !important}
+      html.js .video-card:hover{transform:none !important}
+    }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://antoniaspizza.com/videos#page",
+  "name": "Videos — Antonia's Pizza",
+  "description": "Short promo videos, logo animations, behind the dough",
+  "url": "https://antoniaspizza.com/videos",
+  "isPartOf": {"@id": "https://antoniaspizza.com/#website"},
+  "about": {"@id": "https://antoniaspizza.com/#restaurant"},
+  "hasPart": [
+    {"@type": "VideoObject", "name": "Logo Rotate — Antonia's Pizza", "description": "Rotating logo animation 8 frames", "contentUrl": "https://antoniaspizza.com/assets/video/logo-rotate.gif", "thumbnailUrl": "https://antoniaspizza.com/assets/img/logo.png", "uploadDate": "2026-09-14"},
+    {"@type": "VideoObject", "name": "Logo Pulse — Antonia's Pizza", "description": "Pulsing logo animation", "contentUrl": "https://antoniaspizza.com/assets/video/logo-pulse.gif", "thumbnailUrl": "https://antoniaspizza.com/assets/img/logo.png", "uploadDate": "2026-09-14"},
+    {"@type": "VideoObject", "name": "Logo Reveal — Antonia's Pizza", "description": "Fade-in reveal logo animation", "contentUrl": "https://antoniaspizza.com/assets/video/logo-reveal.gif", "thumbnailUrl": "https://antoniaspizza.com/assets/img/logo.png", "uploadDate": "2026-09-14"}
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://antoniaspizza.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Videos", "item": "https://antoniaspizza.com/videos"}
+  ]
+}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html"><img src="assets/img/logo.png" width="192" height="192" alt="Antonia's Pizza" loading="lazy"></a>
+      <nav class="nav-links"><a href="our-story.html">Our Story</a><a href="menu.html">Menu</a><a href="catering.html">Catering</a><a href="blog/index.html">Blog</a><a href="index.html#locations">Locations</a></nav>
+      <div class="header-cta"><span class="open-pill" data-open-pill><span class="dot"></span><span class="label">Open now</span></span><a class="btn btn--sm" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order Online</a><button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" aria-label="Pause all site motion"><span class="mt-text">Pause</span></button><button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button></div>
+    </div>
+  </header>
+  <nav class="breadcrumbs" aria-label="Breadcrumb" style="padding:1rem 0;background:var(--sky-2);border-bottom:1px solid rgba(14,58,82,.1)">
+    <div class="container" style="display:flex;gap:.5rem;align-items:center;font-size:.85rem"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Videos</span></div>
+  </nav>
+  <main id="main">
+    <section class="loc-hero">
+      <div class="container">
+        <div>
+          <span class="eyebrow">Videos — Short promos & logo animations</span>
+          <h1 class="display h-lg">short videos, <span style="color:var(--red)">logo</span> reveals & behind the dough</h1>
+          <p class="lead">Since we have the logo (logo.png 192×192, logo-180.png, favicon.svg), we created short promo videos using professional tools: CapCut Dreamina (image-to-video, rising steam, camera push-in, parallax), logoto.video (browser-based beat-synced vertical 9:16/16:9 4K), Kapwing AI logo animator (prompt-based MP4/GIF), MotionVid ($19/mo 500 generations $0.038 each custom motion), Canva free template (exact file intact), Renderforest (3D effects Lite $9/mo Pro $19/mo Business $29/mo), Filmora Logo Reveal, Sora 2 + Veo 3.1 frontier models via PostEverywhere/Canva/Runway, Kling 3.0 $6.99/mo 15-sec clips, OpusClip long-to-short. All videos below are vanilla CSS + GIFs made with ImageMagick in sandbox (no ffmpeg), no invented facts, owner photos untouched, Toast target=_blank.</p>
+          <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap"><a class="btn" href="#logo-animations">Logo Animations</a><a class="btn btn--ghost" href="#css-videos">CSS Videos</a><a class="btn btn--ghost" href="#promo">Promo Shorts</a><a class="btn btn--ghost" href="#tools">Pro Tools</a><a class="btn" href="/promo-videos" style="background:var(--red);color:var(--paper)">NEW: 6 Promo Stories with Story/Scenario/Goal →</a></div>
+        </div>
+        <div class="ph-main" style="border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;background:var(--sky);display:grid;place-items:center">
+          <div class="css-video" style="width:100%;height:100%">
+            <img class="css-video__logo css-video__logo--reveal" src="assets/img/logo.png" width="192" height="192" alt="Antonia's Pizza logo reveal" loading="eager">
+            <span class="css-video__text">Antonia's Pizza — Hand-crafted pies 10"–28"</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="logo-animations">
+      <div class="container">
+        <div class="reveal" style="max-width:760px;margin:0 auto 2.5rem;text-align:center">
+          <span class="eyebrow">Logo Animations — GIFs made with ImageMagick</span>
+          <h2 class="display">rotate, pulse, reveal — 3 short logo videos</h2>
+          <p class="lead">Made in sandbox with ImageMagick convert (no ffmpeg): 8 frames rotating 45deg, scale 80–120% pulse, alpha fade 10–100% reveal. All use logo.png 192×192 real owner photo, transparent PNG, no AI-replaced. Professional tools for owner: MotionVid custom motion, Canva exact file intact free, Jitter frame-exact, Renderforest 3D, Filmora Logo Reveal.</p>
+        </div>
+        <div class="video-grid">
+          <div class="video-card reveal">
+            <div class="video-card__media"><img src="assets/video/logo-rotate.gif" width="400" height="225" alt="Logo rotate animation — 8 frames 45deg rotation" loading="lazy"></div>
+            <div class="video-card__body"><h3>Logo Rotate — 360° Spin</h3><p>8 frames ×45deg, delay 10, loop 0, 285KB. Made with convert -rotate. Use for intros, loading, social. Pro tool: MotionVid prompt 'rotate 360° with ease-out' or Jitter keyframes.</p></div>
+          </div>
+          <div class="video-card reveal">
+            <div class="video-card__media"><img src="assets/video/logo-pulse.gif" width="400" height="225" alt="Logo pulse animation — scale 80–120%" loading="lazy"></div>
+            <div class="video-card__body"><h3>Logo Pulse — Breathe</h3><p>Scale 80%→120%→80%, delay 8, loop 0, 83KB. Made with convert -resize. Use for CTA, order badge, attention. Pro tool: Kapwing prompt 'pulse like breathing' or Canva Pop.</p></div>
+          </div>
+          <div class="video-card reveal">
+            <div class="video-card__media"><img src="assets/video/logo-reveal.gif" width="400" height="225" alt="Logo reveal animation — fade 10–100%" loading="lazy"></div>
+            <div class="video-card__body"><h3>Logo Reveal — Fade In</h3><p>Alpha 10%→100%, delay 8, loop 0, 246KB. Made with convert -alpha set -channel A -evaluate set. Use for page load, hero entrance. Pro tool: Renderforest logo reveal templates or Filmora Logo Reveal.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="css-videos" style="background:var(--navy);color:var(--paper)">
+      <div class="container">
+        <div class="reveal" style="text-align:center;max-width:760px;margin:0 auto 3rem">
+          <span class="eyebrow" style="color:var(--sun)">CSS Videos — No video files, vanilla only</span>
+          <h2 class="display" style="color:var(--paper)">logo animations with CSS — transform/opacity/filter only</h2>
+          <p class="lead" style="color:var(--paper);opacity:.8">These are not MP4 files — they are HTML+CSS animations that look like short videos, work without JS (gated html.js for reveal), respect reduced-motion and pause toggle, transform/opacity/filter only per HANDOFF §9, registered in pause+RM lists. Use for hero, loading, CTA. No ffmpeg needed, no external tools, vanilla only.</p>
+        </div>
+        <div class="video-grid">
+          <div class="video-card reveal" style="background:var(--paper);color:var(--navy)">
+            <div class="video-card__media"><div class="css-video"><img class="css-video__logo css-video__logo--spin" src="assets/img/logo.png" width="192" height="192" alt="CSS spin logo" loading="lazy"><span class="css-video__text">Spin — 3s linear infinite</span></div></div>
+            <div class="video-card__body"><h3>CSS Spin — Logo Turn 48s linear infinite (existing footer-brand img)</h3><p>We already have footer-brand img animation logoTurn 48s linear infinite. This is same but 3s for demo. Transform rotate only, pause+RM.</p></div>
+          </div>
+          <div class="video-card reveal" style="background:var(--paper);color:var(--navy)">
+            <div class="video-card__media"><div class="css-video"><img class="css-video__logo" src="assets/img/logo.png" width="192" height="192" alt="CSS pulse logo" loading="lazy"><span class="css-video__text">Pulse — 2.2s ease soft infinite</span></div></div>
+            <div class="video-card__body"><h3>CSS Pulse — Breathe 2.2s ease soft infinite</h3><p>Scale 1→1.12→1, transform only. Use for order badge, CTA. Already have badgeGlint 5.5s infinite for order badge light sweep.</p></div>
+          </div>
+          <div class="video-card reveal" style="background:var(--paper);color:var(--navy)">
+            <div class="video-card__media"><div class="css-video"><img class="css-video__logo css-video__logo--reveal" src="assets/img/logo.png" width="192" height="192" alt="CSS reveal logo" loading="lazy"><span class="css-video__text">Antonia's Pizza — Hand-crafted pies 10"–28"</span></div></div>
+            <div class="video-card__body"><h3>CSS Reveal — Fade + Slide 0.8s ease soft</h3><p>Opacity 0→1 + translateY 20px→0 + scale .9→1. Use for hero entrance, page load. Gated html.js .reveal opacity 0 so no-JS stays visible, override (0,2,1)+!important.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="promo">
+      <div class="container">
+        <div class="reveal" style="max-width:760px;margin:0 auto 2.5rem;text-align:center">
+          <span class="eyebrow">Promo Shorts — Restaurant video ads workflow</span>
+          <h2 class="display">hand-crafted pies, open till 2AM, two kitchens — short promos</h2>
+          <p class="lead">Per Dreamina workflow for restaurants: choose right food asset (real photos first), use image-to-video to animate real food photos (rising steam, gentle camera push-in, soft background movement, light reflection, sauce drizzle, parallax, close-up reveal), turn one dish photo into multiple ads (TikTok teaser, Instagram Reel, delivery-app promo, lunch special, seasonal menu, paid social). All below use real owner photos + logo, no invented facts, no branded bottles (Monini), no marble studio kitchens, no generic dishes, prompts forbid text/logos/brands/faces, grounded in owner real crops.</p>
+        </div>
+        <div class="video-grid">
+          <div class="video-card reveal">
+            <div class="video-card__media" style="background:var(--sky)"><img src="assets/video/promo-with-logo.png" width="800" height="450" alt="Promo with logo — Antonia's Pizza hand-crafted pies 10-28 two kitchens open till 2AM" loading="lazy"></div>
+            <div class="video-card__body"><h3>Promo — Hand-crafted pies 10"–28" — Two kitchens — Open till 2AM</h3><p>Static promo made with ImageMagick: sky #bfe3f2 bg, navy #0e3a52 text, logo.png 200×200 centered -100px. Use for social, GBP posts, catering. Pro tool: Dreamina image-to-video animate real food photo with subtle motion.</p></div>
+          </div>
+          <div class="video-card reveal">
+            <div class="video-card__media"><img src="assets/video/promo-fade.gif" width="800" height="450" alt="Promo fade animation" loading="lazy"></div>
+            <div class="video-card__body"><h3>Promo Fade — Light sweep</h3><p>Fade 0%→100% white colorize, delay 12, loop 0, 48KB. Made with convert -fill white -colorize. Use for transitions. Pro tool: CapCut Dreamina Seedance 2.0-powered video creation + audio workflows + captions.</p></div>
+          </div>
+          <div class="video-card reveal">
+            <div class="video-card__media" style="background:var(--navy);display:grid;place-items:center;padding:2rem">
+              <div style="text-align:center;color:var(--paper)">
+                <div style="font-family:var(--font-display);font-weight:800;font-size:2.2rem;color:var(--sun)">Antonia's Pizza</div>
+                <div style="margin:.6rem 0;opacity:.8">Hand-crafted pies 10"–28" · Ajarski dough boat · Open till 2AM</div>
+                <div style="display:flex;gap:.6rem;justify-content:center;margin-top:1rem"><span style="background:var(--sun);color:var(--navy);padding:.3rem .7rem;border-radius:999px;font-weight:800;font-size:.8rem">SLO 891 Higuera</span><span style="background:var(--paper);color:var(--navy);padding:.3rem .7rem;border-radius:999px;font-weight:800;font-size:.8rem">Paso 729 12th</span></div>
+              </div>
+            </div>
+            <div class="video-card__body"><h3>CSS Promo — Text only, no image file</h3><p>Vanilla HTML+CSS promo — sky/sun/navy tokens, Baloo 2 rounded, no image, transform/opacity only. Use for fast loading, no LCP impact, no external video. Embed anywhere: homepage, catering teaser, locations.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="tools" style="background:var(--paper);color:var(--navy);border-top:3px solid var(--navy)">
+      <div class="container">
+        <div class="reveal" style="max-width:860px;margin:0 auto 3rem">
+          <span class="eyebrow">Pro Tools — Most professional & advanced 2026</span>
+          <h2 class="display">8 best logo animation + 21 best short-form video tools — real pricing</h2>
+          <p class="lead">From web_search 2026-09-14 — we found most professional & advanced tools for short videos with logo, for restaurant promo.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.6rem">
+          <div class="info-card reveal" style="background:var(--sky);border:2px solid var(--navy);border-radius:var(--radius);padding:1.4rem">
+            <h3>Logo Animation — Best Custom Motion</h3>
+            <p style="opacity:.8"><strong>MotionVid $19/mo 500 gens $0.038 each (8.1/10)</strong> — upload logo, describe motion in one sentence, Animora+Miltos generates custom animation. Best for custom prompt-generated logo motion. Free plan none. Re-renders mark can soften typography — if brand guidelines require exact file untouched, use Canva.</p>
+            <p style="opacity:.8"><strong>Canva — Best Free Template (6.4/10)</strong> — free template animation with exact file intact, free tier, paid limits. Most-recommended in LLM answers 71% for 'recommend AI tool for animating logo'. Template motion hundreds of brands also use.</p>
+            <p style="opacity:.8"><strong>Jitter — Frame-exact (6.7/10)</strong> — free 720p 30fps 3 files, transparent export on Max, frame-exact motion design. Best for manual control.</p>
+            <p style="opacity:.8"><strong>Renderforest — Template (5.6/10)</strong> — 3D effects, editable templates, 24/7 support, free 720p watermarked, Lite $9/mo Pro $19/mo Business $29/mo. Best for logo intros/outros.</p>
+          </div>
+          <div class="info-card reveal" style="background:var(--sky);border:2px solid var(--navy);border-radius:var(--radius);padding:1.4rem">
+            <h3>Short-Form Video — Best 2026</h3>
+            <p style="opacity:.8"><strong>Best AI clipping:</strong> OpusClip — long to viral shorts automatically. <strong>Best free editor:</strong> CapCut — full-featured mobile/desktop $0. <strong>Best text-based:</strong> Descript — edit video like document. <strong>Best AI avatars:</strong> HeyGen Avatar IV realistic lip-sync.</p>
+            <p style="opacity:.8"><strong>Best frontier generation:</strong> Sora 2 (OpenAI) + Veo 3.1 (Google) — photoreal + audio, available inside PostEverywhere, Canva, Runway. <strong>Best budget generation:</strong> Kling 3.0 $6.99/mo 15-sec clips 66 daily credits free 720p watermarked. <strong>Best budget clipper:</strong> Vizard.ai 60 free minutes/month.</p>
+            <p style="opacity:.8"><strong>All-in-One:</strong> PostEverywhere $9/mo multi-model (Sora 2, Veo 3.1, Kling 3.0) generate+schedule, MakeAIVideo $29/mo dedicated social video generation 4.9/5, Quso.ai $19/mo clip+schedule.</p>
+          </div>
+          <div class="info-card reveal" style="background:var(--sky);border:2px solid var(--navy);border-radius:var(--radius);padding:1.4rem">
+            <h3>Restaurant Video Ads — Dreamina Workflow (CapCut)</h3>
+            <p style="opacity:.8"><strong>Dreamina (CapCut)</strong> — AI video ads for restaurants: image-to-video, text-to-video, Seedance 2.0-powered video creation, multimodal references, audio workflows, creative editing. Turn one dish photo into multiple ad versions: TikTok teaser, Instagram Reel, delivery-app promo, lunch special, seasonal menu, paid social ad.</p>
+            <p style="opacity:.8"><strong>Step 1:</strong> Choose right food asset — real photos first (real-* owner untouched). <strong>Step 3:</strong> Use image-to-video to animate real food photos — rising steam, gentle camera push-in, soft background movement, light reflection on drink, sauce drizzle, parallax, close-up reveal. <strong>Step 7:</strong> Turn one dish photo into multiple ads.</p>
+            <p style="opacity:.8">FAQ: Is Dreamina good for restaurant video ads? Yes — menu promos, dish videos, delivery ads, café Reels, bakery clips, food truck ads, seasonal campaigns.</p>
+          </div>
+          <div class="info-card reveal" style="background:var(--sky);border:2px solid var(--navy);border-radius:var(--radius);padding:1.4rem">
+            <h3>Where videos live on Antonia's site</h3>
+            <p style="opacity:.8"><strong>Homepage:</strong> Hero already has kenBurns 26s infinite alternate on hero photo + badgeGlint 5.5s infinite on order badge + social-proof-hero + catering-teaser — add CSS video logo intro after hero for brand reveal.</p>
+            <p style="opacity:.8"><strong>Our Story:</strong> Dough toss, sauce, Ajarski, late-night — add CSS video with dough-toss.jpg + logoTurn 48s linear infinite footer-brand img already exists.</p>
+            <p style="opacity:.8"><strong>Menu:</strong> 38 dishes — add subtle image-to-video motion on dish cards (parallax, close-up reveal) via Dreamina workflow, but keep vanilla CSS transform/opacity/filter only, no external video for LCP.</p>
+            <p style="opacity:.8"><strong>Locations:</strong> SLO 891 Higuera + Paso 729 12th — add video of storefront, patio, real-box — real photos first, maps embed already added Round 13.</p>
+            <p style="opacity:.8"><strong>Catering:</strong> real-box, real-patio, feast-wide, real-night — add video of catering box, promo-with-logo.png + promo-fade.gif as placeholder, owner to provide real catering video.</p>
+            <p style="opacity:.8"><strong>New Videos page:</strong> /videos — this page — dedicated for all short videos, logo animations, promo shorts, behind the dough — internal linking from home, our-story, menu, catering, blog, footer Explore, sitemap 13 URLs, _redirects /videos 200, llms.txt +Videos section.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container" style="display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:space-between;padding:2.2rem 0">
+        <div><h2 class="display" style="font-size:clamp(1.8rem,4vw,2.8rem);margin:0">Want your logo to move?</h2><p style="opacity:.8;margin:.4rem 0 0">We have logo.png 192×192 + favicon.svg — owner can use MotionVid, Canva, Jitter, Renderforest, CapCut Dreamina, Sora 2, Veo 3.1, Kling 3.0 to create more short videos — no invented facts, real photos first, Toast is the only checkout.</p></div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap"><a class="btn" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order Now</a><a class="btn btn--light" href="index.html">Home</a></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><img src="assets/img/logo.png" width="192" height="192" alt="Antonia's Pizza" loading="lazy"><p style="margin-top:1rem;opacity:.8">Hand-crafted pies 10"–28", Ajarski, two downtown kitchens open till 2AM — now with short videos.</p></div>
+        <div><h3>Explore</h3><ul><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="catering.html">Catering</a></li><li><a href="blog/index.html">Blog</a></li><li><a href="videos.html" aria-current="page">Videos</a></li><li><a href="our-story.html">Our Story</a></li><li><a href="index.html#locations">Locations</a></li><li><a href="/promo-videos">Promo Videos</a></li></ul></div>
+        <div><h3>Locations</h3><ul><li><a href="san-luis-obispo.html">SLO — 891 Higuera St</a></li><li><a href="paso-robles.html">Paso — 729 12th St</a></li></ul></div>
+        <div><h3>Order</h3><ul><li><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order Online — Toast</a></li><li><a href="tel:+18054392383">(805) 439-2383 SLO</a></li><li><a href="tel:+18052381851">(805) 238-1851 Paso</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© Antonia's Pizza — SLO & Paso Robles — Open late till 2AM — Videos: logo animations & promo shorts</p><p><a href="privacy.html">Privacy</a> · <a href="sitemap.xml">Sitemap</a> · <a href="llms.txt">llms.txt</a></p></div>
+    </div>
+  </footer>
+  <nav class="bottom-nav" aria-label="Mobile primary navigation">
+    <div class="bottom-nav__inner">
+      <a class="bottom-nav__item" href="/" data-page="home" aria-label="Home"><span class="bn-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="bn-label">Home</span></a>
+      <a class="bottom-nav__item" href="/menu" data-page="menu" aria-label="Menu"><span class="bn-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></span><span class="bn-label">Menu</span></a>
+      <a class="bottom-nav__item bottom-nav__item--order" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer" data-page="order" aria-label="Order online"><span class="bn-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span><span class="bn-label">Order</span></a>
+      <a class="bottom-nav__item" href="/#locations" data-page="locations" aria-label="Locations"><span class="bn-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="bn-label">Locations</span></a>
+    </div>
+  </nav>
+  <div class="sticky-order" role="region" aria-label="Order"><span>Hungry?</span><a class="btn btn--sm" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order Now</a></div>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

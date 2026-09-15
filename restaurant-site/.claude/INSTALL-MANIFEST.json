@@ -1,0 +1,501 @@
+{
+  "name": "Antonia’s Pizza — Restaurant Web Build Kit",
+  "version": "2.0.0",
+  "generatedAt": "2026-09-14",
+  "purpose": "Curated advanced web-build models + specialist agents for rebuilding and developing a real two-location restaurant website: strongest UI, realistic food imagery (ComfyUI/fal.ai), conversion psychology & priming, SEO/GEO, performance, accessibility, QA, deployment.",
+  "installRoot": ".claude/",
+  "counts": {
+    "skills": 58,
+    "layer1_ecc_curated": 47,
+    "layer2_anthropic_official": 2,
+    "layer3_community": 4,
+    "layer4_project_authored": 5,
+    "agents": 27,
+    "agentsAuthored": 6,
+    "rulePacks": [
+      "common",
+      "react",
+      "typescript",
+      "web"
+    ]
+  },
+  "securityVetting": {
+    "method": "skills/skill-scout policy — read frontmatter + body, grep for shell/network/credential patterns, verify referenced files exist",
+    "externalSkillsScanned": 6,
+    "findings": "comfyui_api.py connects only to http://127.0.0.1:8188 and shells out solely to curl.exe/wslpath for the WSL2 localhost bridge. No credential handling, no external network, no eval/exec.",
+    "rejected": [
+      {
+        "id": "brand-guidelines",
+        "source": "anthropics/skills",
+        "reason": "Anthropic corporate identity — irrelevant to a restaurant"
+      },
+      {
+        "id": "web-artifacts-builder",
+        "source": "anthropics/skills",
+        "reason": "Ships shell scripts that npm-install at runtime; built for single-file claude.ai artifacts, not a production site"
+      }
+    ],
+    "ciImpact": "none — scripts/ci/validate-skills.js scans skills/ and docs/{locale}/skills/ only, never .claude/skills/"
+  },
+  "repoHygiene": {
+    "note": "The official installer auto-expanded to 623 operations / 131 skills (all programming languages) and npm install rewrote yarn.lock. Both were reverted; the kit is installed selectively inside restaurant-site/ instead.",
+    "yarnLockRestored": true,
+    "repoRootClean": true
+  },
+  "skills": [
+    {
+      "id": "accessibility",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "api-design",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "arabic-rtl-best-practices",
+      "layer": 3,
+      "origin": "alMubarmij/Arabic-Coding-Skills — community, MIT"
+    },
+    {
+      "id": "arabic-rtl-mobile",
+      "layer": 3,
+      "origin": "alMubarmij/Arabic-Coding-Skills — community, MIT"
+    },
+    {
+      "id": "backend-patterns",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "benchmark-methodology",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "brand-discovery",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "brand-voice",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "browser-qa",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "canary-watch",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "ck",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "click-path-audit",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "coding-standards",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "comfyui-image-generation",
+      "layer": 3,
+      "origin": "MastroMimmo/comfyui-claude-skill — community, MIT (CLI talks only to 127.0.0.1:8188)"
+    },
+    {
+      "id": "competitive-platform-analysis",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "competitive-report-structure",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "content-engine",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "conversion-psychology",
+      "layer": 4,
+      "origin": "authored in-project — synthesis of 2026 research + live site audit"
+    },
+    {
+      "id": "data-scraper-agent",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "deep-research",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "delivery-gate",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "deployment-patterns",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "design-system",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "e2e-testing",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "error-handling",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "fal-ai-media",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "food-photography-generation",
+      "layer": 4,
+      "origin": "authored in-project — synthesis of 2026 research + live site audit"
+    },
+    {
+      "id": "frontend-a11y",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "frontend-design",
+      "layer": 2,
+      "origin": "anthropics/skills — official upstream (guidance only, no scripts)"
+    },
+    {
+      "id": "frontend-design-direction",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "frontend-patterns",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "git-workflow",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "make-interfaces-feel-better",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "market-research",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "marketing-campaign",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "motion-advanced",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "motion-foundations",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "motion-patterns",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "motion-ui",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "neuromarketing-priming",
+      "layer": 4,
+      "origin": "authored in-project — synthesis of 2026 research + live site audit"
+    },
+    {
+      "id": "nextjs-turbopack",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "orch-build-mvp",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "plan-canvas",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "product-lens",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "production-audit",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "react-patterns",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "react-performance",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "react-testing",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "restaurant-web-blueprint",
+      "layer": 4,
+      "origin": "authored in-project — synthesis of 2026 research + live site audit"
+    },
+    {
+      "id": "security-review",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "seo",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "skill-scout",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "theme-factory",
+      "layer": 2,
+      "origin": "anthropics/skills — official upstream (10 themes + showcase PDF)"
+    },
+    {
+      "id": "ui-demo",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "ui-stack-excellence",
+      "layer": 4,
+      "origin": "authored in-project — synthesis of 2026 research + live site audit"
+    },
+    {
+      "id": "ux-writing-arabic",
+      "layer": 3,
+      "origin": "alMubarmij/Arabic-Coding-Skills — community, MIT"
+    },
+    {
+      "id": "verification-loop",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    },
+    {
+      "id": "vite-patterns",
+      "layer": 1,
+      "origin": "ECC (shadybashi-dev/ECC v2.2.1) skills/"
+    }
+  ],
+  "agents": [
+    {
+      "id": "a11y-architect",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "agent-evaluator",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "architect",
+      "agent": true,
+      "model": "opus",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "build-error-resolver",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "chief-of-staff",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "code-architect",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "code-explorer",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "code-reviewer",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "code-simplifier",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "conversion-psychologist",
+      "agent": true,
+      "model": "opus",
+      "origin": "authored in-project"
+    },
+    {
+      "id": "doc-updater",
+      "agent": true,
+      "model": "haiku",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "e2e-runner",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "food-visual-producer",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "authored in-project"
+    },
+    {
+      "id": "marketing-agent",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "menu-engineer",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "authored in-project"
+    },
+    {
+      "id": "neuromarketing-director",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "authored in-project"
+    },
+    {
+      "id": "performance-optimizer",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "planner",
+      "agent": true,
+      "model": "opus",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "react-reviewer",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "refactor-cleaner",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "restaurant-growth-lead",
+      "agent": true,
+      "model": "opus",
+      "origin": "authored in-project"
+    },
+    {
+      "id": "security-reviewer",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "seo-specialist",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "silent-failure-hunter",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "spec-miner",
+      "agent": true,
+      "model": "opus",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "typescript-reviewer",
+      "agent": true,
+      "model": "sonnet",
+      "origin": "ECC agents/"
+    },
+    {
+      "id": "ui-design-director",
+      "agent": true,
+      "model": "opus",
+      "origin": "authored in-project"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+User-agent: *
+Allow: /
+
+# Answer engines are a real discovery channel for "best pizza in SLO" style
+# queries. They are invited explicitly rather than left to default-allow, so
+# the intent is documented and survives a future blanket disallow.
+# Elite GEO Stack — AI Search Citability — Antonia's Pizzeria & Italian Kitchen
+# Verified NAP: SLO 891 Higuera St 93401 (805) 439-2383 + Paso 729 12th St 93446 (805) 238-1851
+# Late-night till 2:30AM — 10" to 28" King — Ajarski Georgian cheese boats
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# AI Manifest Files — Explicit Signposts for LLM Crawlers
+# llms.txt — machine-readable knowledge base for ChatGPT Claude Gemini Perplexity — GEO optimized
+# llms-full.txt — full knowledge base 38 dishes + design system + audience matrix + SEO stack
+# sitemap.xml — 16 URLs including /locations/paso-robles + /locations/san-luis-obispo dedicated landing
+
+Sitemap: https://antoniaspizza.com/sitemap.xml
+
+# LLM Knowledge Base — Direct attribution for AI citation
+# See https://antoniaspizza.com/llms.txt
+# See https://antoniaspizza.com/llms-full.txt

@@ -1,0 +1,113 @@
+{
+  "1": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "flux1-dev.safetensors"
+    }
+  },
+  "2": {
+    "class_type": "LoraLoader",
+    "inputs": {
+      "model": ["1", 0],
+      "clip": ["1", 1],
+      "lora_name": "commercial-food-styling-v2.safetensors",
+      "strength_model": 0.70,
+      "strength_clip": 0.70
+    }
+  },
+  "3": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "<POSITIVE_PROMPT>",
+      "clip": ["2", 1]
+    }
+  },
+  "4": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "<NEGATIVE_PROMPT>",
+      "clip": ["2", 1]
+    }
+  },
+  "5": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    }
+  },
+  "6": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 42,
+      "steps": 32,
+      "cfg": 4.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1.0,
+      "model": ["2", 0],
+      "positive": ["3", 0],
+      "negative": ["4", 0],
+      "latent_image": ["5", 0]
+    }
+  },
+  "7": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": ["6", 0],
+      "vae": ["1", 2]
+    }
+  },
+  "8": {
+    "class_type": "UpscaleModelLoader",
+    "inputs": {
+      "model_name": "4x-UltraSharp.pth"
+    }
+  },
+  "9": {
+    "class_type": "UltimateSDUpscale",
+    "inputs": {
+      "image": ["7", 0],
+      "model": ["1", 0],
+      "positive": ["3", 0],
+      "negative": ["4", 0],
+      "vae": ["1", 2],
+      "upscale_by": 2,
+      "seed": 42,
+      "steps": 18,
+      "cfg": 3.5,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 0.35,
+      "mode_type": "Linear",
+      "tile_width": 512,
+      "tile_height": 512,
+      "mask_blur": 8,
+      "tile_padding": 32,
+      "seam_fix_mode": "None",
+      "seam_fix_denoise": 1.0,
+      "seam_fix_width": 64,
+      "seam_fix_mask_blur": 8,
+      "seam_fix_padding": 16,
+      "force_uniform_tiles": true,
+      "upscale_model": ["8", 0]
+    }
+  },
+  "10": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "antonias-flux",
+      "images": ["9", 0]
+    }
+  },
+  "_meta": {
+    "title": "Antonia's FLUX.1-dev Commercial Food Photography",
+    "description": "FLUX.1-dev + Commercial Food LoRA 0.70 + euler/simple 32 steps CFG 4.0 + 4x-UltraSharp upscale for leopard-charring and cheese stretch detail",
+    "checkpoint": "flux1-dev.safetensors - superior light physics for oils, liquids, baked goods",
+    "alternative": "Juggernaut XL v9 for 6-8GB VRAM machines",
+    "lora": "commercial-food-styling-v2.safetensors weight 0.65-0.75 - enhances crust crunch and cheese pull",
+    "sampler": "euler + simple, 28-35 steps, CFG 3.5-4.5 for coherence without color burn",
+    "upscale": "4x-UltraSharp 1024->2048 then downsample to target for 4K detail preservation"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "brand": {
+    "officialName": "Antonia's Pizza",
+    "legalName": "Antonia's Pizza",
+    "shortName": "Antonia's",
+    "tagline": "Hand-crafted pies from 10\" to 28\", the famous Ajarski dough boat",
+    "description": "Independent pizzeria with two downtown locations on California's Central Coast. Hand-crafted dough, home-made tomato sauce, SLO-style seasoned crust. Open late till 2AM on weekends.",
+    "priceRange": "$$",
+    "cuisines": ["Pizza", "Italian", "Pasta", "Wings", "Mediterranean"],
+    "foundedNote": "Owner to confirm — do not invent year"
+  },
+  "locations": [
+    {
+      "id": "slo",
+      "name": "Antonia's Pizza — San Luis Obispo",
+      "city": "San Luis Obispo",
+      "slug": "san-luis-obispo",
+      "address": {
+        "streetAddress": "891 Higuera St",
+        "addressLocality": "San Luis Obispo",
+        "addressRegion": "CA",
+        "postalCode": "93401",
+        "addressCountry": "US",
+        "full": "891 Higuera St, San Luis Obispo, CA 93401"
+      },
+      "geo": { "latitude": 35.279991, "longitude": -120.6618261 },
+      "phone": { "display": "(805) 439-2383", "e164": "+1-805-439-2383", "telHref": "tel:+18054392383" },
+      "hours": {
+        "display": "Sun–Wed 11 AM–mid · Thu–Sat 11 AM–2 AM",
+        "schedule": [
+          { "day": ["Sunday","Monday","Tuesday","Wednesday"], "opens": "11:00", "closes": "00:00" },
+          { "day": ["Thursday","Friday","Saturday"], "opens": "11:00", "closes": "02:00" }
+        ],
+        "lateNote": "Thu–Sat till 2AM"
+      },
+      "orderingUrl": "https://antoniaspizza.toast.site/",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=891%20Higuera%20St%2C%20San%20Luis%20Obispo%2C%20CA%2093401",
+      "directionsUrl": "https://www.google.com/maps/dir/?api=1&destination=891%20Higuera%20St%2C%20San%20Luis%20Obispo%2C%20CA%2093401",
+      "photos": ["pies-2.jpg","storefront.jpg","real-patio.jpg","real-pep.jpg","real-pesto.jpg"],
+      "areaServed": ["San Luis Obispo","Cal Poly","Los Ranchos","Avila Beach","Edna","Sycamore Springs"],
+      "amenities": { "dineIn": true, "takeout": true, "delivery": true, "parking": "Street / downtown lots — owner to confirm details" }
+    },
+    {
+      "id": "paso",
+      "name": "Antonia's Pizza — Paso Robles",
+      "city": "Paso Robles",
+      "slug": "paso-robles",
+      "address": {
+        "streetAddress": "729 12th St",
+        "addressLocality": "Paso Robles",
+        "addressRegion": "CA",
+        "postalCode": "93446",
+        "addressCountry": "US",
+        "full": "729 12th St, Paso Robles, CA 93446"
+      },
+      "geo": { "latitude": 35.6269594, "longitude": -120.6906368 },
+      "phone": { "display": "(805) 238-1851", "e164": "+1-805-238-1851", "telHref": "tel:+18052381851" },
+      "hours": {
+        "display": "Sun–Thu 11 AM–mid · Fri–Sat 11 AM–2 AM",
+        "schedule": [
+          { "day": ["Sunday","Monday","Tuesday","Wednesday","Thursday"], "opens": "11:00", "closes": "00:00" },
+          { "day": ["Friday","Saturday"], "opens": "11:00", "closes": "02:00" }
+        ],
+        "lateNote": "Fri–Sat till 2AM"
+      },
+      "orderingUrl": "https://antoniaspizza.toast.site/",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=729%2012th%20St%2C%20Paso%20Robles%2C%20CA%2093446",
+      "directionsUrl": "https://www.google.com/maps/dir/?api=1&destination=729%2012th%20St%2C%20Paso%20Robles%2C%20CA%2093446",
+      "photos": ["storefront-night.jpg","real-night.jpg","real-box.jpg"],
+      "areaServed": ["Paso Robles","Templeton","Atascadero"],
+      "amenities": { "dineIn": true, "takeout": true, "delivery": true, "parking": "Downtown Paso — owner to confirm" }
+    }
+  ],
+  "ordering": {
+    "primary": "https://antoniaspizza.toast.site/",
+    "app": "https://c98e7d553a954b09a7deaefe428c6da0.app.ordersave.com/download-app",
+    "method": ["Pickup","Delivery"],
+    "notes": "This site takes no orders directly. All orders handled by Toast."
+  },
+  "menu": {
+    "highlights": ["Hand-Crafted Cheese or Pepperoni 10\"–28\"", "BBQ Chicken", "Ajarski Original/American/Mexicano/SLO Style", "Slice & Coke"],
+    "categories": ["Deals","Pizza 10\"–28\"","The Ajarski","Pasta","Wings & Sides","Salads","Sandwiches & More","Desserts"],
+    "dietary": ["Vegetarian options","Vegan cheese available — owner to confirm full list","Gluten-free — owner to confirm if offered"],
+    "heroItems": ["Grande Milano Slice (if exists — owner to confirm name)","Ajarski Boat","BBQ Chicken Pizza","Signature Pizza Fries (if exists)","Pesto Chicken"],
+    "pricePolicy": "Individual item prices not published on site by owner choice; deal bundle prices ($39.99 etc.) are from owner's original site and may stay. Do not invent prices."
+  },
+  "brandAssets": {
+    "logo": "assets/img/logo.png",
+    "logo180": "assets/img/logo-180.png",
+    "logo1024": "NOT YET — owner to export 1024x1024 from SVG (no rasterizer in sandbox)",
+    "ogImages": ["og/home.jpg","og/menu.jpg","og/slo.jpg","og/paso.jpg"],
+    "realPhotos": ["storefront.jpg","storefront-night.jpg","pies-2.jpg","real-pep.jpg","real-pesto.jpg","real-box.jpg","real-patio.jpg","real-night.jpg"],
+    "generatedPhotos": ["hero-pep.jpg","hero-sauce.jpg","dough-toss.jpg","feast.jpg","feast-wide.jpg","pies-1.jpg","pies-3.jpg","slice-coke.jpg","wheel/*"]
+  },
+  "social": {
+    "instagram": null,
+    "facebook": null,
+    "note": "Owner to provide verified URLs — do not invent"
+  },
+  "gbp": {
+    "slo": { "url": null, "note": "Owner to provide GBP link" },
+    "paso": { "url": null, "note": "Owner to provide GBP link" }
+  },
+  "reviews": {
+    "policy": "Only real customer quotes, owner must confirm each testimonial card is real. No aggregateRating or review[] schema on-site (self-serving policy).",
+    "visible": ["Patricia B.","Cecily F.","Kelly H.","Walid S.","Devin C."]
+  },
+  "catering": {
+    "offered": true,
+    "note": "Owner to confirm catering menu, min order, lead time. Currently no dedicated page — candidate for next content page."
+  },
+  "deliveryAreas": ["San Luis Obispo","Cal Poly","Paso Robles","Templeton","Avila Beach","Los Ranchos","Santa Margarita"],
+  "technical": {
+    "hosting": "Static host that reads _redirects/_headers (Netlify/Vercel/CF Pages). If plain cPanel, add rewrites manually.",
+    "images": { "master": "jpg", "served": "avif+webp via picture, jpg fallback for og/json-ld/manifest", "quality": { "webp": "q82", "avif": "q55" }, "totalSavings": "JPEG 4098KB -> WebP 2952KB (-28%) -> AVIF 2056KB (-50% total)" },
+    "performanceTargets": { "LCP": "<1.5s", "INP": "<100ms", "CLS": "<0.02", "LighthouseMobile": ">=98", "HomeJS": "<40KB", "HeroAVIF": "<180KB" },
+    "a11y": "WCAG 2.2 AA, motion pause, reduced-motion universal kill, keyboard wheel"
+  }
+}

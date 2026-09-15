@@ -1,0 +1,227 @@
+{
+  "_meta": {
+    "source": "Live scrape of https://antoniaspizza.com/ and /menu on 2026-09-14",
+    "status": "PARTIALLY VERIFIED — every field marked \"verify\": true must be confirmed with the owner before it ships",
+    "platform": {
+      "website": "Toast-hosted marketing site (pluto-images CDN)",
+      "ordering": "Toast (antoniaspizza.toast.site)",
+      "menuPhotos": "Otter (photos.tryotter.com)",
+      "app": "OrderSave"
+    },
+    "note": "Nothing in this file was invented. Gaps are marked, not filled."
+  },
+
+  "brand": {
+    "name": "Antonia's Pizza",
+    "legalNameVerify": true,
+    "cuisine": ["Pizza", "Italian", "Mediterranean", "American"],
+    "positioning": "Hand-crafted dough, home-made tomato sauce, SLO style seasoned crust. Pies from 10\" to 28\". SLO exclusive.",
+    "differentiators": [
+      "SLO exclusive — not a chain, no other locations outside the two",
+      "Signature Ajarski dough boat (Adjarian khachapuri style)",
+      "Pies up to 28 inches (XL group format)",
+      "Late-night kitchen — open until 2 AM on weekend nights",
+      "Mediterranean crossover: manakeesh, gyro pizza, feta, za'atar",
+      "Vegan cheese available",
+      "Also operates Johnny's Lunch food truck"
+    ],
+    "signatureItem": {
+      "name": "The Ajarski dough boat",
+      "description": "A warm, fluffy bread boat loaded with fresh mozzarella, feta, egg, and butter — four ways to order it.",
+      "hasOwnPage": "https://antoniaspizza.com/page/ajarski",
+      "verify": true
+    },
+    "priceRange": "$$",
+    "priceRangeVerify": true,
+    "taglineCandidates": [
+      "SLO exclusive. Pies from 10\" to 28\".",
+      "Open till 2 AM. Dough made in-house.",
+      "The Ajarski dough boat, and pies big enough for the whole crew."
+    ]
+  },
+
+  "locations": [
+    {
+      "id": "san-luis-obispo",
+      "name": "Antonia's Pizza San Luis Obispo",
+      "streetAddress": "891 Higuera St",
+      "addressLocality": "San Luis Obispo",
+      "addressRegion": "CA",
+      "postalCode": "93401",
+      "addressCountry": "US",
+      "telephone": "(805) 439-2383",
+      "telephoneE164": "+18054392383",
+      "geo": { "latitude": 35.279991, "longitude": -120.6618261 },
+      "googlePlaceId": "ChIJabuB8BDx7IAR8tbrXipHtKw",
+      "pageUrl": "https://antoniaspizza.com/san-luis-obispo",
+      "hours": [
+        { "days": ["Sunday"], "opens": "11:00", "closes": "00:00" },
+        { "days": ["Monday"], "opens": "11:00", "closes": "00:00" },
+        { "days": ["Tuesday"], "opens": "11:00", "closes": "00:00" },
+        { "days": ["Wednesday"], "opens": "11:00", "closes": "00:00" },
+        { "days": ["Thursday"], "opens": "11:00", "closes": "02:00" },
+        { "days": ["Friday"], "opens": "11:00", "closes": "02:00" },
+        { "days": ["Saturday"], "opens": "11:00", "closes": "02:00" }
+      ],
+      "lateNight": true,
+      "verify": true
+    },
+    {
+      "id": "paso-robles",
+      "name": "Antonia's Pizza Paso Robles",
+      "streetAddress": "729 12th St",
+      "addressLocality": "Paso Robles",
+      "addressRegion": "CA",
+      "postalCode": "93446",
+      "addressCountry": "US",
+      "telephone": "(805) 238-1851",
+      "telephoneE164": "+18052381851",
+      "geo": { "latitude": 35.6269594, "longitude": -120.6906368 },
+      "googlePlaceId": "ChIJfy34NF3F7IAR5mt0Nx18-aY",
+      "pageUrl": "https://antoniaspizza.com/paso-robles",
+      "hours": [
+        { "days": ["Sunday"], "opens": "11:00", "closes": "00:00" },
+        { "days": ["Monday"], "opens": "11:00", "closes": "00:00" },
+        { "days": ["Tuesday"], "opens": "11:00", "closes": "00:00" },
+        { "days": ["Wednesday"], "opens": "11:00", "closes": "00:00" },
+        { "days": ["Thursday"], "opens": "11:00", "closes": "00:00" },
+        { "days": ["Friday"], "opens": "11:00", "closes": "02:00" },
+        { "days": ["Saturday"], "opens": "11:00", "closes": "02:00" }
+      ],
+      "lateNight": true,
+      "verify": true
+    }
+  ],
+
+  "serviceAreas": [
+    "San Luis Obispo", "El Paso De Robles", "California Polytechnic State University",
+    "Goldtree", "Chorro", "Serrano", "Thyle", "Wellsona", "Templeton", "Los Ranchos",
+    "Edna", "Avila Beach", "Miles", "Estrella", "Sycamore Springs", "Tiber",
+    "Old Adobe", "Asuncion", "Linne", "Santa Margarita"
+  ],
+
+  "ordering": {
+    "primaryUrl": "https://antoniaspizza.toast.site/",
+    "modes": ["Store pickup", "Pickup", "Delivery", "Group order"],
+    "appDownload": "https://c98e7d553a954b09a7deaefe428c6da0.app.ordersave.com/download-app",
+    "reservations": "https://antoniaspizza.com/reservations",
+    "acceptsReservations": true,
+    "knownIssue": "Every menu item on /menu links to the root of the Toast ordering site instead of a deep link to that item — the visitor must find the dish again. Highest-impact conversion leak found.",
+    "deepLinkCapabilityVerify": true
+  },
+
+  "deals": [
+    { "name": "Two XL two-topping pizzas", "price": "39.99", "currency": "USD" },
+    { "name": "Large Specialty Combo", "price": "36.99", "currency": "USD" }
+  ],
+
+  "menu": {
+    "sourceUrl": "https://antoniaspizza.com/menu",
+    "captureStatus": "PARTIAL — Specialty Pizza, Pizza by the slice, Build your own captured; remaining sections (pasta, wings, salads, sandwiches, sides, desserts, drinks) still to capture",
+    "sizes": ["10\"", "28\""],
+    "sizesVerify": true,
+    "sections": [
+      {
+        "id": "specialty-pizza",
+        "name": "Specialty Pizza",
+        "itemCount": 21,
+        "issue": "21 items in one category — decision fatigue threshold is 6-8. Split into Red Sauce / White & Alfredo / Pesto / Veggie / Meat.",
+        "basePrice": "16.45",
+        "priceDisplay": "$16.45+",
+        "issuePrice": "Every specialty pie is the same anchor price — no premium tier, so anchoring is doing nothing.",
+        "items": [
+          { "name": "Antonia's Special", "price": "16.45+", "description": "Home made tomato sauce, mozzarella cheese, pepperoni, mushrooms, red onions, bacon bits, pepperoncino made on SLO style seasoned crust", "photo": true, "starCandidate": true },
+          { "name": "Original Margherita", "price": "16.45+", "description": "Signature crust, rich tomato sauce, melted fresh mozzarella, and fresh sliced tomatoes, finished with aromatic fresh basil and a drizzle of extra virgin olive oil.", "photo": true },
+          { "name": "Deluxe Supreme", "price": "16.45+", "description": "Our original crust topped with house-made tomato sauce, melted mozzarella cheese, pepperoni, savory Italian sausage, fresh mushrooms, crisp bell peppers, red onions, and black olives, finished with aromatic oregano.", "photo": true },
+          { "name": "Meat Lovers", "price": "16.45+", "description": "A meat lover's dream on our original crust with rich red sauce and melted mozzarella, piled high with pepperoni, Canadian bacon, savory Italian sausage, and crispy bacon.", "photo": true },
+          { "name": "Chicken Parm & Spinach", "price": "16.45+", "description": "Alfredo sauce, melted mozzarella, spinach, chicken, bacon, roasted garlic, shredded parmesan.", "photo": true },
+          { "name": "BBQ Chicken", "price": "16.45+", "description": "BBQ sauce topped with mozzarella cheese, grilled chicken, red onions, and red bell peppers. Finished with a sprinkle of fresh cilantro.", "photo": true },
+          { "name": "Buffalo Chicken", "price": "16.45+", "description": "Buffalo chicken, mushrooms, green peppers, and red onions atop melted mozzarella. The secret is in the sauce: a bold and creamy Spicy Ranch.", "photo": true },
+          { "name": "Chicken Pesto", "price": "16.45+", "description": "Aromatic pesto sauce, grilled chicken, fresh mushrooms, onions, vine tomatoes, garlic, and green onions.", "photo": true },
+          { "name": "Vegetable Delight", "price": "16.45+", "description": "Melted mozzarella, fresh mushrooms, crunchy green peppers, red onions, artichoke hearts, and black olives, infused with aromatic fresh garlic and juicy vine tomatoes on a crispy golden crust.", "photo": true },
+          { "name": "Greek Feta Vegetable", "price": "16.45+", "description": "Our rich homemade tomato sauce and melted cheese base, generously topped with fresh mushrooms, sweet yellow onions, crunchy bell peppers, tender artichoke hearts, and black olives. Finished with fresh Roma tomatoes, creamy crumbled feta cheese, and a sprinkle of aromatic oregano.", "photo": true },
+          { "name": "Philly Cheese Steak", "price": "16.45+", "description": null, "photo": true, "issue": "NO DESCRIPTION — missing the +27% descriptive-language lever on a premium-sounding item." },
+          { "name": "Hawaiian", "price": "16.45+", "description": "Our signature original crust topped with rich tomato sauce, gooey melted cheese, savory Canadian bacon, and sweet, juicy pineapple chunks for the ultimate sweet-and-savory harmony.", "photo": true },
+          { "name": "Mexican Style", "price": "16.45+", "description": "Our slow-simmered homemade red sauce topped with a duo of melted mozzarella and cheddar cheese, loaded with savory meatballs, crispy pepperoni, spicy jalapeños, red bell peppers, and red onions, garnished with fresh fragrant cilantro.", "photo": true },
+          { "name": "Mediterranean", "price": "16.45+", "description": "Aromatic basil pesto base generously topped with tender artichoke hearts, savory black olives, sweet sun-dried tomatoes, and creamy crumbled feta cheese, finished with fresh garlic and fragrant oregano.", "photo": false, "issue": "No photo — the highest-converting Mediterranean item and a brand differentiator." },
+          { "name": "California Viggie", "price": "16.45+", "description": "Velvety Alfredo sauce base with gooey melted cheese, topped with tender zucchini, fresh spinach, delicate artichoke hearts, juicy Roma tomatoes, and chopped garlic. Finished with sharp Parmesan, fragrant oregano, and crisp green onions.", "photo": true, "issue": "Spelling — 'Viggie' should be 'Veggie'. Hurts search matching and reads as careless." },
+          { "name": "Spinach Lovers", "price": "16.45+", "description": "Creamy white sauce base topped with fresh spinach, tender artichoke hearts, and sweet sun-dried tomatoes. Finished with aromatic roasted garlic and a sprinkle of oregano.", "photo": true },
+          { "name": "Garlic Veggie", "price": "16.45+", "description": "Velvety Alfredo sauce base loaded with fresh earthy mushrooms, tender artichoke hearts, and juicy vine-ripened tomatoes. Infused with aromatic garlic, finished with sharp Parmesan, wild oregano, and crisp green onions on a golden crust.", "photo": true },
+          { "name": "Roasted Garlic Chicken", "price": "16.45+", "description": "Creamy garlic sauce base topped with melted mozzarella, juicy flame-grilled chicken, sweet caramelized roasted garlic, crisp onions, and a generous dusting of sharp aged Parmesan cheese on a golden crispy crust.", "photo": true },
+          { "name": "Sausage Lovers", "price": "16.45+", "description": "Our signature homemade tomato sauce with gooey melted cheese, topped with juicy savory sausage, fresh mushrooms, sweet onions, and tender artichoke hearts. Finished with fresh Roma tomato slices, bold chopped garlic, and fragrant oregano.", "photo": true },
+          { "name": "Bacon Deluxe", "price": "16.45+", "description": "Velvety creamy white sauce and melted cheese base loaded with savory Canadian bacon, crispy smoky bacon, and juicy seasoned sausage. Topped with fresh Roma tomatoes, aromatic chopped garlic, wild oregano, and crisp green onions.", "photo": true },
+          { "name": "Veggie Pesto", "price": "16.45+", "description": "Vibrant pesto base, fresh mushrooms, artichoke hearts, vine tomatoes, tangy feta cheese, garlic, green onions, and oregano.", "photo": true }
+        ]
+      },
+      {
+        "id": "pizza-by-the-slice",
+        "name": "Pizza by the Slice",
+        "items": [
+          { "name": "Slice Cheese", "price": "5.45" },
+          { "name": "Slice one or 2 Toppings", "price": "5.95", "issue": "Truncated label on the live site reads 'Slice one or 2 Topp'." },
+          { "name": "Slice & Drink Combo", "price": "7.99", "starCandidate": true, "note": "Best value anchor for the Cal Poly lunch crowd." }
+        ]
+      },
+      {
+        "id": "build-your-own",
+        "name": "Build your own Pizza",
+        "description": "Start with cheese and add your favorite toppings, crust, and sauce.",
+        "items": [
+          { "name": "Grande Milano Slice", "price": "12.95", "note": "Capture incomplete — full section not yet scraped." }
+        ]
+      }
+    ],
+    "knownCategoriesFromTags": [
+      "Calzone", "Wings", "Pasta", "Spaghetti", "Rigatoni", "Tortellini", "Ravioli",
+      "Lasagna", "Meatballs", "Salads", "Greek Salad", "Caesar Salad", "Caprese Salad",
+      "Antipasto Salad", "Deli Sandwiches", "Cheese Steak", "Chicken Tenders",
+      "Mozzarella Sticks", "Jalapeno Poppers", "Onion Rings", "Curly Fries",
+      "Buffalo Fries", "Fries", "Garlic Bread", "Steak", "BBQ Chicken",
+      "Tiramisu", "Cannoli", "Cheesecake"
+    ],
+    "dietary": {
+      "veganCheese": true,
+      "vegetarianOptions": true,
+      "glutenFreeVerify": true,
+      "halalVerify": true
+    }
+  },
+
+  "reviews": {
+    "source": "Displayed on the live homepage — real, attributed, 5-star",
+    "aggregateRatingVerify": true,
+    "reviewCountVerify": true,
+    "items": [
+      { "author": "Patricia B.", "rating": 5, "quote": "Hands down some of the best pizza in SLO! Great service, perfect flavors, and an unbelievable crust. It's so good that my nephew from Texas—who NEVER eats the crust—cleaned his entire plate. He was ready to look up his closest location back home until we found out Antonia's is a SLO exclusive. Highly recommend!", "valueSignals": ["unbelievable crust", "SLO exclusive", "family"] },
+      { "author": "Cecily F.", "rating": 5, "quote": "Ordered for delivery and HANDS DOWN one of the best pizzas I've had in SLO. Opening the box and immediately being encompassed in the scent of oregano and various herbs was like being wrapped in a warm blanket. Cooked perfectly, didn't skimp on toppings and the texture of the crust was amazing! 10/10", "valueSignals": ["delivery", "aroma", "generous toppings", "crust texture"] },
+      { "author": "Kelly H.", "rating": 5, "quote": "Pizza is the bomb! The crust, sauce, all the fresh toppings are exquisite. And there is so much other stuff on the menu to try. I love their pastas too especially the creamy pesto. Definitely going to go through and try their other stuff. Also, don't skip dessert! They now have tiramisu and cannolis and the tiramisu was literally the best I've ever had!!", "valueSignals": ["pasta", "creamy pesto", "tiramisu", "cannoli"] },
+      { "author": "Walid S.", "rating": 5, "quote": "Had a crazy late shift and was craving some high-quality food, not just typical fast food. Googled 'late night pizza near me' and saw Antonia's was still open. Called them up and was honestly surprised how accommodating they were for a late delivery. We ordered a standard Pepperoni pizza (crust was on point), the Pesto Chicken pie (the flavor profile on this one is incredible), and half a pie with Vegan Cheese for my wife.", "valueSignals": ["LATE NIGHT — found via 'late night pizza near me'", "phone accommodation", "vegan cheese", "pesto chicken"] },
+      { "author": "Devin C.", "rating": 5, "quote": "Very excited to try this new pizza spot at the former location of Pizza Solo. I ordered the gyro pizza which was tasty and quickly made, which worked great for my lunch break. My friend and I also tried the manakeesh pizza, but left the feta cheese off, and it was quite tasty. I'll definitely be back to try their other Mediterranean dishes and salads.", "valueSignals": ["gyro pizza", "manakeesh pizza", "Mediterranean crossover", "fast lunch service", "customisation"] }
+    ],
+    "insight": "Two reviews independently confirm the late-night search intent ('late night pizza near me') and the Mediterranean crossover (gyro, manakeesh). Neither is surfaced anywhere on the current homepage. These are unclaimed positioning assets."
+  },
+
+  "existingUrls": {
+    "home": "https://antoniaspizza.com/",
+    "menu": "https://antoniaspizza.com/menu",
+    "reservations": "https://antoniaspizza.com/reservations",
+    "ajarski": "https://antoniaspizza.com/page/ajarski",
+    "locationSlo": "https://antoniaspizza.com/san-luis-obispo",
+    "locationPaso": "https://antoniaspizza.com/paso-robles",
+    "tagPages": "https://antoniaspizza.com/tags/{slug} — 32+ pages, thin content, likely cannibalising",
+    "placePages": "https://antoniaspizza.com/places/{slug} — 20 service-area pages"
+  },
+
+  "openQuestions": [
+    "Is the business goal more dine-in reservations, more direct delivery orders, or more marketplace-independent first-party orders?",
+    "Can Toast generate deep links to individual menu items, or only to the ordering root?",
+    "What is the real aggregate rating and review count on Google for each location?",
+    "Which items are Stars by actual POS margin × volume data?",
+    "Are there real photos of the Ajarski dough boat, gyro pizza, and manakeesh?",
+    "Is the 28\" XL available at both locations, and does it need advance notice?",
+    "Is there a loyalty program, or appetite for one?",
+    "Does the business want an Arabic language surface at all, or is English-only correct for SLO/Paso Robles?",
+    "Who owns the domain and the Toast account — can DNS and hosting be changed?",
+    "Is a rebuild off Toast acceptable, or must the site stay inside the Toast ecosystem?"
+  ]
+}

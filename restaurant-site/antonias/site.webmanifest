@@ -1,0 +1,14 @@
+{
+  "name": "Antonia's Pizza - San Luis Obispo & Paso Robles",
+  "short_name": "Antonia's",
+  "description": "Hand-crafted pizza, the one-and-only Ajarski dough boat, pastas and wings. Two downtown locations on California's Central Coast, open till 2AM on weekends.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffdf7",
+  "theme_color": "#171210",
+  "icons": [
+    {"src": "/assets/img/logo-180.png", "sizes": "180x180", "type": "image/png"},
+    {"src": "/assets/img/logo.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml"}
+  ]
+}

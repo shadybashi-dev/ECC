@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add("js");</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promo Videos — Story, Scenario & Goal | Antonia's Pizza</title>
+  <meta name="description" content="Antonia's Pizza promo videos with story, scenario & goal — 6 concepts: Famous Dough 15s, Open Till 2AM Late Night SLO 30s, The Ajarski Only on Higuera 20s, Two Kitchens One Legend 25s, Catering Feast for Crew 30s, 10 to 28 Big Pies Bigger Value 15s. Each with shot list, VO, text overlay, CTA, KPI, where it lives, pro tools Dreamina Sora2 Veo3.1 Kling.">
+  <link rel="preload" as="image" href="assets/img/seo/antonias-hero-1920x1080-slo-antonias.webp" fetchpriority="high">
+  <link rel="canonical" href="https://antoniaspizza.com/promo-videos">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Promo Videos — Story, Scenario & Goal — Antonia's Pizza">
+  <meta property="og:description" content="6 promo videos with story, scenario, goal — dough, late night, Ajarski, two kitchens, catering, big pies — for SLO & Paso Robles.">
+  <meta property="og:url" content="https://antoniaspizza.com/promo-videos">
+  <meta property="og:image" content="https://antoniaspizza.com/assets/img/og/home.jpg">
+  <meta property="og:image:alt" content="Antonia's Pizza — hand-crafted pies 10-28 inches, two downtown kitchens">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Promo video story player — vanilla only, transform/opacity/filter only */
+    .story-player{position:relative;width:100%;aspect-ratio:16/9;background:var(--navy);border-radius:var(--radius);overflow:hidden;border:3px solid var(--navy);isolation:isolate}
+    .story-player__slide{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transform:translateY(12px) scale(.98);transition:opacity .6s var(--ease-soft), transform .6s var(--ease-soft)}
+    .story-player__slide.is-active{opacity:1;transform:none}
+    .story-player__bg{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;filter:brightness(.75)}
+    .story-player__content{position:relative;z-index:1;text-align:center;color:var(--paper);padding:1.2rem;max-width:32ch}
+    .story-player__eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;background:var(--sun);color:var(--navy);padding:.25rem .6rem;border-radius:999px;font-weight:800;display:inline-block;margin-bottom:.6rem}
+    .story-player__title{font-family:var(--font-display);font-size:clamp(1.4rem,3vw,2.2rem);line-height:.95;text-transform:uppercase;margin:0 0 .4rem}
+    .story-player__desc{font-size:.9rem;opacity:.9;margin:0}
+    .story-player__cta{margin-top:1rem;display:inline-block;background:var(--sun);color:var(--navy);padding:.5rem 1rem;border-radius:999px;font-weight:800;text-decoration:none}
+    .story-player__progress{position:absolute;bottom:0;left:0;height:4px;background:var(--sun);width:0%;z-index:2;transition:width .2s linear}
+    .story-player__timeline{position:absolute;bottom:.6rem;left:50%;transform:translateX(-50%);display:flex;gap:.4rem;z-index:2}
+    .story-player__dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);transition:background .3s, transform .3s}
+    .story-player__dot.is-active{background:var(--sun);transform:scale(1.3)}
+    /* CSS story animation — auto-play with keyframes */
+    @keyframes storyCycle0{0%,16%{opacity:1;transform:none}20%,100%{opacity:0;transform:translateY(-12px) scale(.98)}}
+    @keyframes storyCycle1{0%,20%{opacity:0;transform:translateY(12px) scale(.98)}24%,40%{opacity:1;transform:none}44%,100%{opacity:0;transform:translateY(-12px) scale(.98)}}
+    @keyframes storyCycle2{0%,44%{opacity:0;transform:translateY(12px) scale(.98)}48%,64%{opacity:1;transform:none}68%,100%{opacity:0;transform:translateY(-12px) scale(.98)}}
+    @keyframes storyCycle3{0%,68%{opacity:0;transform:translateY(12px) scale(.98)}72%,88%{opacity:1;transform:none}92%,100%{opacity:0;transform:translateY(-12px) scale(.98)}}
+    @keyframes storyCycle4{0%,88%{opacity:0;transform:translateY(12px) scale(.98)}92%,100%{opacity:1;transform:none}}
+    @keyframes progressBar{from{width:0%}to{width:100%}}
+    .story-player--auto .story-player__slide:nth-child(1){animation:storyCycle0 15s var(--ease-soft) infinite}
+    .story-player--auto .story-player__slide:nth-child(2){animation:storyCycle1 15s var(--ease-soft) infinite}
+    .story-player--auto .story-player__slide:nth-child(3){animation:storyCycle2 15s var(--ease-soft) infinite}
+    .story-player--auto .story-player__slide:nth-child(4){animation:storyCycle3 15s var(--ease-soft) infinite}
+    .story-player--auto .story-player__slide:nth-child(5){animation:storyCycle4 15s var(--ease-soft) infinite}
+    .story-player--auto .story-player__progress{animation:progressBar 15s linear infinite}
+    .story-player--30s .story-player__slide:nth-child(1){animation-duration:30s}
+    .story-player--30s .story-player__slide:nth-child(2){animation-duration:30s}
+    .story-player--30s .story-player__slide:nth-child(3){animation-duration:30s}
+    .story-player--30s .story-player__slide:nth-child(4){animation-duration:30s}
+    .story-player--30s .story-player__slide:nth-child(5){animation-duration:30s}
+    .story-player--30s .story-player__progress{animation-duration:30s}
+    /* Pause + RM */
+    html.motion-paused .story-player__slide, html.motion-paused .story-player__progress{animation-play-state:paused !important}
+    @media (prefers-reduced-motion:reduce){
+      html.js .story-player__slide{animation:none !important;opacity:0 !important;transform:none !important;position:relative}
+      html.js .story-player__slide.is-active{opacity:1 !important}
+      html.js .story-player__progress{animation:none !important;width:100% !important}
+    }
+    .script-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.2rem}
+    .script-card{background:var(--paper);border:2px solid var(--navy);border-radius:var(--radius);padding:1.2rem}
+    .script-card h4{margin:0 0 .4rem;font-size:1rem}
+    .script-card p{margin:.2rem 0;font-size:.85rem;opacity:.8}
+    .kpi{display:inline-block;background:var(--sky);border:1px solid var(--navy);padding:.2rem .5rem;border-radius:999px;font-size:.75rem;font-weight:700;margin:.2rem}
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://antoniaspizza.com/promo-videos#page",
+  "name": "Promo Videos — Story, Scenario & Goal",
+  "description": "6 promo videos with story, scenario, goal for Antonia's Pizza",
+  "url": "https://antoniaspizza.com/promo-videos",
+  "isPartOf": {"@id": "https://antoniaspizza.com/#website"},
+  "about": {"@id": "https://antoniaspizza.com/#restaurant"},
+  "hasPart": [
+    {"@type": "VideoObject", "name": "Famous for Our Dough — 15s Hero", "description": "Goal: Order conversion. Story: dough toss -> sauce -> 28 inch pie -> open till 2AM -> Order Now", "thumbnailUrl": "https://antoniaspizza.com/assets/img/seo/hand-crafted-dough-toss-24h-ferment-san-luis-obispo.jpg", "uploadDate": "2026-09-14", "duration": "PT15S"},
+    {"@type": "VideoObject", "name": "Open Till 2AM — Late Night SLO 30s", "description": "Goal: Late-night positioning. Story: Cal Poly students, shift workers, clock midnight->2AM, lights on", "thumbnailUrl": "https://antoniaspizza.com/assets/img/seo/antonias-pizza-paso-robles-night-patio-lit-antonias.jpg", "uploadDate": "2026-09-14", "duration": "PT30S"},
+    {"@type": "VideoObject", "name": "The Ajarski — Only on Higuera 20s", "description": "Goal: Differentiation. Story: Georgian bread boat, egg cracked, butter melting, 4 versions", "thumbnailUrl": "https://antoniaspizza.com/assets/img/seo/ajarski-georgian-cheese-egg-boat-san-luis-obispo.jpg", "uploadDate": "2026-09-14", "duration": "PT20S"}
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://antoniaspizza.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Videos", "item": "https://antoniaspizza.com/videos"},
+    {"@type": "ListItem", "position": 3, "name": "Promo Videos", "item": "https://antoniaspizza.com/promo-videos"}
+  ]
+}
+  </script>
+  <!-- 2026 strongest — Speculation Rules API prefetch on hover/idle — progressive enhancement — prefetch menu, slo, paso, order, faq -->
+  <script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        "source": "document",
+        "where": {
+          "and": [
+            {"href_matches": "/*"},
+            {"not": {"href_matches": "/assets/*"}},
+            {"not": {"href_matches": "/*.jpg"}},
+            {"not": {"href_matches": "/*.webp"}},
+            {"not": {"href_matches": "/*.avif"}},
+            {"not": {"href_matches": "/*.png"}},
+            {"not": {"href_matches": "https://antoniaspizza.toast.site/*"}}
+          ]
+        },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+  <!-- Plausible 1KB 45x smaller than GA4 — privacy-first cookieless no banner GDPR EU — owner to uncomment after providing domain -->
+  <!-- <script defer data-domain="antoniaspizza.com" src="https://plausible.io/js/script.js"></script> -->
+  <!-- Web Vitals RUM 2026 — 4-layer: Lighthouse CI, CrUX source truth, RUM web-vitals.js, synthetic — behind ANALYTICS_ENABLED flag in main.js sendBeacon /api/vitals -->
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html"><img src="assets/img/logo.png" width="192" height="192" alt="Antonia's Pizza" loading="lazy"></a>
+      <nav class="nav-links"><a href="our-story.html">Our Story</a><a href="menu.html">Menu</a><a href="catering.html">Catering</a><a href="videos.html">Videos</a><a href="index.html#locations">Locations</a></nav>
+      <div class="header-cta"><span class="open-pill" data-open-pill><span class="dot"></span><span class="label">Open now</span></span><a class="btn btn--sm" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order Online</a><button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" aria-label="Pause all site motion"><span class="mt-text">Pause</span></button><button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button></div>
+    </div>
+  </header>
+  <nav class="breadcrumbs" aria-label="Breadcrumb" style="padding:1rem 0;background:var(--sky-2);border-bottom:1px solid rgba(14,58,82,.1)">
+    <div class="container" style="display:flex;gap:.5rem;align-items:center;font-size:.85rem"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/videos">Videos</a><span aria-hidden="true">/</span><span aria-current="page">Promo Videos</span></div>
+  </nav>
+  <main id="main">
+    <section class="loc-hero">
+      <div class="container">
+        <div>
+          <span class="eyebrow">Promo videos — story, scenario & goal that fits Antonia's</span>
+          <h1 class="display h-lg">6 promo videos with <span style="color:var(--red)">story</span> — not just logo spin</h1>
+          <p class="lead">You asked: "فيدوهات ترويجية مع قصة و سيناريو و هدف بيناسب الموقع" — promotional videos with story, scenario & goal that fits the site. Logo rotate/pulse/reveal is nice, but promo needs story. Below are 6 concepts, each with goal/KPI, audience, duration, format, 5-shot story, VO + text overlay, music, CTA, where it lives on site, and how to produce with pro tools (Dreamina image-to-video Seedance 2.0 rising steam/push-in/parallax, Sora 2, Veo 3.1, Kling 3.0 $6.99/mo, CapCut, MotionVid, Canva, OpusClip). All use real owner photos (real-pesto, real-box, real-patio, real-night, dough-toss, hero-pep, ajarski-2, pies-2, feast-wide, storefront) — never AI-replaced, no branded bottles, no marble kitchens, no generic dishes, prompts forbid text/logos/brands/faces, grounded in real crops. Vanilla CSS story players auto-play 15s/30s, pause+RM, transform/opacity/filter only.</p>
+          <div style="display:flex;gap:.8rem;margin-top:2rem;flex-wrap:wrap"><a class="btn" href="#dough">Famous Dough 15s</a><a class="btn btn--ghost" href="#late-night">Open Till 2AM 30s</a><a class="btn btn--ghost" href="#ajarski-promo">Ajarski 20s</a><a class="btn btn--ghost" href="#two-kitchens">Two Kitchens 25s</a><a class="btn btn--ghost" href="#catering-promo">Catering 30s</a><a class="btn btn--ghost" href="#big-pies">10 to 28 15s</a></div>
+        </div>
+        <div class="ph-main" style="border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;background:var(--sky);display:grid;place-items:center">
+          <div class="story-player story-player--auto" style="width:100%;height:100%">
+            <div class="story-player__slide is-active"><img class="story-player__bg" src="assets/img/seo/hand-crafted-dough-toss-24h-ferment-san-luis-obispo.webp" width="1200" height="900" alt="Dough toss" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">Shot 1 — 0-3s — Dough</span><h2 class="story-player__title">Famous for our dough</h2><p class="story-player__desc">Hand-crafted daily, tossed by hand</p></div></div>
+            <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/homemade-tomato-sauce-ladled-olive-oil-slo-antonias.webp" width="1200" height="900" alt="Sauce" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">Shot 2 — 3-6s — Sauce</span><h3 class="story-player__title">Home-made sauce</h3><p class="story-player__desc">Ladled in circles, SLO-style crust</p></div></div>
+            <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/antonias-special-pizza-slo-style-crust-san-luis-obispo.webp" width="800" height="800" alt="Pepperoni" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">Shot 3 — 6-9s — Pie</span><h3 class="story-player__title">Pies 10"–28"</h3><p class="story-player__desc">From personal to monster 28"</p></div></div>
+            <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/antonias-pizza-paso-robles-night-patio-lit-antonias.webp" width="600" height="600" alt="Night" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">Shot 4 — 9-12s — Late</span><h3 class="story-player__title">Open till 2AM</h3><p class="story-player__desc">Thu-Sat SLO, Fri-Sat Paso</p></div></div>
+            <div class="story-player__slide"><img class="story-player__bg" src="assets/img/logo.png" width="192" height="192" style="object-fit:contain;padding:20%;background:var(--sky)" alt="Logo" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">Shot 5 — 12-15s — CTA</span><h3 class="story-player__title">Order Now</h3><p class="story-player__desc">Toast — pickup or delivery</p><a class="story-player__cta" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order Online</a></div></div>
+            <div class="story-player__progress"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Famous Dough 15s -->
+    <section class="section" id="dough">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:start">
+          <div>
+            <span class="eyebrow">Promo #1 — 15s Hero — 16:9 + 9:16 + 1:1</span>
+            <h2 class="display">Famous for our dough — 15s hero</h2>
+            <div style="margin:.8rem 0"><span class="kpi">Goal: Order conversion</span><span class="kpi">KPI: click_order, begin_checkout</span><span class="kpi">Audience: New visitors, SLO/Paso local pack</span><span class="kpi">CTA: Order Now → Toast</span></div>
+            <p class="lead"><strong>Story (why it fits):</strong> Antonia's is famous for dough — it's in H1 "WE ARE FAMOUS FOR OUR DOUGH!". New visitor doesn't know why we're different from Domino's. Show dough = proof. 15s hero answers "what is Antonia's known for?" (FAQPage) in 5 shots. Goal is to move Traffic→Menu→Order in 1 click.</p>
+            <div class="script-grid">
+              <div class="script-card"><h3>Shot 1 — 0-3s — Dough — dough-toss.webp</h3><p><strong>Visual:</strong> Chef in red apron kneading, flour dust, slow-mo toss (Dreamina image-to-video: gentle push-in, flour particles)</p><p><strong>Text overlay:</strong> Famous for our dough</p><p><strong>VO:</strong> "Every pie starts with dough we toss by hand"</p><p><strong>Music:</strong> Warm acoustic, flour dust foley</p></div>
+              <div class="script-card"><h3>Shot 2 — 3-6s — Sauce — hero-sauce.webp</h3><p><strong>Visual:</strong> Ladle circles, tomato red, herbs (rising steam, light reflection)</p><p><strong>Text:</strong> Home-made sauce + SLO-style crust</p><p><strong>VO:</strong> "Home-made sauce, SLO-style seasoned crust"</p></div>
+              <div class="script-card"><h3>Shot 3 — 6-9s — Pie — hero-pep.webp + pies-1.webp</h3><p><strong>Visual:</strong> Pepperoni cupped charred edge, mozzarella melt, close-up reveal (parallax)</p><p><strong>Text:</strong> Pies 10"–28" — biggest in town</p><p><strong>VO:</strong> "Pies from 10 inches to a giant 28"</p></div>
+              <div class="script-card"><h3>Shot 4 — 9-12s — Late — real-night.webp</h3><p><strong>Visual:</strong> Storefront night, patio lit, clock 11PM→2AM (soft background movement)</p><p><strong>Text:</strong> Open till 2AM Thu-Sat SLO</p><p><strong>VO:</strong> "Open late till 2AM"</p></div>
+              <div class="script-card"><h3>Shot 5 — 12-15s — CTA — logo.png + promo-with-logo.png</h3><p><strong>Visual:</strong> Logo reveal + promo-with-logo.png, badgeGlint light sweep</p><p><strong>Text:</strong> Antonia's Pizza — Order Now</p><p><strong>VO:</strong> "Antonia's Pizza — two downtown kitchens — order now on Toast"</p><p><strong>CTA:</strong> Button Order Online → https://antoniaspizza.toast.site/ target=_blank</p></div>
+            </div>
+            <p style="margin-top:1.2rem;opacity:.7;font-size:.85rem"><strong>Where it lives:</strong> Homepage hero (replace static ph-main with story-player--auto), menu hero, our-story dough section, /videos + /promo-videos, YouTube pre-roll, Instagram Reel 9:16, GBP video post, Toast cover. <strong>Pro tools:</strong> Dreamina image-to-video animate real photos (push-in, steam, parallax), CapCut edit + captions, MotionVid logo reveal at end, Canva exact file intact for logo, Sora 2/Veo 3.1 for frontier generation if owner wants AI B-roll (but real photos first), Kling 3.0 $6.99/mo budget 15s.</p>
+          </div>
+          <div>
+            <div class="story-player story-player--auto">
+              <div class="story-player__slide is-active"><img class="story-player__bg" src="assets/img/seo/hand-crafted-dough-toss-24h-ferment-san-luis-obispo.webp" width="1200" height="900" alt="Dough" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">0-3s</span><h3 class="story-player__title">Famous for our dough</h3><p class="story-player__desc">Hand-crafted daily</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/homemade-tomato-sauce-ladled-olive-oil-slo-antonias.webp" width="1200" height="900" alt="Sauce" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">3-6s</span><h3 class="story-player__title">Home-made sauce</h3><p class="story-player__desc">SLO-style crust</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/antonias-special-pizza-slo-style-crust-san-luis-obispo.webp" width="800" height="800" alt="Pepperoni" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">6-9s</span><h3 class="story-player__title">Pies 10"–28"</h3><p class="story-player__desc">Biggest in town</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/antonias-pizza-paso-robles-night-patio-lit-antonias.webp" width="600" height="600" alt="Night" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">9-12s</span><h3 class="story-player__title">Open till 2AM</h3><p class="story-player__desc">Thu-Sat SLO</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/logo.png" width="192" height="192" style="object-fit:contain;padding:18%;background:var(--sky)" alt="Logo" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">12-15s CTA</span><h3 class="story-player__title">Order Now</h3><p class="story-player__desc">Toast pickup/delivery</p><a class="story-player__cta" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order</a></div></div>
+              <div class="story-player__progress"></div>
+            </div>
+            <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap"><span class="kpi">15s</span><span class="kpi">16:9 hero</span><span class="kpi">9:16 Reel</span><span class="kpi">1:1 feed</span><span class="kpi">Real photos only</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Open Till 2AM 30s -->
+    <section class="section section--dark" id="late-night" style="background:var(--navy);color:var(--paper)">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:.9fr 1.1fr;gap:2rem;align-items:start">
+          <div>
+            <div class="story-player story-player--auto story-player--30s">
+              <div class="story-player__slide is-active"><img class="story-player__bg" src="assets/img/seo/outdoor-patio-dining-downtown-san-luis-obispo-antonias.webp" width="800" height="800" alt="Patio day" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">0-5s — Day</span><h3 class="story-player__title">SLO doesn't stop at 9</h3><p class="story-player__desc">Cal Poly, downtown, shift workers</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/storefront.webp" width="800" height="600" alt="Storefront" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">5-12s — Night falls</span><h3 class="story-player__title">Clock hits midnight</h3><p class="story-player__desc">Most kitchens close — we don't</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/antonias-pizza-paso-robles-night-patio-lit-antonias.webp" width="600" height="600" alt="Night" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">12-20s — 2AM</span><h3 class="story-player__title">Open till 2AM</h3><p class="story-player__desc">Thu-Sat SLO, Fri-Sat Paso — lights on</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/loaded-ny-pizza-fries-melted-cheese-antonias.webp" width="800" height="800" alt="Box" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">20-26s — Box opens</span><h3 class="story-player__title">Box opens, steam rises</h3><p class="story-player__desc">Late-night craving, covered</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/logo.png" width="192" height="192" style="object-fit:contain;padding:18%;background:var(--sky)" alt="Logo" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">26-30s CTA</span><h3 class="story-player__title">Your 2AM spot</h3><p class="story-player__desc">891 Higuera SLO · 729 12th Paso</p><a class="story-player__cta" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order Late</a></div></div>
+              <div class="story-player__progress"></div>
+            </div>
+          </div>
+          <div>
+            <span class="eyebrow" style="color:var(--sun)">Promo #2 — 30s Story — 9:16 TikTok hero + 16:9 YouTube</span>
+            <h2 class="display" style="color:var(--paper)">Open till 2AM — late night SLO 30s</h2>
+            <div style="margin:.8rem 0"><span class="kpi" style="background:var(--paper);color:var(--navy)">Goal: Late-night positioning</span><span class="kpi" style="background:var(--paper);color:var(--navy)">KPI: late-night orders Thu-Sat, click_phone after 10PM</span><span class="kpi" style="background:var(--paper);color:var(--navy)">Audience: Cal Poly students, downtown workers, kitchen crews</span></div>
+            <p class="lead" style="color:var(--paper);opacity:.8"><strong>Story:</strong> Why open till 2AM? Because SLO doesn't stop at 9. Most pizza places close at 10PM. Antonia's stays open for students finishing labs, downtown workers, kitchen crews. It's not a gimmick — it's the reason students know the name. 30s arc: day→night→midnight→2AM→box opens→CTA.</p>
+            <div class="script-grid" style="color:var(--navy)">
+              <div class="script-card"><h3>0-5s — Day — real-patio.webp</h3><p>Visual: Patio full, Higuera St day, Cal Poly backpacks. Text: SLO doesn't stop at 9. VO: "San Luis Obispo doesn't stop at 9PM"</p></div>
+              <div class="script-card"><h3>5-12s — Night falls — storefront.webp</h3><p>Visual: Sun sets, storefront lights on, other shops close. Text: Most kitchens close. VO: "Most kitchens close"</p></div>
+              <div class="script-card"><h3>12-20s — 2AM — real-night.webp</h3><p>Visual: Clock 11PM→12AM→1AM→2AM, Antonia's lights on, patio lit. Text: Open till 2AM Thu-Sat SLO Fri-Sat Paso. VO: "Antonia's stays open till 2AM — Thursday to Saturday in SLO, Friday Saturday in Paso"</p></div>
+              <div class="script-card"><h3>20-26s — Box opens — real-box.webp + slice-coke.webp</h3><p>Visual: Box opens, steam rises (Dreamina rising steam), cheese pull. Text: Late-night craving, covered. VO: "Your late-night craving, covered"</p></div>
+              <div class="script-card"><h3>26-30s CTA — logo.png</h3><p>Visual: Logo + two addresses + phone numbers. Text: 891 Higuera SLO (805)439-2383 · 729 12th Paso (805)238-1851. CTA Order Late → Toast. VO: "Antonia's Pizza — 891 Higuera SLO and 729 12th Paso — order now"</p></div>
+            </div>
+            <p style="margin-top:1rem;opacity:.7;font-size:.85rem;color:var(--paper)">Where: Homepage tonight section, blog/late-night-slo (already exists), Instagram Reel 9:16, TikTok, GBP video, YouTube. Pro tools: Dreamina image-to-video (soft background movement, light reflection), CapCut captions + beat sync, Sora 2 for clock timelapse B-roll, Kling 3.0 budget.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Ajarski 20s -->
+    <section class="section" id="ajarski-promo">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:2rem">
+          <div>
+            <span class="eyebrow">Promo #3 — 20s Differentiation — Only on Higuera</span>
+            <h2 class="display">The Ajarski — only on Higuera 20s</h2>
+            <div><span class="kpi">Goal: Differentiation / curiosity</span><span class="kpi">KPI: view_item Ajarski, click_order Ajarski</span><span class="kpi">Audience: Foodies, visitors, Google "what is Ajarski"</span></div>
+            <p class="lead"><strong>Story:</strong> It's not a calzone. It's not a pizza. It's the Ajarski — Georgian dough boat, nowhere else in SLO. 4 versions. Show egg cracked, butter melting, cheese pull — curiosity → order. Answers FAQ "What's the Ajarski?" (FAQPage schema).</p>
+            <div class="script-grid">
+              <div class="script-card"><h3>0-4s — Mystery — ajarski-2.webp close</h3><p>Visual: Dough boat, cheese, text "It's not a calzone". VO: "It's not a calzone"</p></div>
+              <div class="script-card"><h3>4-8s — Reveal — ajarski-2.webp egg</h3><p>Visual: Egg cracked in center, butter melting (sauce drizzle effect). Text: It's the Ajarski. VO: "It's the Ajarski — Georgian dough boat"</p></div>
+              <div class="script-card"><h3>8-14s — 4 ways — version-list</h3><p>Visual: Original, American, Mexicano, SLO Style chips. Text: 4 ways. VO: "Original, American, Mexicano, SLO Style — only on Higuera Street"</p></div>
+              <div class="script-card"><h3>14-20s CTA — Order Ajarski</h3><p>Visual: Logo + Order The Ajarski button. Text: Only on Higuera St — Order now. VO: "The Ajarski — only at Antonia's on Higuera — order now"</p></div>
+            </div>
+            <p style="opacity:.7;font-size:.85rem">Where: Homepage #ajarski, menu #ajarski, our-story #ajarski-story, /videos, TikTok foodie, Instagram. Pro tools: Dreamina sauce drizzle + cheese pull close-up reveal, Kapwing text kinetic.</p>
+          </div>
+          <div>
+            <div class="story-player story-player--auto" style="--story-dur:20s">
+              <div class="story-player__slide is-active"><img class="story-player__bg" src="assets/img/seo/ajarski-georgian-cheese-egg-boat-san-luis-obispo.webp" width="800" height="800" alt="Ajarski" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">0-4s</span><h3 class="story-player__title">It's not a calzone</h3></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/ajarski-georgian-cheese-egg-boat-san-luis-obispo.webp" width="800" height="800" alt="Ajarski egg" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">4-8s</span><h3 class="story-player__title">It's the Ajarski</h3><p class="story-player__desc">Dough boat, mozzarella, feta, egg, butter</p></div></div>
+              <div class="story-player__slide"><div style="position:absolute;inset:0;background:var(--navy)"></div><div class="story-player__content"><span class="story-player__eyebrow">8-14s</span><h3 class="story-player__title">4 ways</h3><p class="story-player__desc">Original · American · Mexicano · SLO Style</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/logo.png" width="192" height="192" style="object-fit:contain;padding:18%;background:var(--sky)" alt="Logo" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">14-20s CTA</span><h3 class="story-player__title">Order The Ajarski</h3><a class="story-player__cta" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order</a></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/logo.png" width="192" height="192" style="object-fit:contain;padding:18%;background:var(--sky)" alt="Logo" loading="lazy"><div class="story-player__content"><h3 class="story-player__title">Only on Higuera St</h3></div></div>
+              <div class="story-player__progress"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Two Kitchens 25s -->
+    <section class="section section--dark" id="two-kitchens" style="background:var(--paper);color:var(--navy);border-top:3px solid var(--navy);border-bottom:3px solid var(--navy)">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:.9fr 1.1fr;gap:2rem">
+          <div>
+            <div class="story-player story-player--auto" style="--story-dur:25s">
+              <div class="story-player__slide is-active"><img class="story-player__bg" src="assets/img/seo/outdoor-patio-dining-downtown-san-luis-obispo-antonias.webp" width="800" height="800" alt="SLO" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">0-5s SLO</span><h3 class="story-player__title">891 Higuera St</h3><p class="story-player__desc">Downtown SLO, patio, brick arcade</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/antonias-pizza-paso-robles-night-patio-lit-antonias.webp" width="600" height="600" alt="Paso" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">5-10s Paso</span><h3 class="story-player__title">729 12th St</h3><p class="story-player__desc">Downtown Paso, wine country, patio lit</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/hand-crafted-dough-toss-24h-ferment-san-luis-obispo.webp" width="1200" height="900" alt="Dough" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">10-18s Same</span><h3 class="story-player__title">Same dough, same sauce</h3><p class="story-player__desc">Two kitchens, one legend</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/loaded-ny-pizza-fries-melted-cheese-antonias.webp" width="800" height="800" alt="Box" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">18-22s Both</span><h3 class="story-player__title">Two downtown kitchens</h3><p class="story-player__desc">SLO + Paso, open late</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/logo.png" width="192" height="192" style="object-fit:contain;padding:18%;background:var(--sky)" alt="Logo" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">22-25s CTA</span><h3 class="story-player__title">Choose your spot</h3><p class="story-player__desc">Order SLO or Paso</p></div></div>
+              <div class="story-player__progress"></div>
+            </div>
+          </div>
+          <div>
+            <span class="eyebrow">Promo #4 — 25s Local SEO — Two kitchens, one legend</span>
+            <h2 class="display">Two kitchens, one legend — 25s</h2>
+            <div><span class="kpi">Goal: Local pack both cities</span><span class="kpi">KPI: clicks to SLO/Paso pages, direction clicks</span><span class="kpi">Audience: SLO + Paso locals, tourists, wine country</span></div>
+            <p class="lead"><strong>Story:</strong> Many think Antonia's is only SLO. Show Paso exists too — same dough, same sauce, two downtown spots. NAP consistency, maps embed Round 13 already. 25s split: 5s SLO, 5s Paso, 8s same, 4s both, 3s CTA.</p>
+            <div class="script-grid">
+              <div class="script-card"><h3>0-5s SLO — real-patio.webp</h3><p>891 Higuera St, SLO, CA 93401, (805)439-2383, Sun-Wed 11-mid Thu-Sat 11-2AM</p></div>
+              <div class="script-card"><h3>5-10s Paso — real-night.webp</h3><p>729 12th St, Paso Robles, CA 93446, (805)238-1851, Sun-Thu 11-mid Fri-Sat 11-2AM</p></div>
+              <div class="script-card"><h3>10-18s Same — dough-toss.webp + hero-sauce.webp</h3><p>Same dough, same sauce, same legendary crust — proof, not claim</p></div>
+              <div class="script-card"><h3>18-25s CTA — Two buttons Order SLO / Order Paso</h3><p>Maps embed already added Round 13, click_directions event</p></div>
+            </div>
+            <p style="opacity:.7;font-size:.85rem">Where: Locations #locations tabs, san-luis-obispo.html + paso-robles.html heroes, GBP posts for both, /videos, YouTube. Pro tools: Dreamina parallax on patio photos, CapCut split screen SLO|Paso.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Catering 30s -->
+    <section class="section" id="catering-promo">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1.1fr .9fr;gap:2rem">
+          <div>
+            <span class="eyebrow">Promo #5 — 30s Lead Gen — Feast for your crew</span>
+            <h2 class="display">Catering — feast for your crew 30s</h2>
+            <div><span class="kpi">Goal: Catering leads</span><span class="kpi">KPI: click_catering, submit_catering_form, click_phone catering</span><span class="kpi">Audience: Corporate, winery, Cal Poly, birthdays, weddings</span></div>
+            <p class="lead"><strong>Story:</strong> Corporate lunch, winery event, Cal Poly club, birthday — same problem: feed crew with real food, not sad sandwiches. Antonia's catering: hand-crafted pies 10"–28", Ajarski, pasta, wings, salads. Two kitchens, min order & lead time owner to confirm — contact for quote. No invented prices.</p>
+            <div class="script-grid">
+              <div class="script-card"><h3>0-5s Problem — office, winery, campus</h3><p>Visual: Corporate meeting, winery barrel room, Cal Poly campus (stock ok for B-roll, but food must be real-*). Text: Need to feed your crew?</p></div>
+              <div class="script-card"><h3>5-15s Solution — real-box.webp + feast-wide.webp + real-patio.webp</h3><p>Visual: Catering box opens, feast-wide spread, patio tables. Text: Hand-crafted pies 10"–28", Ajarski, pasta, wings & salads. VO: "Pizza, Italian, for corporate, winery, Cal Poly, birthdays & weddings"</p></div>
+              <div class="script-card"><h3>15-23s Proof — two kitchens + real-night.webp</h3><p>Visual: SLO 891 Higuera + Paso 729 12th, same dough. Text: Two downtown kitchens — same dough, same sauce</p></div>
+              <div class="script-card"><h3>23-30s CTA — Call for quote</h3><p>Visual: Phone numbers, Call SLO / Call Paso buttons. Text: Min order & lead time owner to confirm — contact for quote. CTA Call SLO (805)439-2383 Call Paso (805)238-1851. VO: "Two kitchens — call for quote"</p></div>
+            </div>
+            <p style="opacity:.7;font-size:.85rem">Where: catering.html hero, catering-teaser on homepage, /videos, LinkedIn corporate, Instagram winery, Cal Poly groups. Pro tools: Dreamina image-to-video on real-box (box opens, steam), CapCut captions, OpusClip long catering testimonial → short.</p>
+          </div>
+          <div>
+            <div class="story-player story-player--auto story-player--30s">
+              <div class="story-player__slide is-active"><div style="position:absolute;inset:0;background:var(--navy)"></div><div class="story-player__content"><span class="story-player__eyebrow">0-5s Problem</span><h3 class="story-player__title">Need to feed your crew?</h3><p class="story-player__desc">Corporate, winery, Cal Poly, birthdays</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/loaded-ny-pizza-fries-melted-cheese-antonias.webp" width="800" height="800" alt="Box" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">5-15s Solution</span><h3 class="story-player__title">Hand-crafted pies 10"–28"</h3><p class="story-player__desc">Ajarski, pasta, wings, salads</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/traditional-italian-tiramisu-dessert-paso-robles.webp" width="800" height="800" alt="Feast" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">15-23s Proof</span><h3 class="story-player__title">Two downtown kitchens</h3><p class="story-player__desc">891 Higuera SLO · 729 12th Paso</p></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/outdoor-patio-dining-downtown-san-luis-obispo-antonias.webp" width="800" height="800" alt="Patio" loading="lazy"><div class="story-player__content"><span class="story-player__eyebrow">23-30s CTA</span><h3 class="story-player__title">Call for quote</h3><p class="story-player__desc">(805)439-2383 SLO · (805)238-1851 Paso</p><a class="story-player__cta" href="tel:+18054392383">Call SLO</a></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/logo.png" width="192" height="192" style="object-fit:contain;padding:18%;background:var(--sky)" alt="Logo" loading="lazy"><div class="story-player__content"><h3 class="story-player__title">Catering</h3></div></div>
+              <div class="story-player__progress"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 10 to 28 15s -->
+    <section class="section section--dark" id="big-pies" style="background:var(--sun);color:var(--navy)">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:.9fr 1.1fr;gap:2rem">
+          <div>
+            <div class="story-player story-player--auto">
+              <div class="story-player__slide is-active"><img class="story-player__bg" src="assets/img/seo/giant-28-inch-king-size-pizza-paso-robles-antonias.webp" width="800" height="800" alt="Pies" loading="lazy"><div class="story-player__content" style="color:var(--navy)"><span class="story-player__eyebrow" style="background:var(--navy);color:var(--paper)">0-3s Small</span><h3 class="story-player__title" style="color:var(--navy)">10" personal</h3></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/antonias-special-pizza-slo-style-crust-san-luis-obispo.webp" width="800" height="800" alt="Large" loading="lazy"><div class="story-player__content" style="color:var(--navy)"><span class="story-player__eyebrow" style="background:var(--navy);color:var(--paper)">3-7s Large</span><h3 class="story-player__title" style="color:var(--navy)">14"–18" family</h3></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/seo/traditional-italian-tiramisu-dessert-paso-robles.webp" width="800" height="800" alt="28" loading="lazy"><div class="story-player__content" style="color:var(--navy)"><span class="story-player__eyebrow" style="background:var(--navy);color:var(--paper)">7-11s Monster</span><h3 class="story-player__title" style="color:var(--navy)">28" monster</h3><p class="story-player__desc" style="color:var(--navy)">Biggest pie in town</p></div></div>
+              <div class="story-player__slide"><div style="position:absolute;inset:0;background:var(--navy)"></div><div class="story-player__content"><span class="story-player__eyebrow">11-15s Deal</span><h3 class="story-player__title">2 XL $39.99</h3><p class="story-player__desc">Most popular — feeds crew</p><a class="story-player__cta" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Grab Deal</a></div></div>
+              <div class="story-player__slide"><img class="story-player__bg" src="assets/img/logo.png" width="192" height="192" style="object-fit:contain;padding:18%;background:var(--sky)" alt="Logo" loading="lazy"><div class="story-player__content" style="color:var(--navy)"><h3 class="story-player__title" style="color:var(--navy)">Big pies. Bigger value.</h3></div></div>
+              <div class="story-player__progress" style="background:var(--navy)"></div>
+            </div>
+          </div>
+          <div>
+            <span class="eyebrow">Promo #6 — 15s AOV — 10 to 28</span>
+            <h2 class="display">10" to 28" — big pies, bigger value 15s</h2>
+            <div><span class="kpi">Goal: AOV + Deals</span><span class="kpi">KPI: add_to_cart, begin_checkout, purchase, AOV</span><span class="kpi">Audience: Families, crews, parties, app users</span></div>
+            <p class="lead"><strong>Story:</strong> Size matters. Show progression 10"→14"→18"→28" monster — visual proof biggest pie in town. Then deal: 2 XL Two-Topping $39.99 most popular. Ends with app rewards. Goal is to push from single pie to bundle, increase AOV.</p>
+            <div class="script-grid">
+              <div class="script-card"><h3>0-3s 10" personal — pies-1.webp</h3><p>Visual: 10" small, one person. Text: 10" personal</p></div>
+              <div class="script-card"><h3>3-7s 14-18" family — hero-pep.webp</h3><p>Visual: 14"–18" family, 2-3 people. Text: 14"–18" family</p></div>
+              <div class="script-card"><h3>7-11s 28" monster — feast-wide.webp</h3><p>Visual: 28" monster, barely fits box, 5-6 people. Text: 28" monster — biggest in town. VO: "From 10 inches to a giant 28"</p></div>
+              <div class="script-card"><h3>11-15s Deal — 2 XL $39.99</h3><p>Visual: 2 XL deal card, badge most popular. Text: 2 XL Two-Topping $39.99 — most popular. CTA Grab Deal → Toast. VO: "Big pies, bigger value — grab the deal"</p></div>
+            </div>
+            <p style="opacity:.7;font-size:.85rem">Where: Homepage #deals, menu #deals, /videos, TikTok, Instagram, app splash, GBP offer post. Pro tools: CapCut scale animation 10→28, MotionVid pop for deal badge, Canva template for deal card.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="reveal" style="max-width:860px;margin:0 auto 2.5rem;text-align:center">
+          <span class="eyebrow">How to produce — pro tools workflow</span>
+          <h2 class="display">From real photos to promo videos — no invented facts</h2>
+          <p class="lead">Sandbox has no ffmpeg, only ImageMagick — so above are CSS story players (vanilla only). For real MP4s, owner uses pro tools with real photos. Never AI-replace storefront.jpg/pies-2.jpg, never generate fake location, never branded bottles (Monini), no marble studio kitchens, no generic dishes. Prompts forbid text/logos/brands/faces, grounded in owner real crops. Toast is only checkout, target=_blank.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem">
+          <div class="script-card"><h3>Dreamina (CapCut) — Restaurant workflow</h3><p>Upload real-* photos → image-to-video → choose motion: rising steam, gentle push-in, soft background movement, light reflection, sauce drizzle, parallax, close-up reveal. Turn one dish photo into TikTok teaser, IG Reel, delivery promo, lunch special, seasonal, paid social. Seedance 2.0-powered, multimodal refs, audio workflows.</p><p><strong>Prompt example for dough:</strong> "Hand-crafted pizza dough being tossed, flour dust particles in air, gentle camera push-in, warm kitchen light, 4K, photoreal, no text, no logo"</p></div>
+          <div class="script-card"><h3>Sora 2 + Veo 3.1 — Frontier generation</h3><p>Via PostEverywhere $9/mo, Canva, Runway. Best for B-roll: clock timelapse midnight→2AM, flour dust, cheese pull macro, butter melting. Use real photos as first frame, then generate motion. Keep brand exact file intact — if typography must stay exact, use Canva not MotionVid (MotionVid re-render can soften).</p><p><strong>Prompt for late night:</strong> "Downtown SLO street at night, Antonia's Pizza storefront lights on, other shops closed, clock timelapse 11PM to 2AM, warm light, photoreal, no people faces"</p></div>
+          <div class="script-card"><h3>Kling 3.0 $6.99/mo — Budget 15s + CapCut free editor</h3><p>Kling 3.0: 66 daily credits free 720p watermarked, 15s clips, best budget generation. CapCut: free editor, beat-synced, captions auto, text kinetic, transitions. OpusClip: long catering testimonial → viral short. Jitter: frame-exact 720p 3 files free. Canva: exact file intact free template. Renderforest: 3D Lite $9 Pro $19 Business $29. MotionVid $19/mo 500 gens $0.038 custom.</p><p><strong>Workflow:</strong> Real photos → Dreamina/Kling animate → CapCut edit + captions + music + CTA → export 1080p 16:9 + 9:16 + 1:1 → upload YouTube/TikTok/IG → embed WebM self-hosted in assets/video/ (no CDN per HANDOFF)</p></div>
+          <div class="script-card"><h3>Where each promo lives on site — CRO map</h3><p><strong>#1 Dough 15s:</strong> Homepage hero, menu hero, our-story dough, /videos, /promo-videos, YouTube pre-roll, IG Reel, GBP video, Toast cover — goal Order conversion</p><p><strong>#2 Late Night 30s:</strong> Tonight section, blog/late-night-slo, IG Reel 9:16, TikTok, GBP — goal late-night positioning</p><p><strong>#3 Ajarski 20s:</strong> #ajarski sections, menu #ajarski, our-story #ajarski-story, TikTok foodie — goal differentiation</p><p><strong>#4 Two Kitchens 25s:</strong> #locations tabs, SLO/Paso pages, GBP both — goal local pack</p><p><strong>#5 Catering 30s:</strong> catering.html hero, catering-teaser, LinkedIn, IG winery — goal catering leads</p><p><strong>#6 10-28 15s:</strong> #deals, menu #deals, app splash, GBP offer — goal AOV + deals</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container" style="display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;justify-content:space-between;padding:2.2rem 0">
+        <div><h2 class="display" style="font-size:clamp(1.8rem,4vw,2.8rem);margin:0">Ready to make them move?</h2><p style="opacity:.8;margin:.4rem 0 0">6 promo stories ready — owner can produce MP4s with real photos + logo.png 192×192 using Dreamina, Sora 2, Veo 3.1, Kling 3.0, CapCut, MotionVid, Canva. No invented facts, real photos first, Toast only checkout.</p></div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap"><a class="btn" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order Now</a><a class="btn btn--light" href="/videos">All Videos</a><a class="btn btn--ghost" href="/">Home</a></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img class="logo-badge" src="assets/img/logo.png" width="192" height="192" alt="Antonia's Pizza" loading="lazy" decoding="async">
+          <p style="opacity:.8;font-size:.95rem;max-width:34ch">Hand-crafted pizza, pasta and wings from downtown San Luis Obispo &amp; Paso Robles. Real food, real value — since day one.</p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="our-story.html">Our Story</a></li>
+            <li><a href="menu.html">Full Menu</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="#ajarski">The Ajarski</a></li>
+            <li><a href="index.html#deals">Deals</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+          
+            <li><a href="catering.html">Catering</a></li>
+            <li><a href="blog/index.html">Blog</a></li>
+            <li><a href="/videos">Videos</a></li><li><a href="/promo-videos">Promo Videos</a></li>
+            <li><a href="/order">Order</a></li>
+            <li><a href="/faq">FAQ</a></li></ul>
+        </div>
+        <div>
+          <h3>Locations</h3>
+          <ul>
+            <li><a href="san-luis-obispo.html">San Luis Obispo<br><small style="opacity:.7">891 Higuera St · (805) 439-2383</small></a></li>
+            <li><a href="paso-robles.html">Paso Robles<br><small style="opacity:.7">729 12th St · (805) 238-1851</small></a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Order</h3>
+          <ul>
+            <li><a href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order Online ↗</a></li>
+            <li><a href="https://c98e7d553a954b09a7deaefe428c6da0.app.ordersave.com/download-app" target="_blank" rel="noopener noreferrer">Get the App ↗</a></li>
+            <li><a href="tel:+18054392383">Call SLO</a></li>
+            <li><a href="tel:+18052381851">Call Paso</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-word" aria-hidden="true">Antonia's Pizza</div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2025</span> Antonia's Pizza — San Luis Obispo &amp; Paso Robles, CA. All rights reserved.</span>
+        <span>Best pizza in SLO · Open till 2AM · 🍕</span>
+      </div>
+    </div>
+  </footer>
+  <nav class="bottom-nav" aria-label="Mobile primary navigation">
+    <div class="bottom-nav__inner">
+      <a class="bottom-nav__item" href="/" data-page="home" aria-current="page" aria-label="Home">
+        <span class="bn-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <span class="bn-label">Home</span>
+      </a>
+      <a class="bottom-nav__item" href="/menu" data-page="menu" aria-label="Menu">
+        <span class="bn-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </span>
+        <span class="bn-label">Menu</span>
+      </a>
+      <a class="bottom-nav__item bottom-nav__item--order" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer" data-page="order" aria-label="Order online">
+        <span class="bn-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </span>
+        <span class="bn-label">Order</span>
+      </a>
+      <a class="bottom-nav__item" href="/#locations" data-page="locations" aria-label="Locations">
+        <span class="bn-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </span>
+        <span class="bn-label">Locations</span>
+      </a>
+    </div>
+  </nav>
+  <div class="sticky-order" role="region" aria-label="Order">
+    <span>Hungry?</span>
+    <a class="btn btn--sm" href="https://antoniaspizza.toast.site/" target="_blank" rel="noopener noreferrer">Order Now</a>
+  </div>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

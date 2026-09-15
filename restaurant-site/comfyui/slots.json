@@ -1,0 +1,108 @@
+{
+  "style_suffix": "award-winning editorial restaurant photography, photorealistic, tactile texture, warm tungsten and window light, deep shadow detail, shallow depth of field",
+  "negative": "text, watermark, logo, signature, cartoon, illustration, 3d render, plastic food, oversaturated, deformed, bad hands, duplicate dish, mirrored signage, people facing camera",
+  "slots": [
+    {
+      "file": "hero-sauce.jpg",
+      "width": 900,
+      "height": 990,
+      "prompt": "Vivid red homemade tomato sauce ladled in a spiral onto hand-stretched raw pizza dough on a floured marble counter, basil leaves and a copper sauce bowl nearby, flour dust in the air, portrait composition"
+    },
+    {
+      "file": "feast.jpg",
+      "width": 900,
+      "height": 990,
+      "prompt": "Overhead generous spread: two extra-large sliced pizzas with bubbling mozzarella and pepperoni, basket of crispy wings, marinara and ranch bowls, garden salad, garlic knots, dark rustic table, portrait composition"
+    },
+    {
+      "file": "feast-wide.jpg",
+      "width": 1200,
+      "height": 750,
+      "prompt": "The same abundant feast spread shot at table level, pizzas and wings along a dark rustic wooden table, landscape composition"
+    },
+    {
+      "file": "ajarski-2.jpg",
+      "width": 900,
+      "height": 900,
+      "prompt": "Georgian Adjarian khachapuri: golden dough boat with twisted edges, molten mozzarella and crumbled feta, glossy raw egg yolk and a melting butter pat in the centre, faint steam, dark wooden board, square composition"
+    },
+    {
+      "file": "pies-3.jpg",
+      "width": 800,
+      "height": 1000,
+      "prompt": "Rustic shared dinner table from a high angle: sliced grilled steak, pasta in red sauce, glass of red wine, roasted potatoes, crusty bread, candlelight, portrait composition"
+    },
+    {
+      "file": "pies-4.jpg",
+      "width": 800,
+      "height": 1000,
+      "prompt": "Slow-braised lamb shank falling off the bone in dark reduction jus with roasted carrots, potatoes, onions and rosemary on rustic ceramic, steam, portrait composition"
+    },
+    {
+      "file": "dough-toss.jpg",
+      "width": 900,
+      "height": 900,
+      "prompt": "Pizzaiolo in a red apron catching hand-stretched dough mid-toss, flour explosion frozen in the air, wood-fired brick oven flame behind, floured marble counter, square composition"
+    },
+    {
+      "file": "slice-coke.jpg",
+      "width": 1200,
+      "height": 800,
+      "prompt": "One hot cheese pizza slice with blistered mozzarella and torn basil on a rustic plate beside a tall glass of ice-cold cola with heavy condensation, dark worn diner table, landscape composition"
+    },
+    {
+      "file": "pies-1.jpg",
+      "width": 1200,
+      "height": 900,
+      "prompt": "Line-up of hand-tossed pizzas in descending sizes from 28-inch party pie to 10-inch, different fresh toppings, leopard-spotted charred crusts, along a long dark oak table with basil and flour dust, warm pendant bokeh, landscape composition"
+    },
+    {
+      "file": "wheel/cheese-slice.jpg",
+      "width": 800,
+      "height": 800,
+      "prompt": "One cheese pizza slice lifted from the pie with a long molten mozzarella pull, blistered crust, dark rustic board, square composition"
+    },
+    {
+      "file": "wheel/ajarski.jpg",
+      "width": 800,
+      "height": 800,
+      "prompt": "Adjarian khachapuri boat with molten cheese, feta, egg yolk and butter, dark rustic board, square composition"
+    },
+    {
+      "file": "wheel/supreme.jpg",
+      "width": 800,
+      "height": 800,
+      "prompt": "Whole supreme pizza: pepperoni, Italian sausage, green pepper, red onion, mushrooms, black olives, sliced, dark rustic board, square composition"
+    },
+    {
+      "file": "wheel/veggie.jpg",
+      "width": 800,
+      "height": 800,
+      "prompt": "Whole garden veggie pizza: roasted peppers, mushrooms, cherry tomatoes, red onion, spinach, olives, sliced, dark rustic board, square composition"
+    },
+    {
+      "file": "wheel/bbq-chicken.jpg",
+      "width": 800,
+      "height": 800,
+      "prompt": "Whole BBQ chicken pizza: glossy barbecue base, grilled chicken, red onion rings, cilantro, sliced, dark rustic board, square composition"
+    },
+    {
+      "file": "wheel/pies-wings.jpg",
+      "width": 800,
+      "height": 800,
+      "prompt": "Sliced cheese pizza beside crispy glazed chicken wings with ranch and celery, dark rustic board, square composition"
+    },
+    {
+      "file": "wheel/grill.jpg",
+      "width": 800,
+      "height": 800,
+      "prompt": "Sliced grilled steak with char marks and pink centre fanned on a wooden board with side salad and chimichurri, grill glow behind, square composition"
+    },
+    {
+      "file": "wheel/deli.jpg",
+      "width": 800,
+      "height": 800,
+      "prompt": "Tall stacked deli sandwich cut in half showing layered meats, cheese, egg, tomato and lettuce, beside a small espresso with crema, dark rustic board, square composition"
+    }
+  ]
+}

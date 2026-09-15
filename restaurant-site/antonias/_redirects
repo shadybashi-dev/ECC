@@ -1,0 +1,24 @@
+# Clean URLs for the static deploy. The source files are *.html; the sitemap,
+# canonicals and internal links use the clean form, so the host must map one to
+# the other. Netlify/Vercel/Cloudflare Pages all read this file.
+/menu                /menu.html             200
+/san-luis-obispo     /san-luis-obispo.html  200
+/paso-robles         /paso-robles.html      200
+/our-story           /our-story.html        200
+/catering            /catering.html         200
+/order               /order.html            200
+/faq                 /faq.html              200
+/videos              /videos.html           200
+/promo-videos        /promo-videos.html     200
+/promo               /promo-videos.html     200
+/blog                /blog/index.html       200
+/blog/late-night-slo   /blog/late-night-slo.html 200
+/blog/paso-wine-pairing /blog/paso-wine-pairing.html 200
+/llms.txt            /llms.txt              200
+
+# The old live site answered these paths; keep them alive so existing links
+# and Google's old index do not dead-end.
+/page/ajarski        /#ajarski              301
+/locations           /#locations            301
+/reservations        /#locations          301
+/privacy             /privacy.html          200

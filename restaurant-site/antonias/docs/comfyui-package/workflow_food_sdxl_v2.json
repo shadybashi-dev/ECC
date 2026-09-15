@@ -1,0 +1,88 @@
+{
+  "1": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "juggernautXL_v9Rdphoto2Lightning.safetensors"
+    }
+  },
+  "2": {
+    "class_type": "LoraLoader",
+    "inputs": {
+      "model": ["1", 0],
+      "clip": ["1", 1],
+      "lora_name": "commercial-food-styling-sdxl.safetensors",
+      "strength_model": 0.68,
+      "strength_clip": 0.68
+    }
+  },
+  "3": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "<POSITIVE_PROMPT>",
+      "clip": ["2", 1]
+    }
+  },
+  "4": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "<NEGATIVE_PROMPT>",
+      "clip": ["2", 1]
+    }
+  },
+  "5": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    }
+  },
+  "6": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 42,
+      "steps": 30,
+      "cfg": 4.2,
+      "sampler_name": "dpmpp_2m_sde_gpu",
+      "scheduler": "karras",
+      "denoise": 1.0,
+      "model": ["2", 0],
+      "positive": ["3", 0],
+      "negative": ["4", 0],
+      "latent_image": ["5", 0]
+    }
+  },
+  "7": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": ["6", 0],
+      "vae": ["1", 2]
+    }
+  },
+  "8": {
+    "class_type": "UpscaleModelLoader",
+    "inputs": {
+      "model_name": "4x-UltraSharp.pth"
+    }
+  },
+  "9": {
+    "class_type": "ImageUpscaleWithModel",
+    "inputs": {
+      "upscale_model": ["8", 0],
+      "image": ["7", 0]
+    }
+  },
+  "10": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "antonias-sdxl",
+      "images": ["9", 0]
+    }
+  },
+  "_meta": {
+    "title": "Antonia's SDXL Commercial Food - Juggernaut XL v9",
+    "description": "Juggernaut XL v9 + Food LoRA 0.68 + dpmpp_2m_sde_gpu/karras 30 steps CFG 4.2 + 4x-UltraSharp for low VRAM alternative to FLUX",
+    "vram": "6-8GB VRAM minimum, 12GB+ recommended for FLUX",
+    "style": "award-winning editorial restaurant photography, photorealistic, tactile texture, warm tungsten and window light, deep shadow detail, shallow depth of field"
+  }
+}
