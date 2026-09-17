@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>منيو حطب — HATAB Wood-Fired Pizza</title>
+  <meta name="description" content="منيو رقمي ثنائي اللغة لمطعم بيتزا فرن الحطب" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+</head>
+<body>
+  <header class="topbar no-print">
+    <div class="brand"><b id="brand-name">حطب</b><span id="brand-sub">HATAB · Wood-Fired Pizza</span></div>
+    <input class="search" id="search" type="search" placeholder="ابحث عن طبق…" aria-label="بحث" />
+    <button id="lang-toggle" class="btn-ghost" title="تبديل اللغة">EN</button>
+    <button id="print-btn" class="btn-ghost" title="نسخة الطباعة / PDF">🖨</button>
+    <a href="dashboard.html"><button class="btn-primary" title="لوحة التحكم">⚙ لوحة التحكم</button></a>
+  </header>
+
+  <div class="hero">
+    <img src="img/hero-pizza.jpg" alt="بيتزا من فرن الحطب" />
+    <div class="hero-copy">
+      <h1 id="hero-title">حطب</h1>
+      <p id="hero-tagline">بيتزا نابولية من فرن الحطب على حرارة 450°</p>
+      <div class="meta">
+        <span id="hero-hours">يومياً 12:00 ظهراً — 1:00 صباحاً</span>
+        <span id="hero-hotline">📞 93446</span>
+        <span id="hero-address"></span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="catnav no-print" id="catnav" aria-label="أقسام المنيو"></nav>
+
+  <main class="menu-wrap" id="menu-root"></main>
+
+  <footer class="site">
+    <p><b id="foot-brand">حطب</b> — <span id="foot-note">جميع الأسعار شاملة الضريبة · الصور فوتوغرافية حقيقية لأطباقنا</span></p>
+    <p id="foot-line">HATAB Wood-Fired Pizza · hotline 93446</p>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>لوحة تحكم المنيو — Menu Studio</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/dash.css" />
+</head>
+<body class="dash-body">
+  <header class="dash-top">
+    <div class="brand"><b>⚙ Menu Studio</b><span id="store-name">حطب</span></div>
+    <div class="actions">
+      <span id="save-state" class="save-state"></span>
+      <button id="reset-btn" class="btn-ghost">↺ تراجع</button>
+      <button id="export-btn" class="btn-ghost">⬇ تصدير JSON</button>
+      <button id="save-btn" class="btn-primary">💾 حفظ التغييرات</button>
+      <a href="index.html"><button class="btn-ghost">👁 عرض المنيو</button></a>
+    </div>
+  </header>
+
+  <div class="dash-layout">
+    <aside class="side">
+      <section class="panel settings-panel">
+        <h3 id="set-title">إعدادات المتجر</h3>
+        <label><span data-i18n="tagline"></span>
+          <input id="set-tagline-ar" dir="rtl" placeholder="عربي" />
+          <input id="set-tagline-en" dir="ltr" placeholder="English" />
+        </label>
+        <label><span data-i18n="hotline"></span><input id="set-hotline" inputmode="numeric" /></label>
+        <label><span data-i18n="hours"></span>
+          <input id="set-hours-ar" dir="rtl" placeholder="عربي" />
+          <input id="set-hours-en" dir="ltr" placeholder="English" />
+        </label>
+        <label><span data-i18n="currency"></span>
+          <select id="set-currency">
+            <option value="SAR">SAR — ر.س</option>
+            <option value="JOD">JOD — د.أ</option>
+            <option value="AED">AED — د.إ</option>
+            <option value="USD">USD — $</option>
+            <option value="EUR">EUR — €</option>
+          </select>
+        </label>
+      </section>
+      <section class="panel">
+        <h3 id="cats-title">الأقسام</h3>
+        <ul id="cat-list" class="cat-list"></ul>
+        <button id="add-cat" class="btn-ghost wide">+ قسم جديد</button>
+      </section>
+    </aside>
+
+    <main class="main">
+      <div class="kpis" id="kpis"></div>
+      <section class="panel table-panel">
+        <div class="table-head">
+          <h2 id="active-cat-name"></h2>
+          <button id="add-item" class="btn-primary">+ صنف جديد</button>
+        </div>
+        <div class="table-scroll">
+          <table class="items">
+            <thead>
+              <tr>
+                <th data-i18n="colName"></th>
+                <th data-i18n="colPrice"></th>
+                <th data-i18n="colImg"></th>
+                <th data-i18n="colStatus"></th>
+                <th data-i18n="colActions"></th>
+              </tr>
+            </thead>
+            <tbody id="items-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/dash.js"></script>
+</body>
+</html>

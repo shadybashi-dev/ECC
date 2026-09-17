@@ -1,0 +1,359 @@
+{
+  "restaurant": {
+    "name_ar": "حطب",
+    "name_en": "HATAB",
+    "tagline_ar": "بيتزا نابولية من فرن الحطب على حرارة 450°",
+    "tagline_en": "Neapolitan pizza from a 450° wood-fired oven",
+    "hotline": "93446",
+    "hours_ar": "يومياً 12:00 ظهراً — 1:00 صباحاً",
+    "hours_en": "Daily 12:00 PM — 1:00 AM",
+    "address_ar": "طريق الملك عبدالله، حي السفارات",
+    "address_en": "King Abdullah Rd, Diplomatic Quarter",
+    "currency": "SAR"
+  },
+  "settings": {
+    "default_lang": "ar",
+    "show_unavailable": false
+  },
+  "categories": [
+    {
+      "id": "pizza",
+      "icon": "🍕",
+      "name_ar": "بيتزا من فرن الحطب",
+      "name_en": "Wood-Fired Pizza",
+      "items": [
+        {
+          "id": "margherita",
+          "img": "img/pizza-margherita.jpg",
+          "name_ar": "مارغريتا كلاسيك",
+          "name_en": "Classic Margherita",
+          "desc_ar": "صلصة سان مارزانو، موزاريلا فيور دي لاتيه، ريحان طازج وزيت زيتون بكر.",
+          "desc_en": "San Marzano sauce, fior di latte mozzarella, fresh basil, extra virgin olive oil.",
+          "tags": [
+            "veg",
+            "popular"
+          ],
+          "prices": {
+            "m": 32,
+            "l": 45
+          },
+          "available": true
+        },
+        {
+          "id": "pepperoni",
+          "img": "img/pizza-pepperoni.jpg",
+          "name_ar": "بيبروني بلايز",
+          "name_en": "Pepperoni Blaze",
+          "desc_ar": "بيبروني بقري مقرمش بحواف محروقة، موزاريلا مزدوجة ورشة أوريجانو.",
+          "desc_en": "Cup-and-char beef pepperoni, double mozzarella, a dust of oregano.",
+          "tags": [
+            "popular"
+          ],
+          "prices": {
+            "m": 42,
+            "l": 56
+          },
+          "available": true
+        },
+        {
+          "id": "quattro-formaggi",
+          "img": "img/pizza-quattro-formaggi.jpg",
+          "name_ar": "أربع أجبان",
+          "name_en": "Quattro Formaggi",
+          "desc_ar": "موزاريلا، جورجونزولا، بارميزان وتاليديو على قاعدة كريمة الثوم.",
+          "desc_en": "Mozzarella, gorgonzola, parmesan and taleggio on a garlic cream base.",
+          "tags": [
+            "veg"
+          ],
+          "prices": {
+            "m": 46,
+            "l": 60
+          },
+          "available": true
+        },
+        {
+          "id": "bbq-chicken",
+          "img": "img/pizza-bbq-chicken.jpg",
+          "name_ar": "دجاج باربكيو",
+          "name_en": "BBQ Chicken",
+          "desc_ar": "دجاج مشوي، صلصة باربكيو مدخنة، بصل أحمر وكزبرة طازجة.",
+          "desc_en": "Grilled chicken, smoked BBQ sauce, red onion, fresh coriander.",
+          "tags": [],
+          "prices": {
+            "m": 44,
+            "l": 58
+          },
+          "available": true
+        },
+        {
+          "id": "grilled-veggie",
+          "img": "img/pizza-veggie.jpg",
+          "name_ar": "خضار مشوية",
+          "name_en": "Grilled Veggie",
+          "desc_ar": "كوسا وفلفل ملون مشويان، فطر، بصل مكرمل وروكا طازجة.",
+          "desc_en": "Charred zucchini and peppers, mushrooms, caramelized onion, fresh arugula.",
+          "tags": [
+            "veg"
+          ],
+          "prices": {
+            "m": 38,
+            "l": 50
+          },
+          "available": true
+        },
+        {
+          "id": "meat-supreme",
+          "img": "img/pizza-meat-supreme.jpg",
+          "name_ar": "سوبريم لحم",
+          "name_en": "Meat Supreme",
+          "desc_ar": "لحم بقري متبل، بيبروني، دجاج مشوي وبصل مكرمل فوق موزاريلا ذائبة.",
+          "desc_en": "Seasoned beef crumble, pepperoni, grilled chicken, caramelized onion.",
+          "tags": [
+            "popular"
+          ],
+          "prices": {
+            "m": 48,
+            "l": 63
+          },
+          "available": true
+        },
+        {
+          "id": "truffle-mushroom",
+          "img": "img/pizza-mushroom-truffle.jpg",
+          "name_ar": "فطر وترافل",
+          "name_en": "Truffle Mushroom",
+          "desc_ar": "فطر بري سوتيه، ريكوتا، شرائح ترافل أسود وزعتر طازج.",
+          "desc_en": "Sauteed wild mushrooms, ricotta, shaved black truffle, fresh thyme.",
+          "tags": [
+            "veg",
+            "chef"
+          ],
+          "prices": {
+            "m": 52,
+            "l": 68
+          },
+          "available": true
+        },
+        {
+          "id": "spicy-jalapeno",
+          "img": "img/pizza-spicy-jalapeno.jpg",
+          "name_ar": "هالبينو حار",
+          "name_en": "Spicy Jalapeño",
+          "desc_ar": "هالبينو طازج، بيبروني حار، عسل حار ورقائق تشيلي محمصة.",
+          "desc_en": "Fresh jalapeño, hot pepperoni, hot honey drizzle, toasted chili flakes.",
+          "tags": [
+            "spicy"
+          ],
+          "prices": {
+            "m": 43,
+            "l": 57
+          },
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "starters",
+      "icon": "🧀",
+      "name_ar": "مقبلات للمشاركة",
+      "name_en": "Starters to Share",
+      "items": [
+        {
+          "id": "mozzarella-sticks",
+          "img": "img/mozzarella-sticks.jpg",
+          "name_ar": "أصابع موزاريلا",
+          "name_en": "Mozzarella Sticks",
+          "desc_ar": "ست قطع مقرمشة بقشرة بانكو مع صلصة مارينارا البيتية.",
+          "desc_en": "Six panko-crisp sticks with our house marinara.",
+          "tags": [
+            "veg"
+          ],
+          "price": 24,
+          "available": true
+        },
+        {
+          "id": "buffalo-wings",
+          "img": "img/buffalo-wings.jpg",
+          "name_ar": "أجنحة بافلو",
+          "name_en": "Buffalo Wings",
+          "desc_ar": "ثمانية أجنحة بصلصة بافلو اللامعة مع رانش وكرفس.",
+          "desc_en": "Eight wings tossed in glossy buffalo sauce, ranch and celery.",
+          "tags": [
+            "spicy",
+            "popular"
+          ],
+          "price": 32,
+          "available": true
+        },
+        {
+          "id": "garlic-bread",
+          "img": "img/garlic-bread.jpg",
+          "name_ar": "خبز الثوم بالجبن",
+          "name_en": "Cheesy Garlic Bread",
+          "desc_ar": "شاباتا من فرن الحطب بزبدة الثوم وموزاريلا ذائبة وبقدونس.",
+          "desc_en": "Wood-oven ciabatta, garlic butter, melted mozzarella, parsley.",
+          "tags": [
+            "veg"
+          ],
+          "price": 22,
+          "available": true
+        },
+        {
+          "id": "loaded-fries",
+          "img": "img/loaded-fries.jpg",
+          "name_ar": "بطاطس محمّلة",
+          "name_en": "Loaded Fries",
+          "desc_ar": "بطاطس مقرمشة بشيدر ذائب، بصل أخضر ورانش.",
+          "desc_en": "Crispy fries under melted cheddar, scallions and ranch.",
+          "tags": [
+            "veg"
+          ],
+          "price": 26,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "pasta",
+      "icon": "🍝",
+      "name_ar": "من مطبخ الباستا",
+      "name_en": "From the Pasta Kitchen",
+      "items": [
+        {
+          "id": "chicken-alfredo",
+          "img": "img/pasta-alfredo.jpg",
+          "name_ar": "ألفريدو بالدجاج",
+          "name_en": "Chicken Alfredo",
+          "desc_ar": "فيتوتشيني بكريمة البارميزان مع دجاج مشوي وفلفل أسود مجروش.",
+          "desc_en": "Fettuccine in parmesan cream with grilled chicken, cracked pepper.",
+          "tags": [],
+          "price": 39,
+          "available": true
+        },
+        {
+          "id": "beef-lasagna",
+          "img": "img/pasta-lasagna.jpg",
+          "name_ar": "لازانيا اللحم",
+          "name_en": "Beef Lasagna",
+          "desc_ar": "طبقات لازانيا براغو البقر البطيء، بشاميل وموزاريلا مشوية.",
+          "desc_en": "Slow beef ragu layers, bechamel, oven-blistered mozzarella.",
+          "tags": [
+            "popular"
+          ],
+          "price": 42,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "salads",
+      "icon": "🥗",
+      "name_ar": "سلطات طازجة",
+      "name_en": "Fresh Salads",
+      "items": [
+        {
+          "id": "chicken-caesar",
+          "img": "img/caesar-salad.jpg",
+          "name_ar": "سيزر بالدجاج",
+          "name_en": "Chicken Caesar",
+          "desc_ar": "خس رومين مقرمش، دجاج مشوي، بارميزان وكروتون بالثوم.",
+          "desc_en": "Crisp romaine, grilled chicken, parmesan, garlic croutons.",
+          "tags": [],
+          "price": 34,
+          "available": true
+        },
+        {
+          "id": "caprese",
+          "img": "img/caprese-salad.jpg",
+          "name_ar": "كابريزي",
+          "name_en": "Caprese",
+          "desc_ar": "طماطم كرزية، موزاريلا طازجة، ريحان وخل بلسميك معتّق.",
+          "desc_en": "Cherry tomatoes, fresh mozzarella, basil, aged balsamic.",
+          "tags": [
+            "veg"
+          ],
+          "price": 29,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "desserts",
+      "icon": "🍰",
+      "name_ar": "حلويات",
+      "name_en": "Dolci & Desserts",
+      "items": [
+        {
+          "id": "ny-cheesecake",
+          "img": "img/cheesecake.jpg",
+          "name_ar": "تشيز كيك نيويورك",
+          "name_en": "NY Cheesecake",
+          "desc_ar": "تشيز كيك كريمي بقاعدة بسكويت مع صوص التوت البري.",
+          "desc_en": "Creamy baked cheesecake, biscuit base, berry coulis.",
+          "tags": [
+            "veg"
+          ],
+          "price": 26,
+          "available": true
+        },
+        {
+          "id": "lava-brownie",
+          "img": "img/lava-brownie.jpg",
+          "name_ar": "براوني لافا",
+          "name_en": "Chocolate Lava Brownie",
+          "desc_ar": "براوني دافئ بقلب شوكولاتة ذائب مع آيس كريم الفانيلا.",
+          "desc_en": "Warm brownie, molten chocolate core, vanilla gelato.",
+          "tags": [
+            "veg",
+            "popular"
+          ],
+          "price": 28,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "drinks",
+      "icon": "🥤",
+      "name_ar": "مشروبات",
+      "name_en": "Drinks",
+      "items": [
+        {
+          "id": "mint-lemonade",
+          "img": "img/mint-lemonade.jpg",
+          "name_ar": "ليموناضة بالنعناع",
+          "name_en": "Mint Lemonade",
+          "desc_ar": "ليمون مثلج مضروب مع نعناع طازج وثلج مجروش.",
+          "desc_en": "Iced lemon blended with fresh mint and crushed ice.",
+          "tags": [
+            "veg"
+          ],
+          "price": 16,
+          "available": true
+        },
+        {
+          "id": "soft-drinks",
+          "img": "",
+          "name_ar": "مشروبات غازية / مياه",
+          "name_en": "Soft Drinks / Water",
+          "desc_ar": "كولا، دايت، sprite، مياه معدنية — علبة 330مل.",
+          "desc_en": "Cola, diet, sprite, mineral water — 330ml can.",
+          "tags": [],
+          "price": 6,
+          "available": true
+        },
+        {
+          "id": "espresso",
+          "img": "",
+          "name_ar": "إسبريسو / قهوة تركية",
+          "name_en": "Espresso / Turkish Coffee",
+          "desc_ar": "حبوب محمصة طازجاً، تُقدّم ساخنة.",
+          "desc_en": "Freshly roasted beans, served hot.",
+          "tags": [],
+          "price": 12,
+          "available": true
+        }
+      ]
+    }
+  ]
+}
