@@ -1,0 +1,32 @@
+Category,Item ID,Item Name,Description,Ingredients,Allergens,Price 10in,Price 13in,Price 16in,Badge,Image File,Modifiers,Upsell
+Featured Pizzas,truffle-shuffle,The 46 Truffle Shuffle,"Wild mushrooms truffle cream fontina & taleggio post-bake arugula lemon zest. Earthy luxe oak-kissed.",Mushroom mix / Truffle cream / Fontina / Taleggio / Arugula,Gluten Dairy,19.95,26.95,32.95,Chef's,pizza-truffle-shuffle.jpg,"Size / Crust / Sauce / Cheese / Toppings / Cut&Bake / Add Dip",Add Dip +$1.50
+Featured Pizzas,cup-char-46,Cup & Char 46,"Double cup-and-char beef pepperoni hot honey drizzle oregano. Crispy sweet-heat.",Beef pepperoni / Mozzarella / Hot honey,Gluten Dairy,16.95,22.95,27.95,Popular,pizza-cup-char-46.jpg,Size/Crust/Sauce/Cheese/Toppings/CutBake/AddDip,Make it Combo +$8.95
+Featured Pizzas,margherita,Vineyard Margherita,"San Marzano tomato fior di latte fresh basil EVOO blistered cornicione. Simple perfect.",Tomato / Fior di latte / Basil / EVOO,Gluten Dairy Veg,14.95,19.95,23.95,Veg,pizza-margherita.jpg,Size/Crust/Sauce/Cheese/Toppings/CutBake/AddDip,Add Dip
+Featured Pizzas,quattro-formaggi,Quattro Formaggi Oak,"Garlic cream base mozzarella gorgonzola taleggio aged parmesan. Four-cheese hug.",4 cheeses / Garlic cream,Gluten Dairy Veg,17.95,23.95,28.95,Veg,pizza-quattro-formaggi-box.jpg,Size/Crust/Sauce/Cheese/Toppings/CutBake/AddDip,Add Dip
+Featured Pizzas,bbq-chicken,Bourbon BBQ Chicken,"Grilled chicken bourbon-smoked BBQ smoked gouda red onion cilantro. Sweet smoke.",Chicken / BBQ / Gouda / Onion,Gluten Dairy,17.95,23.95,28.95,,pizza-bourbon-bbq.jpg,Size/Crust/Sauce/Cheese/Toppings/CutBake/AddDip,Make it Combo
+Featured Pizzas,valley-veggie,Valley Veggie Fire,"Charred zucchini roasted peppers mushroom caramelized onion post-bake arugula. Garden fire.",5 veg / Mozzarella,Gluten Dairy Veg,15.95,21.95,26.95,Veg,pizza-valley-veggie.jpg,Size/Crust/Sauce/Cheese/Toppings/CutBake/AddDip,Add Dip
+Featured Pizzas,meat-supreme,Meat Supreme 46,"Pepperoni fennel sausage smoked bacon ground beef red onion. Carnivore oak pile.",4 meats / Mozzarella,Gluten Dairy,18.95,25.95,31.95,,pizza-meat-supreme-46.jpg,Size/Crust/Sauce/Cheese/Toppings/CutBake/AddDip,Family Bundle
+Featured Pizzas,calabrian-heat,Calabrian Heat,"Soppressata Calabrian chili fresh mozzarella hot honey basil. Slow burn.",Soppressata / Chili / Honey,Gluten Dairy Spicy,17.95,23.95,28.95,Spicy,pizza-calabrian-heat.jpg,Size/Crust/Sauce/Cheese/Toppings/CutBake/AddDip,Add Dip Hot Honey
+Build Your Own,bYO-cheese,BYO Cheese Base,"Start with cheese & San Marzano then customize. Classic oak crust.",Mozzarella / Tomato,Gluten Dairy,12.95,16.95,20.95,,,"Crust Sauce Cheese Toppings Cut Bake Add Dip",BYO
+Sides,mozzarella-sticks,Mozzarella Sticks (6),"Panko-crisp house marinara.",Mozzarella / Panko / Marinara,Gluten Dairy Veg,9.95,,,Veg,mozzarella-sticks.jpg,,Add Dip
+Sides,buffalo-wings,Buffalo Wings (8),"Glossy buffalo ranch celery. Vented box.",Chicken wings / Buffalo / Ranch, Dairy Spicy,12.95,,,Spicy Popular,buffalo-wings.jpg,,Add Ranch
+Sides,garlic-bread,Oak Garlic Bread,"Ciabatta garlic butter melted mozz parsley.",Ciabatta / Garlic butter / Mozz,Gluten Dairy Veg,8.95,,,Veg,garlic-bread.jpg,,Add Marinara
+Sides,loaded-fries,Loaded Ember Fries,"Cheddar scallions ranch bacon crumble.",Fries / Cheddar / Scallions / Ranch,Gluten Dairy,9.95,,,Popular,loaded-fries.jpg,,Add Dip
+Salads,chicken-caesar,Chicken Caesar,"Romaine grilled chicken parmesan garlic croutons.",Romaine / Chicken / Parmesan,Gluten Dairy,11.95,,,,caesar-salad.jpg,,Add Chicken +$3
+Salads,caprese,Caprese,"Cherry tomato fresh mozzarella basil aged balsamic.",Tomato / Mozzarella / Basil,Dairy Veg Gluten-Free,10.95,,,,caprese-salad.jpg,,Add Chicken +$3
+Desserts,ny-cheesecake,NY Cheesecake,"Biscuit base Paso berry coulis.",Cream cheese / Biscuit,Dairy Gluten,7.95,,,,cheesecake.jpg,,Add Scoop
+Desserts,lava-brownie,Chocolate Lava Brownie,"Warm brownie molten core vanilla gelato separate cup.",Chocolate / Flour / Gelato,Dairy Gluten Egg,8.95,,,,lava-brownie.jpg,,Add Gelato
+Drinks,mint-lemonade,House Mint Lemonade 16oz,"Fresh lemon crushed mint cane sugar.",Lemon / Mint,None,4.95,,,,mint-lemonade.jpg,,, 
+Drinks,cola,Cola 330ml Can,Classic cola,,None,2.95,,,,,,
+Drinks,lemon-lime,Lemon-Lime Soda 330ml,Citrus soda,,None,2.95,,,,,,
+Drinks,sparkling-water,Sparkling Water 355ml,Bubbly mineral,,None,3.50,,,,,,
+Drinks,cold-brew,Cold Brew Paso Roast 16oz,Local roast cold brew,,None,4.95,,,,,,
+Drinks,grape-sparkler,Wine Country Grape Sparkler 12oz,Grape mocktail sparkling,,None,5.95,,,,,,
+Dips,ranch,Ranch Dip,Creamy ranch,,Dairy Egg,1.50,,,,,,
+Dips,garlic-whip,Garlic Whip,Whipped garlic butter,,Dairy,1.50,,,,,,
+Dips,marinara,Marinara,House San Marzano,,None,1.50,,,,,,
+Dips,hot-honey,Hot Honey,Sweet heat honey,,None,1.50,,,,,,
+Dips,calabrian-mayo,Calabrian Mayo,Spicy mayo,,Egg Spicy,1.50,,,,,,
+Dips,balsamic-glaze,Balsamic Glaze,Aged balsamic,,None,1.50,,,,,,
+Bundles,ember-combo,Ember Combo (Pizza 10in + Side + Drink),Save $3 vs separate,,,,18.95 (saves $3),,,"Size choice Side choice Drink choice",
+Bundles,family-bundle,Family Ember Bundle 2x16in + 2 Sides + 4 Drinks, feeds 4-5 Save $18,2 large pizzas / 2 sides / 4 drinks,,74.95,,,,,,

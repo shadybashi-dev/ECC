@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EMBER 46 — DoorDash Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700&family=Bebas+Neue&display=swap');
+  :root{ --ember:#E85A2A; --oak:#1A1A1E; --cream:#FFF8EC; --vine:#5C6B3A; --gold:#F2B705; --grey:#8A8D93; }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:Inter,system-ui,sans-serif; background:var(--cream); color:var(--oak); line-height:1.5}
+  .page{max-width:850px; margin:0 auto; background:white; box-shadow:0 10px 40px rgba(0,0,0,.12)}
+  header.hero{background:var(--oak); color:white; padding:28px 36px 22px; display:flex; justify-content:space-between; align-items:center; gap:24px}
+  .brand h1{font-family:'Bebas Neue', sans-serif; font-size:54px; letter-spacing:2px; line-height:1; color:var(--ember)}
+  .brand h1 span{color:white}
+  .brand p.tag{font-family:'Playfair Display',serif; font-size:13px; letter-spacing:3px; text-transform:uppercase; opacity:.85; margin-top:4px}
+  .hero-meta{ text-align:right; font-size:11px; line-height:1.7; opacity:.9}
+  .hero-meta strong{color:var(--gold)}
+  .banner{height:14px; background:linear-gradient(90deg, var(--ember), var(--gold), var(--vine))}
+  .notice{ background:var(--ember); color:white; text-align:center; font-size:11px; font-weight:700; letter-spacing:.8px; padding:8px 16px}
+  .notice span{ background:white; color:var(--ember); padding:2px 8px; border-radius:999px; margin-left:8px}
+  .cols{ display:grid; grid-template-columns:1fr 1fr; gap:0}
+  .col{ padding:22px 26px; border-right:1px solid #eee}
+  .col:last-child{border:none}
+  .section{ margin-bottom:20px; break-inside:avoid}
+  .section h2{ font-family:'Playfair Display',serif; font-size:15px; text-transform:uppercase; letter-spacing:1.2px; color:var(--ember); border-bottom:2px solid var(--ember); padding-bottom:6px; margin-bottom:12px; display:flex; align-items:center; gap:8px}
+  .section h2 small{ font-family:Inter; font-size:9px; color:var(--grey); font-weight:600; letter-spacing:.6px; margin-left:auto}
+  .item{ margin-bottom:13px; display:flex; gap:10px; align-items:flex-start}
+  .item img{ width:68px; height:52px; object-fit:cover; border-radius:8px; flex-shrink:0; background:#f3f3f3; border:1px solid #eee}
+  .item-body{flex:1}
+  .item-title{ font-weight:800; font-size:12.5px; display:flex; gap:6px; align-items:center; flex-wrap:wrap}
+  .badge{ font-size:8px; font-weight:800; letter-spacing:.6px; padding:2.5px 6px; border-radius:999px; text-transform:uppercase}
+  .badge-pop{ background:var(--ember); color:white}
+  .badge-veg{ background:var(--vine); color:white}
+  .badge-spicy{ background:var(--gold); color:var(--oak)}
+  .badge-chef{ background:var(--oak); color:var(--gold); border:1px solid var(--gold)}
+  .item-desc{ font-size:9.5px; color:#555; line-height:1.45; margin-top:2px}
+  .item-meta{ font-size:8.5px; color:var(--grey); margin-top:3px}
+  .prices{ text-align:right; flex-shrink:0; line-height:1.35}
+  .prices b{ font-size:12px; display:block}
+  .prices span{ font-size:8.5px; color:var(--grey)}
+  .prices .l{ color:var(--ember)}
+  .modifiers{ background:#FFF8EC; border:1px dashed #E8D9B8; border-radius:10px; padding:12px 14px; margin-top:6px}
+  .modifiers h3{ font-size:11px; font-weight:800; letter-spacing:.7px; text-transform:uppercase; color:var(--oak); margin-bottom:6px}
+  .modifiers ul{ columns:2; font-size:9px; line-height:1.6; color:#444; list-style:none}
+  .modifiers li::before{ content:"• "; color:var(--ember); font-weight:800}
+  .upsell{ background:var(--oak); color:white; border-radius:10px; padding:12px 14px; margin-top:10px}
+  .upsell h3{ font-size:11px; color:var(--gold); letter-spacing:.8px; text-transform:uppercase; margin-bottom:6px}
+  .upsell ul{ font-size:9px; line-height:1.7; opacity:.92; list-style:none}
+  .upsell li{ display:flex; justify-content:space-between; gap:12px; border-bottom:1px dashed rgba(255,255,255,.15); padding:3px 0}
+  .upsell li:last-child{border:none}
+  .upsell b{ color:var(--gold)}
+  .combo{ background:linear-gradient(135deg, var(--ember), #C53A18); color:white; border-radius:10px; padding:14px; text-align:center; margin-top:14px}
+  .combo h3{ font-family:'Bebas Neue'; font-size:20px; letter-spacing:1px}
+  .combo p{ font-size:10px; opacity:.92; margin:4px 0}
+  .combo .price{ font-size:22px; font-weight:900; margin-top:4px}
+  .combo .save{ font-size:9px; background:white; color:var(--ember); display:inline-block; padding:2px 8px; border-radius:999px; font-weight:800; margin-top:6px}
+  footer{ background:var(--oak); color:#AAA; text-align:center; font-size:8.5px; padding:14px 20px; line-height:1.6}
+  footer strong{ color:white}
+  @media print{
+    body{ background:white}
+    .page{ box-shadow:none; max-width:none}
+    header.hero{ -webkit-print-color-adjust:exact; print-color-adjust:exact}
+    .banner, .notice, .combo, .upsell, footer{ -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="brand">
+      <h1>EMBER <span>46</span></h1>
+      <p class="tag">Oak-Fired · Wine Country · Delivered</p>
+      <p style="font-size:10px; opacity:.7; margin-top:6px">Ghost Kitchen — Paso Robles, CA 93446 · Delivery Only</p>
+    </div>
+    <div class="hero-meta">
+      <div><strong>DOORDASH</strong> EXCLUSIVE</div>
+      <div>Daily 11AM — 11PM</div>
+      <div>Hotline 93446</div>
+      <div style="margin-top:6px; font-size:9px; opacity:.7">Wood-fired 650°F · 4–6 min bake</div>
+    </div>
+  </header>
+  <div class="banner"></div>
+  <div class="notice">DoorDash-first menu · 16:9 photos · No logos on food · One item per photo <span>93446</span></div>
+
+  <div class="cols">
+    <!-- LEFT -->
+    <div class="col">
+      <div class="section">
+        <h2>🔥 Featured Pizzas <small>10" / 13" / 16"</small></h2>
+
+        <div class="item">
+          <img src="../public/img/pizza-truffle-shuffle.jpg" alt="">
+          <div class="item-body">
+            <div class="item-title">The 46 Truffle Shuffle <span class="badge badge-chef">Chef's · Anchor</span></div>
+            <div class="item-desc">Wild mushrooms, truffle cream, fontina & taleggio, arugula, lemon zest. Earthy luxe.</div>
+            <div class="item-meta">Gluten · Dairy · Veg</div>
+          </div>
+          <div class="prices"><b>19.95</b><span>10"</span><b>26.95</b><span>13"</span><b class="l">32.95</b><span>16"</span></div>
+        </div>
+
+        <div class="item">
+          <img src="../public/img/pizza-cup-char-46.jpg" alt="">
+          <div class="item-body">
+            <div class="item-title">Cup & Char 46 <span class="badge badge-pop">★ Best Seller</span></div>
+            <div class="item-desc">Double cup-and-char beef pepperoni, hot honey drizzle, oregano. Crispy sweet-heat.</div>
+            <div class="item-meta">Gluten · Dairy</div>
+          </div>
+          <div class="prices"><b>16.95</b><span>10"</span><b>22.95</b><span>13"</span><b class="l">27.95</b><span>16"</span></div>
+        </div>
+
+        <div class="item">
+          <img src="../public/img/pizza-margherita.jpg" alt="">
+          <div class="item-body">
+            <div class="item-title">Vineyard Margherita <span class="badge badge-veg">Veg</span></div>
+            <div class="item-desc">San Marzano, fior di latte, basil, EVOO, blistered cornicione. Simple perfect.</div>
+            <div class="item-meta">Gluten · Dairy · Veg</div>
+          </div>
+          <div class="prices"><b>14.95</b><span>10"</span><b>19.95</b><span>13"</span><b class="l">23.95</b><span>16"</span></div>
+        </div>
+
+        <div class="item">
+          <img src="../public/img/pizza-quattro-formaggi-box.jpg" alt="">
+          <div class="item-body">
+            <div class="item-title">Quattro Formaggi Oak <span class="badge badge-veg">Veg</span></div>
+            <div class="item-desc">Garlic cream, mozzarella, gorgonzola, taleggio, parmesan. Four-cheese hug.</div>
+          </div>
+          <div class="prices"><b>17.95</b><span>10"</span><b>23.95</b><span>13"</span><b class="l">28.95</b><span>16"</span></div>
+        </div>
+
+        <div class="item">
+          <img src="../public/img/pizza-bourbon-bbq.jpg" alt="">
+          <div class="item-body">
+            <div class="item-title">Bourbon BBQ Chicken</div>
+            <div class="item-desc">Grilled chicken, bourbon BBQ, smoked gouda, red onion, cilantro. Sweet smoke.</div>
+          </div>
+          <div class="prices"><b>17.95</b><span>10"</span><b>23.95</b><span>13"</span><b class="l">28.95</b><span>16"</span></div>
+        </div>
+
+        <div class="item">
+          <img src="../public/img/pizza-valley-veggie.jpg" alt="">
+          <div class="item-body">
+            <div class="item-title">Valley Veggie Fire <span class="badge badge-veg">Veg</span></div>
+            <div class="item-desc">Charred zucchini, peppers, mushroom, caramelized onion, post-bake arugula.</div>
+          </div>
+          <div class="prices"><b>15.95</b><span>10"</span><b>21.95</b><span>13"</span><b class="l">26.95</b><span>16"</span></div>
+        </div>
+
+        <div class="item">
+          <img src="../public/img/pizza-meat-supreme-46.jpg" alt="">
+          <div class="item-body">
+            <div class="item-title">Meat Supreme 46</div>
+            <div class="item-desc">Pepperoni, fennel sausage, bacon, ground beef, red onion. Carnivore oak pile.</div>
+          </div>
+          <div class="prices"><b>18.95</b><span>10"</span><b>25.95</b><span>13"</span><b class="l">31.95</b><span>16"</span></div>
+        </div>
+
+        <div class="item">
+          <img src="../public/img/pizza-calabrian-heat.jpg" alt="">
+          <div class="item-body">
+            <div class="item-title">Calabrian Heat <span class="badge badge-spicy">Spicy</span></div>
+            <div class="item-desc">Soppressata, Calabrian chili, mozzarella, hot honey, basil. Slow burn.</div>
+          </div>
+          <div class="prices"><b>17.95</b><span>10"</span><b>23.95</b><span>13"</span><b class="l">28.95</b><span>16"</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>🛠️ Build Your Own</h2>
+        <div class="item">
+          <div class="item-body">
+            <div class="item-title">BYO Cheese — Start Here</div>
+            <div class="item-desc">Cheese & San Marzano base. Then add crust / sauce / toppings. Max 5 toppings for travel.</div>
+            <div class="item-meta">12.95 / 16.95 / 20.95 — see modifiers below</div>
+          </div>
+        </div>
+        <div class="modifiers">
+          <h3>Modifier Groups (DoorDash)</h3>
+          <ul>
+            <li><b>Size*:</b> 10" / 13" / 16"</li>
+            <li><b>Crust*:</b> Classic / Thin +$2 / Cauliflower GF +$4 / Stuffed +$5</li>
+            <li><b>Sauce:</b> Red / White +$1 / BBQ +$1 / Pesto +$1.5</li>
+            <li><b>Cheese:</b> Light / Regular / Extra +$2</li>
+            <li><b>Meats +$2/3/3.5:</b> Pepperoni, Sausage, Bacon, Chicken, Soppressata</li>
+            <li><b>Veg +$1.5/2/2.5:</b> Mushroom, Onion, Peppers, Zucchini, Olives, Arugula</li>
+            <li><b>Premium +$2.5/3/3.5:</b> Truffle cream, Hot honey, Burrata</li>
+            <li><b>Cut & Bake:</b> Triangle / Square / No Cut · Normal / Well-Done</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="col">
+      <div class="section">
+        <h2>🍟 Ember Sides</h2>
+        <div class="item"><img src="../public/img/mozzarella-sticks.jpg"><div class="item-body"><div class="item-title">Mozzarella Sticks (6) <span class="badge badge-veg">Veg</span></div><div class="item-desc">Panko-crisp, house marinara.</div></div><div class="prices"><b>9.95</b></div></div>
+        <div class="item"><img src="../public/img/buffalo-wings.jpg"><div class="item-body"><div class="item-title">Buffalo Wings (8) <span class="badge badge-pop">Popular</span> <span class="badge badge-spicy">Spicy</span></div><div class="item-desc">Glossy buffalo, ranch, celery. Vented box.</div></div><div class="prices"><b>12.95</b></div></div>
+        <div class="item"><img src="../public/img/garlic-bread.jpg"><div class="item-body"><div class="item-title">Oak Garlic Bread</div><div class="item-desc">Ciabatta, garlic butter, melted mozz, parsley.</div></div><div class="prices"><b>8.95</b></div></div>
+        <div class="item"><img src="../public/img/loaded-fries.jpg"><div class="item-body"><div class="item-title">Loaded Ember Fries</div><div class="item-desc">Cheddar, scallions, ranch, bacon crumble.</div></div><div class="prices"><b>9.95</b></div></div>
+      </div>
+
+      <div class="section">
+        <h2>🥗 Salads</h2>
+        <div class="item"><img src="../public/img/caesar-salad.jpg"><div class="item-body"><div class="item-title">Chicken Caesar</div><div class="item-desc">Romaine, grilled chicken, parmesan, garlic croutons.</div></div><div class="prices"><b>11.95</b></div></div>
+        <div class="item"><img src="../public/img/caprese-salad.jpg"><div class="item-body"><div class="item-title">Caprese <span class="badge badge-veg">Veg GF</span></div><div class="item-desc">Tomato, fresh mozzarella, basil, balsamic glaze.</div></div><div class="prices"><b>10.95</b></div></div>
+      </div>
+
+      <div class="section">
+        <h2>🍰 Dolci</h2>
+        <div class="item"><img src="../public/img/cheesecake.jpg"><div class="item-body"><div class="item-title">NY Cheesecake</div><div class="item-desc">Biscuit base, Paso berry coulis. Travels cold.</div></div><div class="prices"><b>7.95</b></div></div>
+        <div class="item"><img src="../public/img/lava-brownie.jpg"><div class="item-body"><div class="item-title">Lava Brownie + Gelato</div><div class="item-desc">Warm brownie, molten core, vanilla gelato (separate cup).</div></div><div class="prices"><b>8.95</b></div></div>
+      </div>
+
+      <div class="section">
+        <h2>🥤 Drinks</h2>
+        <div class="item"><img src="../public/img/mint-lemonade.jpg"><div class="item-body"><div class="item-title">House Mint Lemonade 16oz</div><div class="item-desc">Fresh lemon, crushed mint, cane sugar.</div></div><div class="prices"><b>4.95</b></div></div>
+        <div style="font-size:9.5px; line-height:1.9; color:#444; padding-left:2px">
+          <div style="display:flex; justify-content:space-between"><span>Cola 330ml</span><b>2.95</b></div>
+          <div style="display:flex; justify-content:space-between"><span>Lemon-Lime Soda 330ml</span><b>2.95</b></div>
+          <div style="display:flex; justify-content:space-between"><span>Sparkling Water 355ml</span><b>3.50</b></div>
+          <div style="display:flex; justify-content:space-between"><span>Cold Brew — Paso Roast 16oz</span><b>4.95</b></div>
+          <div style="display:flex; justify-content:space-between"><span>Wine Country Grape Sparkler 12oz</span><b>5.95</b></div>
+          <div style="font-size:8px; color:var(--grey); margin-top:4px">Generic names — no trademarks (DoorDash safe)</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>🫙 Dips & Sauces <small>$1.50 each · 3 for 3.95</small></h2>
+        <div style="font-size:9px; columns:2; line-height:1.9; color:#444">
+          <div>Ranch</div><div>Garlic Whip</div><div>Marinara</div><div>Hot Honey</div><div>Calabrian Mayo</div><div>Balsamic Glaze</div>
+        </div>
+      </div>
+
+      <div class="combo">
+        <h3>Family Ember Bundle</h3>
+        <p>2 × 16" Pizzas + 2 Sides + 4 Drinks — Feeds 4–5</p>
+        <div class="price">74.95</div>
+        <div class="save">Save $18 vs separate — #1 Upsell</div>
+      </div>
+
+      <div class="upsell">
+        <h3>Upsell Engine — Auto Prompts</h3>
+        <ul>
+          <li><span>After pizza select →</span> <b>Add a Dip?  +$1.50</b></li>
+          <li><span>Cart →</span> <b>Make it a Combo +$8.95 (Side+Drink)</b></li>
+          <li><span>On Cup & Char →</span> <b>Double Pepperoni? +$3</b></li>
+          <li><span>Before checkout →</span> <b>Add Dessert? from 7.95</b></li>
+        </ul>
+      </div>
+
+      <div style="background:#FFF8EC; border:1px solid #E8D9B8; border-radius:10px; padding:10px 12px; margin-top:10px; font-size:8.5px; line-height:1.6; color:#666">
+        <b style="color:var(--oak)">Psychology in this menu:</b> Anchor (Truffle $32.95) makes $27.95 feel value · Decoy 13"→16" only +$5 pushes Large · Charm .95 pricing · Descriptive labels +27% sales · Golden triangle: best sellers top-left.
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <strong>EMBER 46</strong> · Ghost Kitchen · Paso Robles, CA 93446 · DoorDash Exclusive · Images: 2048×1152 16:9 · No text on food photos · Real product only<br>
+    Prices DoorDash = Dine-in +15% (covers commission, rewarded by algorithm). Keep product centered 60% fill, 80% visible. Own all photo rights.<br>
+    <span style="opacity:.6">Generated for DoorDash Merchant Portal — Export PDF via browser Print → Save as PDF · Letter margins 0.4in</span>
+  </footer>
+</div>
+</body>
+</html>
