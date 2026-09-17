@@ -1,0 +1,28 @@
+Category,Item ID,Item Name,Description,Ingredients,Allergens,Price 13in,Price 18in XL,Price 24in Giant,Badge,Image File,Modifiers,Upsell
+Braided Signatures,paso-corn-twist,Paso Corn Twist,"Sweet corn jalapeno mozzarella braided stuffed crust parmesan",Corn / Jalapeno / Mozzarella,Gluten Dairy Spicy,18.95,27.95,38.95,NEW Signature,pizza-corn-jalapeno-braid.jpg,Braided Stuffed +$3.99/5.99/7.99,Add Dip $1.50
+Braided Signatures,feta-basil-twist,Feta & Basil Twist,"Feta sausage spinach zucchini red onion basil tomato sauce",Feta / Sausage / Spinach / Zucchini / Onion / Basil,Gluten Dairy,19.95,28.95,39.95,Chef's,pizza-feta-basil-braid.jpg,Braided,Make it Braided
+Braided Signatures,house-combo-braid,House Combo Braid,"Artichoke tomato red onion sausage mushroom fully loaded",Artichoke / Tomato / Onion / Sausage / Mushroom,Gluten Dairy,18.95,27.95,38.95,Popular,pizza-house-combo-braid.jpg,Braided,Combo
+Braided Signatures,meat-lovers-braid,Meat Lovers Braid,"Pepperoni ground beef double meat",Pepperoni / Beef,Gluten Dairy,19.95,28.95,39.95,,pizza-meat-braid.jpg,Braided,Family Bundle
+Braided Signatures,supreme-805,Supreme 805,"Pepperoni salami ham black olives mushroom onion pepperoncini",6 toppings,Gluten Dairy,20.95,29.95,41.95,Supreme,pizza-supreme-braid.jpg,Braided,Giant Up
+Braided Signatures,spicy-slo-braid,Spicy SLO Braid,"Pepperoni sausage jalapeno olives mushroom onion pepperoncini",5 toppings spicy,Gluten Dairy Spicy,19.95,28.95,39.95,Spicy,pizza-spicy-braid.jpg,Braided,Hot Honey Dip
+Braided Signatures,heart-cheese,Heart Cheese Twist Limited,"Heart-shaped braided cheese extra mozzarella",Cheese,Gluten Dairy Veg,17.95,26.95,,Limited,pizza-heart-cheese.jpg,Braided,Limited Valentine
+Braided Signatures,pepperoni-overload,Pepperoni Overload XL,"60+ cup pepperoni edge to edge extra cheese",Pepperoni,Gluten Dairy,18.95,27.95,38.95,Popular,pizza-pepperoni-xl-braid.jpg,Braided,Double Pepperoni +$3.50
+Build Your Own,byo-cheese-braid,BYO Cheese Braid,"Base Cheese then choose crust & toppings max 5",Cheese / Tomato,Gluten Dairy Veg,14.95,21.95,32.95,,pizza-margherita.jpg,Crust/Sauce/Cheese/Toppings,Braided Upsell
+Sides,mozzarella-sticks,Mozzarella Sticks 6,Panko-crisp marinara,Mozz / Panko,Gluten Dairy Veg,9.95,,,Veg,mozzarella-sticks.jpg,,Add Dip
+Sides,buffalo-wings,Buffalo Wings 8,Glossy buffalo ranch celery,Wings / Buffalo, Dairy Spicy,12.95,,,Spicy,buffalo-wings.jpg,,Blue Cheese
+Sides,garlic-bread,Braided Garlic Bread,Garlic butter braided cheese-dusted,Ciabatta / Garlic,Gluten Dairy Veg,8.95,,,Veg,garlic-bread.jpg,,Marinara
+Sides,loaded-fries,Loaded Twist Fries,Cheddar scallions ranch bacon,Fries / Cheddar,Gluten Dairy,9.95,,,Popular,loaded-fries.jpg,,Ranch
+Pasta,spaghetti-meatballs,Spaghetti & Meatballs,Marinara meatballs garlic bread,Pasta / Beef,Gluten Dairy,13.95,,,,pasta-lasagna.jpg,,
+Desserts,cannoli,Cannoli,Cream-filled chocolate drizzle,Cream / Flour,Dairy Gluten,5.95,,,,cheesecake.jpg,,
+Desserts,ny-cheesecake,NY Cheesecake,Paso berry coulis,Cream cheese,Dairy Gluten,7.95,,,,lava-brownie.jpg,,
+Drinks,mint-lemonade,House Mint Lemonade 16oz,Fresh lemon mint,None,Vegan,4.95,,,,mint-lemonade.jpg,,
+Drinks,cola,Cola 330ml,Generic cola,None,None,2.95,,,,,,
+Drinks,lemon-lime,Lemon-Lime Soda 330ml,Citrus soda,None,None,2.95,,,,,,
+Drinks,sparkling-water,Sparkling Water 355ml,Bubbly mineral,None,None,3.50,,,,,,
+Drinks,cold-brew,Cold Brew 16oz,Local roast,None,None,4.95,,,,,,
+Dips,ranch,Ranch,Creamy ranch,Dairy Egg,None,1.50,,,,,,
+Dips,blue-cheese,Blue Cheese,Blue cheese,Dairy,None,1.50,,,,,,
+Dips,garlic-whip,Garlic Whip,Whipped garlic,Dairy,None,1.50,,,,,,
+Dips,marinara,Marinara,House San Marzano,None,None,1.50,,,,,,
+Dips,hot-honey,Hot Honey,Sweet heat,None,Spicy,1.50,,,,,,
+Bundles,giant-twist-bundle,Giant Twist Bundle 24in + 2 Sides + 4 Drinks,Feeds 6-8 Save $22,,,,,89.95,,Crust choice Sides Drinks,Top Upsell

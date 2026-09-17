@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TWIST 805 — Braided Stuffed Crust DoorDash Menu</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@700&family=Inter:wght@400;600;800&display=swap');
+:root{--twist:#FF6B2B;--oak:#1A1A1E;--cream:#FFF8EC;--gold:#F2B705;--jal:#2E7D32}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,sans-serif;background:var(--cream);color:var(--oak);line-height:1.5}
+.page{max-width:860px;margin:0 auto;background:white;box-shadow:0 10px 40px rgba(0,0,0,.12)}
+.hero{background:var(--oak);color:white;padding:26px 36px;display:flex;justify-content:space-between;align-items:center}
+.hero h1{font-family:Bebas Neue;font-size:52px;letter-spacing:2px;color:var(--twist)} .hero h1 span{color:white}
+.hero p{font-family:Playfair Display;font-size:11px;letter-spacing:3px;text-transform:uppercase;opacity:.85}
+.banner{height:12px;background:linear-gradient(90deg,var(--twist),var(--gold),var(--jal))}
+.notice{background:var(--twist);color:white;text-align:center;font-size:11px;font-weight:800;padding:7px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.col{padding:20px 24px;border-right:1px solid #eee}.col:last-child{border:none}
+h2{font-family:Playfair Display;font-size:13px;text-transform:uppercase;letter-spacing:1.1px;color:var(--twist);border-bottom:2px solid var(--twist);padding-bottom:5px;margin:14px 0 10px;display:flex;gap:8px;align-items:center}
+h2 small{font-family:Inter;font-size:8px;color:#8A8D93;margin-left:auto}
+.item{display:flex;gap:9px;margin-bottom:11px;align-items:flex-start}
+.item img{width:66px;height:50px;object-fit:cover;border-radius:8px;border:1px solid #eee;background:#f3f3f3}
+.item b{font-size:11.5px} .desc{font-size:9px;color:#555;line-height:1.4}
+.prices{text-align:right;flex-shrink:0;line-height:1.3}
+.prices b{font-size:11px;display:block}
+.prices span{font-size:7.5px;color:#8A8D93}
+.badge{font-size:7px;font-weight:800;letter-spacing:.6px;padding:2px 6px;border-radius:999px;text-transform:uppercase}
+.pop{background:var(--twist);color:white}.chef{background:var(--oak);color:var(--gold);border:1px solid var(--gold)}.spicy{background:var(--gold);color:var(--oak)}
+.mod{ background:var(--cream);border:1px dashed #E8D9B8;border-radius:10px;padding:10px 12px;font-size:8.5px;line-height:1.6;color:#444}
+.mod b{color:var(--oak)}
+.combo{background:linear-gradient(135deg,var(--twist),#C53A18);color:white;border-radius:10px;padding:12px;text-align:center;margin-top:10px}
+.combo h3{font-family:Bebas Neue;font-size:19px;letter-spacing:1px}
+footer{background:var(--oak);color:#AAA;text-align:center;font-size:8px;padding:12px;line-height:1.6}
+@media print{body{background:white}.page{box-shadow:none}*{ -webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="hero">
+<div><h1>TWIST <span>805</span></h1><p>Braided Stuffed Crust · Giant Flavor</p><p style="font-size:9px;opacity:.6;margin-top:4px">Paso Robles 93446 + SLO 805 · Ghost Kitchen</p></div>
+<div style="text-align:right;font-size:11px;line-height:1.6"><b style="color:var(--gold)">DOORDASH</b> EXCLUSIVE<br>Daily 11AM–10PM<br>(805) 439-2383<br><span style="font-size:9px;opacity:.6">Braided +$3.99 / $5.99 / $7.99</span></div>
+</header>
+<div class="banner"></div>
+<div class="notice">DoorDash-first · Braided stuffed crust is the hero · 16:9 photos · No logos on food  805</div>
+<div class="cols">
+<div class="col">
+<h2>🌀 Braided Signatures <small>13" / 18"XL / 24" Giant</small></h2>
+<div class="item"><img src="../public/img/pizza-corn-jalapeno-braid.jpg"><div><b>Paso Corn Twist <span class="badge pop">NEW</span></b><div class="desc">Sweet corn + jalapeño + mozzarella, braided & parmesan-dusted. Sweet-heat.</div></div><div class="prices"><b>18.95</b><span>13"</span><b>27.95</b><span>18"</span><b style="color:var(--twist)">38.95</b><span>24"</span></div></div>
+<div class="item"><img src="../public/img/pizza-feta-basil-braid.jpg"><div><b>Feta & Basil Twist <span class="badge chef">Chef's</span></b><div class="desc">Feta, sausage, spinach, zucchini, red onion, fresh basil post-bake.</div></div><div class="prices"><b>19.95</b><span>13"</span><b>28.95</b><span>18"</span><b style="color:var(--twist)">39.95</b><span>24"</span></div></div>
+<div class="item"><img src="../public/img/pizza-house-combo-braid.jpg"><div><b>House Combo Braid <span class="badge pop">Popular</span></b><div class="desc">Artichoke, tomato, red onion, sausage, mushrooms. Fully loaded.</div></div><div class="prices"><b>18.95</b><span>13"</span><b>27.95</b><span>18"</span><b style="color:var(--twist)">38.95</b><span>24"</span></div></div>
+<div class="item"><img src="../public/img/pizza-meat-braid.jpg"><div><b>Meat Lovers Braid</b><div class="desc">Pepperoni + ground beef — double meat blanket.</div></div><div class="prices"><b>19.95</b><span>13"</span><b>28.95</b><span>18"</span><b style="color:var(--twist)">39.95</b><span>24"</span></div></div>
+<div class="item"><img src="../public/img/pizza-supreme-braid.jpg"><div><b>Supreme 805</b><div class="desc">Pepperoni, salami, ham, olives, mushrooms, onion, pepperoncini.</div></div><div class="prices"><b>20.95</b><span>13"</span><b>29.95</b><span>18"</span><b style="color:var(--twist)">41.95</b><span>24"</span></div></div>
+<div class="item"><img src="../public/img/pizza-spicy-braid.jpg"><div><b>Spicy SLO Braid <span class="badge spicy">Spicy</span></b><div class="desc">Pepperoni, sausage, jalapeño, olives, mushrooms, onion.</div></div><div class="prices"><b>19.95</b><span>13"</span><b>28.95</b><span>18"</span><b style="color:var(--twist)">39.95</b><span>24"</span></div></div>
+<div class="item"><img src="../public/img/pizza-pepperoni-xl-braid.jpg"><div><b>Pepperoni Overload XL</b><div class="desc">60+ cup pepperoni edge-to-edge, extra cheese.</div></div><div class="prices"><b>18.95</b><span>13"</span><b>27.95</b><span>18"</span><b style="color:var(--twist)">38.95</b><span>24"</span></div></div>
+<div class="item"><img src="../public/img/pizza-heart-cheese.jpg"><div><b>Heart Cheese Twist <span class="badge chef">Limited</span></b><div class="desc">Heart-shaped, braided edge, extra mozzarella.</div></div><div class="prices"><b>17.95</b><span>13"</span><b>26.95</b><span>18"</span></div></div>
+<h2>🛠️ Build Your Own</h2>
+<div class="item"><div><b>BYO Cheese — Start Here</b><div class="desc">Base 13" $14.95 / 18" $21.95 / 24" $32.95 — then choose crust & toppings. Max 5.</div></div></div>
+<div class="mod"><b>Modifiers (DoorDash):</b> <b>Crust*:</b> Original / <b>Braided Stuffed +$3.99/5.99/7.99</b> / Thin · <b>Sauce:</b> Tomato / White +$1 / BBQ +$1 · <b>Cheese:</b> Light/Regular/Extra +$2.50<br><b>Meats:</b> Pepperoni, Sausage, Beef, Salami, Ham<br><b>Veg:</b> Corn, Jalapeño, Spinach, Zucchini, Onion, Tomato, Mushroom, Artichoke, Olives, Pepperoncini, Basil · <b>Premium:</b> Feta, Blue Cheese</div>
+</div>
+<div class="col">
+<h2>🍟 805 Sides</h2>
+<div class="item"><img src="../public/img/mozzarella-sticks.jpg"><div><b>Mozzarella Sticks (6)</b><div class="desc">Panko-crisp, house marinara.</div></div><div class="prices"><b>9.95</b></div></div>
+<div class="item"><img src="../public/img/buffalo-wings.jpg"><div><b>Buffalo Wings (8)</b><div class="desc">Glossy buffalo, ranch & celery.</div></div><div class="prices"><b>12.95</b></div></div>
+<div class="item"><img src="../public/img/garlic-bread.jpg"><div><b>Braided Garlic Bread</b><div class="desc">Garlic butter, braided & cheese-dusted.</div></div><div class="prices"><b>8.95</b></div></div>
+<div class="item"><img src="../public/img/loaded-fries.jpg"><div><b>Loaded Twist Fries</b><div class="desc">Cheddar, scallions, ranch, bacon.</div></div><div class="prices"><b>9.95</b></div></div>
+<h2>🍝 Pasta</h2>
+<div class="item"><img src="../public/img/pasta-lasagna.jpg"><div><b>Spaghetti & Meatballs</b><div class="desc">Marinara, meatballs, garlic bread side.</div></div><div class="prices"><b>13.95</b></div></div>
+<h2>🍰 Dolci</h2>
+<div class="item"><img src="../public/img/cheesecake.jpg"><div><b>Cannoli</b><div class="desc">Cream-filled, chocolate drizzle.</div></div><div class="prices"><b>5.95</b></div></div>
+<div class="item"><img src="../public/img/lava-brownie.jpg"><div><b>NY Cheesecake</b><div class="desc">Paso berry coulis.</div></div><div class="prices"><b>7.95</b></div></div>
+<h2>🥤 Drinks</h2>
+<div class="item"><img src="../public/img/mint-lemonade.jpg"><div><b>House Mint Lemonade 16oz</b><div class="desc">Fresh lemon, crushed mint.</div></div><div class="prices"><b>4.95</b></div></div>
+<div style="font-size:9px;line-height:1.9;color:#444"><div style="display:flex;justify-content:space-between"><span>Cola 330ml</span><b>2.95</b></div><div style="display:flex;justify-content:space-between"><span>Lemon-Lime 330ml</span><b>2.95</b></div><div style="display:flex;justify-content:space-between"><span>Sparkling Water 355ml</span><b>3.50</b></div><div style="display:flex;justify-content:space-between"><span>Cold Brew 16oz</span><b>4.95</b></div></div>
+<h2>🫙 Dips — $1.50 / 3 for $3.95</h2>
+<div style="font-size:9px;columns:2;line-height:1.8;color:#444"><div>Ranch</div><div>Blue Cheese</div><div>Garlic Whip</div><div>Marinara</div><div>Hot Honey</div></div>
+<div class="combo"><h3>GIANT TWIST BUNDLE — 24"</h3><p>1 × 24" Giant Braided + 2 Sides + 4 Drinks — Feeds 6-8</p><div style="font-size:22px;font-weight:900;margin-top:4px">89.95</div><div style="font-size:9px;background:white;color:var(--twist);display:inline-block;padding:2px 8px;border-radius:999px;font-weight:800;margin-top:6px">Save $22 — Family Upsell</div></div>
+<div style="background:var(--oak);color:white;border-radius:8px;padding:8px 10px;margin-top:8px;text-align:center;font-size:8px"><b style="color:var(--gold)">UPSELL:</b> Braided? +$3.99 (45%) · Add Dip +$1.50 · Giant Up 18→24 +$11 · Add Cannoli</div>
+</div>
+</div>
+<footer><b>TWIST 805</b> · Braided Stuffed Crust · Paso Robles 93446 + SLO 805 · Images 2048×1152 16:9 · No text on food · Own rights<br>Prices DoorDash = Dine-in +15% · Keep product centered 60% fill, 80% visible.</footer>
+</div>
+</body>
+</html>

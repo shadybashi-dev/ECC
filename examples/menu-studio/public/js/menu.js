@@ -14,8 +14,25 @@
   const priceChips = (item) => {
     const c = state.menu.restaurant.currency;
     if (item.prices) {
-      return `<span class="price-chip">${window.fmtPrice(item.prices.m, c, state.lang)} ${L('medium')}</span>
-              <span class="price-chip">${window.fmtPrice(item.prices.l, c, state.lang)} ${L('large')}</span>`;
+      // V2: support s/m/l mapped to 13"/18"/24" via price_labels, or explicit 13/18/24 keys
+      const labels = item.price_labels || {};
+      const sLabel = labels.s || L('small') || 'S';
+      const mLabel = labels.m || L('medium');
+      const lLabel = labels.l || L('large');
+      if (item.prices.s !== undefined) {
+        // 3 sizes: 13 / 18 / 24
+        let chips = `<span class="price-chip">${window.fmtPrice(item.prices.s, c, state.lang)} ${sLabel}</span>`;
+        if (item.prices.m !== undefined) chips += `\n              <span class="price-chip">${window.fmtPrice(item.prices.m, c, state.lang)} ${mLabel}</span>`;
+        if (item.prices.l !== undefined) chips += `\n              <span class="price-chip" style="border-color:var(--accent)">${window.fmtPrice(item.prices.l, c, state.lang)} ${lLabel}</span>`;
+        return chips;
+      }
+      if (item.prices.m !== undefined && item.prices.l !== undefined) {
+        return `<span class="price-chip">${window.fmtPrice(item.prices.m, c, state.lang)} ${mLabel}</span>
+              <span class="price-chip">${window.fmtPrice(item.prices.l, c, state.lang)} ${lLabel}</span>`;
+      }
+      // fallback single
+      const val = item.prices.m ?? item.prices.l ?? item.prices.s ?? 0;
+      return `<span class="price-chip">${window.fmtPrice(val, c, state.lang)}</span>`;
     }
     return `<span class="price-chip">${window.fmtPrice(item.price ?? 0, c, state.lang)}</span>`;
   };
