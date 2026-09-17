@@ -1,9 +1,9 @@
 {
   "restaurant": {
-    "name_ar": "تويست 805",
-    "name_en": "TWIST 805",
-    "tagline_ar": "كرست مجدول محشي — طعم عملاق من باسو روبليس",
-    "tagline_en": "Braided Stuffed Crust. Giant Flavor. — Paso Robles & SLO 805",
+    "name_ar": "بازو برايد 805",
+    "name_en": "PASO BRAID 805",
+    "tagline_ar": "ضفيرة ذهبية. جبنة تمتد. — باسو روبليس",
+    "tagline_en": "Braided Gold. Cheese Pull. — Paso Robles 93446",
     "hotline": "805-439-2383",
     "hours_ar": "يومياً 11:00 صباحاً — 10:00 مساءً",
     "hours_en": "Daily 11:00 AM — 10:00 PM",
@@ -24,98 +24,177 @@
       "items": [
         {
           "id": "paso-corn-twist",
-          "img": "img/pizza-corn-jalapeno-braid.jpg",
+          "img": "img/paso-corn-braid-v3.jpg",
           "name_ar": "باسو كورن تويست",
           "name_en": "Paso Corn Twist",
           "desc_ar": "ذرة محمصة حلوة + هلابينو مخلل + موزاريلا ذائبة بكرست مجدول محشي مرشوش بارميزان. sweet-heat كاليفورنيا.",
           "desc_en": "Sweet roasted corn + pickled jalapeño + mozzarella, braided stuffed crust dusted parmesan. Sweet-heat Central Coast.",
-          "tags": ["popular", "spicy"],
-          "prices": { "s": 18.95, "m": 27.95, "l": 38.95 },
-          "price_labels": { "s": "13\"", "m": "18\" XL", "l": "24\" Giant" },
+          "tags": [
+            "popular",
+            "spicy"
+          ],
+          "prices": {
+            "s": 18.95,
+            "m": 27.95,
+            "l": 38.95
+          },
+          "price_labels": {
+            "s": "13\"",
+            "m": "18\" XL",
+            "l": "24\" Giant"
+          },
           "available": true
         },
         {
           "id": "feta-basil-twist",
-          "img": "img/pizza-feta-basil-braid.jpg",
+          "img": "img/paso-feta-braid-v3.jpg",
           "name_ar": "فيتا وريحان تويست",
           "name_en": "Feta & Basil Twist",
           "desc_ar": "فتة مفتتة، سجق مبهر، سبانخ، كوسا، بصل أحمر وريحان طازج بعد الخبز.",
           "desc_en": "Feta crumbles, sausage, spinach, zucchini, red onion, fresh basil post-bake. Mediterranean Paso.",
-          "tags": ["chef"],
-          "prices": { "s": 19.95, "m": 28.95, "l": 39.95 },
-          "price_labels": { "s": "13\"", "m": "18\" XL", "l": "24\" Giant" },
+          "tags": [
+            "chef"
+          ],
+          "prices": {
+            "s": 19.95,
+            "m": 28.95,
+            "l": 39.95
+          },
+          "price_labels": {
+            "s": "13\"",
+            "m": "18\" XL",
+            "l": "24\" Giant"
+          },
           "available": true
         },
         {
           "id": "house-combo-braid",
-          "img": "img/pizza-house-combo-braid.jpg",
+          "img": "img/paso-house-braid-v3.jpg",
           "name_ar": "هاوس كومبو برايد",
           "name_en": "House Combo Braid",
           "desc_ar": "خرشوف، طماطم شرائح، بصل أحمر، سجق مفتت وفطر. محملة بالكامل.",
           "desc_en": "Artichoke hearts, sliced tomato, red onion, sausage crumbles, mushrooms. Fully loaded.",
-          "tags": ["popular"],
-          "prices": { "s": 18.95, "m": 27.95, "l": 38.95 },
-          "price_labels": { "s": "13\"", "m": "18\" XL", "l": "24\" Giant" },
+          "tags": [
+            "popular"
+          ],
+          "prices": {
+            "s": 18.95,
+            "m": 27.95,
+            "l": 38.95
+          },
+          "price_labels": {
+            "s": "13\"",
+            "m": "18\" XL",
+            "l": "24\" Giant"
+          },
           "available": true
         },
         {
           "id": "meat-lovers-braid",
-          "img": "img/pizza-meat-braid.jpg",
+          "img": "img/paso-meat-braid-v3.jpg",
           "name_ar": "ميت لافرز برايد",
           "name_en": "Meat Lovers Braid",
           "desc_ar": "بيبروني + لحم مفروم مبهر — بطانية لحم مضاعفة.",
           "desc_en": "Pepperoni + seasoned ground beef — double meat blanket.",
-          "tags": ["popular"],
-          "prices": { "s": 19.95, "m": 28.95, "l": 39.95 },
-          "price_labels": { "s": "13\"", "m": "18\" XL", "l": "24\" Giant" },
+          "tags": [
+            "popular"
+          ],
+          "prices": {
+            "s": 19.95,
+            "m": 28.95,
+            "l": 39.95
+          },
+          "price_labels": {
+            "s": "13\"",
+            "m": "18\" XL",
+            "l": "24\" Giant"
+          },
           "available": true
         },
         {
           "id": "supreme-805",
-          "img": "img/pizza-supreme-braid.jpg",
+          "img": "img/paso-supreme-braid-v3.jpg",
           "name_ar": "سوبريم 805",
           "name_en": "Supreme 805",
           "desc_ar": "بيبروني، سلامي، هام، زيتون أسود، فطر، بصل أحمر وبيبرونشيني. The works.",
           "desc_en": "Pepperoni, salami, ham, black olives, mushrooms, red onion, pepperoncini. The works.",
-          "tags": ["popular"],
-          "prices": { "s": 20.95, "m": 29.95, "l": 41.95 },
-          "price_labels": { "s": "13\"", "m": "18\" XL", "l": "24\" Giant" },
+          "tags": [
+            "popular"
+          ],
+          "prices": {
+            "s": 20.95,
+            "m": 29.95,
+            "l": 41.95
+          },
+          "price_labels": {
+            "s": "13\"",
+            "m": "18\" XL",
+            "l": "24\" Giant"
+          },
           "available": true
         },
         {
           "id": "spicy-slo-braid",
-          "img": "img/pizza-spicy-braid.jpg",
+          "img": "img/paso-spicy-braid-v3.jpg",
           "name_ar": "سبايسي إس إل أو برايد",
           "name_en": "Spicy SLO Braid",
           "desc_ar": "بيبروني، سجق، هلابينو، زيتون أسود، فطر، بصل وبيبرونشيني — حرارة SLO.",
           "desc_en": "Pepperoni, sausage, jalapeño, black olives, mushrooms, red onion, pepperoncini — SLO heat.",
-          "tags": ["spicy"],
-          "prices": { "s": 19.95, "m": 28.95, "l": 39.95 },
-          "price_labels": { "s": "13\"", "m": "18\" XL", "l": "24\" Giant" },
+          "tags": [
+            "spicy"
+          ],
+          "prices": {
+            "s": 19.95,
+            "m": 28.95,
+            "l": 39.95
+          },
+          "price_labels": {
+            "s": "13\"",
+            "m": "18\" XL",
+            "l": "24\" Giant"
+          },
           "available": true
         },
         {
           "id": "heart-cheese",
-          "img": "img/pizza-heart-cheese.jpg",
+          "img": "img/paso-heart-braid-v3.jpg",
           "name_ar": "قلب الجبنة (محدود)",
           "name_en": "Heart Cheese Twist (Limited)",
           "desc_ar": "بيتزا جبنة على شكل قلب بكرست مجدول وجبنة إضافية. Love at first pull.",
           "desc_en": "Heart-shaped cheese, braided edge, extra mozzarella. Love at first pull.",
-          "tags": ["veg"],
-          "prices": { "s": 17.95, "m": 26.95 },
-          "price_labels": { "s": "13\"", "m": "18\" XL" },
+          "tags": [
+            "veg"
+          ],
+          "prices": {
+            "s": 17.95,
+            "m": 26.95
+          },
+          "price_labels": {
+            "s": "13\"",
+            "m": "18\" XL"
+          },
           "available": true
         },
         {
           "id": "pepperoni-overload",
-          "img": "img/pizza-pepperoni-xl-braid.jpg",
+          "img": "img/paso-pepperoni-braid-v3.jpg",
           "name_ar": "بيبروني أوفرلود XL",
           "name_en": "Pepperoni Overload XL",
           "desc_ar": "60+ شريحة بيبروني مقعرة من الحافة للحافة وجبنة إضافية.",
           "desc_en": "60+ cup pepperoni edge-to-edge, extra cheese. For purists.",
-          "tags": ["popular"],
-          "prices": { "s": 18.95, "m": 27.95, "l": 38.95 },
-          "price_labels": { "s": "13\"", "m": "18\" XL", "l": "24\" Giant" },
+          "tags": [
+            "popular"
+          ],
+          "prices": {
+            "s": 18.95,
+            "m": 27.95,
+            "l": 38.95
+          },
+          "price_labels": {
+            "s": "13\"",
+            "m": "18\" XL",
+            "l": "24\" Giant"
+          },
           "available": true
         }
       ]
@@ -133,9 +212,19 @@
           "name_en": "BYO Cheese — Start Here",
           "desc_ar": "جبنة وسان مارزانو — ثم اختر: Original / مجدول محشي +$3.99/$5.99/$7.99 / Thin. صوص: Tomato/White/BBQ. تصل لـ 5 توبينغ.",
           "desc_en": "Cheese & San Marzano base — then choose: Original / Braided Stuffed +$3.99/$5.99/$7.99 / Thin. Sauce: Tomato/White/BBQ. Up to 5 toppings.",
-          "tags": ["veg"],
-          "prices": { "s": 14.95, "m": 21.95, "l": 32.95 },
-          "price_labels": { "s": "13\"", "m": "18\" XL", "l": "24\" Giant" },
+          "tags": [
+            "veg"
+          ],
+          "prices": {
+            "s": 14.95,
+            "m": 21.95,
+            "l": 32.95
+          },
+          "price_labels": {
+            "s": "13\"",
+            "m": "18\" XL",
+            "l": "24\" Giant"
+          },
           "available": true
         }
       ]
@@ -153,7 +242,9 @@
           "name_en": "Mozzarella Sticks (6)",
           "desc_ar": "مقرمشة بانكو مع مارينارا البيتية.",
           "desc_en": "Panko-crisp, house marinara.",
-          "tags": ["veg"],
+          "tags": [
+            "veg"
+          ],
           "price": 9.95,
           "available": true
         },
@@ -164,7 +255,10 @@
           "name_en": "Buffalo Wings (8)",
           "desc_ar": "ثمانية أجنحة بصلصة بافلو اللامعة مع رانش وكرفس.",
           "desc_en": "Eight wings glossy buffalo, ranch & celery.",
-          "tags": ["spicy", "popular"],
+          "tags": [
+            "spicy",
+            "popular"
+          ],
           "price": 12.95,
           "available": true
         },
@@ -175,7 +269,9 @@
           "name_en": "Braided Garlic Bread",
           "desc_ar": "شاباتا بزبدة ثوم وجبنة محشية مجدولة.",
           "desc_en": "Ciabatta garlic butter, braided & cheese-dusted.",
-          "tags": ["veg"],
+          "tags": [
+            "veg"
+          ],
           "price": 8.95,
           "available": true
         },
@@ -186,7 +282,9 @@
           "name_en": "Loaded Twist Fries",
           "desc_ar": "شيدر، بصل أخضر، رانش وقطع بيكون.",
           "desc_en": "Cheddar, scallions, ranch, bacon crumble.",
-          "tags": ["popular"],
+          "tags": [
+            "popular"
+          ],
           "price": 9.95,
           "available": true
         }
@@ -224,7 +322,9 @@
           "name_en": "Cannoli",
           "desc_ar": "كانولي محشي كريمة مع شوكولاتة.",
           "desc_en": "Cream-filled cannoli, chocolate drizzle.",
-          "tags": ["veg"],
+          "tags": [
+            "veg"
+          ],
           "price": 5.95,
           "available": true
         },
@@ -235,7 +335,9 @@
           "name_en": "NY Cheesecake",
           "desc_ar": "تشيز كيك باسو بيري.",
           "desc_en": "NY cheesecake, Paso berry coulis.",
-          "tags": ["veg"],
+          "tags": [
+            "veg"
+          ],
           "price": 7.95,
           "available": true
         }
@@ -254,7 +356,9 @@
           "name_en": "House Mint Lemonade 16oz",
           "desc_ar": "ليمون طازج ونعناع.",
           "desc_en": "Fresh lemon, crushed mint.",
-          "tags": ["veg"],
+          "tags": [
+            "veg"
+          ],
           "price": 4.95,
           "available": true
         },
@@ -288,7 +392,7 @@
           "desc_ar": "مياه فوارة.",
           "desc_en": "Bubbly mineral.",
           "tags": [],
-          "price": 3.50,
+          "price": 3.5,
           "available": true
         },
         {
@@ -310,11 +414,63 @@
       "name_ar": "صوصات",
       "name_en": "Dips & Sauces",
       "items": [
-        { "id": "ranch", "img": "", "name_ar": "رانش", "name_en": "Ranch", "desc_ar": "رانش كريمي.", "desc_en": "Creamy ranch.", "tags": [], "price": 1.50, "available": true },
-        { "id": "blue-cheese", "img": "", "name_ar": "بلو تشيز", "name_en": "Blue Cheese", "desc_ar": "بلو تشيز.", "desc_en": "Blue cheese.", "tags": [], "price": 1.50, "available": true },
-        { "id": "garlic-whip", "img": "", "name_ar": "ثوم", "name_en": "Garlic Whip", "desc_ar": "ثوم مخفوق.", "desc_en": "Whipped garlic.", "tags": [], "price": 1.50, "available": true },
-        { "id": "marinara", "img": "", "name_ar": "مارينارا", "name_en": "Marinara", "desc_ar": "مارينارا.", "desc_en": "House marinara.", "tags": [], "price": 1.50, "available": true },
-        { "id": "hot-honey", "img": "", "name_ar": "عسل حار", "name_en": "Hot Honey", "desc_ar": "عسل حار.", "desc_en": "Hot honey.", "tags": ["spicy"], "price": 1.50, "available": true }
+        {
+          "id": "ranch",
+          "img": "",
+          "name_ar": "رانش",
+          "name_en": "Ranch",
+          "desc_ar": "رانش كريمي.",
+          "desc_en": "Creamy ranch.",
+          "tags": [],
+          "price": 1.5,
+          "available": true
+        },
+        {
+          "id": "blue-cheese",
+          "img": "",
+          "name_ar": "بلو تشيز",
+          "name_en": "Blue Cheese",
+          "desc_ar": "بلو تشيز.",
+          "desc_en": "Blue cheese.",
+          "tags": [],
+          "price": 1.5,
+          "available": true
+        },
+        {
+          "id": "garlic-whip",
+          "img": "",
+          "name_ar": "ثوم",
+          "name_en": "Garlic Whip",
+          "desc_ar": "ثوم مخفوق.",
+          "desc_en": "Whipped garlic.",
+          "tags": [],
+          "price": 1.5,
+          "available": true
+        },
+        {
+          "id": "marinara",
+          "img": "",
+          "name_ar": "مارينارا",
+          "name_en": "Marinara",
+          "desc_ar": "مارينارا.",
+          "desc_en": "House marinara.",
+          "tags": [],
+          "price": 1.5,
+          "available": true
+        },
+        {
+          "id": "hot-honey",
+          "img": "",
+          "name_ar": "عسل حار",
+          "name_en": "Hot Honey",
+          "desc_ar": "عسل حار.",
+          "desc_en": "Hot honey.",
+          "tags": [
+            "spicy"
+          ],
+          "price": 1.5,
+          "available": true
+        }
       ]
     }
   ]
