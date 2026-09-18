@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ServiceLead Agent — California Home Services</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #111b2e;
+      --panel-2: #17243a;
+      --text: #eef4ff;
+      --muted: #a7b6ce;
+      --line: #2c3c57;
+      --blue: #6ea8fe;
+      --green: #57d39b;
+      --amber: #f8c76b;
+      --red: #ff7b8a;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .25);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: radial-gradient(circle at top right, #1c3258 0, var(--bg) 45%); color: var(--text); min-height: 100vh; }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 1180px; margin: 0 auto; padding: 28px 18px 56px; }
+    .topbar { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; margin-bottom: 24px; }
+    .eyebrow { color: var(--blue); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 800; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: clamp(30px, 5vw, 52px); line-height: 1.02; margin: 8px 0 12px; max-width: 720px; }
+    h2 { font-size: 22px; margin-bottom: 8px; }
+    h3 { font-size: 15px; margin-bottom: 8px; }
+    .lede { color: var(--muted); max-width: 690px; line-height: 1.6; }
+    .badge { border: 1px solid rgba(110, 168, 254, .35); color: #cfe0ff; background: rgba(110, 168, 254, .08); padding: 10px 13px; border-radius: 999px; font-size: 12px; white-space: nowrap; }
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+    .tab { background: transparent; color: var(--muted); border: 1px solid var(--line); padding: 10px 15px; border-radius: 10px; }
+    .tab.active { color: var(--text); background: var(--panel-2); border-color: var(--blue); }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .card { grid-column: span 12; background: rgba(17, 27, 46, .92); border: 1px solid var(--line); border-radius: 18px; padding: 20px; box-shadow: var(--shadow); }
+    .span-7 { grid-column: span 7; }
+    .span-5 { grid-column: span 5; }
+    .span-4 { grid-column: span 4; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    label { color: #dce8fb; font-weight: 650; font-size: 13px; }
+    input, select, textarea { width: 100%; color: var(--text); background: #0c1526; border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; outline: none; }
+    textarea { resize: vertical; min-height: 82px; }
+    input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(110, 168, 254, .12); }
+    .check { display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .check input { width: auto; margin-top: 3px; }
+    .primary, .secondary, .danger { border: 0; border-radius: 10px; padding: 12px 16px; font-weight: 800; }
+    .primary { color: #08111f; background: var(--blue); }
+    .secondary { color: var(--text); background: #243552; border: 1px solid #3c5378; }
+    .danger { color: #2a0910; background: var(--red); }
+    .actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+    .fine { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .result { margin-top: 16px; padding: 16px; border: 1px solid var(--line); border-radius: 13px; display: none; }
+    .result.show { display: block; }
+    .result.normal { border-color: rgba(87, 211, 155, .6); background: rgba(87, 211, 155, .08); }
+    .result.warning { border-color: rgba(248, 199, 107, .6); background: rgba(248, 199, 107, .08); }
+    .result.critical { border-color: rgba(255, 123, 138, .65); background: rgba(255, 123, 138, .08); }
+    .result-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+    .pill { font-size: 11px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: 6px 9px; background: rgba(255,255,255,.12); }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .metric { padding: 15px; border-radius: 13px; background: #0c1526; border: 1px solid var(--line); }
+    .metric strong { display: block; font-size: 28px; margin-top: 6px; }
+    .metric span { color: var(--muted); font-size: 12px; }
+    .config-grid { display: grid; gap: 12px; }
+    .config-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .lead-list { display: grid; gap: 10px; max-height: 490px; overflow: auto; }
+    .lead { border: 1px solid var(--line); border-radius: 12px; padding: 13px; background: #0c1526; }
+    .lead-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+    .lead-meta { color: var(--muted); font-size: 12px; line-height: 1.6; margin-top: 6px; }
+    .empty { padding: 30px 10px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; }
+    .hidden { display: none !important; }
+    .notice { border-left: 3px solid var(--amber); padding: 10px 12px; background: rgba(248, 199, 107, .07); color: #f5dfae; line-height: 1.55; font-size: 13px; }
+    .footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 26px; }
+    @media (max-width: 850px) {
+      .topbar { flex-direction: column; }
+      .span-7, .span-5, .span-4, .span-8, .span-6 { grid-column: span 12; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .form-grid, .config-row { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .shell { padding-left: 12px; padding-right: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">California home services · MVP demo</div>
+        <h1>Turn service requests into booked estimates.</h1>
+        <p class="lede">A simple inbound lead-intake agent for HVAC and plumbing companies. It asks the right questions, flags emergencies, checks the service area, and hands qualified requests to a human.</p>
+      </div>
+      <div class="badge">No API keys · no real messages · local demo</div>
+    </header>
+
+    <nav class="tabs" aria-label="Demo views">
+      <button class="tab active" data-view="intake">Customer intake</button>
+      <button class="tab" data-view="dashboard">Owner dashboard</button>
+      <button class="tab" data-view="settings">Agent settings</button>
+    </nav>
+
+    <section id="intake-view" class="view">
+      <div class="grid">
+        <section class="card span-7">
+          <div class="eyebrow">Inbound request</div>
+          <h2>Request an estimate</h2>
+          <p class="fine">This is a demo. The agent does not send an SMS, call anyone, or dispatch a technician.</p>
+          <form id="lead-form" class="form-grid" style="margin-top: 18px;">
+            <div class="field">
+              <label for="name">Full name</label>
+              <input id="name" name="name" required placeholder="Jordan Lee" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" required placeholder="(555) 555-0123" autocomplete="tel" />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required placeholder="jordan@example.com" autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="zip">ZIP code</label>
+              <input id="zip" name="zip" inputmode="numeric" pattern="[0-9]{5}" required placeholder="Enter ZIP" />
+            </div>
+            <div class="field">
+              <label for="service">Service needed</label>
+              <select id="service" name="service">
+                <option>HVAC repair</option>
+                <option>HVAC maintenance</option>
+                <option>HVAC installation estimate</option>
+                <option>Plumbing repair</option>
+                <option>Plumbing estimate</option>
+                <option>Other / not sure</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="urgency">Urgency</label>
+              <select id="urgency" name="urgency">
+                <option value="normal">Routine — this week</option>
+                <option value="soon">Soon — within 48 hours</option>
+                <option value="emergency">Emergency / unsafe condition</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="preferred">Preferred time</label>
+              <select id="preferred" name="preferred">
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+                <option>First available</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="contact">Preferred contact</label>
+              <select id="contact" name="contact">
+                <option>Email</option>
+                <option>Phone call from the business</option>
+                <option>SMS, if I opt in below</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="details">What is happening?</label>
+              <textarea id="details" name="details" placeholder="Example: The AC is running but the house is not cooling."></textarea>
+            </div>
+            <div class="field full">
+              <label class="check"><input id="consent" name="consent" type="checkbox" /> I agree that the business may use the contact details I provide to respond to this service request. Marketing messages are not part of this demo.</label>
+            </div>
+            <div class="actions field full">
+              <span class="fine">For a real deployment, the client must approve its privacy notice, consent language, service area, emergency policy, and CRM access.</span>
+              <button class="primary" type="submit">Run the agent</button>
+            </div>
+          </form>
+          <div id="result" class="result" role="status" aria-live="polite"></div>
+        </section>
+
+        <aside class="card span-5">
+          <div class="eyebrow">What the agent does</div>
+          <h2>Safe triage, not autonomous dispatch</h2>
+          <div class="notice">Emergency or unsafe requests are never diagnosed by the demo. They are escalated to a human and shown in red.</div>
+          <div style="margin-top: 18px; display:grid; gap: 12px;">
+            <div><h3>1. Capture</h3><p class="fine">Collect the minimum fields needed to respond.</p></div>
+            <div><h3>2. Classify</h3><p class="fine">Routine, soon, outside area, or human escalation.</p></div>
+            <div><h3>3. Route</h3><p class="fine">Recommend a follow-up action and store an audit event.</p></div>
+            <div><h3>4. Measure</h3><p class="fine">Show the owner how many requests were qualified and booked.</p></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="dashboard-view" class="view hidden">
+      <div class="grid">
+        <section class="card">
+          <div class="eyebrow">Local demo dashboard</div>
+          <h2>Pipeline health</h2>
+          <div class="metrics">
+            <div class="metric"><span>Total requests</span><strong id="metric-total">0</strong></div>
+            <div class="metric"><span>Qualified</span><strong id="metric-qualified">0</strong></div>
+            <div class="metric"><span>Human handoffs</span><strong id="metric-handoff">0</strong></div>
+            <div class="metric"><span>Booked / next step</span><strong id="metric-booked">0</strong></div>
+          </div>
+        </section>
+        <section class="card span-8">
+          <div class="eyebrow">Requests</div>
+          <h2>Recent leads</h2>
+          <div id="lead-list" class="lead-list"></div>
+        </section>
+        <aside class="card span-4">
+          <div class="eyebrow">Owner action</div>
+          <h2>What to do next</h2>
+          <p class="fine">In production, this panel becomes a CRM view or weekly email. For this demo, the data stays only in this browser.</p>
+          <button id="clear-leads" class="danger" type="button">Clear demo data</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="settings-view" class="view hidden">
+      <div class="grid">
+        <section class="card span-7">
+          <div class="eyebrow">Client configuration</div>
+          <h2>Make the demo look like a real client</h2>
+          <form id="settings-form" class="config-grid">
+            <div class="field">
+              <label for="business-name">Business name</label>
+              <input id="business-name" placeholder="Example HVAC & Plumbing" />
+            </div>
+            <div class="config-row">
+              <div class="field">
+                <label for="trade">Primary trade</label>
+                <select id="trade"><option>HVAC</option><option>Plumbing</option><option>Electrical</option><option>Garage doors</option></select>
+              </div>
+              <div class="field">
+                <label for="hours">Business hours</label>
+                <input id="hours" placeholder="Mon–Fri, 8am–5pm" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="areas">Service area ZIPs (comma separated, optional)</label>
+              <input id="areas" placeholder="Leave empty for demo mode" />
+            </div>
+            <div class="actions">
+              <span class="fine">Settings are saved in localStorage only.</span>
+              <button class="secondary" type="submit">Save settings</button>
+            </div>
+          </form>
+        </section>
+        <aside class="card span-5">
+          <div class="eyebrow">Production checklist</div>
+          <h2>Before connecting a real client</h2>
+          <ul class="fine" style="line-height: 1.9; padding-left: 20px;">
+            <li>Client-approved privacy and consent language.</li>
+            <li>Written data-processing/service-provider terms.</li>
+            <li>Human owner for emergencies and escalations.</li>
+            <li>Separate account and data for each client.</li>
+            <li>Usage cap, logs, deletion and rollback.</li>
+            <li>Test cases before any external message.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <p class="footer">ServiceLead Agent MVP · Demo only · No real calls, texts, dispatches, or payments are triggered.</p>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "servicelead-demo-leads-v1";
+    const SETTINGS_KEY = "servicelead-demo-settings-v1";
+    const defaultSettings = {
+      businessName: "Example HVAC & Plumbing",
+      trade: "HVAC",
+      hours: "Mon–Fri, 8am–5pm",
+      areas: ""
+    };
+
+    const readJson = (key, fallback) => {
+      try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
+    };
+    const getLeads = () => readJson(STORAGE_KEY, []);
+    const getSettings = () => ({ ...defaultSettings, ...readJson(SETTINGS_KEY, {}) });
+    const saveLeads = (leads) => localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+    const saveSettings = (settings) => localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+    const esc = (value) => String(value ?? "").replace(/[&<>'"]/g, (char) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "'":"&#39;", '"':"&quot;" }[char]));
+
+    function classifyLead(data) {
+      const settings = getSettings();
+      const areaList = settings.areas.split(",").map((item) => item.trim()).filter(Boolean);
+      const inArea = !areaList.length || areaList.includes(data.zip);
+      if (data.urgency === "emergency") {
+        return {
+          status: "Human handoff required",
+          type: "critical",
+          reason: "The customer selected an emergency or unsafe condition. The business owner must review this request immediately.",
+          next: "Alert the owner / follow the client’s emergency policy. Do not diagnose or promise dispatch.",
+          qualified: false,
+          handoff: true,
+          booked: false
+        };
+      }
+      if (!inArea) {
+        return {
+          status: "Outside configured service area",
+          type: "warning",
+          reason: `ZIP ${data.zip} is not in the configured area list.`,
+          next: "A human should confirm whether an exception or referral is possible.",
+          qualified: false,
+          handoff: true,
+          booked: false
+        };
+      }
+      if (!data.consent && data.contact === "SMS, if I opt in below") {
+        return {
+          status: "Consent needed before SMS",
+          type: "warning",
+          reason: "The customer selected SMS but did not opt in.",
+          next: "Use email or ask the customer to opt in through an approved flow. Do not send SMS.",
+          qualified: true,
+          handoff: false,
+          booked: false
+        };
+      }
+      return {
+        status: "Qualified — next step recommended",
+        type: "normal",
+        reason: "The request contains the minimum fields for a human follow-up.",
+        next: `Offer a ${data.preferred.toLowerCase()} estimate slot and create a CRM/Sheet record.`,
+        qualified: true,
+        handoff: false,
+        booked: true
+      };
+    }
+
+    function renderResult(lead) {
+      const result = document.getElementById("result");
+      result.className = `result show ${lead.decision.type}`;
+      result.innerHTML = `
+        <div class="result-title"><strong>${esc(lead.decision.status)}</strong><span class="pill">${esc(lead.data.service)}</span></div>
+        <p class="fine"><strong>Why:</strong> ${esc(lead.decision.reason)}</p>
+        <p class="fine"><strong>Recommended next step:</strong> ${esc(lead.decision.next)}</p>
+        <p class="fine" style="margin-bottom:0"><strong>Demo note:</strong> Nothing was sent externally. This is a local rule-based MVP.</p>
+      `;
+    }
+
+    function renderDashboard() {
+      const leads = getLeads();
+      document.getElementById("metric-total").textContent = leads.length;
+      document.getElementById("metric-qualified").textContent = leads.filter((lead) => lead.decision.qualified).length;
+      document.getElementById("metric-handoff").textContent = leads.filter((lead) => lead.decision.handoff).length;
+      document.getElementById("metric-booked").textContent = leads.filter((lead) => lead.decision.booked).length;
+      const list = document.getElementById("lead-list");
+      if (!leads.length) {
+        list.innerHTML = '<div class="empty">No demo requests yet. Submit the form to create the first lead.</div>';
+        return;
+      }
+      list.innerHTML = leads.slice().reverse().map((lead) => `
+        <article class="lead">
+          <div class="lead-head"><strong>${esc(lead.data.name)}</strong><span class="pill">${esc(lead.decision.status)}</span></div>
+          <div class="lead-meta">${esc(lead.data.service)} · ZIP ${esc(lead.data.zip)} · ${esc(lead.data.urgency)} · ${new Date(lead.createdAt).toLocaleString()}</div>
+          <div class="lead-meta">Next: ${esc(lead.decision.next)}</div>
+        </article>
+      `).join("");
+    }
+
+    function loadSettingsIntoForm() {
+      const settings = getSettings();
+      document.getElementById("business-name").value = settings.businessName;
+      document.getElementById("trade").value = settings.trade;
+      document.getElementById("hours").value = settings.hours;
+      document.getElementById("areas").value = settings.areas;
+    }
+
+    document.querySelectorAll(".tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach((item) => item.classList.remove("active"));
+        document.querySelectorAll(".view").forEach((view) => view.classList.add("hidden"));
+        tab.classList.add("active");
+        document.getElementById(`${tab.dataset.view}-view`).classList.remove("hidden");
+        if (tab.dataset.view === "dashboard") renderDashboard();
+        if (tab.dataset.view === "settings") loadSettingsIntoForm();
+      });
+    });
+
+    document.getElementById("lead-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      const data = Object.fromEntries(form.entries());
+      data.consent = document.getElementById("consent").checked;
+      const lead = { id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()), createdAt: new Date().toISOString(), data, decision: classifyLead(data) };
+      saveLeads([...getLeads(), lead]);
+      renderResult(lead);
+      event.currentTarget.reset();
+    });
+
+    document.getElementById("settings-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      saveSettings({
+        businessName: document.getElementById("business-name").value.trim() || defaultSettings.businessName,
+        trade: document.getElementById("trade").value,
+        hours: document.getElementById("hours").value.trim() || defaultSettings.hours,
+        areas: document.getElementById("areas").value.trim()
+      });
+      const button = event.currentTarget.querySelector("button");
+      const original = button.textContent;
+      button.textContent = "Saved";
+      setTimeout(() => { button.textContent = original; }, 1200);
+    });
+
+    document.getElementById("clear-leads").addEventListener("click", () => {
+      if (confirm("Clear all local demo requests?")) {
+        localStorage.removeItem(STORAGE_KEY);
+        renderDashboard();
+      }
+    });
+
+    loadSettingsIntoForm();
+    renderDashboard();
+  </script>
+</body>
+</html>
