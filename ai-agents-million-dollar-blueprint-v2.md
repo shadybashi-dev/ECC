@@ -1,5 +1,7 @@
 # خطة المليون دولار من AI Agents — V2
 
+> **Operating system expansion:** النسخة التي تربط الخطة بـ GitHub وCustomer Evidence وECC Skills موجودة في [`ai-agents-million-dollar-github-customer-skills-os.md`](ai-agents-million-dollar-github-customer-skills-os.md).
+
 **تاريخ الإصدار:** 18 سبتمبر 2026
 **الهدف الافتراضي:** $1,000,000 company revenue خلال 24–36 شهراً، مع الوصول إلى $1,000,000 ARR run-rate كهدف توسع.
 **الوضع:** خطة تخطيطية قابلة للاختبار؛ لا يوجد أي ضمان للنتيجة.
