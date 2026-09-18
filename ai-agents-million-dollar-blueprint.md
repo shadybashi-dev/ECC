@@ -7,6 +7,8 @@
 **مهم:** هذا ليس وعداً بالنتيجة. الأرقام التشغيلية في الجداول هي **نماذج تخطيطية [C]** وليست حقائق سوقية. يجب اختبارها بعملاء يدفعون قبل الاستثمار الكبير.
 
 > **تم تنفيذ البحث الفعلي أيضاً:** راجع [`ai-agents-researched-opportunity-report.md`](ai-agents-researched-opportunity-report.md) لتقرير مطبّق على فكرة واحدة: **GCC Property Lead-to-Viewing OS**، مع منافسين، أسعار منشورة، إشارات طلب، خطة تحقق 30 يوماً، وقيود WhatsApp/PDPL.
+>
+> **للشخص الذي يبدأ من البيت في California:** راجع [`california-zero-to-revenue-agent.md`](california-zero-to-revenue-agent.md) لخطة الصفر إلى أول عميل وبناء Agent لشركات HVAC/plumbing.
 
 ---
 

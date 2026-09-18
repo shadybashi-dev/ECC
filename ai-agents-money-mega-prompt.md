@@ -6,6 +6,8 @@
 > النسخة الإنجليزية موجودة في القسم 4 — أدوات البحث العميق غالباً تعطي نتائج أدق بالإنجليزية.
 >
 > **تطوير هدف المليون دولار:** إذا كان هدفك بناء شركة تصل إلى **$1M ARR** أو **$1M cumulative revenue**، استخدم الوثيقة المكملة [`ai-agents-million-dollar-blueprint.md`](ai-agents-million-dollar-blueprint.md). فيها نماذج الإيراد، unit economics، مسارات vertical، خارطة 24–36 شهراً، ومعايير قتل/تغيير الفكرة.
+>
+> **إذا كنت تبدأ من البيت في California ومن الصفر:** استخدم [`california-zero-to-revenue-agent.md`](california-zero-to-revenue-agent.md)؛ فيها فكرة مناسبة للبداية، بحث سريع للسوق الأمريكي، Prompt بناء جاهز، خطة أول عميل، وقيود California/TCPA/CCPA.
 
 ---
 
