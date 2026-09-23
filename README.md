@@ -419,6 +419,17 @@ The `ito-compute-cli` package is currently unpublished. Build it locally from th
 The options stay here, directly under the main install paths, so you do not have to hunt through the README when the default setup is not the right fit.
 
 <details>
+<summary><strong>Professional website toolkit (<code>webdev</code> profile)</strong></summary>
+
+```bash
+./install.sh --profile webdev --target claude
+```
+
+Bundles design direction, design systems, React/Next.js/Vite/Vue patterns, motion, accessibility, SEO, browser QA/E2E, security review, database, and deployment skills. See [docs/WEBDEV-TOOLKIT.md](docs/WEBDEV-TOOLKIT.md) and the opt-in MCP set in [examples/webdev-mcp.json](examples/webdev-mcp.json).
+
+</details>
+
+<details>
 <summary><strong>Low-context install with no hook runtime</strong></summary>
 
 ### Low-context / no-hooks path

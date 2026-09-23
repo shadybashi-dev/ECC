@@ -44,6 +44,22 @@
         "orchestration"
       ]
     },
+    "webdev": {
+      "description": "Professional website build profile: frontend design direction, design systems, React/Next.js/Vite/Vue/Nuxt patterns, motion, accessibility, SEO and brand content, browser QA and E2E, security review, database, and deployment guidance. Hook runtime is opt-in via --with baseline:hooks --enable-hooks.",
+      "modules": [
+        "rules-core",
+        "agents-core",
+        "commands-core",
+        "platform-configs",
+        "workflow-quality",
+        "framework-language",
+        "database",
+        "security",
+        "business-content",
+        "media-generation",
+        "devops-infra"
+      ]
+    },
     "security": {
       "description": "Security-heavy setup with baseline runtime support and security-specific guidance.",
       "modules": [
