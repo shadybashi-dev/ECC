@@ -1,4 +1,5 @@
 // usage: node shots.mjs <baseUrl> <outDir> path...  — full-page mobile + desktop screenshots (preloader skipped)
+/* global document, scrollTo */
 import puppeteer from 'puppeteer-core'; import fs from 'node:fs';
 const [base, out, ...paths] = process.argv.slice(2); fs.mkdirSync(out, { recursive: true });
 const b = await puppeteer.launch({ executablePath: process.env.CHROME_PATH, headless: 'shell' });

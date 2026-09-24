@@ -11,7 +11,6 @@ import { minify } from 'terser';
 
 const SITE = path.resolve(process.argv[2] || '.');
 const WIDTHS = process.argv[3] ? JSON.parse(fs.readFileSync(process.argv[3], 'utf8')) : {};
-const rel = (p) => path.relative(SITE, p);
 const read = (p) => fs.readFileSync(path.join(SITE, p), 'utf8');
 const write = (p, s) => fs.writeFileSync(path.join(SITE, p), s);
 const log = (...a) => console.log('•', ...a);
