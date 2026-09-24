@@ -35,3 +35,12 @@ Also installed for fixing issues: `pa11y`, `@lhci/cli`, `lightningcss-cli`,
 
 To use the same browser in your own Puppeteer scripts, pass
 `executablePath: process.env.CHROME_PATH` with `headless: 'shell'`.
+
+## Extras
+
+- `shots.mjs <baseUrl> <outDir> path...` saves mobile and desktop screenshots for visual
+  before/after diffs. Set `FIXED_TIME=2026-09-23T19:00:00-07:00` so sites that change by
+  time of day render the same way every run.
+- `examples/antonias-optimize.mjs <siteDir> [widths.json]` is an idempotent optimizer for a real
+  static site. It generates responsive AVIF/WebP, preloads the hero image, minifies CSS/JS,
+  applies clean URLs, and adds a11y fixes, CSP updates, and SEO fixes. Use it as a template.
