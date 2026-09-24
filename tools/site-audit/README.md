@@ -46,3 +46,7 @@ To use the same browser in your own Puppeteer scripts, pass
 - `examples/antonias-optimize.mjs <siteDir> [widths.json]` is an idempotent optimizer for a real
   static site. It generates responsive AVIF/WebP, preloads the hero image, minifies CSS/JS,
   applies clean URLs, and adds a11y fixes, CSP updates, and SEO fixes. Use it as a template.
+- `examples/antonias-order-links.mjs <siteDir>` points each "Order" button at the matching Toast
+  location menu, skipping Toast's unreliable geolocation finder. Generic buttons open a small
+  accessible `<dialog>` location picker that remembers the choice, and every link gets UTM
+  tags. It is idempotent. Run it before `antonias-optimize.mjs` so `main.min.js` is rebuilt.
