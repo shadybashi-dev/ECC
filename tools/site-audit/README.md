@@ -38,6 +38,8 @@ To use the same browser in your own Puppeteer scripts, pass
 
 ## Extras
 
+- `measure-widths.mjs <baseUrl> <out.json> path...` records the rendered width of every image at
+  390, 820, and 1440 px. The optimizer uses this JSON to size `srcset` from the real layout.
 - `shots.mjs <baseUrl> <outDir> path...` saves mobile and desktop screenshots for visual
   before/after diffs. Set `FIXED_TIME=2026-09-23T19:00:00-07:00` so sites that change by
   time of day render the same way every run.
