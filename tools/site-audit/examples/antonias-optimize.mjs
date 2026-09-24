@@ -8,6 +8,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 import { transform as lcss } from 'lightningcss';
 import { minify } from 'terser';
+import crypto from 'node:crypto';
 
 const SITE = path.resolve(process.argv[2] || '.');
 const WIDTHS = process.argv[3] ? JSON.parse(fs.readFileSync(process.argv[3], 'utf8')) : {};
@@ -164,6 +165,7 @@ picture>source{display:none}
 `;
 function patchMainJs(js) {
   // Preloader: time-boxed (no longer waits for every image) and shown once per session.
+  if (js.includes('sessionStorage.getItem("ap-pl")')) return js;   // already patched
   js = js.replace(/const MIN_MS = prefersReduced \? 400 : 1200;[^\n]*/, 'const MIN_MS = prefersReduced ? 150 : 650;   // short brand beat; never gates the hero')
     .replace('let pageLoaded = document.readyState === "complete";', 'let pageLoaded = true;   // do not wait for window.load (slow images kept LCP hostage)')
     .replace('if (count) count.textContent = "1%";\n    requestAnimationFrame(frame);',
@@ -180,7 +182,7 @@ function patchMainJs(js) {
 }
 
 // ---------------------------------------------------------------- run
-const BUILD = Date.now().toString(36).slice(-6);
+let BUILD = '';   // content hash of the minified CSS+JS, set below
 const htmlOf = (n) => `${n}.html`;
 
 log('CSS');
@@ -193,6 +195,7 @@ log('JS');
 let js = read('js/main.js'); const pjs = patchMainJs(js);
 if (pjs !== js) write('js/main.js', pjs);
 write('js/main.min.js', (await minify(pjs, { compress: { passes: 2 }, mangle: true, format: { comments: false } })).code);
+BUILD = crypto.createHash('sha256').update(read('css/style.min.css') + read('js/main.min.js')).digest('hex').slice(0, 8);
 
 for (const name of [...ROOT_PAGES, ...BLOG_PAGES]) {
   const f = htmlOf(name);
