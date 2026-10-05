@@ -1,0 +1,7 @@
+interface:
+  display_name: "Schema Markup"
+  short_description: "JSON-LD structured data that matches the page"
+  brand_color: "#F59E0B"
+  default_prompt: "Use $schema-markup to design and validate JSON-LD for a page type."
+policy:
+  allow_implicit_invocation: true

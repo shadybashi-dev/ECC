@@ -1,0 +1,7 @@
+interface:
+  display_name: "Topical Authority Map"
+  short_description: "Topical maps, clusters, and content roadmaps"
+  brand_color: "#EC4899"
+  default_prompt: "Use $topical-authority-map to plan a topic cluster and publishing order."
+policy:
+  allow_implicit_invocation: true

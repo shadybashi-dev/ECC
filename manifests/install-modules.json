@@ -538,6 +538,37 @@
       "stability": "stable"
     },
     {
+      "id": "seo-geo",
+      "kind": "skills",
+      "description": "Search and AI-answer visibility skills: technical SEO audits, GEO/AEO audit scoring, citability rewriting, schema markup, and topical authority planning.",
+      "paths": [
+        "skills/aeo-audit",
+        "skills/geo",
+        "skills/geo-citability",
+        "skills/schema-markup",
+        "skills/seo-technical-audit",
+        "skills/topical-authority-map"
+      ],
+      "targets": [
+        "claude",
+        "claude-project",
+        "cursor",
+        "antigravity",
+        "codex",
+        "opencode",
+        "codebuddy",
+        "joycode",
+        "qwen",
+        "zed"
+      ],
+      "dependencies": [
+        "business-content"
+      ],
+      "defaultInstall": false,
+      "cost": "medium",
+      "stability": "stable"
+    },
+    {
       "id": "operator-workflows",
       "kind": "skills",
       "description": "Connected-app operator workflows for setup audits, billing operations, program tracking, Google Workspace, and network optimization.",
@@ -614,7 +645,7 @@
     {
       "id": "ito-compute",
       "kind": "skills",
-      "description": "Authenticated Itô GPU inventory, RFQ, status, device revocation, and explicitly gated node-qualification workflows through the separately installed canonical CLI.",
+      "description": "Authenticated It\u00f4 GPU inventory, RFQ, status, device revocation, and explicitly gated node-qualification workflows through the separately installed canonical CLI.",
       "paths": [
         "skills/ito-compute",
         "skills/ito-inference",

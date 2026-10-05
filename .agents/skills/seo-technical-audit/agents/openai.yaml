@@ -1,0 +1,7 @@
+interface:
+  display_name: "Technical SEO Audit"
+  short_description: "Technical SEO across crawl, index, and CWV"
+  brand_color: "#10B981"
+  default_prompt: "Use $seo-technical-audit to find crawl, index, and CWV defects."
+policy:
+  allow_implicit_invocation: true

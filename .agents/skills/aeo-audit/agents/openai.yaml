@@ -1,0 +1,7 @@
+interface:
+  display_name: "AEO Audit"
+  short_description: "Scored AEO/GEO audit with deterministic checks"
+  brand_color: "#0EA5E9"
+  default_prompt: "Use $aeo-audit to score a site for AI-search discoverability."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,7 @@
+interface:
+  display_name: "GEO"
+  short_description: "AI search visibility: crawlers, citability, llms.txt"
+  brand_color: "#6366F1"
+  default_prompt: "Use $geo to improve visibility in ChatGPT, Perplexity, and AI Overviews."
+policy:
+  allow_implicit_invocation: true

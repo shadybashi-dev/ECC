@@ -1,0 +1,7 @@
+interface:
+  display_name: "GEO Citability"
+  short_description: "Score and rewrite passages AI engines will quote"
+  brand_color: "#8B5CF6"
+  default_prompt: "Use $geo-citability to score and rewrite content for AI citation."
+policy:
+  allow_implicit_invocation: true

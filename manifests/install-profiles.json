@@ -67,6 +67,7 @@
         "workflow-quality",
         "research-apis",
         "business-content",
+        "seo-geo",
         "social-distribution"
       ]
     },
@@ -98,7 +99,8 @@
         "devops-infra",
         "machine-learning",
         "supply-chain-domain",
-        "document-processing"
+        "document-processing",
+        "seo-geo"
       ]
     }
   }

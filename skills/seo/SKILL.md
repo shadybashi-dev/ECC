@@ -1,100 +1,109 @@
 ---
 name: seo
-description: Audit, plan, and implement SEO improvements across technical SEO, on-page optimization, structured data, Core Web Vitals, and content strategy. Use when the user wants better search visibility, SEO remediation, schema markup, sitemap/robots work, or keyword mapping.
+description: Improve classic search visibility through technical correctness, on-page work, structured data, and content relevance. Use for SEO audits, title/meta/heading fixes, keyword mapping, internal linking, and sitemap or robots work.
 metadata:
   origin: ECC
 ---
 
 # SEO
 
-Improve search visibility through technical correctness, performance, and content relevance, not gimmicks.
+Improve search visibility through correctness, relevance, and quality — not gimmicks. This is the routing skill for search work: it handles on-page and content-side SEO and hands off to the specialist skills when the problem is technical, structural, or AI-facing.
 
-## When to Use
+## When to Activate
 
-Use this skill when:
 - auditing crawlability, indexability, canonicals, or redirects
 - improving title tags, meta descriptions, and heading structure
-- adding or validating structured data
-- improving Core Web Vitals
-- doing keyword research and mapping keywords to URLs
-- planning internal linking or sitemap / robots changes
+- keyword research and mapping keywords to URLs
+- planning internal linking, sitemap, or robots changes
+- diagnosing cannibalization, thin content, or intent mismatch
+- the user says "SEO" without narrowing further
+
+## Route First
+
+Identify which layer the problem lives in before doing the work.
+
+| Symptom | Skill |
+| --- | --- |
+| Pages not indexed, crawl errors, redirects, Core Web Vitals, rendering | `seo-technical-audit` |
+| Site invisible in ChatGPT/Perplexity/AI Overviews | `geo` |
+| Content exists but is never quoted by AI engines | `geo-citability` |
+| Needs a scored AI-visibility baseline | `aeo-audit` |
+| Rich results, entity data, or Search misrepresentation | `schema-markup` |
+| No coherent content structure; cannibalization at scale | `topical-authority-map` |
+| Titles, metas, headings, keywords, internal links, content quality | this skill |
 
 ## How It Works
 
 ### Principles
 
-1. Fix technical blockers before content optimization.
-2. One page should have one clear primary search intent.
-3. Prefer long-term quality signals over manipulative patterns.
-4. Mobile-first assumptions matter because indexing is mobile-first.
-5. Recommendations should be page-specific and implementable.
-
-### Technical SEO checklist
-
-#### Crawlability
-
-- `robots.txt` should allow important pages and block low-value surfaces
-- no important page should be unintentionally `noindex`
-- important pages should be reachable within a shallow click depth
-- avoid redirect chains longer than two hops
-- canonical tags should be self-consistent and non-looping
-
-#### Indexability
-
-- preferred URL format should be consistent
-- multilingual pages need correct hreflang if used
-- sitemaps should reflect the intended public surface
-- no duplicate URLs should compete without canonical control
-
-#### Performance
-
-- LCP < 2.5s
-- INP < 200ms
-- CLS < 0.1
-- common fixes: preload hero assets, reduce render-blocking work, reserve layout space, trim heavy JS
-
-#### Structured data
-
-- homepage: organization or business schema where appropriate
-- editorial pages: `Article` / `BlogPosting`
-- product pages: `Product` and `Offer`
-- interior pages: `BreadcrumbList`
-- Q&A sections: `FAQPage` only when the content truly matches
+1. Fix technical blockers before content optimization — a page that cannot be crawled cannot be optimized.
+2. One page, one primary search intent. Two pages competing for one query means merging or re-targeting one.
+3. Prefer durable quality signals over manipulative patterns. Short-term tactics that need maintenance to avoid penalties are a liability.
+4. Mobile-first indexing is fully in effect: the mobile rendering is what gets indexed.
+5. Every recommendation must name the page, file, or asset it applies to.
 
 ### On-page rules
 
 #### Title tags
 
-- aim for roughly 50-60 characters
-- put the primary keyword or concept near the front
-- make the title legible to humans, not stuffed for bots
+- roughly 50–60 characters so the title survives truncation
+- primary concept near the front, brand at the end if it fits
+- written for a human scanning a result list, not for a keyword counter
+- unique per page; a template that collapses to one title is a defect
 
 #### Meta descriptions
 
-- aim for roughly 120-160 characters
-- describe the page honestly
-- include the main topic naturally
+- roughly 120–160 characters
+- describe the page honestly and include the main topic naturally
+- they do not rank pages directly, but they shape click-through and are often what an AI engine reads first
 
 #### Heading structure
 
-- one clear `H1`
-- `H2` and `H3` should reflect actual content hierarchy
-- do not skip structure just for visual styling
+- one clear `H1` per page
+- `H2`/`H3` reflect the real information hierarchy, not visual font sizes
+- question-form headings where the section actually answers a question
+- never skip levels to achieve a look
+
+#### Content quality
+
+- satisfy the query in the first screen; do not make the reader scroll for the answer
+- cover the sub-questions the main query implies
+- include specifics: numbers, dates, named entities, examples
+- keep one idea per section
 
 ### Keyword mapping
 
-1. define the search intent
-2. gather realistic keyword variants
-3. prioritize by intent match, likely value, and competition
-4. map one primary keyword/theme to one URL
-5. detect and avoid cannibalization
+1. Define the search intent (informational, navigational, commercial, transactional).
+2. Gather realistic variants — how people actually phrase the query, including the long tail.
+3. Prioritize by intent match, likely value, and realistic competition.
+4. Map one primary query to one URL; list secondary variants that belong on the same page.
+5. Check the existing site for cannibalization before creating a new URL.
 
 ### Internal linking
 
-- link from strong pages to pages you want to rank
-- use descriptive anchor text
-- avoid generic anchors when a more specific one is possible
-- backfill links from new pages to relevant existing ones
+- link from strong pages to the pages that need to rank
+- descriptive anchor text that names the destination
+- avoid generic anchors ("click here", "read more") when a specific one is possible
+- backfill links from new pages to relevant existing pages
+- every important page needs a path from the homepage within about three clicks
+
+### Technical hygiene (light pass)
+
+For the full treatment use `seo-technical-audit`. Check quickly:
+
+- `robots.txt` allows important sections and blocks low-value ones
+- no important page carries an accidental `noindex` (check both meta and `X-Robots-Tag`)
+- canonicals are self-consistent and point at 200-status URLs
+- redirects resolve in a single hop
+- the sitemap lists only canonical, indexable URLs
+- `hreflang` is reciprocal and correct on multilingual sites
+
+## Verification Discipline
+
+Two habits separate a useful SEO audit from a harmful one:
+
+1. **Read the actual page before recommending a change.** Every finding must be reproducible: URL, timestamp, observed output. Recommending a fix for something already present destroys trust in the correct findings.
+2. **Label confidence.** Mark findings `verified` (observed), `inferred` (derived), or `unverified` (assumed). Never present an assumption as a measurement.
 
 ## Examples
 
@@ -110,46 +119,50 @@ Primary Topic - Specific Modifier | Brand
 Action + topic + value proposition + one supporting detail
 ```
 
-### JSON-LD example
+### Audit output shape
+
+```text
+[HIGH] Duplicate title tags on product pages
+Location: src/routes/products/[slug].tsx
+Evidence: 3 URLs fetched, all return "Products | Brand"
+Issue: dynamic titles collapse to the same string, weakening relevance and creating duplicate signals
+Confidence: verified
+Fix: generate a unique title per product from name and primary category
+```
+
+### JSON-LD (single entity)
 
 ```json
 {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Page Title Here",
-  "author": {
-    "@type": "Person",
-    "name": "Author Name"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Brand Name"
-  }
+  "author": { "@type": "Person", "name": "Author Name" },
+  "publisher": { "@type": "Organization", "name": "Brand Name" }
 }
 ```
 
-### Audit output shape
-
-```text
-[HIGH] Duplicate title tags on product pages
-Location: src/routes/products/[slug].tsx
-Issue: Dynamic titles collapse to the same default string, which weakens relevance and creates duplicate signals.
-Fix: Generate a unique title per product using the product name and primary category.
-```
+For multi-entity pages, `@graph`, and per-type required properties, use `schema-markup`.
 
 ## Anti-Patterns
 
 | Anti-pattern | Fix |
 | --- | --- |
-| keyword stuffing | write for users first |
-| thin near-duplicate pages | consolidate or differentiate them |
-| schema for content that is not actually present | match schema to reality |
-| content advice without checking the actual page | read the real page first |
-| generic “improve SEO” outputs | tie every recommendation to a page or asset |
+| Keyword stuffing | Write for the reader; use the term where it belongs |
+| Thin near-duplicate pages | Consolidate or genuinely differentiate |
+| Schema for content that is not on the page | Match markup to reality |
+| Advising without reading the live page | Fetch and verify first |
+| Generic "improve SEO" output | Tie every recommendation to a page or asset |
+| Chasing each new tactic | Invest in durable correctness and quality |
+| Migrating URLs without a mapping | Keep a one-to-one old→new map and 301s |
 
 ## Related Skills
 
-- `seo-specialist`
-- `frontend-patterns`
-- `brand-voice`
-- `market-research`
+- `seo-technical-audit` — crawl, index, rendering, Core Web Vitals
+- `geo` — AI search surfaces
+- `geo-citability` — passage-level extractability
+- `aeo-audit` — scored AI-visibility audit
+- `schema-markup` — structured data
+- `topical-authority-map` — content architecture
+- `market-research` — category and competitor input
+- `brand-voice` — keeping content in a consistent voice
