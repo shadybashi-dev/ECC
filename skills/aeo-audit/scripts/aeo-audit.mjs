@@ -12,7 +12,8 @@
  * it could not fetch, and it exits non-zero when nothing could be crawled.
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const DEFAULT_UA = 'ECC-AEO-Audit/1.0 (+https://github.com/affaan-m/ECC)';
@@ -333,6 +334,8 @@ export function runPageChecks(page, context = {}) {
     `${tag.name} ${tag.property} ${tag.content}`.toLowerCase().includes(directive)
   )) || aiDirectiveHitInHeaders(context.xRobotsTag || '');
 
+  const isRedirectStub = /<meta[^>]+http-equiv\s*=\s*["']?refresh["']?/i.test(html);
+
   const levels = headings.map(heading => heading.level);
   const hasMultipleLevels = new Set(levels).size >= 2;
   let skipsHierarchy = false;
@@ -372,6 +375,7 @@ export function runPageChecks(page, context = {}) {
 
   return {
     url,
+    isRedirectStub,
     title,
     metaDescription: description,
     canonical,
@@ -446,28 +450,30 @@ export function heuristicSignals(page) {
 }
 
 export function scoreReport(pages, siteChecks) {
-  const allPoints = [
-    ...pages.flatMap(page => page.checks.map(check => check.points)),
-    ...siteChecks.map(check => check.points),
-  ].reduce((total, points) => total + points, 0);
-
+  // Each per-page check is scored once against the share of pages that pass it,
+  // so the possible-points denominator must not grow with the page count.
+  let possible = 0;
   let earned = 0;
-  for (const check of siteChecks) {
-    if (check.passed) earned += check.points;
-  }
+
   for (const id of PER_PAGE_CHECK_IDS) {
     const relevant = pages.map(page => page.checks.find(check => check.id === id)).filter(Boolean);
     if (relevant.length === 0) continue;
     const points = relevant[0].points;
+    possible += points;
     const passRate = relevant.filter(check => check.passed).length / relevant.length;
     earned += points * Math.min(1, passRate / 0.8);
   }
 
-  const score = Math.round((earned / allPoints) * 100);
+  for (const check of siteChecks) {
+    possible += check.points;
+    if (check.passed) earned += check.points;
+  }
+
+  const score = possible === 0 ? 0 : Math.round((earned / possible) * 100);
   return {
     foundationalScore: score,
     grade: gradeFor(score),
-    totalPoints: allPoints,
+    totalPoints: possible,
     earnedPoints: Math.round(earned),
   };
 }
@@ -554,16 +560,118 @@ export function discoverPageUrls(homeHtml, baseUrl, sitemapXml, maxPages) {
   return [...found].slice(0, Math.max(1, maxPages));
 }
 
-export async function audit({ url, htmlFile = null, maxPages = 10 } = {}) {
-  const origin = new URL(url).origin;
-  const robots = await fetchText(`${origin}/robots.txt`);
-  const sitemap = await fetchText(`${origin}/sitemap.xml`);
-  const llms = await fetchText(`${origin}/llms.txt`);
-  const feed = await fetchText(`${origin}/feed.xml`);
+/**
+ * Read site-level files from disk when auditing a local build directory.
+ * Returns null for any file that is not present so the caller can fall back
+ * to a network fetch.
+ */
+export function readLocalSiteFiles(root) {
+  const readIfPresent = (name) => {
+    const candidate = join(root, name);
+    return existsSync(candidate) ? readFileSync(candidate, 'utf8') : null;
+  };
+  return {
+    root,
+    robots: readIfPresent('robots.txt'),
+    sitemap: readIfPresent('sitemap.xml'),
+    llms: readIfPresent('llms.txt'),
+    feed: readIfPresent('feed.xml'),
+  };
+}
+
+/**
+ * Map a built file path onto the route it serves, so `menu.html` and
+ * `menu/index.html` are recognised as the same route.
+ */
+export function routeKeyForPath(relativePath) {
+  if (relativePath === 'index.html') return '/';
+  if (relativePath.endsWith('/index.html')) return `/${relativePath.slice(0, -'index.html'.length)}`;
+  return `/${relativePath.replace(/\.html$/, '')}`;
+}
+
+/**
+ * List the pages of a built static site, one entry per route.
+ *
+ * Static hosts commonly ship both `page.html` and a `page/index.html`
+ * meta-refresh stub that resolves the trailing-slash URL. Both serve the same
+ * route, so the stub must not be audited as a separate (and apparently empty)
+ * page. Stubs are detected by content and deprioritised.
+ */
+export function discoverLocalPages(root, { skip = new Set(['404.html']) } = {}) {
+  const found = [];
+  const walk = (current) => {
+    for (const entry of readdirSync(current, { withFileTypes: true })) {
+      if (entry.name.startsWith('.')) continue;
+      const full = join(current, entry.name);
+      if (entry.isDirectory()) {
+        walk(full);
+        continue;
+      }
+      if (!entry.name.endsWith('.html') || skip.has(entry.name)) continue;
+      const relativePath = full.slice(root.length + 1).split('\\').join('/');
+      found.push({ file: full, relativePath, routeKey: routeKeyForPath(relativePath) });
+    }
+  };
+  walk(root);
+
+  const byRoute = new Map();
+  for (const page of found) {
+    const html = readFileSync(page.file, 'utf8');
+    const isStub = /<meta[^>]+http-equiv\s*=\s*["']?refresh["']?/i.test(html);
+    const existing = byRoute.get(page.routeKey);
+    if (!existing || (existing.isStub && !isStub)) {
+      byRoute.set(page.routeKey, { ...page, isStub });
+    }
+  }
+
+  return [...byRoute.values()]
+    .sort((left, right) => left.relativePath.localeCompare(right.relativePath));
+}
+
+export function urlForLocalPage(origin, relativePath) {
+  const base = origin.replace(/\/$/, '');
+  if (relativePath === 'index.html') return `${base}/`;
+  if (relativePath.endsWith('/index.html')) {
+    return `${base}/${relativePath.slice(0, -'index.html'.length)}`;
+  }
+  return `${base}/${relativePath}`;
+}
+
+export async function audit({ url, htmlFile = null, dir = null, maxPages = 10, localSiteFiles = true } = {}) {
+  const localRoot = dir || (htmlFile ? dirname(htmlFile) : null);
+  const local = localRoot && localSiteFiles ? readLocalSiteFiles(localRoot) : null;
+  const siteUrl = url || (local?.sitemap ? (local.sitemap.match(/<loc>([^<]+)<\/loc>/i) || [])[1] : null) || 'https://example.invalid/';
+  const origin = new URL(siteUrl).origin;
+
+  if (!url) url = siteUrl;
+
+  const fromDisk = (value, fallbackUrl) => {
+    if (value !== null && value !== undefined) {
+      return { ok: true, status: 200, body: value, finalUrl: fallbackUrl, source: 'file' };
+    }
+    return fetchText(fallbackUrl);
+  };
+
+  const robots = await fromDisk(local?.robots, `${origin}/robots.txt`);
+  const sitemap = await fromDisk(local?.sitemap, `${origin}/sitemap.xml`);
+  const llms = await fromDisk(local?.llms, `${origin}/llms.txt`);
+  const feed = await fromDisk(local?.feed, `${origin}/feed.xml`);
 
   let homeHtml;
-  if (htmlFile) {
+  let pageTargets;
+  if (dir) {
+    const localPages = discoverLocalPages(dir).slice(0, Math.max(1, maxPages));
+    if (localPages.length === 0) {
+      throw new Error(`No .html files found under ${dir}`);
+    }
+    pageTargets = localPages.map(page => ({
+      url: urlForLocalPage(origin, page.relativePath),
+      html: readFileSync(page.file, 'utf8'),
+    }));
+    homeHtml = pageTargets[0].html;
+  } else if (htmlFile) {
     homeHtml = readFileSync(htmlFile, 'utf8');
+    pageTargets = [{ url, html: homeHtml }];
   } else {
     const home = await fetchText(url);
     if (!home.ok) {
@@ -573,29 +681,35 @@ export async function audit({ url, htmlFile = null, maxPages = 10 } = {}) {
       throw new Error(`Could not fetch ${url} (status ${home.status}${home.error ? `: ${home.error}` : ''})${hint}`);
     }
     homeHtml = home.body;
+    pageTargets = discoverPageUrls(homeHtml, url, sitemap.body, maxPages)
+      .map(pageUrl => ({ url: pageUrl, html: null }));
   }
 
-  const urls = htmlFile
-    ? [url]
-    : discoverPageUrls(homeHtml, url, sitemap.body, maxPages);
-
+  const redirectStubs = [];
   const pages = [];
-  for (const pageUrl of urls) {
-    const page = pageUrl === url && htmlFile
-      ? { ok: true, body: homeHtml, status: 200 }
-      : await fetchText(pageUrl);
-    if (!page.ok) continue;
-    pages.push(runPageChecks({
-      url: pageUrl,
-      html: page.body,
-      robotsText: robots.body,
-      llmsTxt: llms.body,
-      sitemapXml: sitemap.body,
-    }, {}));
+  for (const target of pageTargets) {
+    let html = target.html;
+    if (html === null) {
+      const page = await fetchText(target.url);
+      if (!page.ok) continue;
+      html = page.body;
+    }
+    const page = runPageChecks({ url: target.url, html }, {});
+    // A meta-refresh stub is an intentional redirect surface, not content.
+    // Scoring it as thin content is a false positive, so it is reported
+    // separately and excluded from the page-level score.
+    if (page.isRedirectStub) {
+      redirectStubs.push({ url: page.url, target: page.canonical || null });
+      continue;
+    }
+    pages.push(page);
   }
 
-  if (pages.length === 0) {
+  if (pages.length === 0 && redirectStubs.length === 0) {
     throw new Error('No pages could be fetched; refusing to fabricate a score.');
+  }
+  if (pages.length === 0) {
+    throw new Error('Only redirect stubs were found; audit a page with real content.');
   }
 
   const site = runSiteChecks({
@@ -609,8 +723,10 @@ export async function audit({ url, htmlFile = null, maxPages = 10 } = {}) {
   const scoring = scoreReport(pages, site.checks);
   const report = {
     generatedAt: new Date().toISOString(),
-    url,
+    url: siteUrl,
+    source: dir ? `dir:${dir}` : htmlFile ? `file:${htmlFile}` : 'network',
     pagesCrawled: pages.map(page => page.url),
+    redirectStubs,
     coverage: {
       robotsTxt: robots.ok,
       sitemap: site.sitemap.present,
@@ -629,9 +745,9 @@ export async function audit({ url, htmlFile = null, maxPages = 10 } = {}) {
 
 export function formatSummary(report) {
   const lines = [];
-  lines.push(`AEO audit — ${report.url}`);
+  lines.push(`AEO audit — ${report.url} (${report.source})`);
   lines.push(`Foundational score: ${report.scoring.foundationalScore}/100 (${report.scoring.grade})`);
-  lines.push(`Pages crawled: ${report.pagesCrawled.length}`);
+  lines.push(`Pages audited: ${report.pagesCrawled.length}`);
   lines.push('');
   lines.push('Site checks:');
   for (const check of report.siteChecks) {
@@ -640,15 +756,16 @@ export function formatSummary(report) {
   lines.push('');
   lines.push('Top fixes:');
   for (const fix of report.prioritizedFixes.slice(0, 8)) {
-    lines.push(`  ${fix.points} pts — ${fix.check}: ${fix.detail}${fix.affectedPages ? ` (${fix.affectedPages} page(s))` : ''}`);
+    lines.push(`  ${fix.priority} pts — ${fix.check}: ${fix.detail}${fix.affectedPages ? ` (${fix.affectedPages} page(s))` : ''}`);
   }
   return lines.join('\n');
 }
 
 function parseArgs(argv) {
-  const args = { url: null, htmlFile: null, maxPages: 10, out: null, json: false };
+  const args = { url: null, htmlFile: null, dir: null, maxPages: 10, out: null, json: false };
   for (const arg of argv) {
     if (arg.startsWith('--html-file=')) args.htmlFile = arg.slice('--html-file='.length);
+    else if (arg.startsWith('--dir=')) args.dir = arg.slice('--dir='.length);
     else if (arg.startsWith('--max-pages=')) args.maxPages = Number(arg.slice('--max-pages='.length)) || 10;
     else if (arg.startsWith('--out=')) args.out = arg.slice('--out='.length);
     else if (arg === '--json') args.json = true;
@@ -659,12 +776,26 @@ function parseArgs(argv) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  if (!args.url) {
-    console.error('Usage: node aeo-audit.mjs <url> [--max-pages=10] [--out=report.json] [--json]');
+  if (!args.url && !args.htmlFile && !args.dir) {
+    console.error([
+      'Usage:',
+      '  node aeo-audit.mjs <url> [--max-pages=10] [--out=report.json] [--json]',
+      '  node aeo-audit.mjs --dir=./dist [--url=https://example.com] [--max-pages=10]',
+      '  node aeo-audit.mjs --html-file=./dist/index.html [--url=https://example.com]',
+      '',
+      'Offline modes read robots.txt, sitemap.xml, llms.txt, and feed.xml from the',
+      'same directory when present, so a pre-deploy build scores the same way a',
+      'live site does.',
+    ].join('\n'));
     process.exit(2);
   }
   try {
-    const report = await audit({ url: args.url, htmlFile: args.htmlFile, maxPages: args.maxPages });
+    const report = await audit({
+      url: args.url,
+      htmlFile: args.htmlFile,
+      dir: args.dir,
+      maxPages: args.maxPages,
+    });
     if (args.out) writeFileSync(args.out, JSON.stringify(report, null, 2));
     console.log(args.json ? JSON.stringify(report, null, 2) : formatSummary(report));
   } catch (error) {

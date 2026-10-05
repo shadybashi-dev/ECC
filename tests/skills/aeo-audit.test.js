@@ -219,6 +219,25 @@ results.push(test('CLI exits non-zero without a URL', () => {
   assert.notStrictEqual(result.status, 0);
 }));
 
+results.push(test('multi-page scoring does not inflate the denominator', () => {
+  const pages = [cleanPage(GOOD_HTML, 'https://example.com/'), cleanPage(GOOD_HTML, 'https://example.com/about')];
+  const siteChecks = runSiteChecks({ html: GOOD_HTML }).checks;
+  const score = scoreReport(pages, siteChecks);
+  // Two identical pages must score the same as one; only site checks add points.
+  const single = scoreReport([cleanPage(GOOD_HTML)], siteChecks);
+  assert.strictEqual(score.foundationalScore, single.foundationalScore);
+  assert.strictEqual(score.totalPoints, single.totalPoints);
+  assert.strictEqual(score.totalPoints, 142, 'per-page checks (112) plus site checks (30) once, regardless of page count');
+}));
+
+results.push(test('a page failing a check reduces the score proportionally', () => {
+  const siteChecks = runSiteChecks({ html: GOOD_HTML }).checks;
+  const allGood = scoreReport([cleanPage(GOOD_HTML)], siteChecks).foundationalScore;
+  const mixed = scoreReport([cleanPage(GOOD_HTML), cleanPage(BAD_HTML, 'https://example.com/bad')], siteChecks)
+    .foundationalScore;
+  assert.ok(mixed < allGood, 'adding a broken page must lower the aggregate score');
+}));
+
 const failed = results.filter(result => !result).length;
 console.log(`\n${results.length - failed}/${results.length} aeo-audit tests passed`);
 if (failed > 0) process.exit(1);
