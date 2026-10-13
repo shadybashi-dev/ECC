@@ -1,0 +1,264 @@
+@import 'tailwindcss';
+
+/* Locally bundled variable font: the kiosk stays readable without a network connection. */
+@import '@fontsource-variable/inter';
+
+/* swiper */
+@import 'swiper/css';
+@import 'swiper/css/effect-creative';
+@import 'swiper/css/autoplay';
+@import 'swiper/css/pagination';
+
+@theme {
+  --font-kufi: 'Inter Variable', Inter, system-ui, sans-serif;
+  --font-body: 'Inter Variable', Inter, system-ui, sans-serif;
+  --font-price: 'Inter Variable', Inter, system-ui, sans-serif;
+
+  --color-ink: #0b111b;
+  --color-ink-2: #151e2c;
+  --color-cream: #f8f0e3;
+  --color-brand: #e85048;
+  --color-brand-soft: #ffd59c;
+  --color-ember: #ef6a5a;
+  --color-mint: #8ed0a2;
+  --color-aqua: #7fd0d8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: var(--font-body);
+  color: var(--color-cream);
+  background: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ============ TV canvas and atmosphere ============ */
+.screen {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background:
+    radial-gradient(1200px 700px at 12% -10%, rgba(232, 80, 72, 0.19), transparent 60%),
+    radial-gradient(900px 620px at 96% 8%, rgba(84, 151, 94, 0.14), transparent 62%),
+    radial-gradient(1100px 800px at 50% 118%, rgba(127, 208, 216, 0.08), transparent 60%),
+    linear-gradient(180deg, #101a29 0%, #0b111b 55%, #080d15 100%);
+}
+
+/* Fine grain gives the background a little printed-menu texture. */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  opacity: 0.42;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ============ Glass panels ============ */
+.glass {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.018));
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  box-shadow:
+    0 30px 70px -40px rgba(0, 0, 0, 0.95),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(16px);
+}
+
+.glass-deep {
+  background: linear-gradient(165deg, rgba(20, 28, 40, 0.92), rgba(9, 14, 22, 0.84));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 40px 90px -50px rgba(0, 0, 0, 1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px);
+}
+
+.card-hover {
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.55s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-7px) scale(1.014);
+  border-color: rgba(232, 80, 72, 0.4);
+  box-shadow:
+    0 44px 80px -44px rgba(0, 0, 0, 1),
+    0 0 46px -18px rgba(232, 80, 72, 0.38);
+}
+
+/* ============ Text and image overlays ============ */
+.title-glow {
+  text-shadow:
+    0 0 26px rgba(232, 80, 72, 0.35),
+    0 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+.scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(8, 6, 4, 0) 0%,
+    rgba(8, 6, 4, 0.18) 32%,
+    rgba(8, 6, 4, 0.86) 74%,
+    rgba(8, 6, 4, 0.98) 100%
+  );
+}
+
+.scrim-soft {
+  background: linear-gradient(180deg, rgba(8, 6, 4, 0.55) 0%, rgba(8, 6, 4, 0) 45%);
+}
+
+/* ============ Promotion ticker ============ */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 46s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============ Progress bars ============ */
+.prog-track {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.prog-fill {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 9999px;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, rgba(232, 80, 72, 0.35), #e85048 70%, #ffbd93);
+}
+
+/* ============ Page dots ============ */
+.page-dot {
+  height: 6px;
+  width: 34px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+  position: relative;
+}
+
+.page-dot span {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(0);
+  border-radius: 9999px;
+  background: currentColor;
+}
+
+/* ============ Swiper ============ */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.35);
+  opacity: 1;
+  width: 8px;
+  height: 8px;
+  transition: all 0.35s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-brand);
+  width: 26px;
+  border-radius: 9999px;
+}
+
+.swiper-pagination {
+  bottom: 14px !important;
+}
+
+.hero-mask .swiper-slide {
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Live clock / status badge */
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+.breathe {
+  animation: breathe 2.6s ease-in-out infinite;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+.floaty {
+  animation: floaty 7s ease-in-out infinite;
+}
+
+/* Hide the pointer when the TV board is idle. */
+.cursor-hidden,
+.cursor-hidden * {
+  cursor: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee,
+  .breathe,
+  .floaty {
+    animation: none;
+  }
+}
