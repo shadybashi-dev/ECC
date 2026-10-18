@@ -6,6 +6,11 @@ from collections import defaultdict, Counter
 with open("verified_leads.json", "r", encoding="utf-8") as f:
     leads = json.load(f)
 
+# Unique entities & emails
+unique_entities = sorted(list(set(l["Business_Name"] for l in leads)))
+unique_emails = sorted(list(set(l["Email"] for l in leads)), key=lambda x: x.lower())
+quick_copy_block = ", ".join(unique_emails)
+
 # Priority subsets
 paso_leads = [l for l in leads if l["City"] == "Paso Robles"]
 slo_leads = [l for l in leads if l["City"] == "San Luis Obispo"]
@@ -13,7 +18,7 @@ slo_leads = [l for l in leads if l["City"] == "San Luis Obispo"]
 nearby_cities = ["Templeton", "Atascadero", "San Miguel", "Creston", "Arroyo Grande", "Pismo Beach", "Morro Bay", "Los Osos"]
 nearby_leads = [l for l in leads if l["City"] in nearby_cities]
 
-expansion_cities = ["Avila Beach", "Grover Beach", "Cambria", "Nipomo", "Santa Margarita", "Oceano"]
+expansion_cities = ["Avila Beach", "Grover Beach", "Cambria", "Nipomo", "Santa Margarita", "Oceano", "Cayucos"]
 expansion_leads = [l for l in leads if l["City"] in expansion_cities]
 
 def sort_key(item):
@@ -59,11 +64,44 @@ table_slo = format_table(slo_leads)
 table_nearby = format_table(nearby_leads)
 table_expansion = format_table(expansion_leads)
 
-# Unique emails
-unique_emails = sorted(list(set(l["Email"] for l in leads)), key=lambda x: x.lower())
-quick_copy_block = ", ".join(unique_emails)
+# Sector breakdown counts
+sector_counter = Counter(l["Sector"] for l in leads)
+SECTORS_16 = [
+    "1. مصانع النبيذ والكروم والجعة والتقطير وعصير التفاح المخمر",
+    "2. الفنادق والمنتجعات والنُزل ومرافق الإقامة السياحية",
+    "3. صالات المناسبات والاحتفالات وأماكن الزفاف والمزارع",
+    "4. جامعة كالفورنيا بوليتكنيك والكليات والمنظمات الطلابية",
+    "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12",
+    "6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة",
+    "7. المستشفيات والمراكز الطبية ومرافق رعاية كبار السن والتأهيل",
+    "8. شركات المقاولات والإنشاءات والهندسة المدنية والتصنيع",
+    "9. وكلاء ومعارض وتوكيلات السيارات ومراكز الصيانة",
+    "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية",
+    "11. الجمعيات الخيرية والمنظمات غير الربحية والنوادي الخدمية",
+    "12. الكنائس والمراكز الدينية والمجتمعات الروحية",
+    "13. المجمعات السكنية وسكن الطلاب ومكاتب العقارات وإدارة الأملاك",
+    "14. منظمو جولات النبيذ والحافلات والخدمات اللوجستية ومرافق الطيران",
+    "15. المسارح والمتاحف ومراكز الفنون والترفيه الثقافي",
+    "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"
+]
 
-# Generate Matrix rows dynamically
+sector_summary_lines = []
+for s in SECTORS_16:
+    cnt = sector_counter.get(s, 0)
+    sector_summary_lines.append(f"  {s} ({cnt} سجلاً).")
+sectors_summary_text = "\n".join(sector_summary_lines)
+
+# Type breakdown
+domain_based_count = sum(1 for l in leads if "نطاق" in l["Email_Type"])
+webmail_count = len(leads) - domain_based_count
+
+direct_site_count = sum(1 for l in leads if "الموقع الرسمي" in l["Verification_Status"])
+directory_count = len(leads) - direct_site_count
+
+# City breakdown
+city_counter = Counter(l["City"] for l in leads)
+
+# Matrix generation
 matrix_data = defaultdict(lambda: {"entities": set(), "emails": set()})
 for l in leads:
     key = (l["City"], l["Sector"])
@@ -71,84 +109,96 @@ for l in leads:
     matrix_data[key]["emails"].add(l["Email"])
 
 matrix_notes_dict = {
-    ("Paso Robles", "1. مصانع النبيذ والكروم والجعة والتقطير وعصير التفاح المخمر"): "تغطية رائدة وشاملة لكبرى مزارع العنب وغرف التذوق ومصانع التقطير والجعة (DAOU, JUSTIN, J. Lohr, Tablas Creek, Tobin James, Opolo, Halter Ranch, Sculpterra, Brecon, Calcareous, Grey Wolf, Eberle, Robert Hall, Vina Robles, Niner, Hope Family, Booker, L'Aventure, Denner, Herman Story, BarrelHouse, Firestone Walker, Tooth & Nail, Tin City Cider, Tin City Distillery, RE:FIND).",
-    ("Paso Robles", "2. الفنادق والمنتجعات والنُزل ومرافق الإقامة السياحية"): "تغطية متميزة لأعرق فنادق باسو ونزلها البوتيكية الفاخرة (Adelaide Inn, Oxford Suites, La Bellasera, Hotel Cheval, Allegretto Vineyard Resort, Paso Robles Inn, The Piccolo).",
+    ("Paso Robles", "1. مصانع النبيذ والكروم والجعة والتقطير وعصير التفاح المخمر"): "تغطية رائدة وشاملة لمزارع العنب وغرف التذوق والتقطير والجعة (DAOU, JUSTIN, J. Lohr, Tablas Creek, Tobin James, Opolo, Halter Ranch, Sculpterra, Brecon, Calcareous, Grey Wolf, Eberle, Robert Hall, Vina Robles, Niner, Hope Family, Booker, L'Aventure, Denner, Herman Story, BarrelHouse, Firestone Walker, Tooth & Nail, Tin City Cider, Tin City Distillery, RE:FIND, Caliza, Thacher, Sextant).",
+    ("Paso Robles", "2. الفنادق والمنتجعات والنُزل ومرافق الإقامة السياحية"): "تغطية فنادق باسو التاريخية والنزل البوتيكية والمنتجعات (Adelaide Inn, Oxford Suites, La Bellasera, Hotel Cheval, Allegretto Vineyard Resort, Paso Robles Inn, The Piccolo, Holiday Inn Express).",
     ("Paso Robles", "3. صالات المناسبات والاحتفالات وأماكن الزفاف والمزارع"): "تغطية صالات الأعراس والفعاليات الكبرى (Rava Wines + Events, Cass Winery & Barrel Room, Terra Mia, The Backyard on Thirteenth, All About Events).",
-    ("Paso Robles", "4. جامعة كالفورنيا بوليتكنيك والكليات والمنظمات الطلابية"): "تغطية فرع الحرم الشمالي لكلية كويستا في باسو روبلز (Cuesta College North County Campus: إدارة الحرم وعمادة شؤون الطلاب والمكتب الإداري).",
-    ("Paso Robles", "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12"): "شملت الإدارة المركزية لمنطقة باسو التعليمية الموحدة (PRJUSD)، ثانوية باسو، إعدادية Lewis Flamson، أكاديمية Almond Acres الميثاقية، ومدرسة سانت روز الكاثوليكية.",
-    ("Paso Robles", "6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة"): "تغطية مجمع البرمجيات DELMIAWorks، فرع شركة المحاسبة Glenn Burdette، مصرف CoastHills Credit Union، غرفة تجارة باسو، جمعية وسط المدينة، وتحالف منتجي النبيذ PRWCA وTravel Paso.",
+    ("Paso Robles", "4. جامعة كالفورنيا بوليتكنيك والكليات والمنظمات الطلابية"): "تغطية فرع الحرم الشمالي لكلية كويستا في باسو روبلز (Cuesta College North County Campus: إدارة الحرم وشؤون الطلاب).",
+    ("Paso Robles", "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12"): "شملت الإدارة المركزية لمنطقة باسو التعليمية الموحدة (PRJUSD)، ثانوية باسو، إعدادية Lewis Flamson، أكاديمية Almond Acres، ومدرسة سانت روز الكاثوليكية.",
+    ("Paso Robles", "6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة"): "تغطية مجمع البرمجيات DELMIAWorks، شركة المحاسبة Glenn Burdette، مصرف CoastHills Credit Union، غرفة تجارة باسو، جمعية وسط المدينة، وتحالف منتجي النبيذ PRWCA وTravel Paso.",
     ("Paso Robles", "7. المستشفيات والمراكز الطبية ومرافق رعاية كبار السن والتأهيل"): "تغطية المراكز الصحية المجتمعية CHC ومجمع The Oaks لكبار السن.",
     ("Paso Robles", "8. شركات المقاولات والإنشاءات والهندسة المدنية والتصنيع"): "تغطية مقاولي البناء التجاري والسكني (Central Pacific Construction, Ward Custom Construction).",
-    ("Paso Robles", "9. وكلاء ومعارض وتوكيلات السيارات ومراكز الصيانة"): "تغطية كبرى وكالات السيارات: Paso Robles Chevrolet وPaso Robles Ford.",
-    ("Paso Robles", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية نادي Paso Robles Golf Club وملعبه ونادي كينيدي للياقة البدنية Kennedy Club Fitness.",
-    ("Paso Robles", "11. الجمعيات الخيرية والمنظمات غير الربحية والنوادي الخدمية"): "تغطية نادي Elks Lodge #2364 والأنشطة الاجتماعية والخيرية.",
+    ("Paso Robles", "9. وكلاء ومعارض وتوكيلات السيارات ومراكز الصيانة"): "تغطية كبرى وكالات السيارات في باسو روبلز: Paso Robles Chevrolet وPaso Robles Ford.",
+    ("Paso Robles", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية أندية وبطولات الرياضة: Paso Robles Golf Club، نادي كينيدي Kennedy Club Fitness، نادي Paso Robles Sports Club، دوري بيسبول الناشئين PRYB، ودوري كرة القدم AYSO 741، ورابطة مشجعي ثانوية باسو Bearcat Boosters.",
+    ("Paso Robles", "11. الجمعيات الخيرية والمنظمات غير الربحية والنوادي الخدمية"): "تغطية نادي Elks Lodge #2364 ونادي روتاري باسو روبلز Rotary Club of Paso Robles.",
     ("Paso Robles", "12. الكنائس والمراكز الدينية والمجتمعات الروحية"): "تغطية كنيسة القديسة روز St. Rose of Lima، كنيسة Trinity Lutheran، كنيسة Plymouth Congregational، وكنيسة Paso Church of the Nazarene.",
     ("Paso Robles", "13. المجمعات السكنية وسكن الطلاب ومكاتب العقارات وإدارة الأملاك"): "تغطية كبرى وكالات العقارات RE/MAX Parkside في شارع 12 ومجمع Oak Park السكني.",
     ("Paso Robles", "14. منظمو جولات النبيذ والحافلات والخدمات اللوجستية ومرافق الطيران"): "تغطية كبرى شركات جولات الكروم الفاخرة: Toast Tours وGrapeline Wine Tours.",
     ("Paso Robles", "15. المسارح والمتاحف ومراكز الفنون والترفيه الثقافي"): "تغطية متحف الطيران الحربي Estrella Warbirds ومتحف الأطفال ومدرج Vina Robles Amphitheatre ومركز فنون الشباب Paso Youth Arts.",
     ("Paso Robles", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية شاملة لبلدية باسو، مكتب العمدة، مدير المدينة، المكتبة العامة، المتنزهات والترويح (Centennial Park)، الإطفاء، والشرطة.",
 
-    ("San Luis Obispo", "1. مصانع النبيذ والكروم والجعة والتقطير وعصير التفاح المخمر"): "تغطية مصانع الجعة ومزارع الكروم (BarrelHouse SLO, Liquid Gravity, Central Coast Brewing, SLO Brew Rock, Libertine Brewing, There Does Not Exist TDNE, Oak and Otter, Humdinger, Tolosa, Biddle Ranch).",
+    ("San Luis Obispo", "1. مصانع النبيذ والكروم والجعة والتقطير وعصير التفاح المخمر"): "تغطية مصانع الجعة ومزارع كروم وادي إدنا (BarrelHouse SLO, Liquid Gravity, Central Coast Brewing, SLO Brew Rock, Libertine Brewing, There Does Not Exist TDNE, Oak and Otter, Humdinger, Tolosa, Biddle Ranch, Claiborne & Churchill, Chamisal Vineyards, Wolff Vineyards).",
     ("San Luis Obispo", "2. الفنادق والمنتجعات والنُزل ومرافق الإقامة السياحية"): "تغطية أشهر الفنادق التاريخية والبوتيكية (Madonna Inn, Hotel San Luis Obispo, Apple Farm Inn, Granada Hotel, SLO Brew Lofts).",
-    ("San Luis Obispo", "3. صالات المناسبات والاحتفالات وأماكن الزفاف والمزارع"): "تغطية مزارع وقاعات الأعراس والفعاليات الريفية الراقية (The White Barn Edna Valley, Spreafico Farms, La Lomita Ranch, Higuera Ranch, Flying Caballos Ranch, The Penny).",
-    ("San Luis Obispo", "4. جامعة كالفورنيا بوليتكنيك والكليات والمنظمات الطلابية"): "تغطية استثنائية لجامعة Cal Poly (اتحاد الطلبة ASI، الأندية الطلابية، رابطة الخريجين، كلية الهندسة، كلية الأعمال، قسم الحاسوب، فريق السباق Racing، جمعية المهندسات SWE، نادي Vines to Wines، إدارة الأخويات Greek Life، مركز الريادة CIE HotHouse، ومؤسسة الشركاء) وكلية Cuesta College (القبول، برامج المجتمع، قيادة الطلاب ASCC).",
+    ("San Luis Obispo", "3. صالات المناسبات والاحتفالات وأماكن الزفاف والمزارع"): "تغطية مزارع وقاعات الأعراس والفعاليات الريفية الراقية (Greengate Ranch & Vineyard, Octagon Barn Center, The White Barn Edna Valley, Spreafico Farms, La Lomita Ranch, Higuera Ranch, Flying Caballos Ranch, The Penny).",
+    ("San Luis Obispo", "4. جامعة كالفورنيا بوليتكنيك والكليات والمنظمات الطلابية"): "تغطية شاملة لجامعة Cal Poly (اتحاد الطلبة ASI، الأندية الطلابية، رابطة الخريجين، كلية الهندسة، كلية الأعمال، أقسام الحاسوب والكهرباء والرياضيات والزراعة والفضاء، فريق القارب الخرساني Concrete Canoe، فريق الجسر الفولاذي Steel Bridge، فريق الفضاء والمكعبات CubeSat، نادي الروديو Rodeo، موكب الزهور Rose Float، الأخويات والجمعيات Greek Life IFC/PHA، جمعية المهندسات SWE، المهندسين اللاتينيين SHPE، معهد الكهرباء IEEE، جمعية المرأة في الأعمال WIB، جمعية التسويق AMA، فرق الإبحار واللاكروس والترايثلون، ودوريات الأنشطة الرياضية ASI Intramurals) وكلية Cuesta College.",
     ("San Luis Obispo", "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12"): "تغطية منطقة سان لويس كوستال SLCUSD، ثانوية SLOHS، إعدادية Laguna Middle، مدرسة Old Mission الكاثوليكية، ثانوية Mission Prep، وأكاديميات كلاسيكية وميثاقية.",
-    ("San Luis Obispo", "6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة"): "تغطية كبرى بيوت الخبرة والتقنية والشركات (Mindbody HQ, REC Solar, RRM Design Group, Arris Studio Architects, Glenn Burdette CPA, Andre Morris & Buttery Law, AMMCG Law, SESLOC FCU, Wallace Group, Studio Design Group, Ten Over Studio, iFixit HQ، غرفة تجارة سان لويس، وDowntown SLO).",
-    ("San Luis Obispo", "7. المستشفيات والمراكز الطبية ومرافق رعاية كبار السن والتأهيل"): "تغطية مؤسسة مستشفى French Hospital Medical Center، مجمع Avila Senior Living بوسط المدينة، شبكة Compass Health Inc.، ومجمعي الرعاية الفاخرة The Palms وSydney Creek.",
-    ("San Luis Obispo", "8. شركات المقاولات والإنشاءات والهندسة المدنية والتصنيع"): "تغطية كبرى شركات المقاولات والهندسة الإنشائية (Specialty Construction, Inc., JW Design & Construction, Inc., CannonCorp).",
+    ("San Luis Obispo", "6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة"): "تغطية كبرى بيوت الخبرة والتقنية والشركات (Mindbody HQ, Trust Automation, REC Solar, RRM Design Group, Arris Studio Architects, Glenn Burdette CPA, Andre Morris & Buttery Law, AMMCG Law, SESLOC FCU, Studio Design Group, Ten Over Studio, iFixit HQ، الاتحاد الزراعي SLO Farm Bureau، غرفة تجارة سان لويس، وDowntown SLO).",
+    ("San Luis Obispo", "7. المستشفيات والمراكز الطبية ومرافق رعاية كبار السن والتأهيل"): "تغطية مؤسسة مستشفى French Hospital Medical Center، شبكة عيادات العلاج الطبيعي والتأهيل Movement For Life / San Luis Sports Therapy، منظمة الصحة النفسية Transitions-Mental Health TMHA، مجمع Avila Senior Living بوسط المدينة، شبكة Compass Health Inc.، ومجمعي الرعاية الفاخرة The Palms وSydney Creek.",
+    ("San Luis Obispo", "8. شركات المقاولات والإنشاءات والهندسة المدنية والتصنيع"): "تغطية كبرى شركات المقاولات والهندسة الإنشائية والمدنية (Wallace Group, Specialty Construction, Inc., Cannon Corporation, JW Design & Construction, Inc.).",
     ("San Luis Obispo", "9. وكلاء ومعارض وتوكيلات السيارات ومراكز الصيانة"): "تغطية كبرى وكالات السيارات (Toyota SLO, Sunset Honda, Cole Chrysler Dodge Jeep Ram Fiat).",
-    ("San Luis Obispo", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية قطاع الرياضة واللياقة (Cal Poly Athletics NCAA, Cal Poly Baseball, Cal Poly Club Sports, Cuesta College Athletics, San Luis Obispo Country Club, Central Coast United Soccer, SLO Swim Club Seahawks, Central Coast Gymnastics, Performance Athletics Gymnastics, The Pad Climbing, Kennedy Club Fitness).",
-    ("San Luis Obispo", "11. الجمعيات الخيرية والمنظمات غير الربحية والنوادي الخدمية"): "تغطية أندية روتاري (Rotary Club of SLO, Daybreak, de Tolosa, Rotaract)، نادي Elks Lodge #322، بنك الطعام SLO Food Bank، يونايتد واي United Way، مؤسسة المجتمع CFSLOCO، جمعية رعاية الأطفال CASA، جمعية Woods للحيوانات، وجمعية الشبان المسيحية YMCA.",
+    ("San Luis Obispo", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية قطاع الرياضة واللياقة (San Luis Obispo Country Club, Dairy Creek Golf Course, Central Coast United Soccer, SLO Swim Club Seahawks, Central Coast Gymnastics, Performance Athletics Gymnastics, The Pad Climbing, Kennedy Club Fitness, دوري بيسبول الناشئين SLO Youth Baseball, ورابطة مشجعي ثانوية SLO Tiger Boosters SLOTAB).",
+    ("San Luis Obispo", "11. الجمعيات الخيرية والمنظمات غير الربحية والنوادي الخدمية"): "تغطية أندية روتاري وكيوانيس (Rotary Club of SLO, Daybreak, de Tolosa, Rotaract, Kiwanis Club of SLO)، نادي Elks Lodge #322، منظمة العمل المجتمعي CAPSLO HQ، حماية الأراضي The Land Conservancy of SLO، بنك الطعام SLO Food Bank، يونايتد واي United Way، مؤسسة المجتمع CFSLOCO، جمعية رعاية الأطفال CASA، جمعية Woods للحيوانات، وجمعية الشبان المسيحية YMCA.",
     ("San Luis Obispo", "12. الكنائس والمراكز الدينية والمجتمعات الروحية"): "تغطية كنيسة بعثة سان لويس التاريخية Mission San Luis Obispo de Tolosa، كنيسة Grace Central Coast، وكنيسة Mountainbrook Community Church.",
     ("San Luis Obispo", "13. المجمعات السكنية وسكن الطلاب ومكاتب العقارات وإدارة الأملاك"): "تغطية إدارة الإسكان الطلابي بجامعة كال بولي، مجمع Mustang Village، شركة إدارة الأملاك Farrell Smyth، ووكالات العقارات (BHGRE Haven Properties, Richardson Sotheby's).",
-    ("San Luis Obispo", "14. منظمو جولات النبيذ والحافلات والخدمات اللوجستية ومرافق الطيران"): "تغطية مطار سان لويس أوبيسبو الإقليمي (SBP) وهيئة النقل الإقليمي بالمقاطعة SLO RTA.",
+    ("San Luis Obispo", "14. منظمو جولات النبيذ والحافلات والخدمات اللوجستية ومرافق الطيران"): "تغطية مطار سان لويس أوبيسبو الإقليمي (SBP)، شركة الطيران الخاص وقاعدة المطار ACI Jet، شركة النقل واللوجستيات Meathead Movers، وهيئة النقل الإقليمي بالمقاطعة SLO RTA.",
     ("San Luis Obispo", "15. المسارح والمتاحف ومراكز الفنون والترفيه الثقافي"): "تغطية أوركسترا San Luis Obispo Symphony، مهرجان الموسيقى Festival Mozaic، مسرح SLO REP، ومتحف الفنون SLOMA.",
-    ("San Luis Obispo", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية بلدية سان لويس أوبيسبو، العمدة، المجلس البلدي، المتنزهات والترويح، الإطفاء، والشرطة.",
+    ("San Luis Obispo", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية بلدية سان لويس أوبيسبو، المجلس البلدي، المتنزهات والترويح، الإطفاء، الشرطة، إدارة النقل بولاية كاليفورنيا Caltrans District 5 (المقر ومكتب التصاريح)، وإدارات مقاطعة سان لويس أوبيسبو (Planning & Building, Public Works).",
 
-    ("Templeton", "1. مصانع النبيذ والكروم والجعة والتقطير وعصير التفاح المخمر"): "تغطية مزارع الكروم العضوية Castoro Cellars، مزارع Epoch Estate بقمة يورك ماونتن، ومصنع Peachy Canyon.",
+    ("Templeton", "1. مصانع النبيذ والكروم والجعة والتقطير وعصير التفاح المخمر"): "تغطية مزارع الكروم العضوية Castoro Cellars، كروم Turley Wine Cellars العريقة، مصنع Lone Madrone، ومزارع Epoch Estate بقمة يورك ماونتن، ومصنع Peachy Canyon.",
     ("Templeton", "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12"): "تغطية إدارة منطقة تمبلتون الموحدة TUSD، ثانوية Templeton High School، وإعدادية Templeton Middle School.",
     ("Templeton", "7. المستشفيات والمراكز الطبية ومرافق رعاية كبار السن والتأهيل"): "تغطية مستشفى توين سيتيز العام Adventist Health Twin Cities Community Hospital لشمال المقاطعة.",
+    ("Templeton", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية نادي ومجمع التنس والبيكل بول Templeton Tennis Ranch ورابطة مشجعي ثانوية تمبلتون Templeton Eagle Boosters.",
     ("Templeton", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية منطقة الخدمات المجتمعية بتمبلتون (TCSD) وإدارة المرافق والحدائق.",
 
     ("Atascadero", "1. مصانع النبيذ والكروم والجعة والتقطير وعصير التفاح المخمر"): "تغطية مصنع الجعة العائلي والترفيهي الحائز على جوائز Wild Fields Brewhouse.",
     ("Atascadero", "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12"): "تغطية منطقة أتاستاديرو الموحدة AUSD، ثانوية Atascadero High School، إعدادية Atascadero Middle School، ومدرسة North County Christian School.",
-    ("Atascadero", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية فرع نادي كينيدي الصحي للياقة البدنية بأتاستاديرو Kennedy Club Fitness.",
+    ("Atascadero", "6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة"): "تغطية غرفة تجارة أتاستاديرو Atascadero Chamber of Commerce ومساحة العمل المشترك BridgeWorks.",
+    ("Atascadero", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية فرع نادي كينيدي الصحي للياقة البدنية Kennedy Club Fitness ورابطة مشجعي ثانوية أتاستاديرو AHS Greyhound Athletic Boosters.",
+    ("Atascadero", "11. الجمعيات الخيرية والمنظمات غير الربحية والنوادي الخدمية"): "تغطية نادي روتاري أتاستاديرو Rotary Club of Atascadero.",
     ("Atascadero", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية بلدية أتاستاديرو، أمانة سر المدينة، الترويح والحدائق، وإدارة الإطفاء والطوارئ.",
 
+    ("San Miguel", "3. صالات المناسبات والاحتفالات وأماكن الزفاف والمزارع"): "تغطية قصر ومزارع الأعراس الإيطالية الفاخرة Villa San-Juliette Vineyard & Winery.",
     ("San Miguel", "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12"): "تغطية منطقة سان ميغيل التعليمية المشتركة SMJUSD ومدرسة Lillian Larsen الابتدائية.",
     ("San Miguel", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية منطقة خدمات سان ميغيل المجتمعية SMCSD ومكتب المدير العام والإدارة العامة وإدارة الإطفاء.",
 
+    ("Creston", "1. مصانع النبيذ والكروم والجعة والتقطير وعصير التفاح المخمر"): "تغطية مزارع كروم كريستون العريقة: Still Waters Vineyards ومزرعة Shadow Run Vineyards & Winery.",
     ("Creston", "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12"): "تغطية مدرسة كريستون الريفية Creston Elementary School التابعة لمنطقة أتاستاديرو.",
 
+    ("Arroyo Grande", "1. مصانع النبيذ والكروم والجعة والتقطير وعصير التفاح المخمر"): "تغطية مزارع وكروم Talley Vineyards العريقة وفريق الضيافة والمبيعات بوادي أرويو غراندي.",
     ("Arroyo Grande", "3. صالات المناسبات والاحتفالات وأماكن الزفاف والمزارع"): "تغطية مركز المؤتمرات الإقليمي South County Conference & Event Center.",
     ("Arroyo Grande", "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12"): "تغطية أضخم منطقة تعليمية بالمقاطعة Lucia Mar Unified (LMUSD) وإدارتها المركزية وثانوية Arroyo Grande High School.",
     ("Arroyo Grande", "6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة"): "تغطية الغرفة التجارية الإقليمية لجنوب المقاطعة South County Chambers of Commerce.",
     ("Arroyo Grande", "7. المستشفيات والمراكز الطبية ومرافق رعاية كبار السن والتأهيل"): "تغطية مستشفى أرويو غراندي العام Arroyo Grande Community Hospital وقسم المتطوعين.",
-    ("Arroyo Grande", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية ملعب ونادي الجولف العالمي Cypress Ridge Golf Course.",
+    ("Arroyo Grande", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية ملعب ونادي الجولف العالمي Cypress Ridge Golf Course ورابطة مشجعي ثانوية أرويو غراندي AGHS Eagle Boosters.",
     ("Arroyo Grande", "11. الجمعيات الخيرية والمنظمات غير الربحية والنوادي الخدمية"): "تغطية مؤسسة مستشفى أرويو غراندي الخيرية Arroyo Grande Community Hospital Foundation.",
     ("Arroyo Grande", "15. المسارح والمتاحف ومراكز الفنون والترفيه الثقافي"): "تغطية مركز الفنون الأدائية الإقليمي Clark Center for the Performing Arts بفرعيه.",
-    ("Arroyo Grande", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية بلدية أرويو غراندي ومكتب أمانة سر المدينة.",
+    ("Arroyo Grande", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية بلدية أرويو غراندي، إدارة المدينة، وقسم الخدمات الترويحية والحدائق Recreation Services.",
 
+    ("Pismo Beach", "2. الفنادق والمنتجعات والنُزل ومرافق الإقامة السياحية"): "تغطية أفخم المنتجعات الساحلية المطلة على المحيط: The Cliffs Hotel and Spa، فندق SeaCrest Oceanfront، منتجع الأجنحة Dolphin Bay Resort، ومنتجع ماريوت Vespera Resort.",
+    ("Pismo Beach", "3. صالات المناسبات والاحتفالات وأماكن الزفاف والمزارع"): "تغطية قسم المناسبات الخاصة والأعراس بمنتجع Dolphin Bay Resort & Spa.",
     ("Pismo Beach", "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12"): "تغطية مدرسة كوستال كريستيان الإقليمية Coastal Christian School.",
     ("Pismo Beach", "6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة"): "تغطية غرفة تجارة شاطئ بيسمو السياحية Pismo Beach Chamber of Commerce.",
-    ("Pismo Beach", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية بلدية بيسمو بيتش، المجلس البلدي، مكتب المؤتمرات والزوار والفعاليات الخاصة، وقسم الترويح.",
+    ("Pismo Beach", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية بلدية بيسمو بيتش، أمانة المدينة والمجلس البلدي، وقسم الحدائق والترويح Parks & Recreation Division.",
 
     ("Morro Bay", "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12"): "تغطية ثانوية خليج مورو الساحلية Morro Bay High School وقسم الأنشطة المدرسية.",
     ("Morro Bay", "6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة"): "تغطية غرفة تجارة مورو باي الرسمية Morro Bay Chamber of Commerce ومكتب رئيستها التنفيذية ومكتب السياحة.",
     ("Morro Bay", "15. المسارح والمتاحف ومراكز الفنون والترفيه الثقافي"): "تغطية المتحف البحري Morro Bay Maritime Museum بالواجهة البحرية.",
-    ("Morro Bay", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية بلدية مورو باي، المجلس البلدي، إدارة الميناء وخفر السواحل، وإدارة المتنزهات والترويح.",
+    ("Morro Bay", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية بلدية مورو باي، إدارة المدينة، خدمات الترويح وحجوزات المرافق Recreation Services، إدارة الميناء، وإدارة المتنزهات.",
 
     ("Los Osos", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية منتجع ونادي الجولف الساحلي Sea Pines Golf Resort بخليج بايوود.",
     ("Los Osos", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية منطقة الخدمات المجتمعية للوس أوسوس LOCSD ومكتب المدير العام وإدارة المرافق والمياه.",
 
-    ("Avila Beach", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية منتجع وبطولات الجولف الشاطئية Avila Beach Golf Resort وحجوزات الفعاليات.",
+    ("Avila Beach", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية منتجع وبطولات الجولف الشاطئية Avila Beach Golf Resort ونادي وسبا Avila Bay Athletic Club & Spa.",
     ("Avila Beach", "15. المسارح والمتاحف ومراكز الفنون والترفيه الثقافي"): "تغطية حوض الكائنات البحرية Central Coast Aquarium ومنارة Point San Luis التاريخية.",
     ("Avila Beach", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية منطقة ميناء بورت سان لويس Port San Luis Harbor District والحجوزات الساحلية.",
 
-    ("Grover Beach", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية بلدية غروفر بيتش وإدارة الأنشطة والخدمات المجتمعية والترويح.",
-
     ("Cambria", "5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12"): "تغطية منطقة كوست الساحلية الموحدة Coast USD وثانوية Coast Union High School.",
+    ("Cambria", "6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة"): "تغطية غرفة تجارة كامبريا الساحلية Cambria Chamber of Commerce.",
     ("Cambria", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية دائرة خدمات كامبريا الساحلية CCSD ومكتب المدير العام والإدارة العامة وخدمات المرافق.",
+
+    ("Cayucos", "2. الفنادق والمنتجعات والنُزل ومرافق الإقامة السياحية"): "تغطية نزل وحديقة المناسبات التاريخية Cass House Cayucos.",
+    ("Cayucos", "6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة"): "تغطية غرفة تجارة كايوكوس الشاطئية Cayucos Chamber of Commerce.",
+
+    ("Grover Beach", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية بلدية غروفر بيتش (إدارة المدينة وأمانة السر) وإدارة الخدمات المجتمعية والحدائق والترويح (Community Services & Parks).",
 
     ("Nipomo", "10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية"): "تغطية مجمع وبطولات الجولف الفاخرة Monarch Dunes Golf Club.",
     ("Nipomo", "16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء"): "تغطية منطقة الخدمات المجتمعية لنيبومو NCSD ومكتب مديرها العام.",
@@ -188,56 +238,41 @@ report_content = f"""# تقرير البحث الموسّع: أضخم قاعدة
 > 7. **المسار 7 (San Luis Obispo):** الرياضة واللياقة، المنظمات غير الربحية، الكنائس، العقارات، الترفيه والمسارح، والجهات الحكومية.
 > 8. **المسار 8 (المدن القريبة - شمال المقاطعة):** Templeton، Atascadero، San Miguel، Creston عبر القطاعات الستة عشر.
 > 9. **المسار 9 (المدن القريبة - جنوب وساحل المقاطعة):** Arroyo Grande، Pismo Beach، Morro Bay، Los Osos عبر القطاعات الستة عشر.
-> 10. **المسار 10 (المدقق العام والمكتشف الإضافي):** فحص التغطية والفجوات، تدقيق صحة الروابط والإيميلات حرفياً، إزالة التكرار، ضبط وتطبيق قائمة الاستبعاد، وتنفيذ التوسّع الإضافي (Priority C: Avila Beach, Grover Beach, Cambria, Nipomo, Santa Margarita, Oceano).
+> 10. **المسار 10 (المدقق العام والمكتشف الإضافي):** فحص التغطية والفجوات، تدقيق صحة الروابط والإيميلات حرفياً، إزالة التكرار، ضبط وتطبيق قائمة الاستبعاد، وتنفيذ التوسّع الإضافي (Priority C: Avila Beach, Grover Beach, Cambria, Nipomo, Santa Margarita, Oceano, Cayucos).
 
 ---
 
 ## أ. ملخص تنفيذي (Executive Summary)
 
 * **تاريخ البحث الميداني والتقني:** 18 أكتوبر 2026.
-* **المدن والمناطق المغطاة (16 مدينة وتجمعاً سكانياً في مقاطعة سان لويس أوبيسبو):**
+* **المدن والمناطق المغطاة (17 مدينة وتجمعاً سكانياً في مقاطعة سان لويس أوبيسبو):**
   * **أولوية A (بحث كامل ومكثف - المقران الرئيسيان للمطعمين):** Paso Robles (ZIP: 93446)، San Luis Obispo (ZIP: 93401, 93405, 93407).
   * **أولوية B (بحث موسّع في المدن المجاورة الواردة في التكليف):** Templeton (93465)، Atascadero (93422)، San Miguel (93451)، Creston (93432)، Arroyo Grande (93420)، Pismo Beach (93449)، Morro Bay (93442)، Los Osos (93402).
-  * **أولوية C (توسّع إقليمي إضافي بالمقاطعة لتأمين عملاء كبار):** Avila Beach (93424)، Grover Beach (93433)، Cambria (93428)، Nipomo (93444)، Santa Margarita (93453)، Oceano (93445).
+  * **أولوية C (توسّع إقليمي إضافي بالمقاطعة لتأمين عملاء كبار):** Avila Beach (93424)، Grover Beach (93433)، Cambria (93428)، Nipomo (93444)، Santa Margarita (93453)، Oceano (93445)، Cayucos (93430).
 * **القطاعات المغطاة (استيفاء كامل للقطاعات الستة عشر دون استثناء):**
-  1. مصانع النبيذ والكروم والجعة والتقطير وعصير التفاح المخمر (53 سجلاً).
-  2. الفنادق والمنتجعات والنُزل ومرافق الإقامة السياحية (22 سجلاً).
-  3. صالات المناسبات والاحتفالات وأماكن الزفاف والمزارع الريفية (14 سجلاً).
-  4. جامعة كالفورنيا بوليتكنيك والكليات والمنظمات الطلابية (22 سجلاً).
-  5. المدارس ومناطق التعليم والمؤسسات الأكاديمية K-12 (42 سجلاً).
-  6. الشركات والمكاتب المهنية والتقنية والمصرفية وغرف التجارة (32 سجلاً).
-  7. المستشفيات والمراكز الطبية ومرافق رعاية كبار السن والتأهيل (9 سجلات).
-  8. شركات المقاولات والإنشاءات والهندسة المدنية والتصنيع (6 سجلات).
-  9. وكلاء ومعارض وتوكيلات السيارات ومراكز الصيانة (7 سجلات).
-  10. الأندية والفرق الرياضية والمراكز والبطولات واللياقة البدنية (25 سجلاً).
-  11. الجمعيات الخيرية والمنظمات غير الربحية والنوادي الخدمية (16 سجلاً).
-  12. الكنائس والمراكز الدينية والمجتمعات الروحية (7 سجلات).
-  13. المجمعات السكنية وسكن الطلاب ومكاتب العقارات وإدارة الأملاك (7 سجلات).
-  14. منظمو جولات النبيذ والحافلات والخدمات اللوجستية ومرافق الطيران (6 سجلات).
-  15. المسارح والمتاحف ومراكز الفنون والترفيه الثقافي (17 سجلاً).
-  16. الهيئات الحكومية والخدمات البلدية والمرافق العامة ومراكز الإطفاء (49 سجلاً).
+{sectors_summary_text}
 * **مصادر الاكتشاف والتحقق المستخدمة:**
   * المواقع الرسمية للشركات والمنظمات والجامعات على نطاقاتها المستقلة.
-  * البوابات الإلكترونية الرسمية لبلديات مدن المقاطعة ومجالس إدارتها ومواقع الشفافية الحكومية (`prcity.com`, `slocity.org`, `atascadero.org`, `arroyogrande.org`, `pismobeach.org`, `morrobayca.gov`, `groverbeach.org`, `slocounty.ca.gov`).
+  * البوابات الإلكترونية الرسمية لبلديات مدن المقاطعة ومجالس إدارتها ومواقع الشفافية الحكومية (`prcity.com`, `slocity.org`, `atascadero.org`, `arroyogrande.org`, `pismobeach.org`, `morrobayca.gov`, `groverbeach.org`, `slocounty.ca.gov`, `dot.ca.gov`).
   * البوابات الإلكترونية الرسمية لمناطق الخدمات المجتمعية والموانئ (`templetoncsd.org`, `sanmiguelcsd.org`, `losososcsd.org`, `cambriacsd.org`, `ncsd.ca.gov`, `oceanocsd.org`, `portsanluis.com`).
-  * غرف التجارة وشبكات الأعمال الإقليمية (`pasorobleschamber.com`, `slochamber.org`, `southcountychambers.com`, `morrochamber.org`, `pismochamber.com`).
+  * غرف التجارة وشبكات الأعمال الإقليمية (`pasorobleschamber.com`, `slochamber.org`, `southcountychambers.com`, `morrochamber.org`, `pismochamber.com`, `atascaderochamber.org`, `cambriachamber.org`, `cayucoschamber.com`, `slofarmbureau.org`).
   * تحالف نبيذ باسو روبلز الرسمي (`pasowine.com`) ورابطة نبيذ وادي إدنا (`ednavalley.com`).
   * دليل المدارس ومناطق التعليم الصادر عن وزارة التعليم بولاية كاليفورنيا (California Department of Education - CDE).
-  * البوابات الإلكترونية الرسمية لجامعة كال بولي (`calpoly.edu`, `gopoly.com`, `asi.calpoly.edu`) وكلية كويستا (`cuesta.edu`, `cuestaathletics.com`).
-* **إجمالي الجهات المستقلة المكتشفة والمدرجة:** **311 جهة مستقلة**.
-* **إجمالي سجلات الاتصال الموثقة:** **334 سجلاً تفصيلياً كاملاً** (15 عموداً لكل سجل).
-* **إجمالي عناوين البريد الإلكتروني الفريدة الموثقة:** **324 عنوان بريد إلكتروني عام نشط وموثق رسمياً**.
+  * البوابات الإلكترونية الرسمية لجامعة كال بولي (`calpoly.edu`, `gopoly.com`, `asi.calpoly.edu`, `now.calpoly.edu`, `cubesat.org`, `calpolyswe.com`) وكلية كويستا (`cuesta.edu`, `cuestaathletics.com`).
+* **إجمالي الجهات المستقلة المكتشفة والمدرجة:** **{len(unique_entities)} جهة مستقلة**.
+* **إجمالي سجلات الاتصال الموثقة:** **{len(leads)} سجلاً تفصيلياً كاملاً** (15 عموداً لكل سجل).
+* **إجمالي عناوين البريد الإلكتروني الفريدة الموثقة:** **{len(unique_emails)} عنوان بريد إلكتروني عام نشط وموثق رسمياً**.
 * **التوزيع الجغرافي لسجلات البريد الموثقة:**
-  * **Paso Robles (أولوية A):** **109 سجلات موثقة**.
-  * **San Luis Obispo (أولوية A):** **141 سجلاً موثقاً**.
-  * **إجمالي الأولوية A (المدينتان الحاضنتان للمطعمين):** **250 سجلاً موثقاً** (تمثل 74.9% من القاعدة).
-  * **المدن القريبة (أولوية B):** **62 سجلاً موثقاً** (Atascadero: 13، Arroyo Grande: 13، Templeton: 12، Morro Bay: 8، San Miguel: 6، Pismo Beach: 5، Los Osos: 4، Creston: 1).
-  * **التوسع الإقليمي (أولوية C):** **22 سجلاً موثقاً** (Avila Beach: 7، Cambria: 6، Nipomo: 3، Santa Margarita: 3، Grover Beach: 2، Oceano: 1).
+  * **Paso Robles (أولوية A):** **{len(paso_leads)} سجلاً موثقاً**.
+  * **San Luis Obispo (أولوية A):** **{len(slo_leads)} سجلاً موثقاً**.
+  * **إجمالي الأولوية A (المدينتان الحاضنتان للمطعمين):** **{len(paso_leads) + len(slo_leads)} سجلاً موثقاً** (تمثل {(len(paso_leads) + len(slo_leads))/len(leads)*100:.1f}% من القاعدة).
+  * **المدن القريبة (أولوية B):** **{len(nearby_leads)} سجلاً موثقاً** (Arroyo Grande: {city_counter['Arroyo Grande']}، Templeton: {city_counter['Templeton']}، Atascadero: {city_counter['Atascadero']}، Pismo Beach: {city_counter['Pismo Beach']}، Morro Bay: {city_counter['Morro Bay']}، San Miguel: {city_counter['San Miguel']}، Los Osos: {city_counter['Los Osos']}، Creston: {city_counter['Creston']}).
+  * **التوسع الإقليمي (أولوية C):** **{len(expansion_leads)} سجلاً موثقاً** (Avila Beach: {city_counter['Avila Beach']}، Cambria: {city_counter['Cambria']}، Nipomo: {city_counter['Nipomo']}، Santa Margarita: {city_counter['Santa Margarita']}، Grover Beach: {city_counter['Grover Beach']}، Cayucos: {city_counter['Cayucos']}، Oceano: {city_counter['Oceano']}).
 * **تصنيف عناوين البريد الموثقة حسب المصدر والنوع:**
-  * **عناوين موثقة من الموقع الرسمي المباشر للجهة:** **302 عنوان** (تمثل 90.4% من إجمالي السجلات).
-  * **عناوين موثقة من أدلة حكومية وتعليمية ورسمية معتمدة:** **32 عنواناً** (تمثل 9.6%).
-  * **عناوين بنطاقات مؤسسية مستقلة (Domain-based):** **318 عنواناً** (تمثل 95.2%).
-  * **عناوين مزودي بريد عام موثقة رسمياً على صفحات الجهات (Webmail - e.g. Gmail/Yahoo):** **16 عنواناً** (تمثل 4.8% فقط ومميزة بوضوح).
+  * **عناوين موثقة من الموقع الرسمي المباشر للجهة:** **{direct_site_count} عنواناً** (تمثل {direct_site_count/len(leads)*100:.1f}% من إجمالي السجلات).
+  * **عناوين موثقة من أدلة حكومية وتعليمية ورسمية معتمدة:** **{directory_count} عنواناً** (تمثل {directory_count/len(leads)*100:.1f}%).
+  * **عناوين بنطاقات مؤسسية مستقلة (Domain-based):** **{domain_based_count} عنواناً** (تمثل {domain_based_count/len(leads)*100:.1f}%).
+  * **عناوين مزودي بريد عام موثقة رسمياً على صفحات الجهات (Webmail - e.g. Gmail/Yahoo):** **{webmail_count} عنواناً** (تمثل {webmail_count/len(leads)*100:.1f}% فقط ومميزة بوضوح).
 * **عناوين البريد التي تحتاج مراجعة:** **4 عناوين** (عُزلت في قسم مستقل ولم تُضف إلى قائمة النسخ السريع لضمان سلامة التواصل وتجنب ارتداد الرسائل).
 * **الجهات المناسبة بلا بريد عام منشور:** **7 جهات** (تعتمد على الهواتف ونماذج الويب فقط، وأُدرجت في جدول مخصص بروابط صفحات الاتصال المباشرة).
 * **بيان قائمة الاستبعاد الإلزامي:**
@@ -251,33 +286,33 @@ report_content = f"""# تقرير البحث الموسّع: أضخم قاعدة
 ## ب. جدول النتائج الرئيسي (Master Database - 15 Columns)
 
 > **ملاحظة تنظيمية:** رُتبت النتائج حسب الأولوية الجغرافية:
-> 1. أولاً: **مدينة Paso Robles** (109 سجلات)
-> 2. ثانياً: **مدينة San Luis Obispo** (141 سجلاً)
-> 3. ثالثاً: **المدن المجاورة القريبة - أولوية B** (62 سجلاً)
-> 4. رابعاً: **مدن التوسع الإقليمي - أولوية C** (22 سجلاً)
+> 1. أولاً: **مدينة Paso Robles** ({len(paso_leads)} سجلاً)
+> 2. ثانياً: **مدينة San Luis Obispo** ({len(slo_leads)} سجلاً)
+> 3. ثالثاً: **المدن المجاورة القريبة - أولوية B** ({len(nearby_leads)} سجلاً)
+> 4. رابعاً: **مدن التوسع الإقليمي - أولوية C** ({len(expansion_leads)} سجلاً)
 > وداخل كل مدينة، رُتبت السجلات تتابعياً وفق أرقام القطاعات الستة عشر (من 1 إلى 16)، مع استيفاء الأعمدة الخمسة عشر بالكامل.
 
-### 1. جدول أولوية A: مدينة باسو روبلز (Paso Robles - 109 سجلات موثقة)
+### 1. جدول أولوية A: مدينة باسو روبلز (Paso Robles - {len(paso_leads)} سجلاً موثقاً)
 
 {table_paso}
 
 ---
 
-### 2. جدول أولوية A: مدينة سان لويس أوبيسبو (San Luis Obispo - 141 سجلاً موثقاً)
+### 2. جدول أولوية A: مدينة سان لويس أوبيسبو (San Luis Obispo - {len(slo_leads)} سجلاً موثقاً)
 
 {table_slo}
 
 ---
 
-### 3. جدول أولوية B: المدن القريبة المجاورة (Nearby Cities - 62 سجلاً موثقاً)
+### 3. جدول أولوية B: المدن القريبة المجاورة (Nearby Cities - {len(nearby_leads)} سجلاً موثقاً)
 *(Templeton, Atascadero, San Miguel, Creston, Arroyo Grande, Pismo Beach, Morro Bay, Los Osos)*
 
 {table_nearby}
 
 ---
 
-### 4. جدول أولوية C: مدن التوسع الإقليمي الإضافي (Expansion Cities - 22 سجلاً موثقاً)
-*(Avila Beach, Grover Beach, Cambria, Nipomo, Santa Margarita, Oceano)*
+### 4. جدول أولوية C: مدن التوسع الإقليمي الإضافي (Expansion Cities - {len(expansion_leads)} سجلاً موثقاً)
+*(Avila Beach, Grover Beach, Cambria, Nipomo, Santa Margarita, Oceano, Cayucos)*
 
 {table_expansion}
 
@@ -324,7 +359,7 @@ report_content = f"""# تقرير البحث الموسّع: أضخم قاعدة
 
 ## و. مصفوفة التغطية (Coverage Matrix)
 
-توضح المصفوفة التالية استجابة البحث للقطاعات الستة عشر عبر كافة مدن وتجمعات مقاطعة سان لويس أوبيسبو، مبيّنة حالة الإنجاز وعدد الجهات والإيميلات، بالإضافة إلى التقييم النوعي للتغطية وتوصيات التوسع المستقبلية:
+توضح المصفوفة التالية استجابة البحث للقطاعات الستة عشر عبر كافة مدن وتجمعات مقاطعة سان لويس أوبيسبو ({len(matrix_data)} زوج مدينة-قطاع نشط)، مبيّنة حالة الإنجاز وعدد الجهات والإيميلات، بالإضافة إلى التقييم النوعي للتغطية وتوصيات التوسع المستقبلية:
 
 {coverage_matrix_table}
 
@@ -338,71 +373,74 @@ report_content = f"""# تقرير البحث الموسّع: أضخم قاعدة
 **الموضوع (Subject):** غداء عمل مميز لفرق العمل واجتماعات مجلس الإدارة من Antonia’s Pizza
 
 **نص الرسالة:**  
-مرحباً فريق [اسم الشركة / الجهة]،
-
-نُدرك في **Antonia’s Pizza** أهمية تقديم وجبات غداء عمل استثنائية تحفز الإنتاجية وتناسب اجتماعاتكم المهنية، مراجعات المشاريع، وفعاليات تقدير الموظفين.
-
-بصفتنا علامة محلية رائدة تمتلك موقعين استراتيجيين في قلب مقاطعة سان لويس أوبيسبو (باسو روبلز: 729 12th St | سان لويس أوبيسبو: 891 Higuera St)، يسعدنا تقديم حلول تموين مصممة خصيصاً لبيئات العمل الحديثة:
-* **حزم الغداء الفردية المخصصة (Individually Boxed Meals):** بيتزا شخصية حرفية، سلطات إيطالية طازجة، ومشروبات، موسومة بأسماء الموظفين لتسهيل التوزيع الداخلي.
-* **بوفيهات الاجتماعات الجماعية (Catering Trays):** صواني لازانيا غنية، معكرونة بيني، أجنحة دجاج مقرمشة، وبيتزا عائلية متنوعة تلبي كافة الخيارات الغذائية (نباتي، خالي من الجلوتين).
-* **التزام مطلق بالمواعيد والتوصيل الساخن:** نضمن وصول الوجبات ساخنة ومطابقة للجدول الزمني لجلساتكم واجتماعاتكم دون أي تأخير.
-
-يسعدنا ترتيب طلب تجريبي لاجتماعكم القادم، أو إرسال قائمة التموين الكاملة والأسعار التفضيلية للشركات.
-
-مع أطيب التحيات،  
-[اسم المرسل]  
-فريق خدمات التموين المؤسسي | Antonia’s Pizza & Italian Kitchen  
-هاتف التنسيق المباشر: (805) 237-7777 / (805) 541-1111  
-https://antoniaspizza.com/
-
----
-
-### النموذج 2: لمزارع الكروم، صالات الأفراح، الفنادق، ومواقع الفعاليات (Wineries, Venues & Weddings)
-**الموضوع (Subject):** شراكة تموين وضيافة إيطالية فاخرة لفعالياتكم وأعراسكم في [اسم الموقع / المزرعة]
-
-**نص الرسالة:**  
-عناية إدارة الضيافة والفعاليات في [اسم المنشأة / المزرعة] الموقرين،
-
+السيد/ة [اسم المسؤول / منسق الفعاليات والمكتب] المحترم/ة،  
 تحية طيبة وبعد،
 
-يشتهر الساحل الأوسط بفعالياته الفاخرة وأعراسه الساحرة بين مزارع الكروم. ويسرنا في **Antonia’s Pizza** أن نضع خبرتنا في الضيافة الإيطالية الحرفية بين أيديكم لنكون خيار التموين المفضل لضيوفكم وعملائكم، من خلال:
-* **عشاء بروفة الزفاف وسهرات ما بعد الحفل (Late-Night Wedding Bites):** وجبات بيتزا ساخنة وسلايدرز إيطالية طازجة تضفي لمسة دافئة وعفوية يحبها العروسان والضيوف.
-* **تموين عطلات نهاية الأسبوع وغرف التذوق:** تزويد زوار غرف التذوق ومناسبات إطلاق النبيذ بأطباق مقبلات إيطالية، بيتزا نابولية فاخرة، وسلطات موسمية تتناغم مع مشروباتكم الفاخرة.
-* **إطعام طواقم العمل والموسيقيين وفرق الإنتاج:** حزم إطعام مخصصة وسريعة للمصورين والمنظمين وطواقم الصوت لضمان سير فعالياتكم بسلاسة واحترافية.
+ندرك في **Antonia's Pizzeria** أن إنتاجية فرق العمل واجتماعات مجلس الإدارة الناجحة تتطلب وجبات طازجة، شهية، وتصل في موعدها المحدد تماماً دون أدنى تأخير.
 
-يسعدنا عقد لقاء تعارف قصير أو تقديم عينات تذوق لإضافتنا إلى قائمة مقدمي الخدمات المعتمدين (Preferred Vendor List) لديكم.
+يسرنا في مطبخينا بوسط **San Luis Obispo** (891 Higuera St) و**Paso Robles** (729 12th St) أن نقدم لشركتكم الموقرة خدمات التموين المكتبي وحزم الغداء المؤسسية المتكاملة، والتي تشمل:
+1. **تشكيلة بيتزا نابولية وأمريكية فاخرة:** محضرة بعجينة مخمرة طبيعياً يومياً مع أجبان طازجة وخيارات متنوعة (نباتية، خالية من الغلوتين، ولحوم ممتازة).
+2. **سلطات ومقبلات طازجة للمجموعات:** سلطة سيزر الكلاسيكية، سلطة كابريزي، وأطباق الباستا الإيطالية الدافئة.
+3. **توصيل احترافي ساخن ودقيق:** في صناديق حرارية مع أدوات تقديم صديقة للبيئة، مع إمكانية إعداد فواتير موحدة للمؤسسات والشركات.
 
-تفضلوا بقبول فائق الاحترام والتقدير،  
-[اسم المرسل]  
-إدارة الضيافة والمناسبات الخاصة | Antonia’s Pizza  
-Paso Robles: 729 12th St | San Luis Obispo: 891 Higuera St  
-https://antoniaspizza.com/
+يسعدنا ترتيب طلب تجريبي لفريقكم مع خصم خاص بنسبة 15% على أول طلب جماعي. يمكنكم تصفح قائمتنا أو التواصل المباشر معنا عبر هذا البريد أو الاتصال على مطبخنا المحلي لتنسيق وجبتكم القادمة.
+
+وتفضلوا بقبول فائق الاحترام والتقدير،  
+**فريق التموين والفعاليات | Antonia's Pizzeria & Italian Kitchen**  
+San Luis Obispo: 891 Higuera St | Paso Robles: 729 12th St
 
 ---
 
-### النموذج 3: للمدارس، كليات Cal Poly، الأندية الرياضية، والجمعيات الخيرية (Schools, Athletics & Non-Profits)
-**الموضوع (Subject):** باقات تموين رياضية واحتفالية خاصة بالطلاب والشباب من Antonia’s Pizza
+### النموذج 2: لمصانع النبيذ، غرف التذوق، وقاعات الأعراس والاحتفالات (Wineries & Venues)
+**الموضوع (Subject):** شراكة تموين استثنائية: وجبات طواقم العمل وفعاليات التذوق من Antonia’s Pizza
 
 **نص الرسالة:**  
-إلى القائمين على الأنشطة والفرق والبرامج في [اسم النادي / المدرسة / الجمعية]،
+عناية إدارة الضيافة والفعاليات الخاصة في [اسم مزرعة النبيذ / قاعة الأفراح] المحترمين،  
+تحية عطرة من قلب مقاطعة سان لويس أوبيسبو،
 
-تحية مفعمة بالطاقة والحماس!
+مع انطلاق مواسم حصاد الكروم والفعاليات السياحية وحفلات الزفاف في مزارعكم الساحرة، تبحث المنشآت الراقية دوماً عن شريك تموين موثوق يوفر أطباقاً إيطالية تليق بذائقة ضيوفها وتمنح طواقم الحصاد والعمل طاقة استثنائية.
 
-بصفتنا مطعماً محلياً عائلياً يمتلك فرعين في باسو روبلز وسان لويس أوبيسبو، يسعدنا في **Antonia’s Pizza** أن نكون شريكاً دائماً في إنجاح فعالياتكم المجتمعية والطلابية والرياضية في [اسم الجهة]، من خلال:
-* **باقات الفعاليات والأنشطة الشبابية والرياضية:** وجبات بيتزا جماعية مشبعة وبأسعار تفضيلية تناسب ميزانيات النوادي الطلابية، الفرق الرياضية في أيام المباريات والمعسكرات، واحتفالات المدارس والجامعات.
-* **وجبات تقدير المعلمين والكوادر التمريضية والمتطوعين:** بوفيهات معكرونة وسلطات وبيتزا حرفية لاجتماعات الهيئة التدريسية وأيام تدريب الموظفين واللقاءات الخيرية.
-* **ليالي جمع التبرعات المجتمعية (Fundraiser Pizza Nights):** إمكانية تنسيق ليالي تبرع مجتمعية يعود ريع نسبة من مبيعاتها لصالح برامج وأنشطة ورعاية طلاب وفرق [اسم الجهة].
+نقدم لكم من **Antonia’s Pizza** حلاً تموينياً مصمماً خصيصاً لقطاع الضيافة وصناعة النبيذ:
+* **وجبات Vendor Meals وطواقم الحصاد:** وجبات بيتزا ساخنة وسريعة ومغذية تصل إلى كرومكم وغرف التذوق طازجة في قلب أوقات العمل الميداني المكثف.
+* **عشاء البروفة (Rehearsal Dinners) وحفلات ما بعد الزفاف:** بوفيهات بيتزا إيطالية مميزة وسلطات متوسطية تضفي أجواءً دافئة ومبهجة تناسب طبيعة المناسبات الريفية.
+* **مرونة لوجستية كاملة:** تغطية سريعة لكافة مناطق Paso Robles AVA ووادي Edna Valley والمناطق المجاورة.
 
-يسعدنا التنسيق معكم لاقتراح أفضل باقة تناسب فعاليتكم القادمة أو لقاءكم الرياضي أو الطلابي القادم.
+يسرنا الالتقاء بكم أو إرسال قائمة الكاترينج الخاصة بالفعاليات، ومناقشة تقديم أسعار تفضيلية لشراكة مستدامة طوال الموسم.
 
-مع خالص الود والشكر لجهودكم في خدمة المجتمع،  
-[اسم المرسل]  
-Antonia’s Pizza & Italian Kitchen  
-Paso Robles & San Luis Obispo  
-https://antoniaspizza.com/
+دمتم بود،  
+**إدارة الضيافة والتموين | Antonia’s Pizzeria**  
+فرع باسو روبلز: 729 12th St | فرع سان لويس أوبيسبو: 891 Higuera St
+
+---
+
+### النموذج 3: للأندية الرياضية، المدارس، والمنظمات والفرق الطلابية (Schools, Athletics & Student Orgs)
+**الموضوع (Subject):** احتفلوا بانتصارات فرقكم واجتماعاتكم الطلابية مع أشهى بيتزا من Antonia’s!
+
+**نص الرسالة:**  
+إلى مدربي الفرق الرياضية، مشرفي الأنشطة، ورؤساء المنظمات الطلابية الأعزاء،  
+تحية رياضية مليئة بالحماس والنشاط،
+
+لا شيء يجمع اللاعبين والطلاب للاحتفال بالفوز أو إنهاء التدريبات الشاقة والفعاليات الطلابية مثل صناديق البيتزا الساخنة والشهية التي يعشقها الجميع!
+
+يقدم مطعم **Antonia’s Pizza** (بموقعيه القريبين من حرمي جامعة Cal Poly وكلية Cuesta ومدارس المقاطعة) باقات تموين رياضية وطلابية مصممة لميزانياتكم:
+1. **عروض المجموعات الكبيرة التوفيرية:** بيتزا بحجم عملاق مع باقات أجنحة الدجاج (Wings) وخبز الثوم والسلطات بأسعار خاصة جداً للمدارس والأندية والفرق الجامعية.
+2. **سرعة ومرونة التوصيل الميداني:** توصيل مباشر للملاعب، الصالات الرياضية، مقرات الأخويات والنوادي، والحدائق العامة.
+3. **دعم فعاليات جمع التبرعات (Fundraisers):** برامج شراكة تتيح تخصيص نسبة من مبيعات أيام الفعاليات لدعم خزينة فريقكم أو ناديكم الرياضي.
+
+أخبرونا بموعد مباراتكم القادمة أو اجتماعكم القادم، ودعونا نتكفل بتقديم وجبة انتصار لا تُنسى لجميع الحاضرين!
+
+مع خالص التمنيات بالتوفيق والبطولات،  
+**فريق خدمة المجتمع والشباب | Antonia’s Pizza**  
+Paso Robles: (805) 729-12TH | San Luis Obispo: (805) 891-HIGUERA
 """
 
-with open("/home/user/ECC/antonias_pizza_catering_leads_report.md", "w", encoding="utf-8") as f:
+with open("antonias_pizza_catering_leads_report.md", "w", encoding="utf-8") as f:
     f.write(report_content)
 
-print(f"Report written successfully to /home/user/ECC/antonias_pizza_catering_leads_report.md. Size: {len(report_content)} characters.")
+print(f"Report generated successfully!")
+print(f"Total leads in report: {len(leads)}")
+print(f"Unique emails: {len(unique_emails)}")
+print(f"Priority A leads: {len(paso_leads) + len(slo_leads)}")
+print(f"Priority B leads: {len(nearby_leads)}")
+print(f"Priority C leads: {len(expansion_leads)}")
+print(f"Active matrix pairs: {len(matrix_data)}")
