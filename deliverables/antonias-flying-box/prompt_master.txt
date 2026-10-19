@@ -1,0 +1,40 @@
+PROMPT — ANTONIA'S PIZZA / "THE FUTURE OF DELIVERY IS HERE"
+Master cinematic prompt (works for Wan 2.2, LTX-Video, HunyuanVideo 1.5)
+========================================================================
+
+MASTER / STYLE (prepend to every shot)
+--------------------------------------
+Cinematic Super Bowl commercial x sci-fi trailer, anamorphic 35mm, shallow depth of
+field, volumetric light, film grain, warm golden-and-tomato-red grade. A giant premium
+pizza box — warm cream kraft card, deep tomato-red band, gold-foil serif wordmark
+"Antonia's Pizza" — lid cracked open, molten cheese stretching, thick golden steam
+curling out. Crimson and amber spotlights cut through ground fog on a dark stage,
+silhouetted audience at the edges, embers drifting. Futuristic reveal that still smells
+like a real neighborhood pizzeria.
+
+Single-clip version (if you have ONE 5-second slot)
+---------------------------------------------------
+Low-angle hero shot, slow motion: a giant cream-and-tomato-red Antonia's Pizza box with
+gold-foil serif lettering hovers above a glossy black stage floor, lid open, molten
+cheese stretching, golden steam curling. It rises, tilts and glides forward as crimson
+and amber spotlights sweep through ground fog, embers trailing, stunned silhouetted
+audience at the edges, anamorphic lens flare. Camera cranes up into a slow orbiting
+drone move as the box banks. It settles onto a rustic wooden table and the lid opens to
+a steaming 28-inch pepperoni pizza — bubbling mozzarella, charred seasoned crust, fresh
+basil, an epic cheese pull. Warm pizzeria light overpowers the sci-fi darkness.
+Photoreal, 24fps, cinematic grade, film grain.
+
+NEGATIVE PROMPT (LTX-Video flag / Wan negative field)
+-----------------------------------------------------
+blurry, low quality, distorted text, misspelled lettering, warped logo, extra boxes,
+melting cardboard, text artifacts, watermark, jitter, inconsistent motion, static shot,
+cartoon, plastic look, oversaturated, duplicated audience, floating hands
+
+NOTES
+-----
+- 5 seconds is the realistic ceiling per clip on open models. Generate 4 clips and cut.
+- Put the exact string "Antonia's Pizza" in quotes in the prompt. It helps, it does not
+  guarantee correct spelling — the real logo goes on in post-production.
+- For image-to-video, use keyframe_hero.png as frame 0 and drop the "a giant ... box"
+  description down to motion + camera only. Identity comes from the image, not the text.
+- Seed 42 is a good starting point; change seed before changing the prompt.
