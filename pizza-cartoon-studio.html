@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>استوديو الكارتون — توني السلايس | Antonia's Pizza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Archivo:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#a9e4f8; --sky-2:#d8f3fd; --sky-3:#7ed0f2;
+  --navy:#0a2c4e; --navy-2:#123d68; --navy-soft:#1b4a78;
+  --yellow:#ffcf0a; --yellow-2:#ffe14d;
+  --paper:#fffef8; --paper-2:#f4fbfe;
+  --ink:#0a2c4e; --muted:#3d5a76; --line:#cfe9f5;
+  --green:#0f7a4d; --green-bg:#e6f7ee;
+  --red:#b42318; --red-bg:#fdecea;
+  --amber:#8a5a00; --amber-bg:#fff4d6;
+  --card-shadow:0 10px 30px rgba(10,44,78,.12);
+  --radius:20px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --sky:#0e3558; --sky-2:#123d68; --sky-3:#1b4a78;
+    --paper:#0d2a47; --paper-2:#0a223c;
+    --ink:#eef7fd; --muted:#b7d2e8; --line:#234a6e;
+    --green-bg:#0f3d2a; --red-bg:#4a1d1a; --amber-bg:#4a380f;
+    --card-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Cairo",system-ui,sans-serif;background:var(--paper-2);color:var(--ink);line-height:1.75}
+a{color:var(--navy-soft)}
+[dir="ltr"]{unicode-bidi:isolate}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+h1,h2,h3{line-height:1.25;margin:0}
+h2{font-size:clamp(24px,3.4vw,36px);font-weight:900}
+h3{font-size:19px;font-weight:800}
+p{margin:0}
+.small{font-size:13px;color:var(--muted)}
+.en{font-family:"Archivo","Cairo",sans-serif}
+section{padding:56px 0 8px}
+.sec-head{margin-bottom:18px}
+.sec-head p{color:var(--muted);font-weight:600;max-width:46em;margin-top:6px}
+.btn{display:inline-block;border:0;cursor:pointer;text-decoration:none;font-family:inherit;font-weight:800;font-size:15px;padding:12px 22px;border-radius:14px}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-yellow{background:var(--yellow);color:#0a2c4e}
+.btn-ghost{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+@media (prefers-color-scheme: dark){.btn-ghost{color:var(--ink);border-color:var(--ink)}}
+.hero{background:linear-gradient(180deg,var(--sky) 0%,var(--sky-2) 100%);padding:34px 0 30px;overflow:hidden}
+.kicker{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;font-weight:800;font-size:13px;padding:6px 14px;border-radius:999px}
+.kicker .dot{width:9px;height:9px;border-radius:50%;background:var(--yellow)}
+.hero h1{font-size:clamp(30px,5vw,52px);font-weight:900;margin:14px 0 10px}
+.hero h1 .hl{background:var(--yellow);padding:0 10px;border-radius:10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hero .lead{font-size:clamp(15px,2vw,18px);color:var(--navy-2);font-weight:600;max-width:40em}
+@media (prefers-color-scheme: dark){.hero .lead{color:var(--muted)}}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
+.stage{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--card-shadow);padding:10px;display:grid;place-items:center;min-height:320px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--card-shadow)}
+.card h3{margin-bottom:8px}
+.card ul{margin:0;padding:0;list-style:none}
+.card li{padding:5px 0;padding-inline-start:24px;position:relative;font-weight:600;font-size:14.5px;color:var(--muted)}
+.card li::before{content:"•";position:absolute;inset-inline-start:6px;color:var(--navy-soft);font-weight:900}
+.card li b{color:var(--ink)}
+.card code,.pipe code{display:block;direction:ltr;text-align:left;background:var(--navy);color:#bfe9ff;font-size:11.5px;line-height:1.55;padding:10px 12px;border-radius:10px;overflow-x:auto;white-space:pre-wrap;word-break:break-word;margin-top:8px}
+.ep{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--card-shadow)}
+.ep b{display:block;margin-bottom:4px}
+.ep p{font-size:13.5px;color:var(--muted);font-weight:600}
+.ep .fmt{display:inline-block;background:var(--sky-2);color:var(--navy-2);font-size:11.5px;font-weight:900;border-radius:999px;padding:2px 10px;margin-bottom:6px}
+@media (prefers-color-scheme: dark){.ep .fmt{color:var(--ink)}}
+.flag{font-size:12.5px;font-weight:800;border-radius:10px;padding:8px 12px;display:block;margin-top:8px}
+.flag.ok{background:var(--green-bg);color:var(--green)}
+.flag.warn{background:var(--amber-bg);color:var(--amber)}
+.copybtn{margin-top:10px;background:var(--navy);color:#fff;border:0;font-family:inherit;font-weight:800;font-size:13.5px;padding:8px 18px;border-radius:10px;cursor:pointer}
+.copybtn.done{background:var(--green)}
+.pipe{background:var(--navy);color:#dff0fb;border-radius:var(--radius);padding:24px 26px;box-shadow:var(--card-shadow)}
+.pipe h2{color:#fff}
+.pipe ol{margin:12px 0 0;padding:0;list-style:none;counter-reset:st;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pipe li{counter-increment:st;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px}
+.pipe li::before{content:counter(st);display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--yellow);color:#0a2c4e;font-weight:900;margin-bottom:8px}
+.pipe li b{color:#fff;display:block;margin-bottom:4px}
+.pipe li p{font-size:13px;color:#cfe6f6;font-weight:600}
+.pipe code{background:rgba(0,0,0,.35);color:#bfe9ff}
+footer{margin-top:64px;background:var(--navy);color:#cfe6f6;padding:32px 0 40px}
+footer h2{color:#fff;font-size:20px}
+footer ul{columns:2;column-gap:34px;margin-top:12px;font-size:13px;padding:0}
+footer li{margin-bottom:6px;list-style:none}
+footer a{color:#9fd8f5;word-break:break-all}
+/* mascot animation */
+.bob{animation:bob 2.6s ease-in-out infinite;transform-origin:110px 130px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.blink{animation:blink 4.2s infinite;transform-origin:110px 96px}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.12)}}
+.wave{animation:wave 2.6s ease-in-out infinite;transform-origin:178px 96px}
+@keyframes wave{0%,100%{transform:rotate(0)}50%{transform:rotate(-16deg)}}
+.steam{animation:steam 3s ease-in-out infinite}
+@keyframes steam{0%,100%{opacity:.15;transform:translateY(0)}50%{opacity:.8;transform:translateY(-6px)}}
+.glow{animation:glow 3.4s ease-in-out infinite}
+@keyframes glow{0%,100%{opacity:.55}50%{opacity:1}}
+@media (max-width:900px){.hero-grid,.grid2,.grid3{grid-template-columns:1fr}.pipe ol{grid-template-columns:1fr}footer ul{columns:1}}
+@media (prefers-reduced-motion: reduce){.bob,.blink,.wave,.steam,.glow{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker"><span class="dot"></span> عالم الكارتون الرسمي — Antonia's Pizza · صفحة مستقلة</span>
+        <h1>«توني السلايس» والفرن «جو» — <span class="hl">كارتون بيصبّ لصالح المطعم</span></h1>
+        <p class="lead">ماسكوت SVG مملوك لك 100% (بلا توليد وبلا تراخيص خارجية)، سلسلة حلقات قصيرة تقلّد <b>فورمات</b> الكارتون الفيروسي، وخط إنتاج مجاني بالكامل بلا أي API key. القاعدة: الكارتون بيحكي القصة، والأكل الحقيقي بيظهر بالفوتاج والصور فقط.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+          <a class="btn btn-navy" href="#episodes">12 فكرة حلقة</a>
+          <a class="btn btn-yellow" href="#formats">فورمات الكارتون الفيروسي</a>
+          <a class="btn btn-ghost" href="social-media-skills.html">← الصفحة الرئيسية للسكيلز</a>
+        </div>
+      </div>
+      <div class="stage">
+        <svg viewBox="0 0 460 300" width="100%" role="img" aria-label="توني السلايس والفرن جو">
+          <!-- Tony the Slice -->
+          <g class="bob">
+            <path d="M150 275 L78 120 Q150 80 222 120 Z" fill="#ffcf0a" stroke="#0a2c4e" stroke-width="7" stroke-linejoin="round"/>
+            <path d="M78 120 Q150 80 222 120 L212 142 Q150 108 88 142 Z" fill="#0a2c4e"/>
+            <circle cx="126" cy="170" r="12" fill="#c8372d" stroke="#0a2c4e" stroke-width="4"/>
+            <circle cx="176" cy="200" r="10" fill="#c8372d" stroke="#0a2c4e" stroke-width="4"/>
+            <circle cx="138" cy="226" r="8" fill="#c8372d" stroke="#0a2c4e" stroke-width="4"/>
+            <g class="blink">
+              <circle cx="132" cy="146" r="9" fill="#fff" stroke="#0a2c4e" stroke-width="4"/><circle cx="168" cy="146" r="9" fill="#fff" stroke="#0a2c4e" stroke-width="4"/>
+              <circle cx="133" cy="147" r="3.4" fill="#0a2c4e"/><circle cx="167" cy="147" r="3.4" fill="#0a2c4e"/>
+            </g>
+            <path d="M138 162 Q150 172 162 162" fill="none" stroke="#0a2c4e" stroke-width="5" stroke-linecap="round"/>
+            <g class="wave"><path d="M218 146 Q244 134 248 112" fill="none" stroke="#0a2c4e" stroke-width="7" stroke-linecap="round"/><circle cx="249" cy="108" r="9" fill="#fff" stroke="#0a2c4e" stroke-width="5"/></g>
+            <path d="M82 146 Q60 158 58 178" fill="none" stroke="#0a2c4e" stroke-width="7" stroke-linecap="round"/><circle cx="57" cy="182" r="9" fill="#fff" stroke="#0a2c4e" stroke-width="5"/>
+          </g>
+          <g class="steam" stroke="#7ed0f2" stroke-width="6" stroke-linecap="round" fill="none">
+            <path d="M110 84 q6 -12 0 -22"/><path d="M150 76 q6 -12 0 -22"/><path d="M190 84 q6 -12 0 -22"/>
+          </g>
+          <!-- Joe the Oven -->
+          <g>
+            <rect x="300" y="120" width="130" height="130" rx="18" fill="#0a2c4e"/>
+            <rect class="glow" x="318" y="168" width="94" height="58" rx="10" fill="#ffcf0a"/>
+            <path d="M330 196 q10 -14 20 0 t20 0 t20 0" fill="none" stroke="#0a2c4e" stroke-width="5" stroke-linecap="round"/>
+            <g class="blink"><circle cx="340" cy="146" r="8" fill="#fff"/><circle cx="390" cy="146" r="8" fill="#fff"/><circle cx="341" cy="147" r="3" fill="#0a2c4e"/><circle cx="389" cy="147" r="3" fill="#0a2c4e"/></g>
+            <circle cx="322" cy="132" r="5" fill="#7ed0f2"/><circle cx="340" cy="128" r="5" fill="#c8372d"/>
+            <path d="M368 142 q12 8 24 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+            <rect x="312" y="250" width="18" height="16" rx="4" fill="#123d68"/><rect x="400" y="250" width="18" height="16" rx="4" fill="#123d68"/>
+          </g>
+          <text x="150" y="296" text-anchor="middle" font-family="Cairo" font-weight="900" font-size="17" fill="#0a2c4e">توني السلايس</text>
+          <text x="365" y="296" text-anchor="middle" font-family="Cairo" font-weight="900" font-size="17" fill="#0a2c4e">الفرن جو</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="bible">
+    <div class="sec-head">
+      <h2>Style bible — هوية الكارتون</h2>
+      <p>الماسكوت ملف SVG واحد قابل للتعديل بالكد (مش صورة مولّدة): بدّل الألوان من متغيرات البراند، حرّك الأطراف بـRemotion/GSAP، وصدّر Lottie للقوالب.</p>
+    </div>
+    <div class="grid3">
+      <div class="card"><h3>🎨 الألوان والخط</h3><ul>
+        <li><b>جسم توني:</b> أصفر #ffcf0a · حدود كحلي #0a2c4e بسماكة ثابتة 7px</li>
+        <li><b>البيبروني:</b> أحمر دافئ #c8372d · <b>الخلفيات:</b> أزرق فاتح #a9e4f8</li>
+        <li><b>الفرن جو:</b> كحلي بشباك أصفر متوهّج (glow)</li>
+        <li><b>النص:</b> Cairo عربي / Archivo إنجليزي — نفس الصفحة الرئيسية</li>
+      </ul></div>
+      <div class="card"><h3>🏃 الحركة</h3><ul>
+        <li><b>إيقاع:</b> bob خفيف 2.6 ثانية + رمشة كل ~4 ثوانٍ — حركة «عجينة طرية» مو روبوت</li>
+        <li><b>Squash &amp; stretch</b> عند القفز/الهبوط؛ الذراع المسلّمة تلوح بزاوية ≤16°</li>
+        <li><b>البخار</b> فوق أي طبق/فرن = إشارة «طازج من الفرن» دايماً</li>
+        <li><b>Loop مثالي:</b> آخر فريم = أول فريم (سر الـreplay بالترند)</li>
+      </ul></div>
+      <div class="card"><h3>🚫 قواعد العالم</h3><ul>
+        <li><b>الأكل الحقيقي ما بيتمثل بالرسم:</b> لما الحلقة تحكي عن طبق، نقطع لفوتاج/صورة حقيقية — الكارتون بيعلّق بس</li>
+        <li><b>لا وعود كاذبة:</b> أي عرض/سعر بالحلقة من موقع antoniaspizza.com فقط</li>
+        <li><b>لا سخرية من منافسين</b> ولا مقارنات بأسماء مطاعم تانية</li>
+        <li><b>كل حلقة:</b> وسم فرع واحد + CTA واحد + QR/الموقع بالشريحة الأخيرة</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section id="episodes">
+    <div class="sec-head">
+      <h2>12 فكرة حلقة — مربوطة بالمنيو والعروض والفروع</h2>
+      <p>كل فكرة مكتوبة كـlogline جاهز يروح للإيجنت مع فورمات الإنتاج المجاني المناسب.</p>
+    </div>
+    <div class="grid3">
+      <div class="ep"><span class="fmt">Loop غاغ · SVG</span><b>01 · «سمعها قبل ما يشوفها»</b><p>توني يقرّب من الشاشة ويهمس: صوت مقرمشة حقيقية (ASMR من فوتاج المطبخ) — قطع لصورة الطبق الحقيقية.</p></div>
+      <div class="ep"><span class="fmt">مانيم شرح</span><b>02 · «رياضيات الـ28 إنش»</b><p>مانيم بيوضح ليش 28″ = مساحة تقريباً 4× بيتزا 13″ — غاغ تعليمي بيبيع «أكبر بيتزا بالبلدة».</p></div>
+      <div class="ep"><span class="fmt">قصة أصل · موشن</span><b>03 · «الأجارسكي: قارب ولا بيتزا؟»</b><p>حكاية قارب العجينة الجورجي الأصل — 4 نسخ (Original/American/Mexicano/SLO Style) بأربع لهجات بصرية.</p></div>
+      <div class="ep"><span class="fmt">فيزياء كوميدية</span><b>04 · «سحبة الجبنة الفيزيائية»</b><p>توني يحسب «معادلة السحبة» بينما الفوتاج الحقيقي بيكسّر المعادلة — قطع لقطعة حقيقية بـslow-mo.</p></div>
+      <div class="ep"><span class="fmt">تشويق Loop</span><b>05 · «العجلة ما بتوقف»</b><p>تشويق عجلة Spin &amp; save ($5 / 10% / شريحة عملاقة) — النتيجة تنكشف بالشريحة الأخيرة مع الشروط كما بالموقع.</p></div>
+      <div class="ep"><span class="fmt">عدّ تنازلي</span><b>06 · «جناح الليلة الأخيرة»</b><p>عدّ تنازلي لأجنحة ليلة المباراة مع Buffalo Fries المشهورات — CTA اطلب قبل المباراة.</p></div>
+      <div class="ep"><span class="fmt">كويز تفاعلي</span><b>07 · «توني يذاكر المنيو»</b><p>39 طبق وستوري تصويت: «مين أنا؟» — وصف من المنيو حرفياً والجمهور يخمّن (حفظ ومشاركة).</p></div>
+      <div class="ep"><span class="fmt">نوار كوميدي</span><b>08 · «craving الساعة المتأخرة»</b><p>أجواء فيلم نوار عن craving ليلي — ⚠️ الساعة تُذكر فقط بعد تأكيد صاحب المحل (2AM ولا midnight؟).</p></div>
+      <div class="ep"><span class="fmt">غيرة كوميدية</span><b>09 · «الفرن جو زعلان»</b><p>جو يغار لما السلطة (07 Fresh Pick) تاخد مديح — ينتهي بمصالحة: طاولة فيها الاثنين.</p></div>
+      <div class="ep"><span class="fmt">منافسة ودّية</span><b>10 · «Paso ضد SLO»</b><p>نسخة توني بكل فرع تتنافس على «أحسن عجينة» — الجمهور يصوّت بفرعِه (وسم موقع واحد لكل نسخة!).</p></div>
+      <div class="ep"><span class="fmt">كروت اقتباس</span><b>11 · «مراجعة Kelly H.»</b><p>«Literally the best I've ever had» — كارت اقتباس متحرك للتيراميسو مع طبق حقيقي بالشريحة الأخيرة.</p></div>
+      <div class="ep"><span class="fmt">إطار UGC</span><b>12 · «إطار توني»</b><p>إطار كارتوني متحرك بيحيط صور الزباين الحقيقية (بإذنهم وتنويه باسمهم) — أعلى صيغة ثقة.</p></div>
+    </div>
+  </section>
+
+  <section id="formats">
+    <div class="sec-head">
+      <h2>فورمات الكارتون الفيروسي — كيف نقلّدها (الفورمات مش الفوتاج)</h2>
+      <p>الإيجنت يفكّك الأمثلة الرائجة هلأسبوع بالسكيلز المجانية، ويستخرج الإيقاع فقط: طول الهوك، عدد القطعات، لحظة الكشف، نوع الصوت. بعدين يعيد بناء نفس الهيكل بتوني وجو وبفوتاجنا الحقيقي.</p>
+    </div>
+    <div class="grid2">
+      <div class="card"><h3>🔁 Perfect-loop gag</h3><ul>
+        <li><b>ليش بيشتغل:</b> الـreplay بيضاع وقت المشاهدة — أقوى إشارة عند Mosseri.</li>
+        <li><b>التقليد:</b> insta-reel-research يلصق الرابط ويستخرج طول اللوب ونقطة القطع ← نبني نفس الطول بتوني.</li>
+      </ul><code># تفكيك أي ريل ترند محلياً وبلا مفتاح:
+# الصق الرابط بالإيجنت بعد تثبيت سكيل reel (من صفحة السكيلز الرئيسية)</code></div>
+      <div class="card"><h3>🎭 Mascot-reacts على فوتاج حقيقي</h3><ul>
+        <li><b>ليش بيشتغل:</b> طبقة كوميدية فوق لقطة حقيقية = هوية + صدق بنفس الوقت.</li>
+        <li><b>التقليد:</b> طبقة SVG متحركة فوق فوتاج المطبخ (web-animation-skills: GSAP/Lottie) — الفوتاج ما بيتعدل.</li>
+      </ul><code>npx skills add iart-ai/web-animation-skills</code></div>
+      <div class="card"><h3> Explainer math (أسلوب 3Blue1Brown)</h3><ul>
+        <li><b>ليش بيشتغل:</b> المحتوى القابل للحفظ (منيو/مقاسات/«شو تطلب») بيكسب حفظ ومشاركة.</li>
+        <li><b>التقليد:</b> manim-skill بيكتب المشهد ويعلّق صوتياً بـKokoro محلي — بلا مفاتيح.</li>
+      </ul><code>git clone https://github.com/Yusuke710/manim-skill &amp;&amp; cd manim-skill &amp;&amp; uv sync
+ln -s "$PWD/skills/manim-skill" ~/.claude/skills/manim-skill</code></div>
+      <div class="card"><h3>👀 POV object (من داخل الفرن)</h3><ul>
+        <li><b>ليش بيشتغل:</b> زاوية غير متوقعة = إيقاف السكرول بأول ثانيتين.</li>
+        <li><b>التقليد:</b> كاميرا فعلية بلقطة فرن حقيقية (02) + عينا جو SVG على الحواف — بدون توليد.</li>
+      </ul><code># لقطة حقيقية من Kitchen Journal + طبقة عيون SVG بـRemotion</code></div>
+      <div class="card"><h3> Text-card story (بلا صوت)</h3><ul>
+        <li><b>ليش بيشتغل:</b> كتير بيتفرجوا بلا صوت — الكروت + الكابشن المحروق بيوصلوا الرسالة.</li>
+        <li><b>التقليد:</b> 4–6 كروت Cairo/Archivo بنفس البراند + ترجمات Whisper محلية.</li>
+      </ul><code>pip install -U openai-whisper
+whisper episode.mp4 --model small --output_format srt</code></div>
+      <div class="card"><h3>⚖️ Split-screen: كارتون × حقيقة</h3><ul>
+        <li><b>ليش بيشتغل:</b> المقارنة البصرية بتثبّت الصدق: الوعد بالكارتون، والدليل بالصورة الحقيقية.</li>
+        <li><b>التقليد:</b> نص الشاشة توني يعد، ونصها فوتاج الطبق — والقاعدة: الجانب الحقيقي ما بيتولّد أبداً.</li>
+      </ul><code># رندر محلي بـeditly أو Remotion — من صفحة السكيلز الرئيسية</code></div>
+    </div>
+    <span class="flag warn">⚠️ حدود التقليد: نسخ الإيقاع والفورمات قانوني وأخلاقي؛ نسخ فوتاج/صوت/شخصيات غيرك = سرقة وخطر حظر. ولا تعيد نشر حلقات كرتون علامات تانية «كاستشهاد».</span>
+  </section>
+
+  <section id="pipe">
+    <div class="pipe">
+      <h2>خط الإنتاج — مجاني، محلي، بلا أي API key</h2>
+      <ol>
+        <li><b>1 · الأصل SVG</b><p>توني وجو بملف SVG واحد بالبراند؛ التعديل بالكود مش بالتوليد.</p><code>assets/mascot/tony-the-slice.svg</code></li>
+        <li><b>2 · التحريك</b><p>Remotion (React) أو GSAP/Lottie عبر web-animation-skills؛ مشاهد الشرح بـmanim-skill.</p><code>npx skills add iart-ai/web-animation-skills</code></li>
+        <li><b>3 · الصوت المحلي</b><p>تعليق Kokoro TTS داخل manim-skill — محلي بالكامل وبلا مفاتيح.</p><code># التعليق الصوتي يُنتَج داخل مسار manim-skill — Kokoro محلي بلا مفاتيح</code></li>
+        <li><b>4 · الفوتاج الحقيقي</b><p>لقطات Kitchen Journal السبع + قصّ السكتات بـauto-editor.</p><code>pip install auto-editor &amp;&amp; auto-editor kitchen.mp4 --edit silence</code></li>
+        <li><b>5 · الرندر محلياً</b><p>MP4 1080×1920 30fps + غلاف 420×654 قبل النشر (ما بيتحرر بعده).</p><code>npm run build   # Remotion على جهازك</code></li>
+        <li><b>6 · النشر يدوياً</b><p>Meta Business Suite: وسم فرع واحد + CTA + QR — وبموافقتك قبل الجدولة.</p><code>business.facebook.com ← Planner ← Schedule</code></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="kpi">
+    <div class="sec-head">
+      <h2>كيف منعرف إنو الكارتون «بيصبّ لصالح المطعم»؟</h2>
+    </div>
+    <div class="grid2">
+      <div class="card"><h3>📈 مؤشرات كل حلقة</h3><ul>
+        <li><b>Sends لكل وصول</b> — أقوى إشارة للوصول لناس جداد (ريلز «ابعتها لصديق»)</li>
+        <li><b>حفظ</b> — حلقات المنيو/المقاسات لازم تكسب حفظ</li>
+        <li><b>زيارات البروفايل والنقرات</b> لantoniaspizza.com والطلب</li>
+        <li><b>طلبات بيك‌أب</b> بعد 24 ساعة من الحلقات العرضية (ورقة صاحب المحل)</li>
+      </ul></div>
+      <div class="card"><h3>🧪 تجربة بمتغير واحد</h3><ul>
+        <li>كل أسبوعين: غيّر متغير واحد بس (الهوك أو الطول أو الـCTA) وقارن بـInsights</li>
+        <li>الفروع: نفس الحلقة بنسختين (وسم Paso مرة وSLO مرة) — ما تنزل النسختين بنفس البوست</li>
+        <li>بعد 2–4 أسابيع: اعتمد على أرقام حسابك، مو على «أفضل وقت» جاهز من أي مصدر</li>
+      </ul></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>مصادر استوديو الكارتون — فحص GitHub API، 29 تشرين الأول 2026</h2>
+    <ul>
+      <li><a href="https://github.com/remotion-dev/remotion" dir="ltr">remotion-dev/remotion — 68,668★</a></li>
+      <li><a href="https://github.com/3b1b/manim" dir="ltr">3b1b/manim — 95,808★</a></li>
+      <li><a href="https://github.com/Yusuke710/manim-skill" dir="ltr">Yusuke710/manim-skill — 184★ · MIT · Kokoro محلي</a></li>
+      <li><a href="https://github.com/iart-ai/web-animation-skills" dir="ltr">iart-ai/web-animation-skills — 64★ · MIT</a></li>
+      <li><a href="https://github.com/iart-ai/explainer-video-skills" dir="ltr">iart-ai/explainer-video-skills — 60★ · MIT</a></li>
+      <li><a href="https://github.com/jonrusso/hand-drawn-2d-animation" dir="ltr">jonrusso/hand-drawn-2d-animation — 3★ · Apache-2.0</a></li>
+      <li><a href="https://github.com/openai/whisper" dir="ltr">openai/whisper — 111,495★ · MIT</a></li>
+      <li><a href="https://github.com/WyattBlue/auto-editor" dir="ltr">WyattBlue/auto-editor — 5,652★ · Unlicense</a></li>
+      <li><a href="https://github.com/mifi/editly" dir="ltr">mifi/editly — 5,571★ · MIT</a></li>
+      <li><a href="https://antoniaspizza.com" dir="ltr">antoniaspizza.com — المصدر الرسمي للمنيو والعروض</a></li>
+    </ul>
+    <p style="margin-top:14px;font-weight:700">Paso Robles — 729 12th St · (805) 238-1851 &nbsp;•&nbsp; San Luis Obispo — 891 Higuera St · (805) 439-2383 &nbsp;•&nbsp; antoniaspizza.com</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.copybtn[data-copy]').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var text = btn.getAttribute('data-copy');
+    var done = function(){
+      var old = btn.textContent; btn.textContent = 'اننسخ ✓'; btn.classList.add('done');
+      setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(done);
+    } else { done(); }
+  });
+});
+</script>
+</body>
+</html>
