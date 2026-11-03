@@ -1,0 +1,104 @@
+{
+  "name": "02 - Shopify GraphQL AI Product Optimization & Multi-Channel Publisher",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "shopify-product-created",
+        "responseMode": "onReceived"
+      },
+      "id": "shopify-webhook",
+      "name": "Shopify Webhook (products/create)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $env.ANTHROPIC_API_KEY }}"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: 'REPLACE_WITH_CURRENT_ANTHROPIC_MODEL', max_tokens: 2048, messages: [{ role: 'user', content: 'Generate high-converting HTML description (PAS + 5 benefit bullets + FAQ), SEO title (<60 chars), meta description (<155 chars), and 10 tags in JSON keys {seo_title, description_html, meta_description, tags} for product: ' + $json.body.title }] }) }}"
+      },
+      "id": "claude-copywriter",
+      "name": "Claude SEO & CRO Copywriter",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $env.SHOPIFY_DOMAIN }}/admin/api/2026-10/graphql.json",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "={{ $env.SHOPIFY_ADMIN_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ query: 'mutation UpdateProduct($input: ProductInput!) { productUpdate(input: $input) { product { id title handle } userErrors { field message } } }', variables: { input: { id: 'gid://shopify/Product/' + $('Shopify Webhook (products/create)').item.json.body.id, descriptionHtml: JSON.parse($json.content[0].text).description_html, seo: { title: JSON.parse($json.content[0].text).seo_title, description: JSON.parse($json.content[0].text).meta_description }, tags: JSON.parse($json.content[0].text).tags } } }) }}"
+      },
+      "id": "shopify-graphql-update",
+      "name": "Shopify Admin GraphQL (productUpdate)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        760,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Shopify Webhook (products/create)": {
+      "main": [
+        [
+          {
+            "node": "Claude SEO & CRO Copywriter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude SEO & CRO Copywriter": {
+      "main": [
+        [
+          {
+            "node": "Shopify Admin GraphQL (productUpdate)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

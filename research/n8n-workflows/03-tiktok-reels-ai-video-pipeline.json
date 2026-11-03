@@ -1,0 +1,138 @@
+{
+  "name": "03 - Automated TikTok / Reels / Shorts AI Video Ad Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "schedule-video",
+      "name": "Every 6 Hours Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.OPENAI_API_KEY}}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"model\": \"REPLACE_WITH_CURRENT_OPENAI_MODEL\", \"response_format\": {\"type\": \"json_object\"}, \"messages\": [{\"role\": \"system\", \"content\": \"Write a 25-second viral TikTok UGC ad script using Hook (0-3s) + Agitate Problem (3-8s) + Product Demo Solution (8-18s) + Urgency CTA (18-25s). Return JSON: {hook, voiceover_text, visual_prompts: [string]}\"}]}"
+      },
+      "id": "ugc-script-gen",
+      "name": "Generate Viral UGC Script",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.elevenlabs.io/v1/text-to-speech/{{ $env.ELEVENLABS_VOICE_ID }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "xi-api-key",
+              "value": "={{ $env.ELEVENLABS_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ text: JSON.parse($json.choices[0].message.content).voiceover_text, model_id: 'eleven_multilingual_v2' }) }}"
+      },
+      "id": "elevenlabs-tts",
+      "name": "ElevenLabs Multilingual v2 Voiceover",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.heygen.com/v2/video/generate",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Api-Key",
+              "value": "={{ $env.HEYGEN_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"dimension\": {\"width\": 1080, \"height\": 1920}, \"video_inputs\": [{\"character\": {\"type\": \"avatar\", \"avatar_id\": \"YOUR_UGC_AVATAR_ID\"}, \"voice\": {\"type\": \"audio\", \"audio_url\": \"YOUR_UPLOADED_AUDIO_URL\"}}]}"
+      },
+      "id": "heygen-render",
+      "name": "Render 9:16 UGC Video (HeyGen API)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Every 6 Hours Trigger": {
+      "main": [
+        [
+          {
+            "node": "Generate Viral UGC Script",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Viral UGC Script": {
+      "main": [
+        [
+          {
+            "node": "ElevenLabs Multilingual v2 Voiceover",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ElevenLabs Multilingual v2 Voiceover": {
+      "main": [
+        [
+          {
+            "node": "Render 9:16 UGC Video (HeyGen API)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

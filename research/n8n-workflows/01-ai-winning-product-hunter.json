@@ -1,0 +1,216 @@
+{
+  "name": "01 - Product Candidate Research (licensed source -> evidence score -> human review)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Daily Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.PRODUCT_RESEARCH_API_URL }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.PRODUCT_RESEARCH_API_KEY}}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "scrape-movers",
+      "name": "Licensed Product Data API (configure)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{$env.OPENAI_API_KEY}}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: 'REPLACE_WITH_CURRENT_OPENAI_MODEL', response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'You are an e-commerce research assistant. Score only supplied evidence. Never invent market size, COGS, sell price, trend or competition. If landed_cost or sale_price is absent, mark insufficient_data=true and do not recommend purchase. Score each candidate out of 100: problem_evidence (0-25), verified_margin_potential (0-25), original_demo_potential (0-20), fulfillment_feasibility (0-15), rights_and_policy_safety (0-15). Return JSON {products:[{source_id,title,source_url,total_score,insufficient_data,missing_data:[],evidence:[],risks:[],verdict}]}.' }, { role: 'user', content: JSON.stringify($json.candidates || $json.data || $json).slice(0, 18000) }] }) }}"
+      },
+      "id": "ai-product-scorer",
+      "name": "OpenAI Product Candidate Scoring (verify facts)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const parsed = JSON.parse($input.first().json.choices[0].message.content);\nreturn (parsed.products || []).map(p => ({ json: p }));"
+      },
+      "id": "split-products",
+      "name": "Parse & Split Candidates",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        940,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.total_score }}",
+              "operation": "largerEqual",
+              "value2": 75
+            }
+          ],
+          "boolean": [
+            {
+              "value1": "={{ $json.insufficient_data }}",
+              "operation": "isFalse"
+            }
+          ]
+        }
+      },
+      "id": "filter-winners",
+      "name": "Score >= 75 AND sufficient evidence?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Winners",
+          "mode": "name"
+        }
+      },
+      "id": "save-sheets",
+      "name": "Save to Google Sheets DB",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1400,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $env.TELEGRAM_CHAT_ID }}",
+        "text": "=🔎 *مرشح منتج للمراجعة (Score: {{ $json.total_score }}/100)*\\n📦 {{ $json.title }}\\n🔗 {{ $json.source_url }}\\n📌 البيانات الناقصة: {{ ($json.missing_data || []).join(\", \") }}\\n⚠️ المخاطر: {{ ($json.risks || []).join(\", \") }}\\n🧭 لا تشترِ مخزوناً قبل التحقق والعينة: {{ $json.verdict }}"
+      },
+      "id": "telegram-alert",
+      "name": "Send Winner Alert (Telegram)",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1400,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Parse & Split Candidates": {
+      "main": [
+        [
+          {
+            "node": "Score >= 75 AND sufficient evidence?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Licensed Product Data API (configure)": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Product Candidate Scoring (verify facts)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Score >= 75 AND sufficient evidence?": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheets DB",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send Winner Alert (Telegram)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Licensed Product Data API (configure)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Product Candidate Scoring (verify facts)": {
+      "main": [
+        [
+          {
+            "node": "Parse & Split Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

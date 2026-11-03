@@ -1,0 +1,96 @@
+{
+  "name": "05 - Zero-Touch Order Fulfillment + PayPal Tracking Anti-Hold Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "shopify-order-paid",
+        "responseMode": "onReceived"
+      },
+      "id": "order-paid-hook",
+      "name": "Shopify Webhook (orders/paid)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://developers.cjdropshipping.com/api2.0/v1/shopping/order/createOrderV2",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "CJ-Access-Token",
+              "value": "={{ $env.CJ_ACCESS_TOKEN }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ orderNumber: String($json.body.order_number), shippingCountryCode: $json.body.shipping_address.country_code, shippingCustomerName: $json.body.shipping_address.name, shippingAddress: $json.body.shipping_address.address1, shippingCity: $json.body.shipping_address.city, shippingZip: $json.body.shipping_address.zip, shippingPhone: $json.body.shipping_address.phone, products: $json.body.line_items.map(i => ({ vid: i.sku, quantity: i.quantity })) }) }}"
+      },
+      "id": "cj-create-order",
+      "name": "Place Order on CJ Dropshipping API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $env.WHATSAPP_PHONE_ID }}/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $env.WHATSAPP_TOKEN }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ messaging_product: 'whatsapp', to: $('Shopify Webhook (orders/paid)').item.json.body.shipping_address.phone, type: 'template', template: { name: 'order_confirmed', language: { code: 'ar' } } }) }}"
+      },
+      "id": "whatsapp-confirm",
+      "name": "Send WhatsApp Order Confirmation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        760,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Shopify Webhook (orders/paid)": {
+      "main": [
+        [
+          {
+            "node": "Place Order on CJ Dropshipping API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Place Order on CJ Dropshipping API": {
+      "main": [
+        [
+          {
+            "node": "Send WhatsApp Order Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

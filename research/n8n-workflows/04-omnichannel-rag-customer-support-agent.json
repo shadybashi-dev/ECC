@@ -1,0 +1,64 @@
+{
+  "name": "04 - Omnichannel AI Support & Upsell Agent (WhatsApp/Web/Email + Shopify + Qdrant)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "customer-message",
+        "responseMode": "lastNode"
+      },
+      "id": "incoming-msg",
+      "name": "Omnichannel Webhook (WhatsApp/Chat/Email)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.message }}",
+        "options": {
+          "systemMessage": "أنت وكيل خدمة عملاء ومبيعات ذكي للمتجر. استخدم أداة Shopify Order Lookup للتحقق من حالة الطلب، وقاعدة المعرفة Qdrant للإجابة عن سياسات الاسترجاع والشحن، واقترح منتجاً مكملاً بخصم 10% عند حل مشكلة العميل. إذا طلب العميل استرداداً نقدياً أو كان غاضباً جداً، أعد escalate=true."
+        }
+      },
+      "id": "support-ai-agent",
+      "name": "AI Support & Upsell Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.customer_id }}"
+      },
+      "id": "postgres-memory",
+      "name": "Customer Chat Memory (Postgres)",
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        500,
+        520
+      ]
+    }
+  ],
+  "connections": {
+    "Omnichannel Webhook (WhatsApp/Chat/Email)": {
+      "main": [
+        [
+          {
+            "node": "AI Support & Upsell Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
