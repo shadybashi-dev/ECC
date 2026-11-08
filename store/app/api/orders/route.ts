@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import { getDb } from '@/lib/db'
 import { getSession } from '@/lib/auth'
 import { resolveCart } from '@/lib/cart'
+import { recordEvent } from '@/lib/analytics'
 
 export const runtime = 'nodejs'
 
@@ -93,6 +94,9 @@ export async function POST(request: Request) {
     }
     const trans = db.transaction(tx)
     trans()
+    try {
+      recordEvent({ type: 'checkout_started', orderId, orderNumber, totalCents })
+    } catch {}
 
     return NextResponse.json({ orderId, orderNumber, totalCents, currency: 'USD' }, { status: 201 })
   } catch (err: any) {

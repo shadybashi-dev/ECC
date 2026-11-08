@@ -3,6 +3,7 @@ import { cookies } from 'next/headers'
 import { getDb } from '@/lib/db'
 import { cartItemSchema } from '@/lib/validators'
 import { resolveCart, cartItems } from '@/lib/cart'
+import { recordEvent } from '@/lib/analytics'
 
 export const runtime = 'nodejs'
 
@@ -61,6 +62,9 @@ export async function POST(request: Request) {
       db.prepare('INSERT INTO cart_items (cart_id, variant_id, quantity) VALUES (?, ?, ?)').run(cart.id, data.variantId, data.quantity)
     }
     db.prepare('UPDATE carts SET updated_at = datetime(\'now\') WHERE id = ?').run(cart.id)
+    try {
+      recordEvent({ type: 'add_to_cart', variantId: data.variantId, quantity: data.quantity })
+    } catch {}
     return NextResponse.json({ ok: true })
   } catch (err: any) {
     if (err?.issues) return NextResponse.json({ error: 'invalid_input', issues: err.issues }, { status: 400 })

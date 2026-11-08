@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { getDb } from '@/lib/db'
 import { addAuditLog } from '@/lib/audit'
+import { recordEvent } from '@/lib/analytics'
 
 export const runtime = 'nodejs'
 
@@ -71,6 +72,9 @@ export async function POST(req: Request) {
         if (order) {
           db.prepare('UPDATE orders SET payment_status = \'REFUNDED\', status = \'REFUNDED\', updated_at = datetime(\'now\') WHERE id = ?').run(order.id)
           addAuditLog(db, 'system:stripe', 'order.refunded', 'order', order.id, { order_number: order.orderNumber, amount: ch.amount })
+          try {
+            recordEvent({ type: 'refunded', orderId: order.id, orderNumber: order.orderNumber, amountCents: ch.amount })
+          } catch {}
         }
         break
       }

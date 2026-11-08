@@ -101,11 +101,33 @@ export default function EditProductPage() {
 
   async function updateVariantStock(variantId: string, stock: number) {
     try {
-      const res = await fetch(`/api/variants/${variantId}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ stock }) }) // endpoint doesn't exist yet
+      const res = await fetch(`/api/variants/${variantId}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ stock }) })
       if (!res.ok) throw new Error('update failed')
       load()
     } catch (e) {
-      setError('Stock update endpoint not implemented — use direct DB for now')
+      setError('Stock update failed')
+    }
+  }
+
+  async function deleteVariant(variantId: string) {
+    if (!confirm('Delete this variant?')) return
+    try {
+      const res = await fetch(`/api/variants/${variantId}`, { method: 'DELETE' })
+      if (!res.ok) throw new Error('Cannot delete variant used in orders')
+      load()
+    } catch (err: any) {
+      setError(err.message || 'Delete failed')
+    }
+  }
+
+  async function deleteProduct() {
+    if (!confirm('Delete this product? This cannot be undone.')) return
+    try {
+      const res = await fetch(`/api/products/${encodeURIComponent(product!.slug)}`, { method: 'DELETE' })
+      if (!res.ok) throw new Error('Delete failed')
+      router.push('/admin/products')
+    } catch (err: any) {
+      setError(err.message || 'Delete failed')
     }
   }
 
@@ -120,6 +142,7 @@ export default function EditProductPage() {
       <div className="flex items-center gap-3">
         <button onClick={() => router.back()} className="flex items-center gap-2 text-brand-navy hover:underline no-underline"><ArrowLeft className="w-4 h-4" /> Back to products</button>
         <button onClick={saveProduct} disabled={saving} className="ml-auto bg-brand-yellow text-brand-navy-dark font-bold flex items-center gap-2 px-4 py-2 rounded-md no-underline hover:bg-brand-yellow-light transition disabled:opacity-50"><Save className="w-4 h-4" /> Save</button>
+        <button onClick={deleteProduct} className="bg-red-50 text-red-600 border border-red-100 font-bold flex items-center gap-2 px-4 py-2 rounded-md no-underline hover:bg-red-100 transition"><Trash2 className="w-4 h-4" /> Delete product</button>
       </div>
       {error && <div className="p-3 rounded border border-red-200 bg-red-50 text-red-700 text-sm">{error}</div>}
 
@@ -167,7 +190,7 @@ export default function EditProductPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead><tr className="border-b border-brand-light text-brand-navy/60">
-              <th className="px-3 py-2">SKU</th><th className="px-3 py-2">Name</th><th className="px-3 py-2 text-right">Price adj (cents)</th><th className="px-3 py-2 text-right">Stock</th><th className="px-3 py-2 text-right">Reserved</th><th className="px-3 py-2 text-center">Active</th><th className="px-3 py-2 text-center">Default</th><th className="px-3 py-2 text-right">Barcode (GTIN)</th></tr></thead>
+              <th className="px-3 py-2">SKU</th><th className="px-3 py-2">Name</th><th className="px-3 py-2 text-right">Price adj (cents)</th><th className="px-3 py-2 text-right">Stock</th><th className="px-3 py-2 text-right">Reserved</th><th className="px-3 py-2 text-center">Active</th><th className="px-3 py-2 text-center">Default</th><th className="px-3 py-2 text-right">Barcode (GTIN)</th><th className="px-3 py-2 text-right">Actions</th></tr></thead>
             <tbody>
               {product.variants.map((v) => (
                 <tr key={v.id} className="border-b border-brand-light/50">
@@ -179,6 +202,9 @@ export default function EditProductPage() {
                   <td className="px-3 py-2 text-center">{v.active === 1 ? '✓' : '—'}</td>
                   <td className="px-3 py-2 text-center">{v.is_default === 1 ? '✓' : '—'}</td>
                   <td className="px-3 py-2 text-right font-mono text-brand-navy/40">{v.bar_code || '—'}</td>
+                  <td className="px-3 py-2 text-right">
+                    <button onClick={() => deleteVariant(v.id)} className="text-xs underline text-red-500 hover:text-red-700" aria-label={`Delete variant ${v.sku}`}>Delete</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -204,6 +230,7 @@ export default function EditProductPage() {
           <Input label="Image URL" placeholder="https://..." onChange={(e) => {}} disabled hint="Image upload not implemented yet — add rows directly in the database." />
           <button disabled className="text-sm border border-brand-light rounded px-3 py-1.5 text-brand-navy hover:bg-brand-light no-underline">Attach image</button>
         </div>
+        <p className="mt-3 text-xs text-brand-navy/50">Image delete is not implemented in the UI yet — remove rows directly in the database.</p>
         <p className="mt-3 text-xs text-brand-navy/50">Use descriptive alt text. Product photos are illustrative only.</p>
       </div>
 

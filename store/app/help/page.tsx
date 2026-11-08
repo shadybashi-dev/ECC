@@ -19,6 +19,18 @@ export default function HelpPage() {
             <h3 className="font-bold brand-navy">An item is out of stock</h3>
             <p className="text-sm text-brand-navy/60 mt-1">What happens and how we prevent overselling.</p>
           </Link>
+          <Link href="/help/how-to-buy-safely" className="block p-4 rounded border border-brand-light hover:bg-brand-light no-underline transition">
+            <h3 className="font-bold brand-navy">How to buy safely online</h3>
+            <p className="text-sm text-brand-navy/60 mt-1">A practical guide with verifiable facts, no promises.</p>
+          </Link>
+          <Link href="/help/shipping-returns-explained" className="block p-4 rounded border border-brand-light hover:bg-brand-light no-underline transition">
+            <h3 className="font-bold brand-navy">Shipping &amp; returns explained</h3>
+            <p className="text-sm text-brand-navy/60 mt-1">Clear delivery and return information.</p>
+          </Link>
+          <Link href="/help/choosing-the-right-product" className="block p-4 rounded border border-brand-light hover:bg-brand-light no-underline transition">
+            <h3 className="font-bold brand-navy">Choosing the right product</h3>
+            <p className="text-sm text-brand-navy/60 mt-1">Use specifications and restrictions to decide what fits you.</p>
+          </Link>
         </div>
         <p className="mt-8 text-sm text-brand-navy/60">Still need help? <a href="/contact" className="underline underline-offset-2 hover:text-brand-navy-dark">Contact us</a>.</p>
       </div>

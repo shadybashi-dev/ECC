@@ -45,6 +45,7 @@ export function Navbar() {
             <Link href="/about" className="no-underline px-3 py-2 rounded-md transition text-brand-navy hover:bg-brand-light">About</Link>
             <Link href="/contact" className="no-underline px-3 py-2 rounded-md transition text-brand-navy hover:bg-brand-light">Contact</Link>
             <Link href="/help" className="no-underline px-3 py-2 rounded-md transition text-brand-navy hover:bg-brand-light">Help Center</Link>
+            <Link href="/track" className="no-underline px-3 py-2 rounded-md transition text-brand-navy hover:bg-brand-light">Track order</Link>
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
@@ -76,6 +77,8 @@ export function Navbar() {
               <Link href="/about" className="block px-3 py-2 rounded-md text-brand-navy no-underline hover:bg-brand-light" onClick={() => setMenuOpen(false)}>About</Link>
               <Link href="/contact" className="block px-3 py-2 rounded-md text-brand-navy no-underline hover:bg-brand-light" onClick={() => setMenuOpen(false)}>Contact</Link>
               <Link href="/help" className="block px-3 py-2 rounded-md text-brand-navy no-underline hover:bg-brand-light" onClick={() => setMenuOpen(false)}>Help Center</Link>
+              <Link href="/track" className="block px-3 py-2 rounded-md text-brand-navy no-underline hover:bg-brand-light" onClick={() => setMenuOpen(false)}>Track order</Link>
+              <Link href="/track" className="block px-3 py-2 rounded-md text-brand-navy no-underline hover:bg-brand-light" onClick={() => setMenuOpen(false)}>Track order</Link>
               <hr className="my-3 border-brand-light" />
               {auth === 'loading' ? null : auth.user ? (
                 <button onClick={handleLogout} className="w-full text-left px-3 py-2 rounded-md text-brand-yellow font-medium no-underline hover:bg-brand-navy/5">Sign out</button>
@@ -131,6 +134,7 @@ export function Footer() {
             <ul className="space-y-2 text-brand-primary text-sm">
               <li><a href="/help" className="no-underline hover:text-brand-yellow">Help center</a></li>
               <li><a href="/contact" className="no-underline hover:text-brand-yellow">Contact us</a></li>
+              <li><a href="/track" className="no-underline hover:text-brand-yellow">Track order</a></li>
             </ul>
           </div>
         </div>

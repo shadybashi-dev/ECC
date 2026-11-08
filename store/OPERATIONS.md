@@ -10,6 +10,37 @@
 | Payments | Stripe (pay-per-transaction, no monthly fee) | $0 + 2.9% + 30¢ per successful charge |
 | Domain | registrar | ~$1–$2/mo amortised |
 
+## 3. Pages & features map
+
+Public:
+- `/` — Home (featured products, categories, contact)
+- `/categories` — category index
+- `/category/[slug]` — category listing (breadcrumbs)
+- `/product/[slug]` — product page: images, specifications, materials, usage, restrictions, shipping & returns, price, stock
+- `/cart` — cart (authenticated or anonymous)
+- `/checkout` — order creation + Stripe test payment
+- `/orders/[orderNumber]` — order detail (signed-in customers)
+- `/track` — guest order tracking by order number + email
+- `/auth/login`, `/auth/register`, `/auth/me`, `/auth/logout`
+- `/about`, `/contact`, `/help`, `/help/how-to-order`, `/help/how-returns-work`, `/help/out-of-stock`, `/help/how-to-buy-safely`, `/help/shipping-returns-explained`, `/help/choosing-the-right-product`
+- `/policies/shipping`, `/policies/returns`, `/policies/privacy`, `/policies/terms`
+- `/robots.txt`, `/sitemap.xml`, `/404`
+
+Admin (role-gated: ADMIN / OPERATOR):
+- `/admin` — dashboard with revenue, orders, refunds, low-stock, and analytics events (views, add-to-cart, checkout, purchase, refund, estimated conversion)
+- `/admin/products` — list, create, edit (status, price, SEO, test-data flag)
+- `/admin/products/[slug]` — edit product, variants, stock, delete product/variant
+- `/admin/categories` — category CRUD
+- `/admin/orders` — order list; `/admin/orders/[orderNumber]` — status/payment/fulfillment updates + audit log
+
+Backup & restore:
+- `npm run db:backup` — copies dev.db to backups/
+- `npm run db:restore <file>` — restores dev.db from a backup
+- `npm run db:verify` — runs migrations idempotently
+
+n8n automation (stubs, not live automation):
+- `POST /api/n8n/webhook?topic=<topic>` — receives webhooks for product-research, supplier-offers, content-drafts, order-exceptions, customer-service, revenue-reconciliation. Logs only; no financial action.
+
 **Total: approximately $0 – $65/month** before sales volume. No third-party commerce platform fee.
 
 ## 2. Pages & features map
