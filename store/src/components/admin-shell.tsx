@@ -9,6 +9,9 @@ const links = [
   { href: '/admin/products', icon: ShoppingCart, label: 'Products' },
   { href: '/admin/categories', icon: Package, label: 'Categories' },
   { href: '/admin/orders', icon: FileText, label: 'Orders' },
+  { href: '/admin/system-health', icon: FileText, label: 'System health' },
+  { href: '/admin/settings', icon: FileText, label: 'Settings' },
+  { href: '/admin/audit-log', icon: FileText, label: 'Audit log' },
 ]
 
 export function AdminShell({ user, children }: { user: { email: string; role: string }; children: React.ReactNode }) {

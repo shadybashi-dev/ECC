@@ -101,6 +101,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ orderId, orderNumber, totalCents, currency: 'USD' }, { status: 201 })
   } catch (err: any) {
     if (err?.issues) return NextResponse.json({ error: 'invalid_input', issues: err.issues }, { status: 400 })
-    return NextResponse.json({ error: 'server_error' }, { status: 500 })
+    console.error('ORDER ERROR:', err)
+    return NextResponse.json({ error: err?.message || 'server_error', stack: err?.stack ? String(err.stack).slice(0,500) : null }, { status: 500 })
   }
 }

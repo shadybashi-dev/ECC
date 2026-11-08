@@ -1,0 +1,13 @@
+.env
+.dev.db
+dev.db*
+node_modules
+.next
+npm-debug.log*
+README.md
+DEPLOYMENT.md
+OPERATIONS.md
+SEO_GEO_AEO.md
+backups
+migrations
+scripts

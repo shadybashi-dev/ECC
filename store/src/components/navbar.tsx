@@ -45,6 +45,7 @@ export function Navbar() {
             <Link href="/about" className="no-underline px-3 py-2 rounded-md transition text-brand-navy hover:bg-brand-light">About</Link>
             <Link href="/contact" className="no-underline px-3 py-2 rounded-md transition text-brand-navy hover:bg-brand-light">Contact</Link>
             <Link href="/help" className="no-underline px-3 py-2 rounded-md transition text-brand-navy hover:bg-brand-light">Help Center</Link>
+            <Link href="/compare" className="no-underline px-3 py-2 rounded-md transition text-brand-navy hover:bg-brand-light">Compare</Link>
             <Link href="/track" className="no-underline px-3 py-2 rounded-md transition text-brand-navy hover:bg-brand-light">Track order</Link>
           </nav>
 
@@ -78,7 +79,7 @@ export function Navbar() {
               <Link href="/contact" className="block px-3 py-2 rounded-md text-brand-navy no-underline hover:bg-brand-light" onClick={() => setMenuOpen(false)}>Contact</Link>
               <Link href="/help" className="block px-3 py-2 rounded-md text-brand-navy no-underline hover:bg-brand-light" onClick={() => setMenuOpen(false)}>Help Center</Link>
               <Link href="/track" className="block px-3 py-2 rounded-md text-brand-navy no-underline hover:bg-brand-light" onClick={() => setMenuOpen(false)}>Track order</Link>
-              <Link href="/track" className="block px-3 py-2 rounded-md text-brand-navy no-underline hover:bg-brand-light" onClick={() => setMenuOpen(false)}>Track order</Link>
+              <Link href="/compare" className="block px-3 py-2 rounded-md text-brand-navy no-underline hover:bg-brand-light" onClick={() => setMenuOpen(false)}>Compare</Link>
               <hr className="my-3 border-brand-light" />
               {auth === 'loading' ? null : auth.user ? (
                 <button onClick={handleLogout} className="w-full text-left px-3 py-2 rounded-md text-brand-yellow font-medium no-underline hover:bg-brand-navy/5">Sign out</button>
@@ -135,6 +136,7 @@ export function Footer() {
               <li><a href="/help" className="no-underline hover:text-brand-yellow">Help center</a></li>
               <li><a href="/contact" className="no-underline hover:text-brand-yellow">Contact us</a></li>
               <li><a href="/track" className="no-underline hover:text-brand-yellow">Track order</a></li>
+              <li><a href="/compare" className="no-underline hover:text-brand-yellow">Compare products</a></li>
             </ul>
           </div>
         </div>

@@ -21,6 +21,7 @@ Public:
 - `/checkout` — order creation + Stripe test payment
 - `/orders/[orderNumber]` — order detail (signed-in customers)
 - `/track` — guest order tracking by order number + email
+- `/compare` — product comparison (up to 4 products)
 - `/auth/login`, `/auth/register`, `/auth/me`, `/auth/logout`
 - `/about`, `/contact`, `/help`, `/help/how-to-order`, `/help/how-returns-work`, `/help/out-of-stock`, `/help/how-to-buy-safely`, `/help/shipping-returns-explained`, `/help/choosing-the-right-product`
 - `/policies/shipping`, `/policies/returns`, `/policies/privacy`, `/policies/terms`
@@ -32,6 +33,10 @@ Admin (role-gated: ADMIN / OPERATOR):
 - `/admin/products/[slug]` — edit product, variants, stock, delete product/variant
 - `/admin/categories` — category CRUD
 - `/admin/orders` — order list; `/admin/orders/[orderNumber]` — status/payment/fulfillment updates + audit log
+- `/admin/settings` — operator-configurable store settings
+- `/admin/system-health` — system health: order counts, product counts, migrations, webhooks
+- `/admin/audit-log` — audit log of operator actions (last 100 events)
+- `/admin/audit-log/[id]` — audit event detail
 
 Backup & restore:
 - `npm run db:backup` — copies dev.db to backups/

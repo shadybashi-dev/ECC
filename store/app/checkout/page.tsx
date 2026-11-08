@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Loader2, Mail, MapPin, CreditCard, AlertCircle } from 'lucide-react'
+import { Loader2, Mail, MapPin, CreditCard, AlertCircle, CheckCircle2, XCircle, RefreshCw } from 'lucide-react'
 
 const initForm = {
   email: '',
@@ -23,6 +23,7 @@ export default function CheckoutPage() {
   const [error, setError] = useState<string | null>(null)
   const [clientSecret, setClientSecret] = useState<string | null>(null)
   const [orderNumber, setOrderNumber] = useState<string | null>(null)
+  const [simResult, setSimResult] = useState<'success' | 'fail'>('success')
 
   async function createOrder() {
     setError(null)
@@ -76,9 +77,23 @@ export default function CheckoutPage() {
   async function confirmPayment() {
     if (!clientSecret) return
     setLoading(true)
+    setError(null)
     try {
+      const publishable = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+      const stripeConfigured = Boolean(publishable && publishable.startsWith('pk_'))
+
+      if (!stripeConfigured) {
+        // Simulation mode: allows testing success/failure/retry without real Stripe keys
+        await new Promise((r) => setTimeout(r, 1200))
+        if (simResult === 'fail') {
+          throw new Error('Card declined (simulated)')
+        }
+        setStage('success')
+        return
+      }
+
       // @ts-ignore — Stripe.js loaded via script tag in layout for test mode
-      const stripe = (window as any).Stripe?.(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+      const stripe = (window as any).Stripe?.(publishable)
       if (!stripe) throw new Error('Stripe library not loaded')
       const { error } = await stripe.confirmPayment({
         clientSecret,
@@ -112,7 +127,7 @@ export default function CheckoutPage() {
             {!stripeConfigured && (
               <div className="mb-6 p-3 rounded border border-brand-yellow/40 bg-brand-yellow/10 text-brand-navy-dark text-sm">
                 <AlertCircle className="w-4 h-4 inline mr-2" aria-hidden="true" />
-                Stripe is not configured (missing NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY). Order creation works, payment is simulated.
+                Stripe is not configured (missing NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY). Order creation works, payment is simulated for testing only.
               </div>
             )}
             <form onSubmit={(e) => { e.preventDefault(); createOrder() }} className="space-y-4">
@@ -159,15 +174,32 @@ export default function CheckoutPage() {
         {stage === 'payment' && (
           <>
             <h1 className="text-2xl font-bold brand-navy mb-2">Payment</h1>
-            <p className="text-brand-navy/60 mb-6">Order <span className="font-mono">{orderNumber}</span>. Test mode — use Stripe test card <code className="font-mono text-sm">4242 4242 4242 4242</code>, any future date, any CVC.</p>
+            <p className="text-brand-navy/60 mb-6">Order <span className="font-mono">{orderNumber}</span>.</p>
             {!stripeConfigured && (
               <div className="mb-4 p-3 rounded border border-brand-yellow/40 bg-brand-yellow/10 text-brand-navy-dark text-sm">
-                Payment provider not configured — simulating success. Click "Pay" to complete.
+                <AlertCircle className="w-4 h-4 inline mr-2" aria-hidden="true" />
+                Payment simulation mode. Select outcome below to test success or failure flows.
               </div>
             )}
-            <div id="card-element" className="mb-4 border border-brand-light rounded p-3 bg-brand-warm-white" />
+            <div className="mb-4">
+              <h3 className="font-bold text-sm brand-navy mb-2">Test outcome (simulation only)</h3>
+              <div className="flex gap-2">
+                <button onClick={() => setSimResult('success')} className={`px-3 py-1.5 rounded border text-sm font-medium transition ${simResult === 'success' ? 'bg-brand-yellow text-brand-navy-dark border-brand-yellow' : 'bg-brand-warm-white text-brand-navy border-brand-light hover:border-brand-navy'}`}>
+                  Success
+                </button>
+                <button onClick={() => setSimResult('fail')} className={`px-3 py-1.5 rounded border text-sm font-medium transition ${simResult === 'fail' ? 'bg-red-50 text-red-600 border-red-200' : 'bg-brand-warm-white text-brand-navy border-brand-light hover:border-brand-navy'}`}>
+                  Failure (card declined)
+                </button>
+              </div>
+            </div>
+            {stripeConfigured && (
+              <>
+                <div id="card-element" className="mb-4 border border-brand-light rounded p-3 bg-brand-warm-white" />
+                <p className="text-xs text-brand-navy/60 mb-4">Test card: 4242 4242 4242 4242, any future date, any CVC.</p>
+              </>
+            )}
             <div className="flex gap-3">
-              <button onClick={confirmPayment} disabled={loading || !stripeConfigured} className="flex-1 bg-brand-yellow text-brand-navy-dark font-bold py-3.5 rounded-md no-underline hover:bg-brand-yellow-light transition disabled:opacity-50">
+              <button onClick={confirmPayment} disabled={loading} className="flex-1 bg-brand-yellow text-brand-navy-dark font-bold py-3.5 rounded-md no-underline hover:bg-brand-yellow-light transition disabled:opacity-50">
                 {loading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : 'Pay order'}
               </button>
               <button onClick={() => setStage('info')} className="px-4 py-3.5 rounded-md border border-brand-light text-brand-navy no-underline hover:bg-brand-light">Back</button>
@@ -179,13 +211,23 @@ export default function CheckoutPage() {
         {stage === 'success' && (
           <>
             <div className="text-center py-10">
-              <div className="text-5xl mb-3">✅</div>
-              <h2 className="text-2xl font-bold brand-navy">Order placed</h2>
-              <p className="text-brand-navy/60">Thank you, {form.name}. Order <span className="font-mono font-bold">{orderNumber}</span> has been received and payment confirmed (test mode).</p>
-              <p className="mt-4 text-sm text-brand-navy/60">An order confirmation will be sent to {form.email} once a verified sending service is connected.</p>
+              <div className="text-5xl mb-3">{simResult === 'fail' ? <XCircle className="text-red-500" /> : <CheckCircle2 className="text-brand-navy" />}</div>
+              <h2 className="text-2xl font-bold brand-navy">{simResult === 'fail' ? 'Payment failed' : 'Order placed'}</h2>
+              {simResult === 'fail' ? (
+                <p className="text-brand-navy/60 mb-4">Payment for order <span className="font-mono">{orderNumber}</span> was declined. Please try again or contact your card issuer.</p>
+              ) : (
+                <>
+                  <p className="text-brand-navy/60 mb-4">Thank you, {form.name}. Order <span className="font-mono font-bold">{orderNumber}</span> has been received and payment confirmed (test mode).</p>
+                  <p className="mt-2 text-sm text-brand-navy/60">An order confirmation will be sent to {form.email} once a verified sending service is connected.</p>
+                </>
+              )}
               <div className="mt-8">
                 <LinkButton href={`/order/${orderNumber}`}>View order</LinkButton>
-                <LinkButton href="/" variant="outline">Continue shopping</LinkButton>
+                {simResult === 'fail' ? (
+                  <button onClick={() => setStage('payment')} className="ml-3 px-4 py-2.5 rounded-md border border-brand-light text-brand-navy no-underline hover:bg-brand-light">Try again</button>
+                ) : (
+                  <LinkButton href="/" variant="outline">Continue shopping</LinkButton>
+                )}
               </div>
             </div>
           </>

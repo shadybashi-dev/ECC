@@ -93,9 +93,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 <h3 className="font-bold text-sm brand-navy mb-2">Quantity</h3>
                 <input type="number" min="1" max={(product.variants[0]?.stock || 0)} defaultValue="1" className="w-20 border border-brand-light rounded px-2 py-1.5 text-brand-navy" />
               </div>
-              <button className="w-full bg-brand-yellow text-brand-navy-dark font-bold py-3 rounded-md no-underline hover:bg-brand-yellow-light transition disabled:opacity-50 disabled:cursor-not-allowed" disabled={(product.variants[0]?.stock || 0) <= 0}>
-                {(product.variants[0]?.stock || 0) > 0 ? 'Add to cart' : 'Out of stock'}
-              </button>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button className="flex-1 bg-brand-yellow text-brand-navy-dark font-bold py-3 rounded-md no-underline hover:bg-brand-yellow-light transition disabled:opacity-50 disabled:cursor-not-allowed" disabled={(product.variants[0]?.stock || 0) <= 0}>
+                  {(product.variants[0]?.stock || 0) > 0 ? 'Add to cart' : 'Out of stock'}
+                </button>
+                <a href={`/compare?slug=${slug}`} className="flex-1 border border-brand-light text-brand-navy px-4 py-3 rounded-md text-center no-underline text-sm font-medium hover:bg-brand-light transition">Compare</a>
+              </div>
               {product.shipping_info && <div className="text-sm text-brand-navy/60"><strong>Shipping:</strong> {product.shipping_info}</div>}
               {product.return_info && <div className="text-sm text-brand-navy/60"><strong>Returns:</strong> {product.return_info}</div>}
             </div>

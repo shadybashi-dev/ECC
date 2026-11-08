@@ -1,7 +1,4 @@
-export const dynamic = 'force-dynamic'
-
-export default function Robots() {
-  return `User-agent: *
+User-agent: *
 Allow: /
 
 # Public pages and products may be indexed
@@ -26,6 +23,4 @@ Disallow: /search
 Disallow: /*?*
 Disallow: /*&*
 
-Sitemap: ${process.env.SITE_URL || 'http://localhost:3000'}/sitemap.xml
-`
-}
+Sitemap: /sitemap.xml
